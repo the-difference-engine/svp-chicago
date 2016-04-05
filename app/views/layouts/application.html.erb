@@ -9,6 +9,16 @@
 <body>
 <h1>Ello govenor!</h1>
 
+<% flash.each do |name, message| %>
+	<div class="row">
+		<div class="col-md-12 alert-rel-navbar">
+			<div class="alert alert-<%= name == "alert" || name == "notice" ? "warning" : name %> alert-dismissable fade in" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<%= message %></div>
+		</div>
+	</div>
+<% end %>
+
 <%= yield %>
 
 </body>
