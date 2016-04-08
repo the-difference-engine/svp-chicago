@@ -10,7 +10,8 @@ Rails.application.routes.draw do
 
   get '/landings' => 'landings#index'
 
-  get 'users/index'
+  get '/users' => 'users#index'
+
 
   devise_for :users
 
