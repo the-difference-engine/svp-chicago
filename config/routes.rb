@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  get 'landings/index'
+  get '/landings' => 'landings#index'
 
   get '/users' => 'users#index'
 
