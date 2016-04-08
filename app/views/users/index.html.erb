@@ -1,10 +1,9 @@
 <h1>All Users</h1>
 <p><% @users.each do |user| %></p>
 
-<p>User id: <%= user.id %></p>
 <p>User email: <%= user.email %></p>
 
-  <% if user.admin == true %>
+  <% if user.admin %>
     <p> You're an ADMIN </p>
   <% else %>
     <p> You're NOT and ADMIN </p>
