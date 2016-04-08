@@ -1,2 +1,14 @@
-<h1>Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
+<h1>All Users</h1>
+<p><% @users.each do |user| %></p>
+
+<p>User id: <%= user.id %></p>
+<p>User email: <%= user.email %></p>
+
+  <% if user.admin == true %>
+    <p> You're an ADMIN </p>
+  <% else %>
+    <p> You're NOT and ADMIN </p>
+  <% end %>
+<% end %>
+
+<p>---------------</p>
