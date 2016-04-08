@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get '/landings' => 'landings#index'
 
   get '/users' => 'users#index'
+  get '/users/user' => 'users#show'
 
 
   devise_for :users
@@ -10,7 +11,7 @@ Rails.application.routes.draw do
   devise_scope :user do
     authenticated :user do
   
-      root 'tests#index', as: :authenticated_root
+      root 'users#home', as: :authenticated_root
     end
 
   unauthenticated do
