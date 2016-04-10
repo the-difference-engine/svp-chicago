@@ -1,12 +1,24 @@
 <h1>All Users</h1>
-<p><% @users.each do |user| %></p>
 
-<p>User email: <%= user.email %></p>
-
-  <% if user.admin %>
-    <p> You're an ADMIN </p>
-  <% else %>
-    <p> You're NOT and ADMIN </p>
+<table class="table">
+  <tr>
+    <th>#</th>
+    <th>Name</th>
+    <th>Last login</th>
+    <th>Admin?</th>
+    <% if user_signed_in? && current_user.admin %>
+      <th> </th>
+    <% end %>
+  </tr>
+  <% @users.each_with_index do |user, index| %>
+    <tr>
+      <td><p><%= index+1 %></p></td>
+      <td><p><%= user.email %></p></td>
+      <td><p><%= user.last_sign_in_at %></p></td>
+      <td><p><%= user.admin ? "Yes" : "No" %></p></td>
+      <% if user_signed_in? && current_user.admin %>
+      <td> <%= link_to "Change", "/users/#{user.id}", method: :patch, data:{confirm: "Are you sure you'd like to change admin status?"}, :class => "btn btn-default", :role => "button" %> </td>
+    <% end %>
+    </tr>
   <% end %>
-<p>---------------</p>
-<% end %>
+</table>
