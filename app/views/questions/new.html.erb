@@ -1,0 +1,13 @@
+<h1> Please add a question </h1>
+
+<%= form_tag '/questions', method: :post do %>
+    
+    <div>
+    <%=label_tag :question %>
+    <%= text_field_tag :question %>
+    </div>
+
+
+    <%= submit_tag "Punch It" %>
+
+<% end %>

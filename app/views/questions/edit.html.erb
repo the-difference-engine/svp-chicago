@@ -1,0 +1,13 @@
+<h1> Please edit your question </h1>
+
+<%= form_tag '/questions/#{@question.id}/edit', method: :patch do %>
+    
+    <div>
+    <%=label_tag :question %>
+    <%= text_field_tag :question, @question.question %>
+    </div>
+
+
+    <%= submit_tag "Punch It" %>
+
+<% end %>
