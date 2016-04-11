@@ -1,2 +1,24 @@
-<h1>Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
+<h1>All Users</h1>
+
+<table class="table table-hover">
+  <tr>
+    <th>#</th>
+    <th>Name</th>
+    <th>Last login</th>
+    <th>Admin?</th>
+    <% if user_signed_in? && current_user.admin %>
+      <th> </th>
+    <% end %>
+  </tr>
+  <% @users.each_with_index do |user, index| %>
+    <tr>
+      <td><p><%= index+1 %></p></td>
+      <td><p><%= user.email %></p></td>
+      <td><p><%= user.last_sign_in_at %></p></td>
+      <td><p><%= user.admin ? "Yes" : "No" %></p></td>
+      <% if user_signed_in? && current_user.admin %>
+      <td> <%= link_to "Change", "/users/#{user.id}", method: :patch, data:{confirm: "Are you sure you'd like to change admin status?"}, :class => "btn btn-default", :role => "button" %> </td>
+    <% end %>
+    </tr>
+  <% end %>
+</table>

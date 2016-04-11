@@ -1,0 +1,28 @@
+<h1> Create a new LOI and then submit </h1>
+
+<%= form_tag '/lois', method: :post do %>
+  <div class="input-group">
+    <%= label_tag :name %>
+    <%= text_field_tag :name, @loi.name, class: "form-control" %>
+  </div>
+
+  <div class="input-group">
+    <%= label_tag :email %>
+    <%= text_field_tag :email, @loi.email, class: "form-control" %>
+  </div>
+
+  <% @questions.each_with_index do |question, index| %>
+
+    <div class="input-group">
+      <%= hidden_field_tag :"q#{index}", question.id %>
+      <%= label_tag question.question %>
+      <%= text_field_tag :"a#{index}", nil, class: "form-control" %>
+    </div>
+
+  <% end %>
+
+  <div>
+    <%= submit_tag "Send", class: "btn btn-default" %>
+  </div>
+
+<% end %>
