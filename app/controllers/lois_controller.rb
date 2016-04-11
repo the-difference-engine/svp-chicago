@@ -1,16 +1,23 @@
 class LoisController < ApplicationController
+  before_action :authenticate_user!, only: [:index, :destroy]
+
   def index
     @lois = Loi.all
   end
 
   def new
     @loi  = Loi.new
+    @questions = Question.all
   end
 
   def create
     @loi = Loi.create({name: params[:name], email: params[:email]})
 
-    flash[:success] = "LOI Updated"
+    Question.all.count.times do |i|
+      Answer.create({loi_id: @loi.id, question_id: params[:"q#{i}"], answer: params[:"a#{i}"]})
+    end
+
+    flash[:success] = "LOI Created"
     redirect_to "/lois/#{@loi.id}"
   end
 
@@ -20,6 +27,7 @@ class LoisController < ApplicationController
 
   def edit
     @loi = Loi.find_by(id: params[:id])
+    @questions = Question.all
   end
 
   def update
