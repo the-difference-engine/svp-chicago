@@ -1,4 +1,4 @@
-<h1> Create a new LOI and then submit </h1>
+<h1> Edit an existing LOI submission </h1>
 
 <%= form_tag '/lois', method: :post do %>
   <div class="input-group">
@@ -16,7 +16,7 @@
     <div class="input-group">
       <%= hidden_field_tag :"q#{index}", question.id %>
       <%= label_tag question.question %>
-      <%= text_field_tag :"a#{index}", nil, class: "form-control" %>
+      <%= text_field_tag :"a#{index}", @loi.answers[index].answer, class: "form-control" %>
     </div>
 
   <% end %>
