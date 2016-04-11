@@ -1,36 +1,44 @@
 class QuestionsController < ApplicationController
 
-  # def index
-  #     @questions = Question.all 
-  # end
+  def index
+      @questions = Question.all 
+  end
 
-  # def new
-  #     @question = Question.new 
-  # end
+  def new
+      @question = Question.new 
+  end
 
-  # def create
-  #     @question = Question.create({question: params[:question]})
-  # end
+  def create
+      @question = Question.create({question: params[:question]})
 
-  # def show
-  #     @question = Question.find_by(id: params[:id])
-  # end
+      flash[:success] = "Question created!"
+      redirect_to "/questions"
+  end
 
-  # def edit
-  #     @question = Question.find_by(id: params[:id])
-  # end
+  def show
+      @question = Question.find_by(id: params[:id])
+  end
 
-  # def update
-  #     @question = Question.find_by(id: params[:id])
+  def edit
+      @question = Question.find_by(id: params[:id])
+  end
 
-  #     @question.update({question: params[:question]})
+  def update
+      @question = Question.find_by(id: params[:id])
 
-  # end
+      @question.update({question: params[:question]})
+      
+      flash[:success] = "Question updated!"
+      redirect_to "/questions"
+  end
 
-  # def destroy
-  #     @question = Question.find_by(id: params[:id])
-  #     @question.destroy
-  # end
+  def destroy
+      @question = Question.find_by(id: params[:id])
+      @question.destroy
+
+      flash[:warning] = "Question deleted"
+      redirect_to "/questions"
+  end
 
 
 end
