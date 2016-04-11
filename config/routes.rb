@@ -1,6 +1,16 @@
 Rails.application.routes.draw do
 
-  get 'landings/index'
+  get '/landings' => 'landings#index'
+
+  get '/ratings' => 'ratings#index'
+  get '/ratings/:id' => 'ratings#show'
+
+  get '/ratings/new' => 'ratings#new'
+  post '/ratings' => 'ratings#create'
+
+  get '/ratings/:id/edit' => 'ratings#edit'
+  patch '/ratings/:id' => ''
+
 
   get 'users/index'
 
