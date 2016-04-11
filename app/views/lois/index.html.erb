@@ -1,0 +1,23 @@
+<h1> A List of all LOI submissions </h1>
+
+<table class="table">
+  <tr>
+    <th>#</th>
+    <th>name</th>
+    <th>email</th>
+    <% if user_signed_in? && current_user.admin %>
+      <th> Action? </th>
+    <% end %>
+  </tr>
+  <% @lois.each_with_index do |loi, index| %>
+    <tr>
+      <td><p><%= index+1 %></p></td>
+      <td><p><%= loi.name %></p></td>
+      <td><p><%= loi.email %></p></td>
+      <% if user_signed_in? && current_user.admin %>
+      <td> <%= link_to "Delete", "/lois/#{loi.id}", method: :delete, data:{confirm: "Are You Sure"}, :class => "btn btn-default", :role => "button" %> </td>
+    <% end %>
+    </tr>
+  <% end %>
+</table>
+

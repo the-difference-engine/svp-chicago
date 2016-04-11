@@ -4,6 +4,15 @@ Rails.application.routes.draw do
 
   get '/users' => 'users#index'
   get '/users/user' => 'users#show'
+  patch '/users/:id' => 'users#update'
+
+  get '/lois' => 'lois#index'
+  get '/lois/new' => 'lois#new'
+  post '/lois' => 'lois#create'
+  get '/lois/:id' => 'lois#show'
+  get '/lois/:id/edit' => 'lois#edit'
+  patch '/lois/:id' => 'lois#update'
+  delete '/lois/:id' => 'lois#destroy'
 
 
   devise_for :users
