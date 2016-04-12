@@ -21,11 +21,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/">U down with SVP?</a>
+      <a class="navbar-brand" href="/home">SVP-Chicago</a>
     </div>
 
       <ul class="nav navbar-nav navbar-right">
-        <% if user_signed_in? && current_user.admin %>
+        <% if user_signed_in? && current_user.admin %>      
+          <li><a href="/questions">LOI Form Builder</a></li>
           <li><a href="/users">Users</a></li>
           <li><a href="/lois">LOIs</a></li>
           <li><a href="/ratings">Ratings</a></li>
@@ -44,7 +45,7 @@
   </div><!-- /.container-fluid -->
 </nav>
 
-<!-- Navigation Bar -->
+<!-- Flash Messages -->
 
 <% flash.each do |name, message| %>
   <div class="row">

@@ -1,6 +1,12 @@
 class RatingsController < ApplicationController
+
+  
   def index
-  	@ratings = Rating.all
+    if user_signed_in? && current_user.admin
+      @ratings = Rating.all
+    else
+      @ratings = Rating.where(user_id: current_user.id)
+    end
   end
 
   def show

@@ -4,8 +4,8 @@ Rails.application.routes.draw do
 
   get 'ratings/show'
 
-  get '/landings' => 'landings#index'
-
+  get '/home' => 'landings#home'
+  get '/thanks/:id' => 'landings#thanks'
   get '/ratings' => 'ratings#index'
   get '/ratings/new' => 'ratings#new'
   get '/ratings/:id' => 'ratings#show'
@@ -26,7 +26,7 @@ Rails.application.routes.draw do
   get '/lois/:id/edit' => 'lois#edit'
   patch '/lois/:id' => 'lois#update'
   delete '/lois/:id' => 'lois#destroy'
-
+  post '/sections' => 'sections#create'
 
   devise_for :users
 
@@ -46,11 +46,11 @@ Rails.application.routes.draw do
   get '/questions/new' => 'questions#new'
   post '/questions' => 'questions#create'
 
-  get 'questions/:id' => 'questions#show'
+  get '/questions/:id' => 'questions#show'
 
-  get 'questions/:id/edit' => 'questions#edit'
-  patch 'questions/:id' => 'questions#update'
+  get '/questions/:id/edit' => 'questions#edit'
+  patch '/questions/:id' => 'questions#update'
 
-  delete 'questions/:id' => 'questions#destroy'
+  delete '/questions/:id' => 'questions#destroy'
 
 end

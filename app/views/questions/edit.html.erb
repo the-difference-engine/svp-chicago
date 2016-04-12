@@ -1,13 +1,17 @@
 <h1> Please edit your question </h1>
 
-<%= form_tag '/questions/#{@question.id}/edit', method: :patch do %>
+<%= form_tag "/questions/#{@question.id}", method: :patch do %>
     
     <div>
     <%=label_tag :question %>
     <%= text_field_tag :question, @question.question %>
     </div>
 
+    <div class="input-group">
+      <%=label_tag :section %>
+      <%= collection_select :section, :section_id, Section.all, :id, :name, {:style => "width:200px"}, class: "form-control" %>
+    </div>
 
-    <%= submit_tag "Punch It" %>
+    <%= submit_tag "Submit Edit" %>
 
 <% end %>

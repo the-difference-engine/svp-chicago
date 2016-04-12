@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160411234820) do
+ActiveRecord::Schema.define(version: 20160412142607) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20160411234820) do
     t.string   "question"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "section_id"
   end
 
   create_table "ratings", force: :cascade do |t|
@@ -48,6 +49,12 @@ ActiveRecord::Schema.define(version: 20160411234820) do
     t.integer  "q4"
     t.string   "q5"
     t.integer  "weighted_score"
+  end
+
+  create_table "sections", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

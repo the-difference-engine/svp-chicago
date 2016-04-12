@@ -1,5 +1,5 @@
 class LoisController < ApplicationController
-  before_action :authenticate_user!, only: [:index, :destroy]
+  before_action :authenticate_user!, only: [:index, :destroy, :edit, :show]
 
   def index
     @lois = Loi.all
@@ -7,21 +7,36 @@ class LoisController < ApplicationController
 
   def new
     @loi  = Loi.new
-    @questions = Question.all
+    @questions = Question.order(:id).all 
+    @sections = Section.all
   end
 
   def create
-    @loi = Loi.create({name: params[:name], email: params[:email]})
+    @loi = Loi.new({name: params[:name], email: params[:email]})
 
-    Question.all.count.times do |i|
-      Answer.create({loi_id: @loi.id, question_id: params[:"q#{i}"], answer: params[:"a#{i}"]})
+    if answers_valid?
+      if @loi.save
+        params[:answers].each do |key, value|
+          Answer.create({loi_id: @loi.id, question_id: key, answer: value})
+        end
+        flash[:success] = "LOI Created"
+        redirect_to "/thanks/#{@loi.id}"
+      else
+        flash[:error] = @loi.errors.full_messages
+        render :new
+      end
+    else
+      #errors presented here
+      render :new
     end
+  end
 
-    flash[:success] = "LOI Created"
-    redirect_to "/lois/#{@loi.id}"
+  def answers_valid?
+    params[:answers].select{|key, value| value.empty?}.empty?
   end
 
   def show
+    @sections = Section.all
     @loi = Loi.find_by(id: params[:id])
   end
 

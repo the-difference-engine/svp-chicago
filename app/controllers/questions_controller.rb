@@ -1,7 +1,8 @@
 class QuestionsController < ApplicationController
 
   def index
-      @questions = Question.all 
+    @sections = Section.all
+    @questions = Question.order(:id).all 
   end
 
   def new
@@ -9,7 +10,7 @@ class QuestionsController < ApplicationController
   end
 
   def create
-      @question = Question.create({question: params[:question]})
+      @question = Question.create({question: params[:question], section_id: params[:section][:section_id]})
 
       flash[:success] = "Question created!"
       redirect_to "/questions"
@@ -26,7 +27,7 @@ class QuestionsController < ApplicationController
   def update
       @question = Question.find_by(id: params[:id])
 
-      @question.update({question: params[:question]})
+      @question.update({question: params[:question], section_id: params[:section][:section_id]})
       
       flash[:success] = "Question updated!"
       redirect_to "/questions"
