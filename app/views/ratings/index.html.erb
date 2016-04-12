@@ -8,6 +8,7 @@
 		<th>Level of Excitement</th>
 		<th>Benefit to SVP</th>
 		<th>Invite to Submit RFP?</th>
+		<th>Weighted Score</th>
 	</tr>
 	<% @ratings.each do |rating| %>
 		<tr>
@@ -18,12 +19,7 @@
 			<td><%= rating.q3 %></td>
 			<td><%= rating.q4 %></td>
 			<td><%= rating.q5 %></td>
+			<td><%= rating.weighted_score %></td>
 		</tr>
 	<% end %>
 </table>
-<h1>Ratings</h1>
-<% @ratings.each do |rating| %>
-	<%= rating.user_id %>
-	<%= rating.loi_id %>
-	<%= rating.rating_fields%>
-<% end %>
