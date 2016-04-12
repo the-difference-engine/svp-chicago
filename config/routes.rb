@@ -7,9 +7,9 @@ Rails.application.routes.draw do
   get '/landings' => 'landings#index'
 
   get '/ratings' => 'ratings#index'
+  get '/ratings/new' => 'ratings#new'
   get '/ratings/:id' => 'ratings#show'
 
-  get '/ratings/new' => 'ratings#new'
   post '/ratings' => 'ratings#create'
 
   get '/ratings/:id/edit' => 'ratings#edit'
