@@ -1,19 +1,22 @@
 Rails.application.routes.draw do
-
-  get 'ratings/index'
-
-  get 'ratings/show'
+  namespace :api do
+    namespace :v1 do
+      get '/lois' => 'lois#index'
+      get '/lois/:id' => 'lois#show'
+    end
+  end
 
   get '/home' => 'landings#home'
   get '/thanks/:id' => 'landings#thanks'
   get '/ratings' => 'ratings#index'
   get '/ratings/new' => 'ratings#new'
   get '/ratings/:id' => 'ratings#show'
-
   post '/ratings' => 'ratings#create'
-
   get '/ratings/:id/edit' => 'ratings#edit'
   patch '/ratings/:id' => 'ratings#update'
+  delete '/ratings/:id' => 'ratings#destroy'
+
+
 
   get '/users' => 'users#index'
   get '/users/user' => 'users#show'
