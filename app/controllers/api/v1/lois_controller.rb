@@ -5,6 +5,6 @@ class Api::V1::LoisController < ApplicationController
   end
 
   def show
-  	@loi = Lois.find(params[:id])
+  	@loi = Loi.find(params[:id])
   end
 end
