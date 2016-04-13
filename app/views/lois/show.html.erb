@@ -1,9 +1,22 @@
 <h1> LOI SHOW </h1>
+
 <p> Name: <%= @loi.name %> </p>
 <p> Email: <%= @loi.email %> </p>
-<% @loi.answers.each do |answer| %>
-  <p> <%= answer.question.question %>: <%= answer.answer %> </p>
-<% end %>
+
+<ol>
+  <% @sections.each do |section| %>
+    
+    <h3><li><%= section.name %></li></h3>
+      <ul>
+        <% @loi.answers.each do |answer| %>
+
+          <% if answer.question.section_id == section.id %>
+            <li><p> <%= answer.question.question %>: <%= answer.answer %> </p></li>
+          <% end %>
+        <% end %>
+      </ul>
+  <% end %>
+</ol>
 
 <% if user_signed_in? %>
   <%= link_to "Rate", "/ratings/new?loi=#{@loi.id}", :class => "btn btn-default", :role => "button" %>

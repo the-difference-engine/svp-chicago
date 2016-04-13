@@ -1,6 +1,20 @@
-<h1>How u do todai!!!</h1>
+<h1>All LOI Form Fields</h1>
 
-<% @questions.each do |question| %>
-  <p> <%= question.question  %> </p>
-<% end %>
+<%= link_to "Add New Field", "/questions/new", :class => "btn btn-default", :role => "button" %>
+
+<ol>
+  <% @sections.each do |section| %>
+    <li><h4> <%= section.name %> </h4></li>
+    
+    <ul>
+      <% @questions.each do |question| %>
+        <% if question.section_id == section.id %>
+          <li><p> <%= question.question  %>
+              <%= link_to "Edit", "/questions/#{question.id}/edit", :class => "btn btn-default", :role => "button" %>
+              <%= link_to "Delete", "/questions/#{question.id}", method: :delete, data:{confirm: "Are You Sure"}, :class => "btn btn-default", :role => "button" %></p></li>
+        <% end %>
+      <% end %>
+    </ul>
+  <% end %>
+</ol>
 
