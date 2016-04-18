@@ -16,9 +16,24 @@ class LoisController < ApplicationController
 
     if answers_valid?
       if @loi.save
+
         params[:answers].each do |key, value|
-          Answer.create({loi_id: @loi.id, question_id: key, answer: value})
+
+          answer = Answer.create({loi_id: @loi.id, question_id: key, answer: value})
+
+          if value.include?("challenges")
+            i = 0
+            (value["challenges"].length / 2).times do
+              Challenge.create({answer_id: answer.id, challenge: value["challenges"][i], priority: value["challenges"][i+1]})
+              i += 2
+            end
+          end
+
+          if value.include?("ftes")
+            Fte.create({answer_id: answer.id, amount_1: value["ftes"][0], amount_2: value["ftes"][1], amount_3: value["ftes"][2]})
+          end
         end
+
         flash[:success] = "LOI Created"
         redirect_to "/thanks/#{@loi.id}"
       else
