@@ -1,10 +1,11 @@
-<div ng-app="app">
-  <div ng-controller="formsCtrl" ng-init="setup()">
-    <h1> LOI SHOW </h1>
+<div class="form-heading">
+
+  <h1> LOI SHOW </h1>
+
+  <div class="form">
 
     <p> Name: <%= @loi.name %> </p>
     <p> Email: <%= @loi.email %> </p>
-
     
     <ol>
       <% @sections.each do |section| %>
@@ -20,6 +21,95 @@
           </ul>
       <% end %>
     </ol>
+    <ol>
+      <% @sections.each do |section| %>
+
+        <h3><li><%= section.name %></li></h3>
+
+          <ul>
+
+            <% if section.name == "Organizational Capacity Challenges" %>
+                <table class="table">
+                  <tr>
+                    <th>Focus Area</th>
+                    <th>Please provide a short description of your top 1-3 challenge(s) in each area that applies</th>
+                    <th>Priority Rank</th>
+                    <th>2015 FTEs</th>
+                    <th>2016 FTEs</th>
+                    <th>2017 FTEs</th>
+                  </tr> 
+            <% elsif section.name == "Demographics" %>
+                <table class="table">
+                  <tr>
+                    <th>Sector</th>
+                    <th>Mark an “x” if you have programs addressing this sector</th>
+                  </tr>
+            <% elsif section.name == "Geographic Focus" %>
+                <table class="table">
+                  <tr>
+                    <th>Focus</th>
+                    <th>Please select whichever applies (if more than one, pick one based on your main program)</th>
+                  </tr>
+            <% end %>
+          
+
+            <% @loi.answers.each do |answer| %>
+
+              <% if answer.question.section_id == section.id && section.name == "Organizational Capacity Challenges" %>
+
+                <tr>
+                  <td><%= answer.question.question+':' %></td>
+                  <% answer.challenges.each do |challenge| %>
+                    <td><%= challenge.challenge %></td>
+                    <td><%= challenge.priority %> </td>
+                  <% end %>
+                  
+                    <td><%= answer.fte.amount_1 %></td>
+                    <td><%= answer.fte.amount_2 %> </td>
+                    <td><%= answer.fte.amount_3 %> </td>
+                 
+                </tr>
+
+              <% elsif answer.question.section_id == section.id && section.name == "Demographics" %>
+
+                <tr>
+                  <td><%= answer.question.question+':' %></td>
+                  <td><%= answer.answer %></td>
+                </tr>
+
+              <% elsif answer.question.section_id == section.id && section.name == "Geographic Focus" %>
+
+                <tr>
+                  <td><%= answer.question.question+':' %></td>
+                  <td><%= answer.answer %></td>
+                </tr>
+
+              <% elsif answer.question.section_id == section.id %>  
+
+                <li><p> <%= answer.question.question %>: <%= answer.answer %> </p></li>
+
+              <% end %>
+            <% end %>
+
+          <% if section.name == "Organizational Capacity Challenges" %>
+              <tr>
+                <td></td>
+                <td></td>
+                <td>TOTAL FTEs</td>
+                <td><%= @loi.fte_amount_1_total %></td>
+                <td><%= @loi.fte_amount_2_total %></td>
+                <td><%= @loi.fte_amount_3_total %></td>
+              </tr>
+            <% elsif section.name == "Demographics" %>
+              </table>
+            <% elsif section.name == "Geographic Focus" %>
+              </table>
+            <% end %>
+
+          </table>
+        </ul>
+      <% end %>
+  </ol>
 
     <% if user_signed_in? %>
       <%= link_to "Rate", "/ratings/new?loi=#{@loi.id}", :class => "btn btn-default", :role => "button" %>
@@ -29,5 +119,6 @@
       <%= link_to "Edit", "/lois/#{@loi.id}/edit/", :class => "btn btn-default", :role => "button" %>
       <%= link_to "Delete", "/lois/#{@loi.id}", method: :delete, data:{confirm: "Are You Sure"}, :class => "btn btn-default", :role => "button" %>
     <% end %>
+
   </div>
 </div>
