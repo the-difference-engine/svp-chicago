@@ -1,2 +1,9 @@
-<h1> Show Page </h1>
-<p> <%= question.question  %> </p>
+<h1> <%= @question.question %>  </h1>
+<table class="table">
+  <% @question.answers.each do |answer| %>
+    <tr>
+      <td> <%= answer.answer %> </td>
+    </tr>
+  <% end %>
+</table>
+
