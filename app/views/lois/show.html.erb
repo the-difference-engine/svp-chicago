@@ -1,28 +1,33 @@
-<h1> LOI SHOW </h1>
+<div ng-app="app">
+  <div ng-controller="formsCtrl" ng-init="setup()">
+    <h1> LOI SHOW </h1>
 
-<p> Name: <%= @loi.name %> </p>
-<p> Email: <%= @loi.email %> </p>
+    <p> Name: <%= @loi.name %> </p>
+    <p> Email: <%= @loi.email %> </p>
 
-<ol>
-  <% @sections.each do |section| %>
     
-    <h3><li><%= section.name %></li></h3>
-      <ul>
-        <% @loi.answers.each do |answer| %>
+    <ol>
+      <% @sections.each do |section| %>
+        
+        <h3><li><%= section.name %></li></h3>
+          <ul>
+            <% @loi.answers.each do |answer| %>
 
-          <% if answer.question.section_id == section.id %>
-            <li><p> <%= answer.question.question %>: <%= answer.answer %> </p></li>
-          <% end %>
-        <% end %>
-      </ul>
-  <% end %>
-</ol>
+              <% if answer.question.section_id == section.id %>
+                <li><p> <%= answer.question.question %>: <%= answer.answer %> </p></li>
+              <% end %>
+            <% end %>
+          </ul>
+      <% end %>
+    </ol>
 
-<% if user_signed_in? %>
-  <%= link_to "Rate", "/ratings/new?loi=#{@loi.id}", :class => "btn btn-default", :role => "button" %>
-<% end %>
+    <% if user_signed_in? %>
+      <%= link_to "Rate", "/ratings/new?loi=#{@loi.id}", :class => "btn btn-default", :role => "button" %>
+    <% end %>
 
-<% if current_user && current_user.admin %>
-  <%= link_to "Edit", "/lois/#{@loi.id}/edit/", :class => "btn btn-default", :role => "button" %>
-  <%= link_to "Delete", "/lois/#{@loi.id}", method: :delete, data:{confirm: "Are You Sure"}, :class => "btn btn-default", :role => "button" %>
-<% end %>
+    <% if current_user && current_user.admin %>
+      <%= link_to "Edit", "/lois/#{@loi.id}/edit/", :class => "btn btn-default", :role => "button" %>
+      <%= link_to "Delete", "/lois/#{@loi.id}", method: :delete, data:{confirm: "Are You Sure"}, :class => "btn btn-default", :role => "button" %>
+    <% end %>
+  </div>
+</div>
