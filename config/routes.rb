@@ -3,6 +3,9 @@ Rails.application.routes.draw do
     namespace :v1 do
       get '/lois' => 'lois#index'
       get '/lois/:id' => 'lois#show'
+
+      get '/questions' => 'questions#index'
+      get '/questions/:id' => 'questions#show'
     end
   end
 
