@@ -24,8 +24,8 @@ class LoisController < ApplicationController
           if value.include?("challenges")
             i = 0
             (value["challenges"].length / 2).times do
-              Challenge.create({answer_id: answer.id, challenge: value["challenges"][i], priority: value["challenges"][i+1]})
-              i += 2
+              Challenge.create({answer_id: answer.id, challenge: value["challenges"][i], priority: value["challenges"][i+(value["challenges"].length / 2)]})
+              i += 1
             end
           end
 
