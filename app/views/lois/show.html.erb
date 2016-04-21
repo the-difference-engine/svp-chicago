@@ -44,11 +44,20 @@
               <% if answer.question.section_id == section.id && section.name == "Organizational Capacity Challenges" %>
 
                 <tr>
+                
                   <td><%= answer.question.question+':' %></td>
-                  <% answer.challenges.each do |challenge| %>
-                    <td><%= challenge.challenge %></td>
-                    <td><%= challenge.priority %> </td>
-                  <% end %>
+
+                  <td>
+                    <% answer.challenges.each do |challenge| %>
+                      <p><%= challenge.challenge %></p>
+                    <% end %>
+                  </td>
+
+                  <td>
+                    <% answer.challenges.each do |challenge| %>
+                      <p><%= challenge.priority %></p>
+                    <% end %>
+                  </td>
                   
                     <td><%= answer.fte.amount_1 %></td>
                     <td><%= answer.fte.amount_2 %> </td>

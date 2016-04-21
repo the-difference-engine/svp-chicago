@@ -66,10 +66,21 @@
                     <td><%= label_tag question.question+':' %></td>
 
                     <td>
-                      <div id="challenge"><%= text_field_tag "answers[#{question.id}[challenges][]", nil, class: "form-control" %><p>Add</p></div>
+                      <div id=<%="question_#{question.id}"%>>
+                        <div>
+                          <%= text_field_tag "answers[#{question.id}[challenges][]", nil, class: "form-control" %>
+                        </div>
+                      </div>
+                      
+                      <a id=<%="#{question.id}"%> class="add_field_button">Add More Fields</a>
                     </td>
+
                     <td>
-                      <div id="priority"><%= select_tag "answers[#{question.id}[challenges][]", options_for_select(["H", "M", "L"], "H") %></div>
+                      <div id=<%="priority_#{question.id}"%>>
+                        <div>
+                          <%= select_tag "answers[#{question.id}[challenges][]", options_for_select(["H", "M", "L"], "H") %>
+                        </div>
+                      </div>
                     </td>
 
                     <td><%= text_field_tag "answers[#{question.id}[ftes][]", nil, class: "form-control" %></td>
