@@ -1,30 +1,28 @@
 <div ng-app="app">
-	<div ng-controller="formsCtrl">
+	<div ng-controller="formsCtrl" ng-init="setup()">
 		<!-- {{ 1 + 1 }} -->
+		<h1>Ratings</h1>
+		<table class="table table-hover">
+			<tr>
+				<th>Organization Name</th>
+				<th>Organization Email</th>
+				<th>Fits Svp's Criteria</th>
+				<th>Potential SVP Impact</th>
+				<th>Level of Excitement</th>
+				<th>Benefit to SVP</th>
+				<th>Invite to Submit RFP?</th>
+				<th>Weighted Score</th>
+			</tr>
+			<tr ng-repeat="rating in ratings">
+				<td><%= rating.loi.name %></td>
+				<td><%= rating.loi.email %></td>
+				<td><%= rating.q1 %></td>
+				<td><%= rating.q2 %></td>
+				<td><%= rating.q3 %></td>
+				<td><%= rating.q4 %></td>
+				<td><%= rating.q5 %></td>
+				<td><%= rating.weighted_score %></td>
+			</tr>
+		</table>
 	</div>
 </div>
-<h1>Ratings</h1>
-<table class="table table-hover">
-	<tr>
-		<th>Organization Name</th>
-		<th>Organization Email</th>
-		<th>Fits Svp's Criteria</th>
-		<th>Potential SVP Impact</th>
-		<th>Level of Excitement</th>
-		<th>Benefit to SVP</th>
-		<th>Invite to Submit RFP?</th>
-		<th>Weighted Score</th>
-	</tr>
-	<% @ratings.each do |rating| %>
-		<tr>
-			<td><%= rating.loi.name %></td>
-			<td><%= rating.loi.email %></td>
-			<td><%= rating.q1 %></td>
-			<td><%= rating.q2 %></td>
-			<td><%= rating.q3 %></td>
-			<td><%= rating.q4 %></td>
-			<td><%= rating.q5 %></td>
-			<td><%= rating.weighted_score %></td>
-		</tr>
-	<% end %>
-</table>
