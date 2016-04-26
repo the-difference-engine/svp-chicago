@@ -4,6 +4,9 @@ class Api::V1::SectionsController < ApplicationController
 
   def index
     @contact_section = Section.find_by(name: "Contact Information")
+    @overview_section = Section.find_by(name: "Overview and Mission")
+    @vision_section = Section.find_by(name: "Vision")
+    
     @sections = Section.order(:id).all 
 
   end
