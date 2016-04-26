@@ -9,8 +9,18 @@ Rails.application.routes.draw do
     end
   end
 
+
   get '/home' => 'landings#home'
   get '/thanks/:id' => 'landings#thanks'
+
+
+  get 'ratings/index'
+
+  get 'ratings/show'
+
+  get '/landings' => 'landings#index'
+
+
   get '/ratings' => 'ratings#index'
   get '/ratings/new' => 'ratings#new'
   get '/ratings/:id' => 'ratings#show'
