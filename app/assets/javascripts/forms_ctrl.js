@@ -11,10 +11,28 @@
 			});
 
       $http.get('/api/v1/sections.json').then(function(response){
+
         $scope.contact_section = response.data.sections.contact_section;
-        console.log($scope.contact_section);
+    
+        var answer = "answer";
+        $scope.formData = {};
+        for (var i=0; i<$scope.contact_section.questions.length; i++){
+
+            var bucket = {};
+            var question = "question"
+            bucket[question] = $scope.contact_section.questions[i].question;
+            bucket[answer] = "";
+            console.log(bucket);
+            $scope.formData[i] = bucket;
+  
+          }
+
+
+        console.log($scope.formData);
       });
 		};
+
+
 
     $scope.addAnswer = function(newAnswer, newQuestionId){
 
@@ -29,7 +47,7 @@
       });
     };
 
-    $scope.submit = function(newAnswer){
+    $scope.submit = function(){
 
     debugger;
     };

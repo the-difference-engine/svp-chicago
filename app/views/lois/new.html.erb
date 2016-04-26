@@ -16,16 +16,16 @@
 
   <div ng-app="app">
     <div ng-controller="formsCtrl" ng-init="setup()">
-    <form ng-submit="submit(questions)">
+    <form ng-submit="submit()">
 
-       
           <ul>
             <h3><li>{{contact_section.name }}</li></h3>
-              <div ng-repeat="question in contact_section.questions">
+              <div ng-repeat="question in formData">
                 <label> {{question.question}}: </label>
-                <input type="text" id="{{question.id}}" name="answer" ng-model="questions.question.id">
+                <input type="text" ng-model="question.answer">
               </div>
           </ul>
+
           <input type="submit">Submit</button>
       </form>
     </div>
