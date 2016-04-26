@@ -14,6 +14,23 @@
     </ul></p>
   </div>
 
+  <div ng-app="app">
+    <div ng-controller="formsCtrl" ng-init="setup()">
+    <form ng-submit="submit(questions)">
+
+       
+          <ul>
+            <h3><li>{{contact_section.name }}</li></h3>
+              <div ng-repeat="question in contact_section.questions">
+                <label> {{question.question}}: </label>
+                <input type="text" id="{{question.id}}" name="answer" ng-model="questions.question.id">
+              </div>
+          </ul>
+          <input type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+
   <div class="form">
     <%= form_tag '/lois', method: :post do %>
 

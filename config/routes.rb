@@ -6,6 +6,10 @@ Rails.application.routes.draw do
 
       get '/questions' => 'questions#index'
       get '/questions/:id' => 'questions#show'
+
+      get '/sections' => 'sections#index'
+      post '/answers' => 'answers#create'
+      get '/answers' => 'answers#index'
     end
   end
 
@@ -32,6 +36,10 @@ Rails.application.routes.draw do
   get '/lois/:id/edit' => 'lois#edit'
   patch '/lois/:id' => 'lois#update'
   delete '/lois/:id' => 'lois#destroy'
+
+  get '/sections' => 'sections#index'
+  get '/sections' => 'sections#new'
+  get '/sections/:id' => 'sections#show'
   post '/sections' => 'sections#create'
 
   devise_for :users

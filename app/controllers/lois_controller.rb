@@ -35,7 +35,7 @@ class LoisController < ApplicationController
         end
 
         flash[:success] = "LOI Created"
-        redirect_to "/thanks/#{@loi.id}"
+        redirect_to "/lois/#{@loi.id}"
       else
         flash[:error] = @loi.errors.full_messages
         render :new
@@ -57,7 +57,9 @@ class LoisController < ApplicationController
 
   def edit
     @loi = Loi.find_by(id: params[:id])
+    @sections = Section.all
     @questions = Question.all
+    @answers = Answer.where(loi_id: @loi.id)
   end
 
   def update

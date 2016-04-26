@@ -1,4 +1,12 @@
-class SectionsController < ApplicationController
+class Api::V1::SectionsController < ApplicationController
+
+  skip_before_action :verify_authenticity_token, only: [:index]
+
+  def index
+    @contact_section = Section.find_by(name: "Contact Information")
+    @sections = Section.order(:id).all 
+
+  end
 
   def new
     @section = Section.new

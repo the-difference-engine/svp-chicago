@@ -1,0 +1,64 @@
+<h1><%= @section.name %></h1>
+
+<div class="form">
+  <%= form_tag '/lois', method: :post do %>
+
+    <% if @section.name == "Contact Information" %>
+
+      <% @questions.each do |question| %>
+
+        <li><%= label_tag question.question+':' %>
+        <%= text_field_tag "answers[#{question.id}]", nil, class: "form-control" %></li>
+                      
+      <% end %>
+
+    <% elsif @section.name == "Organization" %>
+
+      <% @questions.each do |question| %>
+
+        <li><%= label_tag question.question+':' %>
+        <%= text_field_tag "answers[#{question.id}]", nil, class: "form-control" %></li>
+                      
+      <% end %>
+
+    <% elsif @section.name == "Overview and Mission" %>
+
+      <% @questions.each do |question| %>
+
+        <li><%= label_tag question.question+':' %>
+        <%= text_field_tag "answers[#{question.id}]", nil, class: "form-control" %></li>
+
+      <% end %>
+
+    <% elsif @section.name == "Vision" %>
+
+      <% @questions.each do |question| %>
+
+        <li><%= label_tag question.question+':' %>
+        <%= text_field_tag "answers[#{question.id}]", nil, class: "form-control" %></li>
+
+      <% end %>
+
+    <% elsif @section.name == "Key Concerns" %>
+
+      <% @questions.each do |question| %>
+
+        <li><%= label_tag question.question+':' %>
+        <%= text_field_tag "answers[#{question.id}]", nil, class: "form-control" %></li>
+
+      <% end %>
+
+    <% elsif @section.name == "Organizational Capacity Challenges" %>
+
+      <% @questions.each do |question| %>
+
+        <li><%= label_tag question.question+':' %>
+        <%= text_field_tag "answers[#{question.id}]", nil, class: "form-control" %></li>
+
+      <% end %>
+
+    <% end %>
+
+    <%= submit_tag "Send", class: "btn btn-default" %>
+  <% end %>
+</div>
