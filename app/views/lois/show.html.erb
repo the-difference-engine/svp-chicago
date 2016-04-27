@@ -111,7 +111,6 @@
     <% end %>
 
     <% if current_user && current_user.admin %>
-      <%= link_to "Edit", "/lois/#{@loi.id}/edit/", :class => "btn btn-default", :role => "button" %>
       <%= link_to "Delete", "/lois/#{@loi.id}", method: :delete, data:{confirm: "Are You Sure"}, :class => "btn btn-default", :role => "button" %>
     <% end %>
 
