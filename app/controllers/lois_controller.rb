@@ -34,6 +34,7 @@ class LoisController < ApplicationController
           end
         end
 
+        NotifierMailer.welcome_email(@loi).deliver_now
         flash[:success] = "LOI Created"
         redirect_to "/thanks/#{@loi.id}"
       else
