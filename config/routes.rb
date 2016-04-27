@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       get '/lois' => 'lois#index'
+      post '/lois/' => 'lois#create'
       get '/lois/:id' => 'lois#show'
 
       get '/questions' => 'questions#index'

@@ -6,7 +6,12 @@ class Api::V1::SectionsController < ApplicationController
     @contact_section = Section.find_by(name: "Contact Information")
     @overview_section = Section.find_by(name: "Overview and Mission")
     @vision_section = Section.find_by(name: "Vision")
-    
+    @concern_section = Section.find_by(name: "Key Concerns")
+    @challenge_section = Section.find_by(name: "Organizational Capacity Challenges")
+    @referral_section = Section.find_by(name: "Referral Source")
+    @demographic_section = Section.find_by(name: "Demographics")
+    @geographic_section = Section.find_by(name: "Geographic Focus")
+
     @sections = Section.order(:id).all 
 
   end

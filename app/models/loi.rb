@@ -6,7 +6,7 @@ class Loi < ActiveRecord::Base
     amount = 0
     answers.each do |answer|
       if answer.fte
-        amount += answer.fte.amount_1
+        # amount += answer.fte.amount_1
       end
     end
 
@@ -17,7 +17,7 @@ class Loi < ActiveRecord::Base
     amount = 0
     answers.each do |answer|
       if answer.fte
-        amount += answer.fte.amount_2
+        # amount += answer.fte.amount_2
       end
     end
 
@@ -28,7 +28,7 @@ class Loi < ActiveRecord::Base
     amount = 0
     answers.each do |answer|
       if answer.fte
-        amount += answer.fte.amount_3
+        # amount += answer.fte.amount_3
       end
     end
 
