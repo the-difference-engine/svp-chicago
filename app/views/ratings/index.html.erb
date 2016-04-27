@@ -1,8 +1,7 @@
-<div ng-app="app">
+\<div ng-app="app">
 	<div ng-controller="formsCtrl" ng-init="setup();setupRatings()">
 		<!-- {{ 1 + 1 }} -->
 		<h1>Ratings</h1>
-		<%= select_tag "questions", options_from_collection_for_select(@rating_questions[]) %>
 		<table class="table table-hover">
 			<tr>
 				<% @rating_questions.each do |rating_question| %>
