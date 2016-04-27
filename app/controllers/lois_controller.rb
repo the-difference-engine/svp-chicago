@@ -8,7 +8,7 @@ class LoisController < ApplicationController
   def new
     @loi  = Loi.new
     @questions = Question.order(:id).all 
-    @sections = Section.all
+    @sections = Section.order(:id).all 
   end
 
   def create
