@@ -7,21 +7,7 @@
     <p> Name: <%= @loi.name %> </p>
     <p> Email: <%= @loi.email %> </p>
     
-    <ol>
-      <% @sections.each do |section| %>
-        
-        <h3><li><%= section.name %></li></h3>
-          <ul>
-            <% @loi.answers.each do |answer| %>
 
-              <% if answer.question.section_id == section.id %>
-                <li><p> <%= answer.question.question %>: <%= answer.answer %> </p></li>
-              <% end %>
-            <% end %>
-          </ul>
-      <% end %>
-    </ol>
-    <ol>
       <% @sections.each do |section| %>
 
         <h3><li><%= section.name %></li></h3>
