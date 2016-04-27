@@ -6,6 +6,10 @@ Rails.application.routes.draw do
 
       get '/questions' => 'questions#index'
       get '/questions/:id' => 'questions#show'
+
+      get '/ratings' => 'ratings#index'
+      get '/ratings/:id' => 'ratings#show'
+      
     end
   end
 

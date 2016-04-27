@@ -7,6 +7,8 @@ class RatingsController < ApplicationController
     else
       @ratings = Rating.where(user_id: current_user.id)
     end
+
+    @rating_questions = ["Organization Name", "Organization Email", "Fits SVP Criteria", "Potention SVP Impact", "Level of Excitement", "Benefit to SVP", "Invite to Submit RFP?", "Weighted Score"]
   end
 
   def show
