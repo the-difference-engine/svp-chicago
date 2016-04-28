@@ -48,5 +48,5 @@ Rails.application.configure do
     :user_name => ENV['MAILGUN_USER_NAME'],
     :password => ENV['MAILGUN_PASSWORD']
   }
-  config.action_mailer.default_url_options = { host: 'localhost:3000' }
+  config.action_mailer.default_url_options = { host: 'demo-svp-chicago.herokuapp.com' }
 end
