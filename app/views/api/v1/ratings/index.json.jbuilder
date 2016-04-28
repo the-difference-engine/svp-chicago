@@ -1,6 +1,7 @@
 json.array! @ratings do |rating|
 	json.id rating.id
 	json.loi rating.loi
+	json.user rating.user
 	json.q1 rating.q1
 	json.q2 rating.q2
 	json.q3 rating.q3

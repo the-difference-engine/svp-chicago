@@ -1,4 +1,4 @@
-\<div ng-app="app">
+<div ng-app="app">
 	<div ng-controller="formsCtrl" ng-init="setup();setupRatings()">
 		<!-- {{ 1 + 1 }} -->
 		<h1>Ratings</h1>
@@ -14,7 +14,7 @@
 			</tr>
 			<!--- ng show rating user_id for admin---->
 			<tr ng-repeat="rating in ratings">
-				<td>{{ rating.loi.name }}</td>
+				<td><a href="/lois/{{rating.loi.id}}">{{ rating.loi.name }}</a></td>
 				<td>{{ rating.loi.email }}</td>
 				<td>{{ rating.q1 }}</td>
 				<td>{{ rating.q2 }}</td>
@@ -22,6 +22,7 @@
 				<td>{{ rating.q4 }}</td>
 				<td>{{ rating.q5 }}</td>
 				<td>{{ rating.weighted_score }}</td>
+				<td>{{ rating.user.email }}</td>
 			</tr>
 		</table>
 	</div>
