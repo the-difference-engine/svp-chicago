@@ -11,7 +11,7 @@
         <% if question.section_id == section.id %>
           <li><p> <%= question.question %> <%= link_to "View All", "questions/#{question.id}", :class => "btn btn-default", :role => "button" %>
               <%= link_to "Edit", "/questions/#{question.id}/edit", :class => "btn btn-default", :role => "button" %>
-              <%= link_to "Delete", "/questions/#{question.id}", method: :delete, data:{confirm: "Are You Sure"}, :class => "btn btn-default", :role => "button" %></p></li>
+              <!--  <%= link_to "Delete", "/questions/#{question.id}", method: :delete, data:{confirm: "Are You Sure"}, :class => "btn btn-default", :role => "button" %></p></li> -->  
         <% end %>
       <% end %>
     </ul>
