@@ -2,11 +2,15 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       get '/lois' => 'lois#index'
+      post '/lois/' => 'lois#create'
       get '/lois/:id' => 'lois#show'
 
       get '/questions' => 'questions#index'
       get '/questions/:id' => 'questions#show'
 
+      get '/sections' => 'sections#index'
+      post '/answers' => 'answers#create'
+      get '/answers' => 'answers#index'
       get '/ratings' => 'ratings#index'
       get '/ratings/:id' => 'ratings#show'
       
@@ -46,6 +50,10 @@ Rails.application.routes.draw do
   get '/lois/:id/edit' => 'lois#edit'
   patch '/lois/:id' => 'lois#update'
   delete '/lois/:id' => 'lois#destroy'
+
+  get '/sections' => 'sections#index'
+  get '/sections' => 'sections#new'
+  get '/sections/:id' => 'sections#show'
   post '/sections' => 'sections#create'
 
   devise_for :users

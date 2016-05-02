@@ -5,7 +5,7 @@ $(document).ready(function() {
     
     var x = 1; //initlal text box count
     $(add_button).click(function(e){ //on add input button click
-        debugger
+    
         var parentDiv = $("#question_" + $(this).attr("id"))
         var childDiv = parentDiv.children().first();
         childDiv.clone().appendTo(parentDiv);

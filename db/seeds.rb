@@ -22,9 +22,23 @@ Question.create!([
   {question: "Food", section_id: 8},
   {question: "Health & Medical", section_id: 8},
   {question: "Chicagoland", section_id: 9},
-  {question: "Chicago and Beyond", section_id: 9}
+  {question: "Chicago and Beyond", section_id: 9},
+  {question: "Phone", section_id: 1},
+  {question: "Website", section_id: 1},
+  {question: "Executive Director", section_id: 1},
+  {question: "Executive Director Phone", section_id: 1},
+  {question: "Executive Director E-mail", section_id: 1},
+  {question: "Proposal Contact", section_id: 1},
+  {question: "Proposal Contact Phone", section_id: 1},
+  {question: "Proposal Contact E-mail", section_id: 1},
+  {question: "Total Annual Budget for Organization", section_id: 2},
+  {question: "If affiliated with a national or parent organization, what role does the organization play in your strategic direction, operations, and overall governance", section_id: 2},
+  {question: "Homelessness", section_id: 8},
+  {question: "Jobs Programs", section_id: 8},
+  {question: "Mental Health", section_id: 8},
+  {question: "Pregnancy and Parenting", section_id: 8},
+  {question: "Violence & Abuse", section_id: 8}
 ])
-
 Section.create!([
   {name: "Contact Information"},
   {name: "Oganization"},

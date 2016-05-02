@@ -36,7 +36,7 @@ class LoisController < ApplicationController
 
         # NotifierMailer.welcome_email(@loi).deliver_now
         flash[:success] = "LOI Created"
-        redirect_to "/thanks/#{@loi.id}"
+        redirect_to "/lois/#{@loi.id}"
       else
         flash[:error] = @loi.errors.full_messages
         render :new
@@ -54,11 +54,14 @@ class LoisController < ApplicationController
   def show
     @sections = Section.order(:id).all
     @loi = Loi.find_by(id: params[:id])
+    gon.loi_id = @loi.id
   end
 
   def edit
     @loi = Loi.find_by(id: params[:id])
+    @sections = Section.all
     @questions = Question.all
+    @answers = Answer.where(loi_id: @loi.id)
   end
 
   def update

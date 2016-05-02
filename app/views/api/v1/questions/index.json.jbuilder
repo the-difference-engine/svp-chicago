@@ -1,6 +1,6 @@
-json.array! @sections do |section|
-	json.section section.name
-	json.question section.questions do |question|
-		json.question question.question
-	end
+json.array! @questions do |question|
+	json.section question.section.name
+	json.id question.id
+  json.question question.question
+
 end

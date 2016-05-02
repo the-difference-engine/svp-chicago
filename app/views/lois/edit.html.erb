@@ -1,28 +1,139 @@
-<h1> Edit an existing LOI submission </h1>
+<div class="form-heading">
 
-<%= form_tag '/lois', method: :post do %>
-  <div class="input-group">
-    <%= label_tag :name %>
-    <%= text_field_tag :name, @loi.name, class: "form-control" %>
+  <h1> 2016 SVP Chicago Letter of Interest </h1>
+
+  <div class="text">
+    <p><b>Completing this Form:</b></p>
+
+    <p>Please enter information directly into the form, using this form as the main body of your Letter of Interest. The boxes will expand to hold your text. You can adjust the page breaks when you have completed the form.</p>
+
+    <p><ul>
+      <li>If you find an item confusing, please feel free to contact us.</li>
+
+      <li>Please use bullet points rather than paragraphs. Brevity is helpful to our partners when reviewing proposals.</li>
+    </ul></p>
   </div>
 
-  <div class="input-group">
-    <%= label_tag :email %>
-    <%= text_field_tag :email, @loi.email, class: "form-control" %>
+  <div class="form">
+    <%= form_tag '/lois', method: :post do %>
+
+      <div class="input-group">
+        <%= label_tag "Your Name:" %>
+        <%= text_field_tag :name, @loi.name, class: "form-control" %>
+      </div>
+
+      <div class="input-group">
+        <%= label_tag "Your E-mail:" %>
+        <%= text_field_tag :email, @loi.email, class: "form-control" %>
+      </div>
+
+
+      <ol>
+        <% @sections.each do |section| %>
+          <h3><li><%= section.name %> </li></h3>
+          
+          <ul>
+
+            <% if section.name == "Organizational Capacity Challenges" %>
+                <table class="table">
+                  <tr>
+                    <th>Focus Area</th>
+                    <th>Please provide a short description of your top 1-3 challenge(s) in each area that applies</th>
+                    <th>Priority Rank</th>
+                    <th>2015 FTEs</th>
+                    <th>2016 FTEs</th>
+                    <th>2017 FTEs</th>
+                  </tr> 
+            <% elsif section.name == "Demographics" %>
+                <table class="table">
+                  <tr>
+                    <th>Sector</th>
+                    <th>Mark an “x” if you have programs addressing this sector</th>
+                  </tr>
+            <% elsif section.name == "Geographic Focus" %>
+                <table class="table">
+                  <tr>
+                    <th>Focus</th>
+                    <th>Please select whichever applies (if more than one, pick one based on your main program)</th>
+                  </tr>
+            <% end %>
+
+            <% @questions.each do |question| %>
+
+              <% if question.section_id == section.id && section.name == "Organizational Capacity Challenges" %>
+                
+                  <tr>
+                    <td><%= label_tag question.question+':' %></td>
+
+                    <td>
+                      <div id=<%="question_#{question.id}"%>>
+                        <div>
+                          <%= text_field_tag "answers[#{question.id}[challenges][]" %>
+                        </div>
+                      </div>
+                      
+                      <a id=<%="#{question.id}"%> class="add_field_button">Add More Fields</a>
+                    </td>
+
+                    <td>
+                      <div id=<%="priority_#{question.id}"%>>
+                        <div>
+                          <%= select_tag "answers[#{question.id}[challenges][]", options_for_select(["H", "M", "L"], "H") %>
+                        </div>
+                      </div>
+                    </td>
+
+                    <td><%= text_field_tag "answers[#{question.id}[ftes][]", nil, class: "form-control" %></td>
+                    <td><%= text_field_tag "answers[#{question.id}[ftes][]", nil, class: "form-control" %></td>
+                    <td><%= text_field_tag "answers[#{question.id}[ftes][]", nil, class: "form-control" %></td>
+                  </tr>
+
+                <% elsif question.section_id == section.id && section.name == "Demographics" %>
+
+                  <tr>
+                    <td><%= label_tag question.question+':' %></td>
+                    <td><%= check_box_tag "answers[#{question.id}]", "yes", false %></td>
+                  </tr>
+
+                <% elsif question.section_id == section.id && section.name == "Geographic Focus" %>
+
+                  <tr>
+                    <td><%= label_tag question.question+':' %></td>
+                    <td><%= check_box_tag "answers[#{question.id}]", "yes", false %></td>
+                  </tr>
+
+                <% elsif question.section_id == section.id %>
+
+                  <li><%= label_tag question.question+':' %>
+                  <%= text_field_tag "answers[#{question.id}]", @answers.find_by(question_id: question.id).answer, class: "form-control" %></li>
+                  
+                <% end %>
+              <% end %>
+
+              <% if section.name == "Organizational Capacity Challenges" %>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>TOTAL FTEs</td>
+                  <td>2015 total</td>
+                  <td>2016 total</td>
+                  <td>2017 total</td>
+                </tr>
+              <% elsif section.name == "Demographics" %>
+                </table>
+              <% elsif section.name == "Geographic Focus" %>
+                </table>
+              <% end %>
+            </table>
+          </ul>
+        <% end %>
+      </ol>
+
+        <div>
+          <%= submit_tag "Send", class: "btn btn-default" %>
+        </div>
+
+      <% end %>
   </div>
 
-  <% @questions.each_with_index do |question, index| %>
-
-    <div class="input-group">
-      <%= hidden_field_tag :"q#{index}", question.id %>
-      <%= label_tag question.question %>
-      <%= text_field_tag :"a#{index}", @loi.answers[index].answer, class: "form-control" %>
-    </div>
-
-  <% end %>
-
-  <div>
-    <%= submit_tag "Send", class: "btn btn-default" %>
-  </div>
-
-<% end %>
+<div>
