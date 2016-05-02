@@ -51,8 +51,9 @@ class LoisController < ApplicationController
   end
 
   def show
-    @sections = Section.all
+    @sections = Section.order(:id).all
     @loi = Loi.find_by(id: params[:id])
+    gon.loi_id = @loi.id
   end
 
   def edit

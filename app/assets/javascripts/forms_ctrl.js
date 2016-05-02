@@ -1,7 +1,7 @@
 (function() {
   "use strict";
 
-  angular.module("app").controller("formsCtrl", function($scope, $http){
+  angular.module("app").controller("formsCtrl", ["$scope", "$http", "$compile", function($scope, $http, $compile){
   	window.scope = $scope;
 
 		$scope.setup = function(){
@@ -23,6 +23,19 @@
               question_id: $scope.contact_section.questions[i].id
             };
             $scope.contact_formData[i] = dataHolder;
+          }
+
+        //ORGANIZATION SECTION
+        $scope.organization_section = response.data.sections.organization_section;
+
+        $scope.organization_formData = [];
+        for (var i=0; i<$scope.organization_section.questions.length; i++){
+            var dataHolder = {
+              answer: "",
+              question: $scope.organization_section.questions[i].question,
+              question_id: $scope.organization_section.questions[i].id
+            };
+            $scope.organization_formData[i] = dataHolder;
           }
 
         //OVERVIEW SECTION
@@ -140,21 +153,24 @@
         name: name,
         email: email,
         contact_answers: $scope.contact_formData,
+        organization_answers: $scope.organization_formData,
         overview_answers: $scope.overview_formData,
         vision_answers: $scope.vision_formData,
         concern_answers: $scope.concern_formData,
         challenge_answers: $scope.challenge_formData,
         referral_answers: $scope.referral_formData,
-        demographic_answers: $scope.demographic_formData
+        demographic_answers: $scope.demographic_formData,
+        geographic_answers: $scope.geographic_formData
       };
 
+        console
+
       $http.post('/api/v1/lois.json', newLoi).then(function(response){
-          console.log(response);
+          console.log(response.data.loi_id);
+          window.location = '/thanks/' + response.data.loi_id;
         });
 
     };
-
-
 
     $scope.addAnswer = function(newAnswers){
 
@@ -171,7 +187,7 @@
 
       };
     };
-  });
+  }]);
 
   
 }());

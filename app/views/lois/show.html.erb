@@ -6,111 +6,215 @@
     <h1> Thank you for your submission! </h1>
     <p> Please review and double check your submission, click edit to correct </p>
   <% end %> 
-
+  
   <div class="form">
 
-    <p> Name: <%= @loi.name %> </p>
-    <p> Email: <%= @loi.email %> </p>
-    
-  
-    <ol>
-      <% @sections.each do |section| %>
 
-        <h3><li><%= section.name %></li></h3>
+    <div ng-app="app">
+      <div ng-controller="loisCtrl" ng-init="setup()">
+        <ol>
 
-          <ul>
+        <p> Name: {{loi.name}} </p>
+        <p> Email: {{loi.email}} </p>
 
-            <% if section.name == "Organizational Capacity Challenges" %>
-                <table class="table">
-                  <tr>
-                    <th>Focus Area</th>
-                    <th>Please provide a short description of your top 1-3 challenge(s) in each area that applies</th>
-                    <th>Priority Rank</th>
-                    <th>2015 FTEs</th>
-                    <th>2016 FTEs</th>
-                    <th>2017 FTEs</th>
-                  </tr> 
-            <% elsif section.name == "Demographics" %>
-                <table class="table">
-                  <tr>
-                    <th>Sector</th>
-                    <th>Mark an “x” if you have programs addressing this sector</th>
-                  </tr>
-            <% elsif section.name == "Geographic Focus" %>
-                <table class="table">
-                  <tr>
-                    <th>Focus</th>
-                    <th>Please select whichever applies (if more than one, pick one based on your main program)</th>
-                  </tr>
-            <% end %>
-          
+        <!-- CONTACT SECTION -->
 
-            <% @loi.answers.each do |answer| %>
+          <section class="contact-section">
+            <h3><li> CONTACT </li></h3>
+              <table class="table table-striped table-bordered">
+                <tr ng-repeat="answer in loi.contact_answers">
+                  <td style="width: 20%">
+                    {{answer.question.question}}:
+                  </td>
+                  <td>
+                    {{answer.answer}}
+                  </td>
+                </tr>
+              </table>
+          </section>
 
-              <% if answer.question.section_id == section.id && section.name == "Organizational Capacity Challenges" %>
+        <!-- ORGANIZATION SECTION -->
 
+          <section class="organization-section">
+            <h3><li> ORGANIZATION </li></h3>
+              <table class="table table-striped table-bordered">
+                <tr ng-repeat="answer in loi.organization_answers">
+                  <td style="width: 20%">
+                    {{answer.question.question}}:
+                  </td>
+                  <td>
+                    {{answer.answer}}
+                  </td>
+                </tr>
+              </table>
+          </section>
+
+          <!-- OVERVIEW SECTION -->
+
+          <section class="overview-section">
+            <h3><li> OVERVIEW </li></h3>
+              <table class="table table-striped table-bordered">
+                <tr ng-repeat="answer in loi.overview_answers">
+                  <td style="width: 20%">
+                    {{answer.question.question}}:
+                  </td>
+                  <td>
+                    {{answer.answer}}
+                  </td>
+                </tr>
+              </table>
+          </section>
+
+          <!-- VISION SECTION -->
+
+          <section class="vision-section">
+            <h3><li> VISION </li></h3>
+              <table class="table table-striped table-bordered">
+                <tr ng-repeat="answer in loi.vision_answers">
+                  <td style="width: 20%">
+                    {{answer.question.question}}:
+                  </td>
+                  <td>
+                    {{answer.answer}}
+                  </td>
+                </tr>
+              </table>
+          </section>
+
+          <!-- KEY CONCERN SECTION -->
+
+          <section class="concern-section">
+            <h3><li> KEY CONCERNS </li></h3>
+              <table class="table table-striped table-bordered">
+                <tr ng-repeat="answer in loi.concern_answers">
+                  <td style="width: 20%">
+                    {{answer.question.question}}:
+                  </td>
+                  <td>
+                    {{answer.answer}}
+                  </td>
+                </tr>
+              </table>
+          </section>
+
+          <!-- CHALLENGE SECTION -->
+
+            <h3><li>OGANIZATIONAL CAPACITY CHALLENGES</li></h3>
+              <table class="table table-striped table-bordered">
                 <tr>
-                
-                  <td><%= answer.question.question+':' %></td>
-
+                  <th>Focus Area</th>
+                  <th>Please provide a short description of your top 1-3 challenge(s) in each area that applies</th>
+                  <th>Priority Rank each as High, Medium or Low</th>
+                  <th colspan="3">
+                    <table class="fte-header-table">
+                      <tr>
+                        <td colspan="3">Please provide the total amount of time you and your staff spend in each focus area expressd in FTEs</td>
+                      </tr>
+                      <tr>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                      </tr>
+                      <tr>
+                        <td>2015 Staffing (actual)</td>
+                        <td>2016 Staffing (current)</td>
+                        <td>2017 Staffing (projected)</td>
+                      </tr>
+                    </table>
+                  </th>
+                </tr> 
+                <tr ng-repeat="answer in loi.challenge_answers">
+                  <td>{{answer.question.question}}:</td>
                   <td>
-                    <% answer.challenges.each do |challenge| %>
-                      <p><%= challenge.challenge %></p>
-                    <% end %>
+                    <p>1. {{answer.challenges[0].challenge}}</p>
+                    <p>2. {{answer.challenges[1].challenge}}</p>
+                    <p>3. {{answer.challenges[2].challenge}}</p>   
                   </td>
-
                   <td>
-                    <% answer.challenges.each do |challenge| %>
-                      <p><%= challenge.priority %></p>
-                    <% end %>
+                    <p>{{answer.challenges[0].priority}}</p>
+                    <p>{{answer.challenges[1].priority}}</p>
+                    <p>{{answer.challenges[2].priority}}</p>
                   </td>
+                  <td>{{answer.fte.amount_1}}</td>
+                  <td>{{answer.fte.amount_2}}</td>
+                  <td>{{answer.fte.amount_3}}</td>
+                </tr>
+                <tr>
+                  <td colspan="3">TOTAL FTEs</td>
+                  <td>{{fte_1}}</td>
+                  <td>{{fte_2}}</td>
+                  <td>{{fte_3}}</td>
+                </tr>
+              </table>
+
+          <!-- REFERRAL SECTION -->
+
+          <section class="concern-section">
+            <h3><li> REFERRAL </li></h3>
+              <table class="table table-striped table-bordered">
+                <tr ng-repeat="answer in loi.referral_answers">
+                  <td style="width: 20%">
+                    {{answer.question.question}}:
+                  </td>
+                  <td>
+                    {{answer.answer}}
+                  </td>
+                </tr>
+              </table>
+          </section>
+
+          <div class="row">
+        
+            <!-- DEMOGRAPHIC SECTION -->
+
+            <div class="col-md-6">
+              <section class="demographic-section">
+                <h3><li> DEMOGRAPHICS </li></h3>
+                  <table class="table table-striped table-bordered">
+                    <tr>
+                      <th>Sector</th>
+                      <th>Please select if you programs addressing this sector</th>
+                    </tr>
+                    <tr ng-repeat="answer in loi.demographic_answers">
+                      <td style="width: 20%">
+                        {{answer.question.question}}:
+                      </td>
+                      <td>
+                        {{answer.answer}}
+                      </td>
+                    </tr>
+                  </table>
+              </section>
+            </div>
+
+            <!-- GEOGRAPHIC FOCUS SECTION -->
+
+            <div class="col-md-6">
+              <section class="geographic-section">
+                <h3><li> GEOGRAPHIC INFORMATION </li></h3>
+                  <table class="table table-striped table-bordered">
                   
-                    <td><%= answer.fte.amount_1 %></td>
-                    <td><%= answer.fte.amount_2 %> </td>
-                    <td><%= answer.fte.amount_3 %> </td>
-                 
-                </tr>
+                      <tr>
+                        <th>Geographic Focus</th>
+                        <th>Please select whichever applies (if more than one, pick the one based on your main program)</th>
+                      </tr>
+                      <tr ng-repeat="answer in loi.geographic_answers">
+                        <td style="width: 20%">
+                          {{answer.question.question}}:
+                        </td>
+                        <td>
+                          {{answer.answer}}
+                        </td>
+                      </tr>
+               
+                  </table>
+              </section>
+            </div>
+          </div>
 
-              <% elsif answer.question.section_id == section.id && section.name == "Demographics" %>
-
-                <tr>
-                  <td><%= answer.question.question+':' %></td>
-                  <td><%= answer.answer %></td>
-                </tr>
-
-              <% elsif answer.question.section_id == section.id && section.name == "Geographic Focus" %>
-
-                <tr>
-                  <td><%= answer.question.question+':' %></td>
-                  <td><%= answer.answer %></td>
-                </tr>
-
-              <% elsif answer.question.section_id == section.id %>  
-
-                <li><p> <%= answer.question.question %>: <%= answer.answer %> </p></li>
-
-              <% end %>
-            <% end %>
-
-          <% if section.name == "Organizational Capacity Challenges" %>
-              <tr>
-                <td></td>
-                <td></td>
-                <td>TOTAL FTEs</td>
-                <td><%= @loi.fte_amount_1_total %></td>
-                <td><%= @loi.fte_amount_2_total %></td>
-                <td><%= @loi.fte_amount_3_total %></td>
-              </tr>
-            <% elsif section.name == "Demographics" %>
-              </table>
-            <% elsif section.name == "Geographic Focus" %>
-              </table>
-            <% end %>
-
-          </table>
-        </ul>
-      <% end %>
-  </ol>
+        </ol>
+      </div>
+    </div>
 
     <% if user_signed_in? %>
       <%= link_to "Rate", "/ratings/new?loi=#{@loi.id}", :class => "btn btn-default", :role => "button" %>
