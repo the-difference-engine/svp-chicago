@@ -11,11 +11,24 @@ Rails.application.routes.draw do
       get '/sections' => 'sections#index'
       post '/answers' => 'answers#create'
       get '/answers' => 'answers#index'
+      get '/ratings' => 'ratings#index'
+      get '/ratings/:id' => 'ratings#show'
+      
     end
   end
 
+
   get '/home' => 'landings#home'
   get '/thanks/:id' => 'landings#thanks'
+
+
+  get 'ratings/index'
+
+  get 'ratings/show'
+
+  get '/landings' => 'landings#index'
+
+
   get '/ratings' => 'ratings#index'
   get '/ratings/new' => 'ratings#new'
   get '/ratings/:id' => 'ratings#show'

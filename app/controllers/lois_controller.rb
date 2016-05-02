@@ -8,7 +8,7 @@ class LoisController < ApplicationController
   def new
     @loi  = Loi.new
     @questions = Question.order(:id).all 
-    @sections = Section.all
+    @sections = Section.order(:id).all 
   end
 
   def create
@@ -34,6 +34,7 @@ class LoisController < ApplicationController
           end
         end
 
+        # NotifierMailer.welcome_email(@loi).deliver_now
         flash[:success] = "LOI Created"
         redirect_to "/lois/#{@loi.id}"
       else
