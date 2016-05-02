@@ -26,37 +26,4 @@
 			</tr>
 		</table>
 	</div>
-<<<<<<< HEAD
-</div>
-<h1>Ratings</h1>
-<table class="table table-hover">
-	<tr>
-		<th>Rated by:</th>
-		<th>Organization Name</th>
-		<th>Fits Svp's Criteria</th>
-		<th>Potential SVP Impact</th>
-		<th>Level of Excitement</th>
-		<th>Benefit to SVP</th>
-		<th>Invite to Submit RFP?</th>
-		<th>Weighted Score</th>
-	</tr>
-	<% if @ratings %>
-		<% @ratings.each do |rating| %>
-			<tr>
-				<td><%= rating.user.email %></td>
-				<td>Organization Name?</td>
-				<td><%= rating.q1 %></td>
-				<td><%= rating.q2 %></td>
-				<td><%= rating.q3 %></td>
-				<td><%= rating.q4 %></td>
-				<td><%= rating.q5 %></td>
-				<td><%= rating.weighted_score %></td>
-			</tr>
-		<% end %>
-	<% else %>
-		<p> you have no ratings </p>
-	<% end %>
-</table>
-=======
-</div>
->>>>>>> 4872053c5a4993fd8b51fa84c6b0852b1e2f0095
+
