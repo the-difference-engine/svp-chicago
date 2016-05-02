@@ -10,6 +10,9 @@
 				$scope.lois = response;
 			});
 
+      $scope.activeSection = 0;
+      $scope.activeSectionArray = [true, false, false, false, false, false, false, false];
+
       $http.get('/api/v1/sections.json').then(function(response){
 
         //CONTACT SECTION
@@ -187,6 +190,35 @@
 
       };
     };
+
+    $scope.nextSection = function(){
+
+      $scope.activeSectionArray[$scope.activeSection] = false;
+      
+      if ($scope.activeSection == $scope.activeSectionArray.length-1) {
+        $scope.activeSection = 0;
+      } else {
+        $scope.activeSection++;
+      };
+
+      $scope.activeSectionArray[$scope.activeSection] = true;
+
+    };
+
+    $scope.prevSection = function(){
+
+      $scope.activeSectionArray[$scope.activeSection] = false;
+      
+      if ($scope.activeSection == 0) {
+        $scope.activeSection = $scope.activeSectionArray.length-1;
+      } else {
+        $scope.activeSection--;
+      };
+
+      $scope.activeSectionArray[$scope.activeSection] = true;
+
+    };
+
   }]);
 
   
