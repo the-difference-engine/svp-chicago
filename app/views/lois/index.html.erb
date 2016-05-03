@@ -5,12 +5,12 @@
     <th>#</th>
     <th>name</th>
     <th>email</th>
-    <th> Action?</th>
+    <th>Action?</th>
   </tr>
   <% @lois.each_with_index do |loi, index| %>
     <tr>
       <td><p><%= index+1 %></p></td>
-      <td><p><%= link_to(loi.name, "/lois/#{loi.id}") %></p></td>
+      <td><p><%= link_to(loi.org_name, "/lois/#{loi.id}") %></p></td>
       <td><p><%= loi.email %></p></td>
       <td>
         <%= link_to "View", "/lois/#{loi.id}", :class => "btn btn-default", :role => "button" %>
