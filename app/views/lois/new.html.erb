@@ -189,9 +189,9 @@
                   <td><label> {{question.question}}: </label></td>
                   <td>
                     <input class="form-control" type="text" ng-model="question.challenges[0].challenge">
-                    <p><a ng-click="add(question.id)">Add Challenge</a></p>
-                    <input class="form-control" type="text" ng-model="question.challenges[1].challenge">
-                    <input class="form-control" type="text" ng-model="question.challenges[2].challenge">
+                    <input class="form-control" type="text" ng-model="question.challenges[1].challenge" ng-show="activeChallenge[question.question_id]>0">
+                    <input class="form-control" type="text" ng-model="question.challenges[2].challenge" ng-show="activeChallenge[question.question_id]>1">
+                    <p ng-hide="activeChallenge[question.question_id]==2"><a ng-click="addChallenge(question.question_id)">Add Challenge</a></p>
                   </td>
                   <td>
                     <select class="form-control" name="singleSelect" id="singleSelect" ng-model="question.challenges[0].priority">
@@ -200,13 +200,13 @@
                       <option value="M">Medium</option>
                       <option value="L">Low</option>
                     </select>
-                    <select class="form-control" name="singleSelect" id="singleSelect" ng-model="question.challenges[1].priority">
+                    <select class="form-control" name="singleSelect" id="singleSelect" ng-model="question.challenges[1].priority" ng-show="activeChallenge[question.question_id]>0">
                       <option value="">--Select--</option>
                       <option value="H">High</option>
                       <option value="M">Medium</option>
                       <option value="L">Low</option>
                     </select>
-                    <select class="form-control" name="singleSelect" id="singleSelect" ng-model="question.challenges[2].priority">
+                    <select class="form-control" name="singleSelect" id="singleSelect" ng-model="question.challenges[2].priority" ng-show="activeChallenge[question.question_id]>1">
                       <option value="">--Select--</option>
                       <option value="H">High</option>
                       <option value="M">Medium</option>
@@ -306,10 +306,12 @@
       <hr>
       <br>
 
-      <div class="form-group btn-container">
+      <!-- PREVIOUS AND NEXT BUTTON FOR MULTIPAGE FORM -->
+
+      <!-- <div class="form-group btn-container">
         <button class="btn btn-danger section-btn" ng-click="prevSection()">Previous Section</button>
         <button class="btn btn-danger section-btn" ng-click="nextSection()">Next Section</button>
-      </div>
+      </div> -->
 
       <br>
       <div class="text" ng-show="activeSectionArray[7]">

@@ -21,7 +21,9 @@
   		};
 
       $scope.activeSection = 0;
-      $scope.activeSectionArray = [true, false, false, false, false, false, false, false];
+      $scope.activeSectionArray = [true, true, true, true, true, true, true, true];
+      // USE BELOW FOR MULTI-PAGE WIZARD
+      // $scope.activeSectionArray = [true, false, false, false, false, false, false, false];
 
       $http.get('/api/v1/sections.json').then(function(response){
 
@@ -93,6 +95,8 @@
         //CHALLENGE SECTION
         $scope.challenge_section = response.data.sections.challenge_section;
 
+        $scope.activeChallenge = {}; //THIS VARIABLE IS FOR addChallenge()
+
         $scope.challenge_formData = [];
         for (var i=0; i<$scope.challenge_section.questions.length; i++){
 
@@ -110,6 +114,9 @@
               question: $scope.challenge_section.questions[i].question,
               question_id: $scope.challenge_section.questions[i].id
             };
+
+            $scope.activeChallenge[$scope.challenge_section.questions[i].id] = 0; //THIS VARIABLE IS FOR addChallenge()
+
             $scope.challenge_formData[i] = dataHolder;
           }
 
@@ -207,6 +214,8 @@
       };
     };
 
+    //NEXT AND PREVIOUS SECTION BUTTONS FOR MULTI-STEP FORM
+
     $scope.nextSection = function(){
 
       $scope.activeSectionArray[$scope.activeSection] = false;
@@ -233,6 +242,14 @@
 
       $scope.activeSectionArray[$scope.activeSection] = true;
 
+    };
+
+    //ADD CHALLENGE BUTTON FOR ORGANIZATIONAL CAPICTY CHALLENGES (LIMIT 3)
+    $scope.addChallenge = function(questionId){
+
+      if ($scope.activeChallenge[questionId] < 2){
+        $scope.activeChallenge[questionId]++;
+      } 
     };
 
   }]);

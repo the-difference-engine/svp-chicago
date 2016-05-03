@@ -31,7 +31,6 @@ class Loi < ActiveRecord::Base
         # amount += answer.fte.amount_3
       end
     end
-
     return amount
   end
 
