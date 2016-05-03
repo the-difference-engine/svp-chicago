@@ -1,0 +1,186 @@
+body{
+	font-family: 'Roboto', sans-serif;
+	font-weight: 400;
+	background-color: #0060b2;
+	background-image: url("http://www.transparenttextures.com/patterns/navy.png");
+	background-attachment: fixed;
+	margin: 0;
+  padding: 0;
+  padding-top: 50px;
+	perspective: 1px;
+	transform-style: preserve-3d;
+  height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.home{
+	margin:0;
+  padding:0;
+	perspective: 1px;
+	transform-style: preserve-3d;
+  height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.navbar-custom{
+	background-color: #000000;
+	background-image: url("http://www.transparenttextures.com/patterns/
+		translucent-fibres.png");
+	font-family: 'Roboto', sans-serif !important;
+}
+
+a:hover{
+	background-color: transparent;
+	-webkit-transition: width 2s, height 2s, background-color 2s, -webkit-transform 2s;
+	transition: width 2s, height 2s, background-color 2s, transform 2s;
+}
+
+.navbar-custom .navbar-nav > li > a:hover, .navbar-custom .navbar-nav > li > a:focus {
+    background-color: transparent;
+    color: white;
+}
+
+.navbar .nav > li > a, .navbar .nav > li {
+	color: lightgray;
+	text-shadow: none;
+	font-family: 'Roboto', sans-serif;
+}
+
+.img-logo{
+	margin-top: 5px;
+	height: 50px;
+}
+
+.logo-md{
+	height: 300px !important; 
+}
+
+#home-sec1{
+	background-attachment: fixed;  
+	background-image: url("http://fullhdpictures.com/wp-content/uploads/2015/11/High-Quality-Chicago-Wallpaper.jpg");
+	color: white;
+
+	h1{
+		font-size: 500%;
+	} 
+	h2{
+		font-size: 400%;
+	}
+	h3{
+		font-size: 300%;
+	}
+	.box{
+		background: rgba(black, 0.8);
+		padding: 10px;
+	}
+}
+
+
+#home-sec2:before{
+	transform: translateZ(-1px) scale(2);
+	z-index:-1;
+}
+
+#home-sec2{
+	background-image: url("http://plymouthministorage.com/wp-content/uploads/2016/03/finance-wallpaper-hd-financial-gold-sheet-calculator-picture-hd-420853.jpg");
+	background-attachment: fixed;
+	color: white;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 100;
+	.box{
+		background: rgba(black, 0.8);
+		padding: 30px;
+		line-height: 50px;
+	}
+
+	h1{
+		font-size: 200%;
+	}
+
+	h2{
+		font-size: 150%;
+	}
+}
+
+#home-sec3{
+	background-image: url("http://orig11.deviantart.net/c6f5/f/2009/194/f/6/hi_res_lined_paper_texture_by_merileekitty.jpg");
+	background-attachment: fixed;
+	color: white;
+	h2{
+		font-size: 250%;
+		font-weight: 100;
+		line-height: 50px;
+	}
+	.box{
+		background: rgba(black, 0.8);
+		padding: 30px;
+		ul{
+			text-align: left;
+		}
+
+		li{
+			font-size: 18px;
+		}
+	}
+}
+
+#home-sec4{
+	background-color: #000000;
+	background-image: url("http://rack.0.mshcdn.com/media/ZgkyMDEzLzAxLzE5L2FhL2NvbW11bml0eWdyLjNmZjI4LmpwZwpwCXRodW1iCTEyMDB4NjI3IwplCWpwZw/49214cc6/19a/community-group.jpg");
+	background-attachment: fixed;
+	min-height: 100vh;
+	width: 100vw;
+	position: relative;
+	color: white;
+	.box{
+		background: rgba(black, 0.8);
+		padding: 30px;
+	}
+
+}
+
+#home-sec5{
+	min-height: 100vh;
+	width: 100vw;
+	position: relative;
+	.get-started{
+		background-color: black;
+		color: #0060b2;
+		margin-top: 10%;
+		padding-top: 2%;
+		font-size: 45px;
+		border: 0;
+		width: 500px;
+		height: 100px;
+		position: relative;
+		border-radius: 5px;
+		box-shadow: 0 -1px 10px rgba(0, 0, 0, .7);
+		transition: all 0.5s;
+		cursor: pointer;
+	}
+	.get-started:hover{
+		background-color: lightgrey;
+		color: black;
+		transition: 0.5s ease;
+	}
+}
+
+.slide {
+  position: relative;
+  padding: 25vh 10%;
+  min-height: 100vh;
+  width: 100vw;
+  box-sizing: border-box;
+  box-shadow: 0 -1px 10px rgba(0, 0, 0, .7);
+	transform-style: inherit;
+}
+
+.slide:nth-child(2n+1) .title {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.slide, .slide:before {
+  background: 50% 50% / cover;  
+}
