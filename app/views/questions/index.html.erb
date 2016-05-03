@@ -1,21 +1,28 @@
 <div class="container">
-  <h1>All LOI Form Fields</h1>
+  <div class="row">
+    <div class="col-sm-12">
+      <h1 class="head">All LOI Form Fields</h1>
+      <div class="background">
 
-  <%= link_to "Add New Field", "/questions/new", :class => "btn btn-default", :role => "button" %>
+        <%= link_to "Add New Field", "/questions/new", :class => "btn btn-default", :role => "button" %>
 
-  <ol>
-    <% @sections.each do |section| %>
-      <li><h4> <%= section.name %> </h4></li>
-      
-      <ul>
-        <% @questions.each do |question| %>
-          <% if question.section_id == section.id %>
-            <li><p> <%= question.question %> <%= link_to "View All", "questions/#{question.id}", :class => "btn btn-default", :role => "button" %>
-                <%= link_to "Edit", "/questions/#{question.id}/edit", :class => "btn btn-default", :role => "button" %></p>
-            </li>
-          <% end %>
+      <ol>
+        <% @sections.each do |section| %>
+          <li><h4> <%= section.name %> </h4></li>
+          
+          <ul>
+            <% @questions.each do |question| %>
+              <% if question.section_id == section.id %>
+                <li><p> <%= question.question %> <%= link_to "View All", "questions/#{question.id}", :class => "btn btn-default", :role => "button" %>
+                    <%= link_to "Edit", "/questions/#{question.id}/edit", :class => "btn btn-default", :role => "button" %></p>
+                </li>
+              <% end %>
+            <% end %>
+          </ul>
         <% end %>
-      </ul>
-    <% end %>
-  </ol>
+      </ol>
+      </div>
+
+    </div>
+  </div>
 </div>

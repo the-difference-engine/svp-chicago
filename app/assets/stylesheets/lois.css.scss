@@ -10,8 +10,15 @@
   text-align: center;
 }
 
+.form-container{
+  max-width: 70%;
+  background-color: lightgrey;
+  margin: auto;
+}
+
 .form {
   max-width: 70%;
+  background-color: white;
   margin: auto;
 }
 
@@ -42,4 +49,8 @@
   margin-bottom: 0;
   font-weight: 100;
   text-align: center;
+}
+
+.background{
+  background-color: white;
 }
