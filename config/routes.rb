@@ -17,7 +17,6 @@ Rails.application.routes.draw do
     end
   end
 
-
   get '/home' => 'landings#home'
   get '/thanks/:id' => 'landings#thanks'
 

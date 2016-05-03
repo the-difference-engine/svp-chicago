@@ -22,14 +22,8 @@
 
   <div ng-app="app">
     <div ng-controller="formsCtrl" ng-init="setup()">
-    <form ng-submit="submit(name, email)">
+      <form name="loiForm" ng-submit="submit(name, email, loiForm.$valid)" novalidate>
         
-        <label> Name: </label>
-        <input type="text" ng-model="name">
-
-        <label> Email: </label>
-        <input type="text" ng-model="email">
-
         <!-- BEGIN ORDERED LIST / FORM SECTIONS -->
         <ul>
 
@@ -39,6 +33,20 @@
             <h3><li> {{ contact_section.name }} </li></h3>
               <table class="table table-striped table-bordered">
                 <fieldset class="form-group">
+                  <tr>
+                    <div class="form-group" ng-class="{ 'has-error' : loiForm.name.$invalid && !loiForm.name.$pristine }">
+                      <label> Name: </label>
+                      <p><input type="text" name="name" ng-model="name" class="form-control" required></p>
+                      <p ng-show="loiForm.name.$invalid && !loiForm.name.$pristine" class="help-block">You name is required.</p>
+                    </div>
+                  </tr>
+                  <tr>
+                    <div class="form-group" ng-class="{ 'has-error' : loiForm.email.$invalid && !loiForm.email.$pristine }">
+                      <label> Email: </label>
+                      <input type="email" name="email" ng-model="email" class="form-control">
+                      <p ng-show="loiForm.email.$invalid && !loiForm.email.$pristine" class="help-block">Enter a valid email.</p>
+                    </div>
+                  </tr>
                   <tr ng-repeat="question in contact_formData">
                     <td style="width: 20%">
                       <label> {{question.question}}: </label>
@@ -172,27 +180,27 @@
                   </td>
                   <td>
                     <select class="form-control" name="singleSelect" id="singleSelect" ng-model="question.challenges[0].priority">
-                      <option value="">---Please select---</option>
+                      <option value="">--Select--</option>
                       <option value="H">High</option>
                       <option value="M">Medium</option>
                       <option value="L">Low</option>
                     </select>
                     <select class="form-control" name="singleSelect" id="singleSelect" ng-model="question.challenges[1].priority">
-                      <option value="">---Please select---</option>
+                      <option value="">--Select--</option>
                       <option value="H">High</option>
                       <option value="M">Medium</option>
                       <option value="L">Low</option>
                     </select>
                     <select class="form-control" name="singleSelect" id="singleSelect" ng-model="question.challenges[2].priority">
-                      <option value="">---Please select---</option>
+                      <option value="">--Select--</option>
                       <option value="H">High</option>
                       <option value="M">Medium</option>
                       <option value="L">Low</option>
                     </select>
                   </td>
-                  <td><input class="form-control" type="text" ng-model="question.fte_1"></td>
-                  <td><input class="form-control" type="text" ng-model="question.fte_2"></td>
-                  <td><input class="form-control" type="text" ng-model="question.fte_3"></td>
+                  <td><input class="form-control" type="number" ng-model="question.fte_1"></td>
+                  <td><input class="form-control" type="number" ng-model="question.fte_2"></td>
+                  <td><input class="form-control" type="number" ng-model="question.fte_3"></td>
                 </tr>
               </table>
             </section>
@@ -274,7 +282,7 @@
           <!-- END ORDERED LIST / FORM SECTIONS -->
 
           <div class="submit-button-container" ng-show="activeSectionArray[7]">
-            <button class="btn btn-primary btn-lg submit-button" type="submit">Submit</button>
+            <button class="btn btn-primary btn-lg submit-button" type="submit" ng-disabled="loiForm.$invalid">Submit</button>
           </div>
 
         </form>

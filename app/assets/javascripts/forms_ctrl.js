@@ -158,31 +158,36 @@
 
 
 
-    $scope.submit = function(name, email){
+    $scope.submit = function(name, email, isValid){
 
       console.log($scope.challenge_formData);
-      // $scope.addAnswer($scope.overview_formData);
+  
+      if (isValid) {
 
-      var newLoi = {
-        name: name,
-        email: email,
-        contact_answers: $scope.contact_formData,
-        organization_answers: $scope.organization_formData,
-        overview_answers: $scope.overview_formData,
-        vision_answers: $scope.vision_formData,
-        concern_answers: $scope.concern_formData,
-        challenge_answers: $scope.challenge_formData,
-        referral_answers: $scope.referral_formData,
-        demographic_answers: $scope.demographic_formData,
-        geographic_answers: $scope.geographic_formData
+        var newLoi = {
+          name: name,
+          email: email,
+          contact_answers: $scope.contact_formData,
+          organization_answers: $scope.organization_formData,
+          overview_answers: $scope.overview_formData,
+          vision_answers: $scope.vision_formData,
+          concern_answers: $scope.concern_formData,
+          challenge_answers: $scope.challenge_formData,
+          referral_answers: $scope.referral_formData,
+          demographic_answers: $scope.demographic_formData,
+          geographic_answers: $scope.geographic_formData
+        };
+
+          console
+
+        $http.post('/api/v1/lois.json', newLoi).then(function(response){
+            console.log(response.data.loi_id);
+            window.location = '/thanks/' + response.data.loi_id;
+          });
+
+      } else {
+        alert("Form is invalid");
       };
-
-        console
-
-      $http.post('/api/v1/lois.json', newLoi).then(function(response){
-          console.log(response.data.loi_id);
-          window.location = '/thanks/' + response.data.loi_id;
-        });
 
     };
 
