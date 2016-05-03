@@ -31,8 +31,11 @@ class Loi < ActiveRecord::Base
         # amount += answer.fte.amount_3
       end
     end
-
     return amount
+  end
+
+  def org_name
+    answers.find_by(question_id: Question.find_by(question: "Organization").id).answer
   end
 
 end

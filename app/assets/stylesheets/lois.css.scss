@@ -1,6 +1,6 @@
-
 .form-heading {
   width: 100%;
+  background-color: lightgrey;
 }
 
 .form-heading h1 {
@@ -11,8 +11,14 @@
   text-align: center;
 }
 
+.form-container{
+  max-width: 100%;
+  margin: auto;
+}
+
 .form {
   max-width: 70%;
+  background-color: white;
   margin: auto;
 }
 
@@ -32,16 +38,19 @@
 }
 
 .loi-table{
-	background-color: white;
-	padding: 10px;
+  background-color: white;
+  padding: 10px;
 }
 
 .head{
-	background-color: lightgrey;
-	color: black;
-	padding: 15px;
-	margin-bottom: 0;
-	font-weight: 100;
-	text-align: center;
+  background-color: lightgrey;
+  color: black;
+  padding: 15px;
+  margin-bottom: 0;
+  font-weight: 100;
+  text-align: center;
 }
 
+.background{
+  background-color: white;
+}

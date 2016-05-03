@@ -1,4 +1,5 @@
 <div class="form-heading">
+<div class="form-container">
 
   <div class="text">
 
@@ -15,13 +16,22 @@
 
       <li>Please use bullet points rather than paragraphs. Brevity is helpful to our partners when reviewing proposals.</li>
     </ul></p>
+  <hr>
   </div>
+</div>
 
   <div class="form">
   <!-- BEGIN ANGULAR -->
 
   <div ng-app="app">
     <div ng-controller="formsCtrl" ng-init="setup()">
+
+<!--       <div class="progress">
+        <div class="progress-bar" role="progressbar" style="width: 70%;">
+          <span class="sr-only">60% Complete</span>
+        </div>
+      </div> -->
+
       <form name="loiForm" ng-submit="submit(name, email, loiForm.$valid)" novalidate>
         
         <!-- BEGIN ORDERED LIST / FORM SECTIONS -->
@@ -35,20 +45,24 @@
                 <fieldset class="form-group">
                   <tr>
                     <div class="form-group" ng-class="{ 'has-error' : loiForm.name.$invalid && !loiForm.name.$pristine }">
-                      <label> Name: </label>
-                      <p><input type="text" name="name" ng-model="name" class="form-control" required></p>
-                      <p ng-show="loiForm.name.$invalid && !loiForm.name.$pristine" class="help-block">You name is required.</p>
+                      <td><label> Proposal Contact Name: </label></td>
+                      <td>
+                        <p><input type="text" name="name" ng-model="name" class="form-control" required></p>
+                        <p ng-show="loiForm.name.$invalid && !loiForm.name.$pristine" class="help-block">You name is required.</p>
+                      </td>
                     </div>
                   </tr>
                   <tr>
                     <div class="form-group" ng-class="{ 'has-error' : loiForm.email.$invalid && !loiForm.email.$pristine }">
-                      <label> Email: </label>
-                      <input type="email" name="email" ng-model="email" class="form-control">
-                      <p ng-show="loiForm.email.$invalid && !loiForm.email.$pristine" class="help-block">Enter a valid email.</p>
+                      <td><label> Proposal Contact Email: </label></td>
+                      <td>
+                        <input type="email" name="email" ng-model="email" class="form-control">
+                        <p ng-show="loiForm.email.$invalid && !loiForm.email.$pristine" class="help-block">Enter a valid email.</p>
+                      </td>
                     </div>
                   </tr>
                   <tr ng-repeat="question in contact_formData">
-                    <td style="width: 20%">
+                    <td style="width: 25%">
                       <label> {{question.question}}: </label>
                     </td>
                     <td>
@@ -175,8 +189,9 @@
                   <td><label> {{question.question}}: </label></td>
                   <td>
                     <input class="form-control" type="text" ng-model="question.challenges[0].challenge">
-                    <input class="form-control" type="text" ng-model="question.challenges[1].challenge">
-                    <input class="form-control" type="text" ng-model="question.challenges[2].challenge">
+                    <input class="form-control" type="text" ng-model="question.challenges[1].challenge" ng-show="activeChallenge[question.question_id]>0">
+                    <input class="form-control" type="text" ng-model="question.challenges[2].challenge" ng-show="activeChallenge[question.question_id]>1">
+                    <p ng-hide="activeChallenge[question.question_id]==2"><a ng-click="addChallenge(question.question_id)">Add Challenge</a></p>
                   </td>
                   <td>
                     <select class="form-control" name="singleSelect" id="singleSelect" ng-model="question.challenges[0].priority">
@@ -185,13 +200,13 @@
                       <option value="M">Medium</option>
                       <option value="L">Low</option>
                     </select>
-                    <select class="form-control" name="singleSelect" id="singleSelect" ng-model="question.challenges[1].priority">
+                    <select class="form-control" name="singleSelect" id="singleSelect" ng-model="question.challenges[1].priority" ng-show="activeChallenge[question.question_id]>0">
                       <option value="">--Select--</option>
                       <option value="H">High</option>
                       <option value="M">Medium</option>
                       <option value="L">Low</option>
                     </select>
-                    <select class="form-control" name="singleSelect" id="singleSelect" ng-model="question.challenges[2].priority">
+                    <select class="form-control" name="singleSelect" id="singleSelect" ng-model="question.challenges[2].priority" ng-show="activeChallenge[question.question_id]>1">
                       <option value="">--Select--</option>
                       <option value="H">High</option>
                       <option value="M">Medium</option>
@@ -288,10 +303,15 @@
         </form>
       </section>
 
-      <div class="form-group">
-        <button class="btn btn-danger" ng-click="prevSection()">Previous Section</button>
-        <button class="btn btn-danger" ng-click="nextSection()">Next Section</button>
-      </div>
+      <hr>
+      <br>
+
+      <!-- PREVIOUS AND NEXT BUTTON FOR MULTIPAGE FORM -->
+
+      <!-- <div class="form-group btn-container">
+        <button class="btn btn-danger section-btn" ng-click="prevSection()">Previous Section</button>
+        <button class="btn btn-danger section-btn" ng-click="nextSection()">Next Section</button>
+      </div> -->
 
       <br>
       <div class="text" ng-show="activeSectionArray[7]">

@@ -1,3 +1,6 @@
+User.create!([
+  {email: "admin@email.com", encrypted_password: "$2a$10$ZkkN1zOHdlVGI/8p.vi9OuKtyOiuqabrpWOi5MGlCTiNYpVrepxza", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 14, current_sign_in_at: "2016-05-02 16:20:46", last_sign_in_at: "2016-04-28 15:20:37", current_sign_in_ip: "::1", last_sign_in_ip: "::1", admin: true}
+])
 Question.create!([
   {question: "Organization", section_id: 1},
   {question: "Number of Employees", section_id: 2},
@@ -28,9 +31,6 @@ Question.create!([
   {question: "Executive Director", section_id: 1},
   {question: "Executive Director Phone", section_id: 1},
   {question: "Executive Director E-mail", section_id: 1},
-  {question: "Proposal Contact", section_id: 1},
-  {question: "Proposal Contact Phone", section_id: 1},
-  {question: "Proposal Contact E-mail", section_id: 1},
   {question: "Total Annual Budget for Organization", section_id: 2},
   {question: "If affiliated with a national or parent organization, what role does the organization play in your strategic direction, operations, and overall governance", section_id: 2},
   {question: "Homelessness", section_id: 8},
@@ -41,12 +41,12 @@ Question.create!([
 ])
 Section.create!([
   {name: "Contact Information"},
-  {name: "Oganization"},
   {name: "Overview and Mission"},
   {name: "Vision"},
   {name: "Key Concerns"},
   {name: "Organizational Capacity Challenges"},
   {name: "Referral Source"},
   {name: "Demographics"},
-  {name: "Geographic Focus"}
+  {name: "Geographic Focus"},
+  {name: "Organization"}
 ])
