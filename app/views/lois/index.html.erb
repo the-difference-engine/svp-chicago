@@ -16,7 +16,7 @@
           <%= link_to "View", "/lois/#{loi.id}", :class => "btn btn-default", :role => "button" %>
           <%= link_to "Rate", "/ratings/new?loi=#{loi.id}", :class => "btn btn-default", :role => "button" %>
           <% if user_signed_in? && current_user.admin %>
-         <!--  <%= link_to "Delete", "/lois/#{loi.id}", method: :delete, data:{confirm: "Are You Sure"}, :class => "btn btn-default", :role => "button" %> -->
+         <%= link_to "Delete", "/lois/#{loi.id}", method: :delete, data:{confirm: "Are You Sure"}, :class => "btn btn-default", :role => "button" %>
         <% end %>
         </td>
       </tr>
