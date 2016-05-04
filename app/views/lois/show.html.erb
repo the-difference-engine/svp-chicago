@@ -5,9 +5,10 @@
   <% else %>
     <h1> Thank you for your submission! </h1>
     <p> Please review and double check your submission, click edit to correct </p>
-  <% end %> 
+  <% end %>
+</div> 
   
-  <div class="form">
+  <div class="form-body">
 
     <div ng-app="app">
       <div ng-controller="loisCtrl" ng-init="setup()">
@@ -231,5 +232,4 @@
       <%= link_to "Delete", "/lois/#{@loi.id}", method: :delete, data:{confirm: "Are You Sure"}, :class => "btn btn-default", :role => "button" %>
     <% end %>
 
-  </div>
 </div>
