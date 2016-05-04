@@ -1,6 +1,13 @@
 .form-heading {
+<<<<<<< HEAD
   width: 100%;
   background-color: lightgrey;
+=======
+  width: 70%;
+  background-color: lightgrey;
+  margin: auto;
+  padding: 25px;
+>>>>>>> 1d7e00f1bdab68fa8952944df7218566f2ba135d
 }
 
 .form-heading h1 {
@@ -11,12 +18,16 @@
   text-align: center;
 }
 
+<<<<<<< HEAD
 .form-container{
   max-width: 100%;
   margin: auto;
 }
 
 .form {
+=======
+.form-body {
+>>>>>>> 1d7e00f1bdab68fa8952944df7218566f2ba135d
   max-width: 70%;
   background-color: white;
   margin: auto;
@@ -54,3 +65,17 @@
 .background{
   background-color: white;
 }
+<<<<<<< HEAD
+=======
+
+.table-borderless tbody tr td, .table-borderless tbody tr th, .table-borderless thead tr th {
+    border: none;
+}
+
+.section {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+>>>>>>> 1d7e00f1bdab68fa8952944df7218566f2ba135d
