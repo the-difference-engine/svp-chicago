@@ -97,6 +97,11 @@
 
         $scope.activeChallenge = {}; //THIS VARIABLE IS FOR addChallenge()
 
+        //INITIALIZE THE FTE TOTALS
+        $scope.fte_1 = 0;
+        $scope.fte_2 = 0;
+        $scope.fte_3 = 0;
+
         $scope.challenge_formData = [];
         for (var i=0; i<$scope.challenge_section.questions.length; i++){
 
@@ -119,6 +124,7 @@
 
             $scope.challenge_formData[i] = dataHolder;
           }
+
 
         //REFERRAL SECTION
         $scope.referral_section = response.data.sections.referral_section;
@@ -250,6 +256,23 @@
       if ($scope.activeChallenge[questionId] < 2){
         $scope.activeChallenge[questionId]++;
       } 
+    };
+
+    $scope.addFte = function(){
+      $scope.fte_1 = 0;
+      $scope.fte_2 = 0;
+      $scope.fte_3 = 0;
+      for(var i = 0; i < $scope.challenge_formData.length; i++){
+            if ($scope.challenge_formData[i].fte_1 === parseInt($scope.challenge_formData[i].fte_1)) {
+              $scope.fte_1 += parseInt($scope.challenge_formData[i].fte_1);
+            }
+            if ($scope.challenge_formData[i].fte_2 === parseInt($scope.challenge_formData[i].fte_2)) {
+              $scope.fte_2 += parseInt($scope.challenge_formData[i].fte_2);
+            }
+            if ($scope.challenge_formData[i].fte_3 === parseInt($scope.challenge_formData[i].fte_3)) {
+              $scope.fte_3 += parseInt($scope.challenge_formData[i].fte_3);
+            }
+          };
     };
 
   }]);

@@ -1,6 +1,8 @@
 .form-heading {
-  width: 100%;
+  width: 70%;
   background-color: lightgrey;
+  margin: auto;
+  padding: 25px;
 }
 
 .form-heading h1 {
@@ -11,12 +13,7 @@
   text-align: center;
 }
 
-.form-container{
-  max-width: 100%;
-  margin: auto;
-}
-
-.form {
+.form-body {
   max-width: 70%;
   background-color: white;
   margin: auto;
@@ -53,4 +50,15 @@
 
 .background{
   background-color: white;
+}
+
+.table-borderless tbody tr td, .table-borderless tbody tr th, .table-borderless thead tr th {
+    border: none;
+}
+
+.section {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 50px;
+  padding-right: 50px;
 }
