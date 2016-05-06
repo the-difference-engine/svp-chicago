@@ -2,10 +2,10 @@ json.array! @lois do |loi|
 	json.id loi.id
 	json.name loi.name
 	json.email loi.email
+	json.org_name loi.org_name
 	
-	json.answers loi.answers do |answer|
-		json.question_id answer.question_id
-		json.answer answer.answer
+	json.answers do
+		loi.answers.each{ |answer| json.set! answer.question_id, answer.answer }
 	end
 
 	json.ratings loi.ratings do |rating|
