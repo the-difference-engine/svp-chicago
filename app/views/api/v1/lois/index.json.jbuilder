@@ -4,7 +4,9 @@ json.array! @lois do |loi|
 	json.email loi.email
 	json.org_name loi.org_name
 	
-
+	json.answers do
+		loi.answers.each{ |answer| json.set! answer.question_id, answer.answer }
+	end
 
 	json.ratings loi.ratings do |rating|
 		json.q1 rating.q1
