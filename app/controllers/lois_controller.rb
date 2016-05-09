@@ -3,6 +3,12 @@ class LoisController < ApplicationController
 
   def index
     @lois = Loi.all
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data @lois.to_csv, filename: "lois-#{Date.today}.csv" }
+    end
+    
   end
 
   def new

@@ -106,7 +106,7 @@
 
           <section class="section">
 
-            <h3><li>OGANIZATIONAL CAPACITY CHALLENGES</li></h3>
+            <h3><li>ORGANIZATIONAL CAPACITY CHALLENGES</li></h3>
               <table class="table table-striped table-bordered">
                 <tr>
                   <th>Focus Area</th>
@@ -133,14 +133,18 @@
                 <tr ng-repeat="answer in loi.challenge_answers">
                   <td>{{answer.question.question}}:</td>
                   <td>
-                    <p>1. {{answer.challenges[0].challenge}}</p>
-                    <p>2. {{answer.challenges[1].challenge}}</p>
-                    <p>3. {{answer.challenges[2].challenge}}</p>   
+                    <ol>
+                      <li ng-show="!answer.challenges[0].challenge==''"> {{answer.challenges[0].challenge}}</li>
+                      <li ng-show="!answer.challenges[1].challenge==''"> {{answer.challenges[1].challenge}}</li>
+                      <li ng-show="!answer.challenges[2].challenge==''"> {{answer.challenges[2].challenge}}</li>
+                    </ol>
                   </td>
                   <td>
-                    <p>{{answer.challenges[0].priority}}</p>
-                    <p>{{answer.challenges[1].priority}}</p>
-                    <p>{{answer.challenges[2].priority}}</p>
+                    <ol>
+                      <li ng-show="!answer.challenges[0].priority==''">{{answer.challenges[0].priority}}</li>
+                      <li ng-show="!answer.challenges[1].priority==''">{{answer.challenges[1].priority}}</li>
+                      <li ng-show="!answer.challenges[2].priority==''">{{answer.challenges[2].priority}}</li>
+                    </ol>
                   </td>
                   <td>{{answer.fte.amount_1}}</td>
                   <td>{{answer.fte.amount_2}}</td>
