@@ -38,4 +38,29 @@ class Loi < ActiveRecord::Base
     answers.find_by(question_id: Question.find_by(question: "Organization").id).answer
   end
 
+  def self.to_csv
+    attributes = %w{id name email}
+    
+    questions = Question.all
+    attribute_questions = []
+    questions.each do|question|
+      attribute_questions << question.question
+    end
+    # attributes = ["id","name","email"]
+    # answers.each do |answer|
+    #   attributes << Question.find(answer.question_id)
+    # end
+    # attributes = ["id","name","email"]
+    # answers.each do |answer|
+    #   attributes << Question.find(answer.question_id)
+    # end
+
+    CSV.generate(headers: true) do |csv|
+      csv << attributes + attribute_questions
+      all.each do |loi|
+        csv << loi.attributes.values_at(*attributes) + loi.answers.map(&:answer)
+      end
+    end
+  end
+
 end

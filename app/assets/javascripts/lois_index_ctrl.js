@@ -1,3 +1,5 @@
+//THIS IS THE ANGULAR CONTROLLER FOR THE LOI INDEX PAGE
+
 (function() {
   "use strict";
 
@@ -20,6 +22,23 @@
     $scope.sortBy = function(sortAttribute){
       $scope.sortByAttribute = sortAttribute;
       $scope.descending = !$scope.descending;
+    };
+
+    //THIS FUNCTION HELPS FORMAT THE ANSWERS FROM THE NG-SELECT
+    //NEED THIS TO FORMAT THE SEPARATE CHALLEGES FROM THE ORGANIZATIONAL CAPACITY CHALLENGES SECTION
+    $scope.formatAnswer = function(answer){
+      if (Array.isArray(answer)){
+      console.log(answer);
+        var challenges = [];
+        for (var i=0; i<answer.length; i++){
+          challenges.push(answer[i].challenge + " - Priority: " + answer[i].priority);
+        };
+        console.log(challenges)
+        return challenges;
+      } else {
+        return [answer];
+      };
+
     };
 
   }]);

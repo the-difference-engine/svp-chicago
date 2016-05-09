@@ -5,24 +5,22 @@
     <div ng-controller="loisIndexCtrl" ng-init="setup()">
       <table class="table table-hover loi-table">
         <th>
-          <p ng-click="sortBy('org_name')">Organization Name</p>
+          <p>
+            Organization Name
+            <button ng-click="sortBy('org_name')">Sort</button>
+          </p>
           <input ng-model="orgNameFilter" placeholder="filter">
         </th>
         <th>
           <p>
             Please select a question to see to compare
-            <button ng-click="sortBy(loi.answers[selectedAnswer])">Sort</button>
+            <button ng-click="sortBy(loi.answers[selectedAnswer.id])">Sort</button>
           </p>
-          <select name="singleSelect" id="singleSelect" ng-model="selectedAnswer">
-            <option value="">--Select a question--</option>
-            <option ng-repeat="question in questions" value="{{question.id}}">
-              <ul>
-                <li>
-                  {{question.question}}
-                </li>
-              </ul>
-            </option>
+
+          <select ng-model="selectedAnswer" ng-options="question.question group by question.section for question in questions">
+            <option value="">-- choose question --</option>
           </select>
+
         </th>
         <th>
           <p>Action</p>
@@ -31,7 +29,10 @@
         <td>
           {{loi.org_name}}
         </td>
-        <td>{{loi.answers[selectedAnswer]}}
+        <td>
+          <ul class="list-unstyled">
+            <li ng-repeat="answer in formatAnswer(loi.answers[selectedAnswer.id])">{{answer}}</li>
+          </ul>
         </td>
         <td>
           <%= link_to "View", "/lois/{{loi.id}}", :class => "btn btn-default", :role => "button" %>
@@ -42,5 +43,9 @@
       </table>
     </div>
   </div>
+
+  <% if current_user && current_user.admin %>
+    <%= link_to "Download CSV File", "/lois.csv", :class => "btn btn-default", :role => "button" %>
+  <% end %>
 
 </div>
