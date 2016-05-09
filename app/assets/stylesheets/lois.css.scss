@@ -1,6 +1,9 @@
 .form-heading {
   width: 100%;
   background-color: lightgrey;
+  width: 70%;
+  margin: auto;
+  padding: 25px;
 }
 
 .form-heading h1 {
@@ -16,7 +19,7 @@
   margin: auto;
 }
 
-.form {
+.form-body {
   max-width: 70%;
   background-color: white;
   margin: auto;
@@ -37,9 +40,9 @@
   display: block;
 }
 
-.loi-table{
-  background-color: white;
-  padding: 10px;
+#loi-table{
+  background-color: #EBF1F7;
+  
 }
 
 .head{
@@ -53,4 +56,15 @@
 
 .background{
   background-color: white;
+}
+
+.table-borderless tbody tr td, .table-borderless tbody tr th, .table-borderless thead tr th {
+    border: none;
+}
+
+.section {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 50px;
+  padding-right: 50px;
 }
