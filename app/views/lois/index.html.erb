@@ -1,38 +1,53 @@
 <div class="container">
-    <h1 class="head">LOI submissions </h1>
-  <div class="col-xs-12">
-    <table class="table table-hover table-bordered" id="loi-table">
-      <tr>
-        <td><p><%= index+1 %></p></td>
-        <td><p><%= link_to(loi.name, "/lois/#{loi.id}") %></p></td>
-        <td><p><%= loi.email %></p></td>
+  <h1 class="head">LOI submissions </h1>
+  <div ng-app="app">
+    <div ng-controller="loisIndexCtrl" ng-init="setup()">
+      <table class="table table-hover loi-table">
+        <th>
+          <p>
+            Organization Name
+            <button ng-click="sortBy('org_name')">Sort</button>
+          </p>
+          <input ng-model="orgNameFilter" placeholder="filter">
+        </th>
+        <th>
+          <p>
+            Please select a question to see to compare
+            <button ng-click="sortBy(loi.answers[selectedAnswer.id])">Sort</button>
+          </p>
+
+          <select ng-model="selectedAnswer" ng-options="question.question group by question.section for question in questions">
+            <option value="">-- choose question --</option>
+          </select>
+
+        </th>
+        <th>
+          <p>Action</p>
+        </th>
+      <tr ng-repeat="loi in lois | filter: {org_name: orgNameFilter} | orderBy:sortByAttribute:descending">
         <td>
-          <%= link_to "View", "/lois/#{loi.id}", :class => "btn btn-default", :role => "button" %>
-          <%= link_to "Rate", "/ratings/new?loi=#{loi.id}", :class => "btn btn-default", :role => "button" %>
-          <% if user_signed_in? && current_user.admin %>
-         <!--  <%= link_to "Delete", "/lois/#{loi.id}", method: :delete, data:{confirm: "Are You Sure"}, :class => "btn btn-default", :role => "button" %> -->
-        <% end %>
+          {{loi.org_name}}
+        </td>
+        <td>
+          <ul class="list-unstyled">
+            <li ng-repeat="answer in formatAnswer(loi.answers[selectedAnswer.id])">{{answer}}</li>
+          </ul>
+        </td>
+        <td>
+          <%= link_to "View", "/lois/{{loi.id}}", :class => "btn btn-default", :role => "button" %>
+
+          <%= link_to "Rate", "/ratings/new?loi={{loi.id}}", :class => "btn btn-default", :role => "button" %>
         </td>
         <th>#</th>
         <th>name</th>
         <th>email</th>
         <th> Action?</th>
       </tr>
-      <% @lois.each_with_index do |loi, index| %>
-        <tr>
-          <td><p><%= index+1 %></p></td>
-          <td><p><%= link_to(loi.name, "/lois/#{loi.id}") %></p></td>
-          <td><p><%= loi.email %></p></td>
-            <td>
-              <div class="center-btn"><%= link_to "View", "/lois/#{loi.id}", :class => "btn btn-custom", :role => "button" %>
-              <%= link_to "Rate", "/ratings/new?loi=#{loi.id}", :class => "btn btn-custom", :role => "button" %>
-              <% if user_signed_in? && current_user.admin %>
-             <%= link_to "Delete", "/lois/#{loi.id}", method: :delete, data:{confirm: "Are You Sure"}, :class => "btn btn-custom", :role => "button" %>
-              <% end %>
-            </div>
-            </td>
-        </tr>
-      <% end %>
-    </table>
+      </table>
+    </div>
   </div>
+
+  <% if current_user && current_user.admin %>
+    <%= link_to "Download CSV File", "/lois.csv", :class => "btn btn-default", :role => "button" %>
+  <% end %>
 </div>

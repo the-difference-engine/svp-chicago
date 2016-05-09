@@ -96,7 +96,6 @@
         $scope.challenge_section = response.data.sections.challenge_section;
 
         $scope.activeChallenge = {}; //THIS VARIABLE IS FOR addChallenge()
-
         //INITIALIZE THE FTE TOTALS
         $scope.fte_1 = 0;
         $scope.fte_2 = 0;
@@ -124,6 +123,7 @@
 
             $scope.challenge_formData[i] = dataHolder;
           }
+
 
         //REFERRAL SECTION
         $scope.referral_section = response.data.sections.referral_section;
