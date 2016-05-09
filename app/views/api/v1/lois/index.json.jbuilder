@@ -5,7 +5,12 @@ json.array! @lois do |loi|
 	json.org_name loi.org_name
 	
 	json.answers do
-		loi.answers.each{ |answer| json.set! answer.question_id, answer.answer }
+		loi.answers.each do |answer|
+			json.set! answer.question_id, answer.answer
+				if !answer.challenges.empty?
+					json.set! answer.question_id, answer.challenges
+				end
+		end
 	end
 
 	json.ratings loi.ratings do |rating|
