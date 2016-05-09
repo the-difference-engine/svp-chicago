@@ -97,11 +97,14 @@
 
         $scope.activeChallenge = {}; //THIS VARIABLE IS FOR addChallenge()
 
+<<<<<<< HEAD
+=======
         //INITIALIZE THE FTE TOTALS
         $scope.fte_1 = 0;
         $scope.fte_2 = 0;
         $scope.fte_3 = 0;
 
+>>>>>>> 1d7e00f1bdab68fa8952944df7218566f2ba135d
         $scope.challenge_formData = [];
         for (var i=0; i<$scope.challenge_section.questions.length; i++){
 
@@ -258,6 +261,8 @@
       } 
     };
 
+<<<<<<< HEAD
+=======
     $scope.addFte = function(){
       $scope.fte_1 = 0;
       $scope.fte_2 = 0;
@@ -275,6 +280,7 @@
           };
     };
 
+>>>>>>> 1d7e00f1bdab68fa8952944df7218566f2ba135d
   }]);
 
 }());
