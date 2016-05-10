@@ -51,6 +51,9 @@ class Api::V1::LoisController < ApplicationController
         answer = Answer.create(loi_id: @loi.id, question_id: answer_hash[:question_id], answer: answer_hash[:answer]) 
       end
 
+      NotifierMailer.welcome_email(@loi).deliver_now
+
+
       render json: { message: "Loi Created", loi_id: @loi.id }, status: 200
     else
       render json: { errors: @post.errors.full_messages }, status: 422
