@@ -8,8 +8,8 @@ json.array! @lois do |loi|
 		loi.answers.each do |answer|
 			json.set! answer.question_id, answer.answer
 				if !answer.challenges.empty?
-					json.set! answer.question_id, answer.challenges
-				end
+					json.set! answer.question_id, [answer.challenges, answer.fte]
+				end			
 		end
 	end
 
