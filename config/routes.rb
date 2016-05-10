@@ -60,7 +60,7 @@ Rails.application.routes.draw do
   devise_scope :user do
     authenticated :user do
   
-      root 'users#home', as: :authenticated_root
+      root 'landings#home', as: :authenticated_root
     end
 
   unauthenticated do

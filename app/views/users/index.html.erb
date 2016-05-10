@@ -1,30 +1,27 @@
 <div class="container">
-  <div class="row">
-    <div class="col-sm-12">
-      <h1 id="users-head">SVP Users</h1>
-
-      <table class="table table-hover" id="users-table">
-        <tr>
-          <th>#</th>
-          <th>Name</th>
-          <th>Last login</th>
-          <th>Admin?</th>
-          <% if user_signed_in? && current_user.admin %>
-            <th> </th>
-          <% end %>
-        </tr>
-        <% @users.each_with_index do |user, index| %>
-          <tr>
-            <td><p><%= index+1 %></p></td>
-            <td><p><%= user.email %></p></td>
-            <td><p><%= user.last_sign_in_at %></p></td>
-            <td><p><%= user.admin ? "Yes" : "No" %></p></td>
-            <% if user_signed_in? && current_user.admin %>
-            <td> <%= link_to "Change", "/users/#{user.id}", method: :patch, data:{confirm: "Are you sure you'd like to change admin status?"}, :class => "btn btn-default", :role => "button" %> </td>
-          <% end %>
-          </tr>
+  <h1 id="users-head">SVP Users</h1>
+  <div class="col-xs-12">
+    <table class="table table-hover table-bordered" id="users-table">
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Last login</th>
+        <th>Admin?</th>
+        <% if user_signed_in? && current_user.admin %>
+          <th> </th>
         <% end %>
-      </table>
-    </div>
+      </tr>
+      <% @users.each_with_index do |user, index| %>
+        <tr>
+          <td><p><%= index+1 %></p></td>
+          <td><p><%= user.email %></p></td>
+          <td><p><%= user.last_sign_in_at %></p></td>
+          <td><p><%= user.admin ? "Yes" : "No" %></p></td>
+          <% if user_signed_in? && current_user.admin %>
+          <td> <div class="center-btn"><%= link_to "Change", "/users/#{user.id}", method: :patch, data:{confirm: "Are you sure you'd like to change admin status?"}, :class => "btn btn-custom", :role => "button" %> </td></div>
+        <% end %>
+        </tr>
+      <% end %>
+    </table>
   </div>
 </div>

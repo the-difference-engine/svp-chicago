@@ -3,12 +3,6 @@ User.create!([
   {email: "admin@email.com", encrypted_password: "$2a$10$ZkkN1zOHdlVGI/8p.vi9OuKtyOiuqabrpWOi5MGlCTiNYpVrepxza", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 14, current_sign_in_at: "2016-05-02 16:20:46", last_sign_in_at: "2016-04-28 15:20:37", current_sign_in_ip: "::1", last_sign_in_ip: "::1", admin: true}
 ])
 
-Loi.create!([
-  {name: "Contact Name", email: "Email@email.com"},
-  {name: "danny", email: "danny@email.com"},
-  {name: "Bruce Wayne", email: "wayne@gotham.com"}
-])
-
 Question.create!([
   {question: "Organization", section_id: 1},
   {question: "Number of Employees", section_id: 2},
@@ -48,14 +42,8 @@ Question.create!([
   {question: "Violence & Abuse", section_id: 8}
 ])
 
-Rating.create!([
-  {user_id: 2, loi_id: 69, q1: 1, q2: 1, q3: 1, q4: 1, q5: "yes", weighted_score: 5},
-  {user_id: 1, loi_id: 69, q1: 5, q2: 5, q3: 5, q4: 5, q5: "no", weighted_score: 5},
-  {user_id: 2, loi_id: 122, q1: 1, q2: 1, q3: 1, q4: 1, q5: "yes", weighted_score: 5},
-  {user_id: 2, loi_id: 123, q1: 3, q2: 3, q3: 3, q4: 3, q5: "3", weighted_score: 5}
-])
-
 Section.create!([
+  {name: "Organization"},
   {name: "Contact Information"},
   {name: "Overview and Mission"},
   {name: "Vision"},
@@ -63,6 +51,5 @@ Section.create!([
   {name: "Organizational Capacity Challenges"},
   {name: "Referral Source"},
   {name: "Demographics"},
-  {name: "Geographic Focus"},
-  {name: "Organization"}
+  {name: "Geographic Focus"}
 ])

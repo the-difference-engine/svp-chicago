@@ -2,11 +2,9 @@
 	<div ng-app="app">
 		<div ng-controller="formsCtrl" ng-init="setup();setupRatings()">
 			<!-- {{ 1 + 1 }} -->
-
-					<h1 id="rating-head">Ratings</h1>
-
-				<div class="col-xs-12" id="rating-table">
-					<table class="table table-hover">
+				<h1 id="rating-head">Ratings</h1>
+				<div class="col-xs-12">
+					<table class="table table-hover table-bordered" id="rating-table">
 						<tr>
 							<% @rating_questions.each do |rating_question| %>
 								<th>
