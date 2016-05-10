@@ -2,13 +2,25 @@ class RatingsController < ApplicationController
 
   
   def index
+    
+    @rating_questions = ["Organization Name", "Organization Email", "Fits SVP Criteria", "Potention SVP Impact", "Level of Excitement", "Benefit to SVP", "Invite to Submit RFP?", "Weighted Score", "Rated By"]
+
     if user_signed_in? && current_user.admin
       @ratings = Rating.all
+
+      respond_to do |format|
+        format.html
+        format.csv { send_data @ratings.to_csv, filename: "ratings-#{Date.today}.csv" }
+      end
     else
       @ratings = Rating.where(user_id: current_user.id)
+
+      respond_to do |format|
+        format.html
+        format.csv { send_data @ratings.to_csv, filename: "ratings-#{Date.today}.csv" }
+      end
     end
 
-    @rating_questions = ["Organization Name", "Organization Email", "Fits SVP Criteria", "Potention SVP Impact", "Level of Excitement", "Benefit to SVP", "Invite to Submit RFP?", "Weighted Score", "Rated By"]
   end
 
   def show
