@@ -2,7 +2,7 @@
   <h1 class="head">LOI submissions </h1>
   <div ng-app="app">
     <div ng-controller="loisIndexCtrl" ng-init="setup()">
-      <table class="table table-hover loi-table">
+      <table class="table table-hover" id="loi-table">
         <th>
           <p>
             Organization Name
@@ -38,10 +38,7 @@
 
           <%= link_to "Rate", "/ratings/new?loi={{loi.id}}", :class => "btn btn-default", :role => "button" %>
         </td>
-        <th>#</th>
-        <th>name</th>
-        <th>email</th>
-        <th> Action?</th>
+    
       </tr>
       </table>
     </div>
