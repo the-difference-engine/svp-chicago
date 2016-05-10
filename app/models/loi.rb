@@ -41,7 +41,7 @@ class Loi < ActiveRecord::Base
   def self.to_csv
     attributes = %w{id name email}
     
-    questions = Question.all
+    questions = Question.order(:section_id).order(:id).all
     attribute_questions = []
     questions.each do|question|
       attribute_questions << question.question
