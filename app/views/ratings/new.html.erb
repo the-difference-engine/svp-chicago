@@ -1,34 +1,36 @@
 <div class="container">
-	<h1 id="rating-head">New Rating</h1>
-	<div class="col-xs-12">
-		<%= form_tag '/ratings', method: :post do %>
-			<div class="input-group">
-			  <%= label_tag "Fits Svp's Criteria" %>
-			  <%= text_field_tag :q1 %>
-			</div>
+	<div class="col-xs-12" id="rating-new">
+		<h1 id="rating-head">New Rating</h1>
+		<div class="col-xs-12">
+			<%= form_tag '/ratings', method: :post do %>
+				<div class="input-group">
+				  <%= label_tag "Fits Svp's Criteria" %>
+				  <%= text_field_tag :q1 %>
+				</div>
 
-			<div class="input-group">
-			  <%= label_tag "Potential SVP Impact" %>
-			  <%= text_field_tag :q2 %>
-			</div>
+				<div class="input-group">
+				  <%= label_tag "Potential SVP Impact" %>
+				  <%= text_field_tag :q2 %>
+				</div>
 
-			<div class="input-group">
-			  <%= label_tag "Level of Excitement" %>
-			  <%= text_field_tag :q3 %>
-			</div>
+				<div class="input-group">
+				  <%= label_tag "Level of Excitement" %>
+				  <%= text_field_tag :q3 %>
+				</div>
 
-			<div class="input-group">
-			  <%= label_tag "Benefit to SVP" %>
-			  <%= text_field_tag :q4 %>
-			</div>
+				<div class="input-group">
+				  <%= label_tag "Benefit to SVP" %>
+				  <%= text_field_tag :q4 %>
+				</div>
 
-			<div class="input-group">
-			  <%= label_tag "Invite to Submit RFP? (Yes, No, Maybe)" %>
-			  <%= text_field_tag :q5 %>
-			</div>
-			
-			<%= hidden_field_tag :loi_id, @loi_id %>
-			<%= submit_tag 'Submit Rating', class: "btn btn-default" %>
-		<% end %>
+				<div class="input-group">
+				  <%= label_tag "Invite to Submit RFP? (Yes, No, Maybe)" %>
+				  <%= text_field_tag :q5 %>
+				</div>
+				
+				<%= hidden_field_tag :loi_id, @loi_id %>
+				<%= submit_tag 'Submit Rating', class: "btn btn-custom" %>
+			<% end %>
+		</div>
 	</div>
 </div>
