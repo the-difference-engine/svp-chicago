@@ -6,6 +6,9 @@
   angular.module("app").controller("loisIndexCtrl", ["$scope", "$http", "$compile", function($scope, $http, $compile){
     window.scope = $scope;
 
+    //GET CURRENT USER ID USING GON GEM
+    $scope.currentUserId = gon.current_user_id;
+
     $scope.setup = function(){
 
       $http.get('/api/v1/lois.json').then(function(response){
@@ -46,6 +49,17 @@
         return [answer];
       };
 
+    };
+
+    //THIS FUNCTION JUST CHECKS TO SEE IF THE LOI HAS ALREADY BEEN RATED
+    $scope.rated = function(ratings){
+      for (var i=0; i < ratings.length; i++){
+        if (ratings[i].user_id == $scope.currentUserId){
+          return true
+        } else {
+          return false
+        };
+      };
     };
 
   }]);

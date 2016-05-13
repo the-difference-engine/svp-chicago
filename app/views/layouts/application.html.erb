@@ -13,7 +13,7 @@
 
 <!-- Navigation Bar -->
   <nav class="navbar navbar-custom navbar-fixed-top">
-    <div class="container-fluid">
+    <div class="container">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -31,10 +31,14 @@
             <li><a href="/users">Users</a></li>
             <li><a href="/lois">LOIs</a></li>
             <li><a href="/ratings">Ratings</a></li>
-            <li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></li>
           <% elsif user_signed_in? %>  
             <li><a href="/lois">LOIs</a></li>
             <li><a href="/ratings">My Ratings</a></li>
+          <% end %>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <% if user_signed_in? %>  
             <li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></li>
           <% else %>
             <li><a href="/users/sign_up">Sign Up</a></li>
@@ -60,5 +64,8 @@
 
 <%= yield %>
 
+<footer>
+  <p>© 2016 Social Venture Partners</p>
+</footer>
 </body>
 </html>

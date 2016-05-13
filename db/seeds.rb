@@ -33,7 +33,7 @@ Question.create!([
   {question: "Strategic Planning", section_id: 6},
   {question: "Technology", section_id: 6},
   {question: "Other", section_id: 6},
-  {question: "How Did You Learn of the opportunity to present an LOI to SVP Chicago", section_id: 7},
+  {question: "How did you learn of the opportunity to present an LOI to SVP Chicago", section_id: 7},
   {question: "Alcoholism & Addiction", section_id: 8},
   {question: "Education", section_id: 8},
   {question: "Elderly Care", section_id: 8},
