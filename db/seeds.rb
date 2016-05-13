@@ -1,8 +1,3 @@
-User.create!([
-  {email: "dan@email.com", encrypted_password: "$2a$10$JsuArJuUKYzITrrwKbvBSOnkx3iA6PHKX9KC6gTaGkbdtsTMKrTeC", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 17, current_sign_in_at: "2016-04-21 23:35:11", last_sign_in_at: "2016-04-12 20:25:33", current_sign_in_ip: "::1", last_sign_in_ip: "::1", admin: false},
-  {email: "admin@email.com", encrypted_password: "$2a$10$ZkkN1zOHdlVGI/8p.vi9OuKtyOiuqabrpWOi5MGlCTiNYpVrepxza", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 14, current_sign_in_at: "2016-05-02 16:20:46", last_sign_in_at: "2016-04-28 15:20:37", current_sign_in_ip: "::1", last_sign_in_ip: "::1", admin: true}
-])
-
 Question.create!([
   {question: "Organization", section_id: 1},
   {question: "Address", section_id: 1},
