@@ -17,7 +17,6 @@
                 Please select a question to see to compare
                 <button ng-click="sortBy(loi.answers[selectedAnswer.id])">Sort</button>
               </p>
-
               <select ng-model="selectedAnswer" ng-options="question.question group by question.section for question in questions">
                 <option value="">-- choose question --</option>
               </select>
@@ -37,10 +36,8 @@
             </td>
             <td>
               <%= link_to "View", "/lois/{{loi.id}}", :class => "btn btn-default", :role => "button" %>
-
               <%= link_to "Rate", "/ratings/new?loi={{loi.id}}", :class => "btn btn-default", :role => "button" %>
             </td>
-        
           </tr>
           </table>
         </div>
