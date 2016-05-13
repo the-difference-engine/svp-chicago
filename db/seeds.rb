@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 User.create!([
   {email: "obobbiec@gmail.com", encrypted_password: "$2a$10$VVnQV3Z/EOqNYhZs.NADJ.j198YkTwYmjUfU1UGFdJTOXF3dr/euS", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: "2016-05-11 18:33:02", last_sign_in_at: "2016-05-11 18:33:02", current_sign_in_ip: "::1", last_sign_in_ip: "::1", admin: true}
 ])
@@ -560,8 +559,7 @@ Loi.create!([
   {name: "Chester French", email: "Cfrench@gmail.com"},
   {name: "Chester French", email: "Cfrench@gmail.com"}
 ])
-=======
->>>>>>> 8390d5650a76d9c28aec8ecf3bd1c6614fdd34ee
+
 Question.create!([
   {question: "Organization", section_id: 1},
   {question: "Address", section_id: 1},
