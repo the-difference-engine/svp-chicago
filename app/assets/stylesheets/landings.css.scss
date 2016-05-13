@@ -1,9 +1,19 @@
-.home {
+.thank-you-container {
   width: 100%;
 }
 
-.home img {
-  max-width: 25%;
+.inner-thank-you-container {
+  max-width: 70%;
+  background-color: white;
+  margin: auto;
+  text-align: center;
+  border-radius: 25px;
+  margin-top: 50px;
+}
+
+.thank-you-container img {
+  padding-top: 75px;
+  max-width: 40%;
   display: block;
   margin: auto;
 }
