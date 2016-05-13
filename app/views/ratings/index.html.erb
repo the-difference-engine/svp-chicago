@@ -4,31 +4,35 @@
 			<!-- {{ 1 + 1 }} -->
 				<h1 id="rating-head">Ratings</h1>
 				<div class="col-xs-12">
-					<table class="table table-hover table-bordered" id="rating-table">
-						<tr>
-							<% @rating_questions.each do |rating_question| %>
-								<th>
-									<%= rating_question %>
-						  		<!-- <span ng-click="sortRating()" class="glyphicon glyphicon-triangle-top sort-carat">
-						  		</span> -->
-								</th>
-							<% end %>
-						</tr>
-						<!--- ng show rating user_id for admin---->
-						<tr ng-repeat="rating in ratings">
-							<td><a href="/lois/{{rating.loi.id}}">{{ rating.loi.name }}</a></td>
-							<td>{{ rating.loi.email }}</td>
-							<td>{{ rating.q1 }}</td>
-							<td>{{ rating.q2 }}</td>
-							<td>{{ rating.q3 }}</td>
-							<td>{{ rating.q4 }}</td>
-							<td>{{ rating.q5 }}</td>
-							<td>{{ rating.weighted_score }}</td>
-							<td>{{ rating.user.email }}</td>
-						</tr>
-					</table>
+					<div class="panel panel-default">
+						<table class="table table-hover table-bordered" id="rating-table">
+							<tr>
+								<% @rating_questions.each do |rating_question| %>
+									<th>
+										<%= rating_question %>
+							  		<!-- <span ng-click="sortRating()" class="glyphicon glyphicon-triangle-top sort-carat">
+							  		</span> -->
+									</th>
+								<% end %>
+							</tr>
+							<!--- ng show rating user_id for admin---->
+							<tr ng-repeat="rating in ratings">
+								<td><a href="/lois/{{rating.loi.id}}">{{ rating.loi.name }}</a></td>
+								<td>{{ rating.loi.email }}</td>
+								<td>{{ rating.q1 }}</td>
+								<td>{{ rating.q2 }}</td>
+								<td>{{ rating.q3 }}</td>
+								<td>{{ rating.q4 }}</td>
+								<td>{{ rating.q5 }}</td>
+								<td>{{ rating.weighted_score }}</td>
+								<td>{{ rating.user.email }}</td>
+							</tr>
+						</table>
+					</div>
 				</div>
 		</div>
 	</div>
+	<%= link_to "Download Ratings CSV File", "/ratings.csv", :class => "btn btn-default", :role => "button" %>
 </div>
+
 
