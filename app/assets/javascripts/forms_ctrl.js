@@ -22,6 +22,7 @@
 
       $scope.activeSection = 0;
       $scope.activeSectionArray = [true, true, true, true, true, true, true, true];
+      
       // USE BELOW FOR MULTI-PAGE WIZARD
       // $scope.activeSectionArray = [true, false, false, false, false, false, false, false];
 

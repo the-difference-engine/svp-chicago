@@ -1,14 +1,13 @@
 body{
 	font-family: 'Roboto', sans-serif;
 	font-weight: 400;
-	background-color: #0060b2;
-	background-image: url("http://www.transparenttextures.com/patterns/navy.png");
+	background-color: #E6E7E8;
+	// background-image: url("http://www.transparenttextures.com/patterns/navy.png");
 	background-attachment: fixed;
 	margin: 0;
   padding: 0;
-  padding-top: 50px;
-	perspective: 1px;
-	transform-style: preserve-3d;
+	// perspective: 1px;
+	// transform-style: preserve-3d;
   height: 100%;
   overflow-y: scroll;
   overflow-x: hidden;
@@ -23,16 +22,24 @@ body{
   overflow-y: scroll;
   overflow-x: hidden;
 }
+
 .navbar-custom{
-	background-color: #000000;
-	background-image: url("http://www.transparenttextures.com/patterns/
-		translucent-fibres.png");
+	background-color: #D3D3D3;
+	// background-image: url("http://www.transparenttextures.com/patterns/
+	// 	translucent-fibres.png");
+
 	font-family: 'Roboto', sans-serif !important;
+	border-style: solid;
+  border-bottom: thin solid white;
+}
+
+.navbar-custom li {
+	padding-top: 3px;
 }
 
 a:hover{
 	background-color: transparent;
-	-webkit-transition: width 2s, height 2s, background-color 2s, -webkit-transform 2s;
+	// -webkit-transition: width 2s, height 2s, background-color 2s, -webkit-transform 2s;
 	transition: width 2s, height 2s, background-color 2s, transform 2s;
 }
 
@@ -42,7 +49,7 @@ a:hover{
 }
 
 .navbar .nav > li > a, .navbar .nav > li {
-	color: lightgray;
+	color: #215798;
 	text-shadow: none;
 	font-family: 'Roboto', sans-serif;
 }
@@ -202,4 +209,13 @@ a:hover{
 	background-color: black;
 	color: lightgrey;
 	transition: 0.5s ease;
+}
+
+footer {
+	padding-top: 20px;
+	text-align: center;
+}
+
+.table {
+	margin-bottom: 0px;
 }

@@ -6,6 +6,12 @@
   angular.module("app").controller("loisIndexCtrl", ["$scope", "$http", "$compile", function($scope, $http, $compile){
     window.scope = $scope;
 
+    //GET CURRENT USER ID USING GON GEM
+    $scope.currentUserId = gon.current_user_id;
+
+    $scope.activeRatingId = "";
+    $scope.descending = false;
+
     $scope.setup = function(){
 
       $http.get('/api/v1/lois.json').then(function(response){
@@ -30,7 +36,6 @@
     //** answer[0] are the challenges and answer[1] are the FTEs **// 
     $scope.formatAnswer = function(answer){
       if (Array.isArray(answer)){
-      console.log(answer);
         var challenges = [];
         for (var i=0; i<answer[0].length; i++){
           if (answer[0][i].challenge != ""){
@@ -40,12 +45,24 @@
         if (answer[1].amount_1 != null){
           challenges.push("FTES - 2015: " + answer[1].amount_1 + ", 2016: " + answer[1].amount_2 + ", 2017: " + answer[1].amount_2);
         };
-        console.log(challenges);
         return challenges;
       } else {
         return [answer];
       };
 
+    };
+
+    //THIS FUNCTION JUST CHECKS TO SEE IF THE LOI HAS ALREADY BEEN RATED
+    $scope.rated = function(ratings){
+      for (var i=0; i < ratings.length; i++){
+        if (ratings[i].user_id == $scope.currentUserId){
+          $scope.activeRatingId = ratings[i].id;
+          console.log($scope.activeRatingId);
+          return true
+        } else {
+          return false
+        };
+      };
     };
 
   }]);

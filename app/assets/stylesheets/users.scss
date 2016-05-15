@@ -12,13 +12,19 @@
 }
 
 #login{
-	background-color: #d3d3d3;
-	background-image: url("http://www.transparenttextures.com/patterns/classy-fabric.png");
+	// background-color: #d3d3d3;
+	// background-image: url("http://www.transparenttextures.com/patterns/classy-fabric.png");
 	font-size: 20px;
 	text-align: center;	
-	margin-top: 5%;
-	padding: 5%;
-	border-radius: 5px;
+	// margin-top: 5%;
+	// padding: 5%;
+	margin-top: 90px;
+	padding: 50px;
+  box-shadow: 6px 6px 8px rgba(0,0,0,0.21);
+  border-width: 1px;
+  border-style: solid;
+  border-color: #A2A2A2;
+  background-color: #FFFFFF;
 	a{
 		color: black;
 	}
@@ -30,13 +36,20 @@
 }
 
 #sign-up{
-	background-color: #d3d3d3;
-	background-image: url("http://www.transparenttextures.com/patterns/classy-fabric.png");
+	// background-color: #d3d3d3;
+	// background-image: url("http://www.transparenttextures.com/patterns/classy-fabric.png");
 	font-size: 20px;
 	text-align: center;	
-	margin-top: 5%;
-	padding: 5%;
-	border-radius: 5px;
+	// margin-top: 5%;
+	// padding: 5%;
+	margin-top: 90px;
+	padding: 50px;
+  box-shadow: 6px 6px 8px rgba(0,0,0,0.21);
+  border-width: 1px;
+  border-style: solid;
+  border-color: #A2A2A2;
+  background-color: #FFFFFF;
+
 	a{
 		color: black;
 		font-size: 15px;
@@ -45,6 +58,9 @@
 		color: #0060b2;
 		text-decoration: none;
 		transition: all 0.5s;
+	}
+	p{
+		padding-bottom: 0px;
 	}
 }
 

@@ -14,6 +14,9 @@ json.array! @lois do |loi|
 	end
 
 	json.ratings loi.ratings do |rating|
+		json.id rating.id
+		json.user_id rating.user_id
+		json.loi_id rating.loi_id
 		json.q1 rating.q1
 		json.q2 rating.q2
 		json.q3 rating.q3
