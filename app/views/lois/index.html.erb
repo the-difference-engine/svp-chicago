@@ -10,12 +10,21 @@
             <th>
               <p ng-click="sortBy('org_name')">
                 Organization Name
+                <span ng-hide="descending" class="glyphicon glyphicon-triangle-bottom">
+                </span>
+                <span ng-hide="!descending" class="glyphicon glyphicon-triangle-top">
+                </span>
               </p>
               <input ng-model="orgNameFilter" placeholder="filter" class="form-control">
             </th>
             <th style="width: 60%;">
               <p ng-click="sortBy(loi.answers[selectedAnswer.id])">
                 Please select a question to see and compare
+                Organization Name
+                <span ng-hide="descending" class="glyphicon glyphicon-triangle-bottom">
+                </span>
+                <span ng-hide="!descending" class="glyphicon glyphicon-triangle-top">
+                </span>
               </p>
               <select class="form-control" ng-model="selectedAnswer" ng-options="question.question group by question.section for question in questions">
                 <option value="">-- choose question --</option>
@@ -40,7 +49,7 @@
                   <%= link_to "Rate", "/ratings/new?loi={{loi.id}}", :class => "btn btn-default", :role => "button" %>
                 </div>
                 <div ng-show="rated(loi.ratings)">
-                  <%= link_to "Edit Rating", "/ratings/new?loi={{loi.id}}", :class => "btn btn-default", :role => "button" %>
+                  <%= link_to "Edit Rating", "/ratings/{{activeRatingId}}/edit", :class => "btn btn-default", :role => "button" %>
                 </div>
               </td>
             </tr>
