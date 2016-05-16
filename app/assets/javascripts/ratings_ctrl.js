@@ -3,6 +3,8 @@
 
   angular.module("app")
 
+  // THIS FILTER IS USED TO DISPLAY THE AVERAGE OF THE RATINGS
+  // UPDATING DYNAMICALLY AS THE LIST IS FILTERED
   .filter('avgOfValue', function () {
     return function (data, key) {
         if (angular.isUndefined(data) && angular.isUndefined(key))

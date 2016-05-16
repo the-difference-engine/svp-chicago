@@ -20,7 +20,6 @@
 
       $http.get('/api/v1/questions.json').then(function(response){
         $scope.questions = response.data;
-
       });
     
     };
@@ -57,7 +56,6 @@
       for (var i=0; i < ratings.length; i++){
         if (ratings[i].user_id == $scope.currentUserId){
           $scope.activeRatingId = ratings[i].id;
-          console.log($scope.activeRatingId);
           return true
         } else {
           return false

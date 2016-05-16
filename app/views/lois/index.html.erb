@@ -60,6 +60,7 @@
 
 
   <% if current_user && current_user.admin %>
+    <br>
     <%= link_to "Download LOI CSV File", "/lois.csv", :class => "btn btn-default", :role => "button" %>
   <% end %>
 </div>
