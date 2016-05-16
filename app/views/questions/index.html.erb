@@ -1,8 +1,13 @@
 <div class="container">
-  <div class="col-xs-12" id="questions-body">
-    <h1>LOI Form Builder</h1>
+  <div id="form-paper">
+    <div class="form-heading">
+      <h1>LOI Questions</h1>
+    </div>
 
-    <%= link_to "Add New Field", "/questions/new", :class => "btn btn-custom", :role => "button" %>
+
+    <div class="add-question">
+    <%= link_to "Add New Field", "/questions/new", :class => "btn btn-primary btn-question", :role => "button" %>
+    </div>
 
     <ol>
       <% @sections.each do |section| %>
