@@ -1,79 +1,79 @@
 <div class="container">
 	<div id="form-paper">
-	<div ng-app="app">
-		<div ng-controller="ratingsCtrl" ng-init="setup()">
-			<div class="form-heading">
-				<h1>Ratings</h1>
-			</div>
-			
-						<table class="table table-hover table-bordered">
-							<tr>
-								<th>
-									<p ng-click="sortBy('org_name')">
-		                Organization Name
-		              </p>
-		              <input ng-model="orgNameFilter" placeholder="filter" class="form-control" ng-change="average()">
-								</th>
-								<th>
-									<p ng-click="sortBy('q1')">
-										Fits SVP Criteria
-		              </p>
-								</th>
-								<th>
-									<p ng-click="sortBy('q2')">
-										Potention SVP Impact
-									</p>
-								</th>
-								<th>
-									<p ng-click="sortBy('q3')">
-										Level of Excitement
-									</p>
-								</th>
-								<th>
-									<p ng-click="sortBy('q4')">
-										Benefit to SVP
-								</th>
-								<th>
-									<p ng-click="sortBy('q5')">
-										Invite to Submit RFP?
-								</th>
-								<th>
-									<p ng-click="sortBy('weighted_score')">
-										Weighted Score
-									</p>
-								</th>
-								<th>
-									<p ng-click="sortBy('user.email')">
-										Rated By
-									</p>
-								</th>
-							</tr>
-							
-							<tr ng-repeat="rating in ratings | filter: {org_name: orgNameFilter} | orderBy:sortByAttribute:descending">
-								<td><a href="/lois/{{rating.loi.id}}">{{ rating.org_name }}</a></td>
-								<td>{{ rating.q1 }}</td>
-								<td>{{ rating.q2 }}</td>
-								<td>{{ rating.q3 }}</td>
-								<td>{{ rating.q4 }}</td>
-								<td>{{ rating.q5 }}</td>
-								<td>{{ rating.weighted_score }}</td>
-								<td>{{ rating.user.email }}</td>
-							</tr>
-							<tr>
-								<td>Summary</td>
-								<td>{{ averageQ1 }}</td>
-								<td>{{ averageQ2 }}</td>
-								<td>{{ averageQ3 }}</td>
-								<td>{{ averageQ4 }}</td>
-								<td> -- </td>
-								<td>{{ averageWeightedScore }}</td>
-								<td> -- </td>
-							</tr>
-						</table>
-					</div>
+		<div ng-app="app">
+			<div ng-controller="ratingsCtrl" ng-init="setup()">
+				<div class="form-heading">
+					<h1>Ratings</h1>
 				</div>
+			
+					<table class="table table-hover table-bordered">
+						<tr>
+							<th>
+								<p ng-click="sortBy('org_name')">
+	                Organization Name
+	              </p>
+	              <input ng-model="orgNameFilter" placeholder="filter" class="form-control">
+							</th>
+							<th>
+								<p ng-click="sortBy('q1')">
+									Fits SVP Criteria
+	              </p>
+							</th>
+							<th>
+								<p ng-click="sortBy('q2')">
+									Potention SVP Impact
+								</p>
+							</th>
+							<th>
+								<p ng-click="sortBy('q3')">
+									Level of Excitement
+								</p>
+							</th>
+							<th>
+								<p ng-click="sortBy('q4')">
+									Benefit to SVP
+							</th>
+							<th>
+								<p ng-click="sortBy('q5')">
+									Invite to Submit RFP?
+							</th>
+							<th>
+								<p ng-click="sortBy('weighted_score')">
+									Weighted Score
+								</p>
+							</th>
+							<th>
+								<p ng-click="sortBy('user.email')">
+									Rated By
+								</p>
+							</th>
+						</tr>
+						
+						<tr ng-repeat="rating in resultValue=(ratings | filter:{'org_name':orgNameFilter}) | orderBy:sortByAttribute:descending">
+							<td><a href="/lois/{{rating.loi.id}}">{{ rating.org_name }}</a></td>
+							<td>{{ rating.q1 }}</td>
+							<td>{{ rating.q2 }}</td>
+							<td>{{ rating.q3 }}</td>
+							<td>{{ rating.q4 }}</td>
+							<td>{{ rating.q5 }}</td>
+							<td>{{ rating.weighted_score }}</td>
+							<td>{{ rating.user.email }}</td>
+						</tr>
+						<tr class="average-row">
+							<td>Summary/Average</td>
+							<td>{{resultValue | avgOfValue:'q1'}}</td>
+							<td>{{resultValue | avgOfValue:'q2'}}</td>
+							<td>{{resultValue | avgOfValue:'q3'}}</td>
+							<td>{{resultValue | avgOfValue:'q4'}}</td>
+							<td> -- </td>
+							<td>{{resultValue | avgOfValue:'weighted_score'}}</td>
+							<td> -- </td>
+						</tr>
+					</table>
+				</div>
+			</div>
 		</div>
-	
+	<br>
 	<%= link_to "Download Ratings CSV File", "/ratings.csv", :class => "btn btn-default", :role => "button" %>
 </div>
 
