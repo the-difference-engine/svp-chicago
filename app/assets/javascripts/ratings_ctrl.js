@@ -1,9 +1,9 @@
 (function() {
   "use strict";
 
-  angular.module("app", [])
+  angular.module("app")
 
-    .filter('avgOfValue', function () {
+  .filter('avgOfValue', function () {
     return function (data, key) {
         if (angular.isUndefined(data) && angular.isUndefined(key))
             return 0;        
