@@ -36,7 +36,13 @@ Rails.application.routes.draw do
   patch '/ratings/:id' => 'ratings#update'
   delete '/ratings/:id' => 'ratings#destroy'
 
-
+  get '/questions' => 'questions#index'
+  get '/questions/new' => 'questions#new'
+  post '/questions' => 'questions#create'
+  get '/questions/:id' => 'questions#show'
+  get '/questions/:id/edit' => 'questions#edit'
+  patch '/questions/:id' => 'questions#update'
+  delete '/questions/:id' => 'questions#destroy'
 
   get '/users' => 'users#index'
   get '/users/user' => 'users#show'
@@ -68,16 +74,5 @@ Rails.application.routes.draw do
     end
   end
 
-  get '/questions' => 'questions#index'
-  
-  get '/questions/new' => 'questions#new'
-  post '/questions' => 'questions#create'
-
-  get '/questions/:id' => 'questions#show'
-
-  get '/questions/:id/edit' => 'questions#edit'
-  patch '/questions/:id' => 'questions#update'
-
-  delete '/questions/:id' => 'questions#destroy'
 
 end

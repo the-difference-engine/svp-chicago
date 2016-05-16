@@ -4,25 +4,20 @@
       <h1>Add a new question</h1>
     </div>
     <div class="rating-form">
-    <form class="form-horizontal">
+      <form class="form-horizontal">
 
       <%= form_tag '/questions', method: :post do %>
           
-          <div class="form-group">
-            <%=label_tag :question, nil, class: "col-sm-2 control-label" %>
-            <div class="col-sm-10">
-              <%= text_field_tag :question, nil, class: "form-control" %>
-            </div>  
-          </div>
+        <%= render "form" %>
 
-          <div class="form-group">
-            <%=label_tag :section, nil, class: "col-sm-2 control-label" %>
-            <div class="col-sm-10">
-              <%= collection_select :section, :section_id, Section.all, :id, :name, {:style => "width:200px"}, class: "form-control" %>
-            </div>
+        <div class="form-group">
+          <%= label_tag :section, nil, class: "col-sm-2 control-label" %>
+          <div class="col-sm-10">
+            <%= collection_select :section, :section_id, Section.all, :id, :name, {:prompt => "--Select Section--"}, class: "form-control" %>
           </div>
+        </div>
 
-          <%= submit_tag "Submit" %>
+        <%= submit_tag "Submit", class: "btn btn-custom" %>
 
       <% end %>
 
