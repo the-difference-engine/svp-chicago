@@ -1,2 +1,0 @@
-ratings.js
-ratings.js
