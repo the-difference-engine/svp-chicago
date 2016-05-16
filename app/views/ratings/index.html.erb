@@ -12,7 +12,7 @@
 									<p ng-click="sortBy('org_name')">
 		                Organization Name
 		              </p>
-		              <input ng-model="orgNameFilter" placeholder="filter" class="form-control" ng-change="average()">
+		              <input ng-model="orgNameFilter" placeholder="filter" class="form-control">
 								</th>
 								<th>
 									<p ng-click="sortBy('q1')">
@@ -49,7 +49,7 @@
 								</th>
 							</tr>
 							
-							<tr ng-repeat="rating in ratings | filter: {org_name: orgNameFilter} | orderBy:sortByAttribute:descending">
+							<tr ng-repeat="rating in resultValue=(ratings | filter:{'org_name':orgNameFilter}) | orderBy:sortByAttribute:descending">
 								<td><a href="/lois/{{rating.loi.id}}">{{ rating.org_name }}</a></td>
 								<td>{{ rating.q1 }}</td>
 								<td>{{ rating.q2 }}</td>
@@ -61,12 +61,12 @@
 							</tr>
 							<tr>
 								<td>Summary</td>
-								<td>{{ averageQ1 }}</td>
-								<td>{{ averageQ2 }}</td>
-								<td>{{ averageQ3 }}</td>
-								<td>{{ averageQ4 }}</td>
+								<td>{{resultValue | avgOfValue:'q1'}}</td>
+								<td>{{resultValue | avgOfValue:'q2'}}</td>
+								<td>{{resultValue | avgOfValue:'q3'}}</td>
+								<td>{{resultValue | avgOfValue:'q4'}}</td>
 								<td> -- </td>
-								<td>{{ averageWeightedScore }}</td>
+								<td>{{resultValue | avgOfValue:'weighted_score'}}</td>
 								<td> -- </td>
 							</tr>
 						</table>
