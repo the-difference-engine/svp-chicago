@@ -1,11 +1,8 @@
 <div class="container">
-
 	<div id="form-paper">
-
 		<div class="form-heading">
 			<h1>New Rating</h1>
 		</div>
-
 			<%= form_tag '/ratings', method: :post do %>
 
 			<%= render "form" %>
@@ -14,7 +11,9 @@
 				<%= submit_tag 'Submit Rating', class: "btn btn-custom" %>
 			</div>
 
-			<% end %>
+		</form>
+
+	<% end %>
 
 	</div>
 	

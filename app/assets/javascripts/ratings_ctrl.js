@@ -5,7 +5,7 @@
     window.scope = $scope;
 
     $scope.descending = false;
-
+    console.log($scope.descending);
     $scope.setup = function(){
 
       $http.get('/api/v1/ratings.json').then(function(response){
