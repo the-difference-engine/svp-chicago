@@ -52,8 +52,7 @@ class Api::V1::LoisController < ApplicationController
       end
 
       # NotifierMailer.welcome_email(@loi).deliver_now
-
-      Mail.defaults do
+    Mail.defaults do
       delivery_method :smtp, {
       :address => 'smtp.gmail.com',
       :port => '587',
@@ -62,27 +61,17 @@ class Api::V1::LoisController < ApplicationController
       :authentication => :plain,
       :enable_starttls_auto => true
       }
-
-      mail = Mail.new do
-  from     's@gmail.com'
-  to       'chrisgconnell@gmail.com'
-  subject  'Hi, Michael Le'
-  
- 
-end
-
-      mail.deliver!
-end
-
+    end
+    
+    Mail.new( :to => @loi.email, :from => 'me@mail.com', :subject => 'boomtown').deliver!
 
       render json: { message: "Loi Created", loi_id: @loi.id }, status: 200
     else
       render json: { errors: @post.errors.full_messages }, status: 422
     end
 
-
   end
-
+  
   def show
   	@loi = Loi.find(params[:id])
 
