@@ -1,4 +1,4 @@
-class LoisController < ApplicationController
+ class LoisController < ApplicationController
   before_action :authenticate_user!, only: [:index, :destroy, :edit, :show]
 
   def index
