@@ -53,6 +53,27 @@ class Api::V1::LoisController < ApplicationController
 
       # NotifierMailer.welcome_email(@loi).deliver_now
 
+      Mail.defaults do
+      delivery_method :smtp, {
+      :address => 'smtp.gmail.com',
+      :port => '587',
+      :user_name => 'svptesting1871@gmail.com',
+      :password => 'svptesting',
+      :authentication => :plain,
+      :enable_starttls_auto => true
+      }
+
+      mail = Mail.new do
+  from     's@gmail.com'
+  to       'chrisgconnell@gmail.com'
+  subject  'Hi, Michael Le'
+  
+ 
+end
+
+      mail.deliver!
+end
+
 
       render json: { message: "Loi Created", loi_id: @loi.id }, status: 200
     else
