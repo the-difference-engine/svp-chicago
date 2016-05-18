@@ -305,8 +305,13 @@
             <!-- END ORDERED LIST / FORM SECTIONS -->
 
             <div class="submit-button-container" ng-show="activeSectionArray[7]">
-              <button class="btn btn-primary btn-lg submit-button" type="submit">Submit</button>
+              <button class="btn btn-primary btn-lg submit-button" type="submit">Save and Submit Later</button>
             </div>
+
+            <div class="submit-button-container" ng-show="activeSectionArray[7]">
+              <button ng-click="save()" class="btn btn-primary btn-lg submit-button" type="submit">Submit Now</button>
+            </div>
+
             <!-- <div class="submit-button-container" ng-show="activeSectionArray[7]">
               <button class="btn btn-primary btn-lg submit-button" type="submit" ng-disabled="loiForm.$invalid">Save and Submit Later</button>
             </div> -->

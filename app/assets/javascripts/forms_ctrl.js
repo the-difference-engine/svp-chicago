@@ -20,6 +20,7 @@
   			console.log("clicked!");
   		};
 
+      $scope.submitted = false;
       $scope.activeSection = 0;
       $scope.activeSectionArray = [true, true, true, true, true, true, true, true];
       
@@ -171,6 +172,10 @@
 
 
 
+    $scope.save = function(){
+      $scope.submitted = true;
+    };
+
     $scope.submit = function(name, email, isValid){
 
       console.log($scope.challenge_formData);
@@ -180,6 +185,7 @@
         var newLoi = {
           name: name,
           email: email,
+          submitted: $scope.submitted,
           contact_answers: $scope.contact_formData,
           organization_answers: $scope.organization_formData,
           overview_answers: $scope.overview_formData,
@@ -274,5 +280,6 @@
             }
           };
     };
+
   }]);
 }());

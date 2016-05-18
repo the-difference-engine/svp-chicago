@@ -4,6 +4,7 @@ Rails.application.routes.draw do
       get '/lois' => 'lois#index'
       post '/lois/' => 'lois#create'
       get '/lois/:id' => 'lois#show'
+      patch '/lois/:id' => 'lois#update'
 
       get '/questions' => 'questions#index'
       get '/questions/:id' => 'questions#show'
