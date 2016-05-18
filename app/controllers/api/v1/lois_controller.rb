@@ -56,14 +56,14 @@ class Api::V1::LoisController < ApplicationController
       delivery_method :smtp, {
       :address => 'smtp.gmail.com',
       :port => '587',
-      :user_name => 'svptesting1871@gmail.com',
-      :password => 'svptesting',
+      :user_name => ENV['GMAILUSER'],
+      :password => ENV['GMAILPASSWORD'],
       :authentication => :plain,
       :enable_starttls_auto => true
       }
     end
     
-    Mail.new( :to => @loi.email, :from => 'me@mail.com', :subject => 'boomtown', :body => File.read('app/views/email.html.erb')).deliver!
+    Mail.new( :to => @loi.email, :from => 'me@mail.com', :subject => 'boomtown', :body => File.read('app/views/submission_email.html.erb')).deliver!
 
       render json: { message: "Loi Created", loi_id: @loi.id }, status: 200
     else

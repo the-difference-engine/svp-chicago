@@ -9,8 +9,8 @@
 #       delivery_method :smtp, {
 #       :address => 'smtp.gmail.com',
 #       :port => '587',
-#       :user_name => 'svptesting1871@gmail.com',
-#       :password => 'svptesting',
+#       :user_name => '',
+#       :password => '',
 #       :authentication => :plain,
 #       :enable_starttls_auto => true
 #       }
