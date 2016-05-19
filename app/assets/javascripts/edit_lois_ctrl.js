@@ -8,6 +8,8 @@
       //GET ACTIVE ID USING THE GON GEM
       $scope.activeId = gon.loi_id;
 
+      $scope.submitted = false;
+
       $scope.setup = function(){
 
         $http.get('/api/v1/lois/' + $scope.activeId + '.json').then(function(response){
@@ -26,6 +28,11 @@
           };
         });
       };
+
+    //SETS TO TRUE IF APPLICANT IS FINISHED WITH LOI FORM
+    $scope.submitNow = function(){
+      $scope.submitted = true;
+    };
 
     $scope.submit = function(isValid){
 

@@ -56,7 +56,7 @@
 							</th>
 						</tr>
 						
-						<tr ng-repeat="rating in resultValue=(ratings | filter:{'org_name':orgNameFilter}) | filter:raterFilter | orderBy:sortByAttribute:descending">
+						<tr ng-repeat="rating in resultValue=(ratings | filter:orgNameFilter) | orderBy:sortByAttribute:descending">
 							<td><a href="/lois/{{rating.loi.id}}">{{ rating.org_name }}</a></td>
 							<td>{{ rating.q1 }}</td>
 							<td>{{ rating.q2 }}</td>

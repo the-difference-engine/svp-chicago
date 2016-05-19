@@ -186,13 +186,13 @@
                         </ol>
                       </td>
                       <td>
-                        <input type="number" class="form-control" ng-show="!answer.fte.amount_1==''" ng-model="answer.fte.amount_1">
+                        <input type="number" class="form-control" ng-model="answer.fte.amount_1">
                       </td>
                       <td>
-                        <input type="number" class="form-control" ng-show="!answer.fte.amount_2==''" ng-model="answer.fte.amount_2">
+                        <input type="number" class="form-control" ng-model="answer.fte.amount_2">
                       </td>
                       <td>
-                        <input type="number" class="form-control" ng-show="!answer.fte.amount_3==''" ng-model="answer.fte.amount_3">
+                        <input type="number" class="form-control" ng-model="answer.fte.amount_3">
                       </td>
                     </tr>
                     <tr>
@@ -272,7 +272,11 @@
             </ol>
 
             <div class="submit-button-container">
-              <button class="btn btn-primary btn-lg submit-button" type="submit">Update</button>
+              <button class="btn btn-primary btn-lg submit-button" type="submit">Save and Submit Later</button>
+            </div>
+
+            <div class="submit-button-container">
+              <button ng-click="submitNow()" class="btn btn-primary btn-lg submit-button" type="submit">Submit Now</button>
             </div>
 
             </form>

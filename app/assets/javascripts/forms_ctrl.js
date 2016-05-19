@@ -172,7 +172,7 @@
 
 
 
-    $scope.save = function(){
+    $scope.submitNow = function(){
       $scope.submitted = true;
     };
 
