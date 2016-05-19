@@ -12,7 +12,10 @@
 								<p ng-click="sortBy('org_name')">
 	                Organization Name
 	              </p>
-	              <input ng-model="orgNameFilter" placeholder="filter" class="form-control">
+	              <input ng-model="orgNameFilter" placeholder="Please Select" list="orgNames" class="form-control">
+	              	<datalist id="orgNames">
+        						<option ng-repeat="rating in ratings">{{rating.org_name}}</option>
+      						</datalist>
 							</th>
 							<th>
 								<p ng-click="sortBy('q1')">
@@ -46,10 +49,14 @@
 								<p ng-click="sortBy('user.email')">
 									Rated By
 								</p>
+									<input ng-model="raterFilter" placeholder="Please Select" list="names" class="form-control">
+		              	<datalist id="names">
+	        						<option ng-repeat="rating in ratings">{{rating.user.email}}</option>
+	      						</datalist>
 							</th>
 						</tr>
 						
-						<tr ng-repeat="rating in resultValue=(ratings | filter:{'org_name':orgNameFilter}) | orderBy:sortByAttribute:descending">
+						<tr ng-repeat="rating in resultValue=(ratings | filter:orgNameFilter) | orderBy:sortByAttribute:descending">
 							<td><a href="/lois/{{rating.loi.id}}">{{ rating.org_name }}</a></td>
 							<td>{{ rating.q1 }}</td>
 							<td>{{ rating.q2 }}</td>

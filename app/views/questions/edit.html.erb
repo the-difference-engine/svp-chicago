@@ -4,7 +4,7 @@
       <h1>Edit question</h1>
     </div>
     <div class="rating-form">
-      <form class="form-horizontal">
+      <div class="form-horizontal">
 
         <%= form_tag "/questions/#{@question.id}", method: :patch do %>
     
@@ -21,7 +21,7 @@
 
       <% end %>
 
-      </form>
+      </div>
     </div>
   </div>
 </div>

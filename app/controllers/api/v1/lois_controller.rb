@@ -5,7 +5,7 @@ class Api::V1::LoisController < ApplicationController
   end
 
   def create
-    @loi = Loi.new({name: params[:name], email: params[:email]})
+    @loi = Loi.new({name: params[:name], email: params[:email], submitted: params[:submitted]})
 
     if @loi.save
 
@@ -108,5 +108,71 @@ class Api::V1::LoisController < ApplicationController
       end
     end
 
+  end
+
+  def update
+    @loi = Loi.find(params[:id])
+
+    if @loi.update(name: params[:name], email: params[:email], submitted: params[:submitted])
+
+      params[:contact_answers].each do |answer_hash|
+        answer = Answer.find(answer_hash[:id])
+        answer.update(answer: answer_hash[:answer]) 
+      end
+
+      params[:organization_answers].each do |answer_hash|
+        answer = Answer.find(answer_hash[:id])
+        answer.update(answer: answer_hash[:answer]) 
+      end
+
+      params[:overview_answers].each do |answer_hash|
+        answer = Answer.find(answer_hash[:id])
+        answer.update(answer: answer_hash[:answer]) 
+      end
+
+      params[:vision_answers].each do |answer_hash|
+        answer = Answer.find(answer_hash[:id])
+        answer.update(answer: answer_hash[:answer]) 
+      end
+
+      params[:concern_answers].each do |answer_hash|
+        answer = Answer.find(answer_hash[:id])
+        answer.update(answer: answer_hash[:answer]) 
+      end
+
+      params[:challenge_answers].each do |answer_hash|
+
+        answer = Answer.find(answer_hash[:id])
+
+        answer.fte.update(amount_1: answer_hash[:fte_1], amount_2: answer_hash[:fte_2], amount_3: answer_hash[:fte_3])
+
+        answer_hash[:challenges].each do |challenge|
+          new_challenge = Challenge.find(challenge[:id])
+          new_challenge.update(challenge: challenge[:challenge], priority: challenge[:priority]) 
+        end
+      end
+
+      params[:referral_answers].each do |answer_hash|
+        answer = Answer.find(answer_hash[:id])
+        answer.update(answer: answer_hash[:answer]) 
+      end
+
+      params[:demographic_answers].each do |answer_hash|
+        answer = Answer.find(answer_hash[:id])
+        answer.update(answer: answer_hash[:answer])  
+      end
+
+      params[:geographic_answers].each do |answer_hash|
+        answer = Answer.find(answer_hash[:id])
+        answer.update(answer: answer_hash[:answer])  
+      end
+
+      # NotifierMailer.welcome_email(@loi).deliver_now
+
+      render json: { message: "Loi Updated", loi_id: @loi.id }, status: 200
+    else
+      render json: { errors: @post.errors.full_messages }, status: 422
+    end
+   
   end
 end

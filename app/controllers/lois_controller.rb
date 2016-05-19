@@ -1,4 +1,4 @@
-class LoisController < ApplicationController
+ class LoisController < ApplicationController
   before_action :authenticate_user!, only: [:index, :destroy, :edit, :show]
 
   def index
@@ -66,6 +66,7 @@ class LoisController < ApplicationController
 
   def edit
     @loi = Loi.find_by(id: params[:id])
+    gon.loi_id = @loi.id
     @sections = Section.all
     @questions = Question.all
     @answers = Answer.where(loi_id: @loi.id)
