@@ -1,3 +1,12 @@
-<h1> User Show Page </h1>
+<br>
+<br>
+<br>
+<br>
 
 <p> <%= @user.email %> </p>
+
+<% @user.lois.each do |loi| %>
+  <% if loi.submitted %>
+    <p><%= link_to "/lois/loi.id", "View submitted loi" %></p>
+  <% end %>
+  <% end %>
