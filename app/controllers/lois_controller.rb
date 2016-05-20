@@ -1,5 +1,6 @@
  class LoisController < ApplicationController
   before_action :authenticate_user!, only: [:index, :destroy, :edit, :show]
+  before_action :authenticate_admin!, only: [:index, :destroy]
 
   def index
     @lois = Loi.all
