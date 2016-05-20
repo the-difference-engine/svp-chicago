@@ -7,6 +7,7 @@
 
 <% @user.lois.each do |loi| %>
   <% if loi.submitted %>
-    <p><%= link_to "/lois/loi.id", "View submitted loi" %></p>
+    <p><%= link_to "View submitted loi", "/lois/#{loi.id}" %></p>
+
   <% end %>
   <% end %>
