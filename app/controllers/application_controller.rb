@@ -9,4 +9,11 @@ class ApplicationController < ActionController::Base
       redirect_to '/'
     end
   end
+
+  def authenticate_super_admin!
+    unless current_user && current_user.admin && current_user.super_admin
+      flash[:warning] = "Restricted Access"
+      redirect_to '/'
+    end
+  end
 end

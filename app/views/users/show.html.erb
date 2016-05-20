@@ -5,9 +5,16 @@
 
 <p> <%= @user.email %> </p>
 
-<% @user.lois.each do |loi| %>
-  <% if loi.submitted %>
-    <p><%= link_to "View submitted loi", "/lois/#{loi.id}" %></p>
+<% if !@user.lois.empty? %>
 
+  <% @user.lois.each do |loi| %>
+    <% if loi.submitted %>
+      <p><%= link_to "View submitted loi", "/lois/#{loi.id}", class: "btn btn-default" %></p>
+    <% else %>
+      <p><%= link_to "Continue editing loi", "/lois/#{loi.id}/edit", class: "btn btn-default" %></p>
+    <% end %>
   <% end %>
-  <% end %>
+<% else %>
+  <p><%= link_to "Fill out loi", "/lois/new", class: "btn btn-default" %></p>
+<% end %>
+
