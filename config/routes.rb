@@ -1,4 +1,18 @@
 Rails.application.routes.draw do
+
+  devise_for :users
+
+  devise_scope :user do
+    authenticated :user do
+  
+      root 'users#show', as: :authenticated_root
+    end
+
+  unauthenticated do
+      root 'devise/registrations#new', as: :unauthenticated_root
+    end
+  end
+
   namespace :api do
     namespace :v1 do
       get '/lois' => 'lois#index'
@@ -45,7 +59,7 @@ Rails.application.routes.draw do
   delete '/questions/:id' => 'questions#destroy'
 
   get '/users' => 'users#index'
-  get '/users/user' => 'users#show'
+  get '/users/:id' => 'users#show'
   patch '/users/:id' => 'users#update'
 
   get '/lois' => 'lois#index'
@@ -61,18 +75,6 @@ Rails.application.routes.draw do
   get '/sections/:id' => 'sections#show'
   post '/sections' => 'sections#create'
 
-  devise_for :users
-
-  devise_scope :user do
-    authenticated :user do
-  
-      root 'landings#home', as: :authenticated_root
-    end
-
-  unauthenticated do
-      root 'devise/registrations#new', as: :unauthenticated_root
-    end
-  end
 
 
 end

@@ -1,6 +1,7 @@
 class Loi < ActiveRecord::Base
   has_many :answers
   has_many :ratings
+  belongs_to :user
 
   def fte_amount_1_total
     amount = 0
