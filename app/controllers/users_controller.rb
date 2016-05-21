@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   
   def index
-    @users = User.all
+    @users = User.where(admin: true)
   end
 
   def show
@@ -12,7 +12,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find_by(id: params[:id])
-    @user.admin = !@user.admin
+    @user.super_admin = !@user.super_admin
     @user.save
 
     flash[:success] = "Admin Updated"

@@ -7,10 +7,7 @@
   // UPDATING DYNAMICALLY AS THE LIST IS FILTERED
   .filter('avgOfValue', function () {
     return function (data, key) {
-        // console.log(data);
-        debugger
-        // console.log(key);
-        // debugger; 
+   
         if (angular.isUndefined(data) || (data.length == 0)){
           return 0;
         } else {

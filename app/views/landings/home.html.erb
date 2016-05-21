@@ -13,52 +13,92 @@
       <div class="col-md-6">
         <div class="home-text">
           <h2> Social Venture Partners <span style="color:#0060b2">Chicago</span></h2>
-          <h3><i>2016 Letter of Interest Form</i> </h3>
+          <h3><strong>2016 Letter of Interest Form</strong> </h3>
+          <h3>Sector Focus: <i><span style="color:#BC214D">Breaking the Cycle of Poverty</span></i></h3>
+        </div>
+      </div>
+    </div>
 
-          <h3><strong>Sector Focus: <span style="color:#BC214D">Breaking the Cycle of Poverty</span></strong></h3>
+    <hr>
+
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-1">
+        <%= image_tag("svp_pin.png", size: "50x50", class: "svp-pin") %>
+      </div>
+      <div class="col-md-11">
+        <h2>Social Venture Partners Chicago seeks to invest our time, expertise, and funds over the next 3 years in a non-profit organization that is working to address breaking the cycle of poverty in the Chicagoland area.</h2>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-1">
+        <%= image_tag("svp_pin.png", size: "50x50", class: "svp-pin") %>
+      </div>
+      <div class="col-md-11">
+        <h2>We are especially interested in organizations with strong leaders and that are at an inflection point in their organizational lifecycle.</h2>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-1">
+        <%= image_tag("svp_pin.png", size: "50x50", class: "svp-pin") %>
+      </div>
+      <div class="col-md-11">
+        <h2>Our aim is to partner with the selected organization to actively work to increase the capacity and scale of the organization, thereby measurably increasing the impact of their programs and services.</h2>
+      </div>
+    </div>
+  </div>
+
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="home-section">
+          <h2>
+            <i>We encourage your organization to submit this Letter of Interest if...</i></h2>
+       
+            <h3>
+              <ul>
+                <li> Your organization’s primary focus is to address the cycle of poverty in Chicagoland.</li>
+                <li>Your programs are scalable and replicable.</li>
+                <li>Your programs have a track record of demonstrable success and create lasting impact.</li>
+                <li>Your budget is greater than $250,000 but less than $5,000,000.</li>
+                <li>Your staff and board desire growth and hands-on assistance in building your organizational capacity in areas such as Strategic Planning, Board Development/Governance, Fund evelopment, Business Operations (including Accounting/Finance), Marketing, and Technology.</li>
+              </ul>
+          </h3>
+          </div>
         </div>
       </div>
     </div>
 
 
-  <div>
-    <div>
-      <p><h1>Social Venture Partners Chicago seeks to invest our time, expertise, and funds over the next 3 years in a non-profit organization that is working to address breaking the cycle of poverty in the Chicagoland area.</h1></p>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-1">
+          <%= image_tag("svp_pin.png", size: "50x50", class: "svp-pin") %>
+        </div>
+        <div class="col-md-11">
+          <h2>Community-based and grass roots organizations are encouraged to apply. <br>Please note that foundations, governmental entities, and religious organizations are not appropriate for partnership with us to build lasting organizational capacity and will not be considered for our investment.</h2>
+        </div>
+      </div>
+    </div>
 
-      <p><h1>We are especially interested in organizations with strong leaders and that are at an inflection point in their organizational lifecycle.</h1></p>
 
-      <p><h1>Our aim is to partner with the selected organization to actively work to increase the capacity and scale of the organization, thereby measurably increasing the impact of their programs and services.</h1></p>
+    <div class="get-started">
+
+      <% if current_user %>
+  
+          <%= link_to "Get Started!", "/users/#{current_user.id}", :class => "btn btn-lg btn-primary", :role => "button" %>
+
+      <% else %>
+      
+          <%= link_to "Get Started!", "/", :class => "btn btn-lg btn-primary", :role => "button" %>
+
+      <% end %>
+    </div>
+
     </div>
   </div>
-
-  <div>
-    <div>
-      <h1>We encourage your organization to submit this Letter of Interest if...</h1>
-    </div>
-    <div class="box">
-      <ul>
-        <li> Your organization’s primary focus is to address the cycle of poverty in Chicagoland.</li><br>
-        <li>Your programs are scalable and replicable.</li><br>
-        <li>Your programs have a track record of demonstrable success and create lasting impact.</li><br>
-        <li>Your budget is greater than $250,000 but less than $5,000,000.</li><br>
-        <li>Your staff and board desire growth and hands-on assistance in building your organizational capacity in areas such as Strategic Planning, Board Development/Governance, Fund evelopment, Business Operations (including Accounting/Finance), Marketing, and Technology.</li><br>
-      </p>
-    </div>
-  </div>
-
-  <div>
-    <div class="box">
-      <h2>Community-based and grass roots organizations are encouraged to apply. <br>Please note that foundations, governmental entities, and religious organizations are not appropriate for partnership with us to build lasting organizational capacity and will not be considered for our investment.</h2>
-    </div>
-  </div>
-
-  <div>
-  <% if current_user %>
-    <div><%= link_to "Get Started!", "/users/#{current_user.id}", :class => "btn get-started", :role => "button" %></div>
-    <% else %>
-    <div><%= link_to "Get Started!", "/", :class => "btn get-started", :role => "button" %></div>
-    <% end %>
-  </div>
-</div>
-
 </div>

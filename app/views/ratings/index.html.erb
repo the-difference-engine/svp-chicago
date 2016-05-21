@@ -1,4 +1,4 @@
-<div class="container">
+<div class="site-container">
 	<div id="form-paper">
 		<div ng-app="app">
 			<div ng-controller="ratingsCtrl" ng-init="setup()">
@@ -79,9 +79,10 @@
 					</table>
 				</div>
 			</div>
+			<div class="csv-btn">
+				<%= link_to "Download Ratings CSV File", "/ratings.csv", :class => "btn btn-danger", :role => "button" %>
+			</div>
 		</div>
-	<br>
-	<%= link_to "Download Ratings CSV File", "/ratings.csv", :class => "btn btn-default", :role => "button" %>
 </div>
 
 

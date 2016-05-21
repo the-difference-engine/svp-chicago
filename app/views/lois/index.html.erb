@@ -1,4 +1,4 @@
-<div class="container">
+<div class="site-container">
 <div id="form-paper">
   <div ng-app="app">
     <div ng-controller="loisIndexCtrl" ng-init="setup()">
@@ -56,11 +56,12 @@
         </div>
       </div>
     </div>
+
+  <div class="csv-btn">
+    <% if current_user && current_user.admin %>
+      <%= link_to "Download LOI CSV File", "/lois.csv", :class => "btn btn-danger", :role => "button" %>
+    <% end %>
   </div>
 
-
-  <% if current_user && current_user.admin %>
-    <br>
-    <%= link_to "Download LOI CSV File", "/lois.csv", :class => "btn btn-default", :role => "button" %>
-  <% end %>
+  </div>
 </div>
