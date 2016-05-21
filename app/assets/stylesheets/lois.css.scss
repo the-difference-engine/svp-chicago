@@ -87,12 +87,14 @@
 }
 
 #form-paper{
-    // padding-top: 90px;
-    box-shadow: 6px 6px 8px rgba(0,0,0,0.21);
-    border-width: 1px;
-    border-style: solid;
-    border-color: #A2A2A2;
-    background-color: #FFFFFF;
+  width: 90%;
+  margin: auto;
+  box-shadow: 6px 6px 8px rgba(0,0,0,0.21);
+  border-width: 1px;
+  border-style: solid;
+  border-color: #A2A2A2;
+  opacity: 0.75;
+  background-color: #FFFFFF;
 }
 
 .bottom-text {
