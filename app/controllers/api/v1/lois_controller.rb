@@ -1,7 +1,8 @@
 class Api::V1::LoisController < ApplicationController
-	skip_before_action :verify_authenticity_token, only: [:index]
+	skip_before_action :verify_authenticity_token, only: [:index, :update]
+
   def index
-  	@lois = Loi.all
+  	@lois = Loi.where(submitted: true)
   end
 
   def create
@@ -62,8 +63,10 @@ class Api::V1::LoisController < ApplicationController
       :enable_starttls_auto => true
       }
     end
-    
-    Mail.new( :to => @loi.email, :from => 'me@mail.com', :subject => 'boomtown', :body => File.read('app/views/submission_email.html.erb')).deliver!
+
+    if @loi.submitted
+      Mail.new( :to => @loi.email, :from => 'me@mail.com', :subject => 'boomtown', :body => File.read('app/views/submission_email.html.erb')).deliver!
+    end
 
       render json: { message: "Loi Created", loi_id: @loi.id }, status: 200
     else
@@ -167,7 +170,20 @@ class Api::V1::LoisController < ApplicationController
         answer.update(answer: answer_hash[:answer])  
       end
 
-      # NotifierMailer.welcome_email(@loi).deliver_now
+      # Mail.defaults do
+      #   delivery_method :smtp, {
+      #   :address => 'smtp.gmail.com',
+      #   :port => '587',
+      #   :user_name => ENV['GMAILUSER'],
+      #   :password => ENV['GMAILPASSWORD'],
+      #   :authentication => :plain,
+      #   :enable_starttls_auto => true
+      #   }
+      # end
+      
+      # if @loi.submitted
+      #   Mail.new( :to => @loi.email, :from => 'me@mail.com', :subject => 'boomtown', :body => File.read('app/views/submission_email.html.erb')).deliver!
+      # end
 
       render json: { message: "Loi Updated", loi_id: @loi.id }, status: 200
     else

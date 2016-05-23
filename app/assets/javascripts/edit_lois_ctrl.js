@@ -42,6 +42,7 @@
         var newLoi = {
           name: $scope.loi.name,
           email: $scope.loi.email,
+          submitted: $scope.submitted,
           contact_answers: $scope.loi.contact_answers,
           organization_answers: $scope.loi.organization_answers,
           overview_answers: $scope.loi.overview_answers,
@@ -57,7 +58,11 @@
 
         $http.patch('/api/v1/lois/' + $scope.activeId + '.json', newLoi).then(function(response){
             console.log(response.data.loi_id);
-            window.location = '/thanks/' + response.data.loi_id;
+            if ($scope.submitted){
+              window.location = '/thanks/' + response.data.loi_id;
+            } else {
+                window.location = '/';
+              }
           });
 
       } else {

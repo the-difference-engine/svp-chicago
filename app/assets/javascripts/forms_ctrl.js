@@ -201,7 +201,11 @@
 
         $http.post('/api/v1/lois.json', newLoi).then(function(response){
             console.log(response.data.loi_id);
-            window.location = '/thanks/' + response.data.loi_id;
+            if ($scope.submitted){
+              window.location = '/thanks/' + response.data.loi_id;
+            } else {
+                window.location = '/';
+              }
           });
 
       } else {
