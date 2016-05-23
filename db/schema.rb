@@ -46,8 +46,8 @@ ActiveRecord::Schema.define(version: 20160520001527) do
     t.string   "email"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
-    t.integer  "user_id"
     t.boolean  "submitted",  default: false
+    t.integer  "user_id"
   end
 
   create_table "questions", force: :cascade do |t|

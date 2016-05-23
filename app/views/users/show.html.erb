@@ -1,20 +1,30 @@
-<br>
-<br>
-<br>
-<br>
+<div class="site-container">
+  <div id="form-paper">
+    <div class="user">
+      <div class="row">
+        <div class="col-md-6">
+          
+          <h2>Welcome!</h2>
+          <h4>You are currently logged in as: <%= @user.email %> </h4>
+          <hr>
+          <% if !@user.lois.empty? %>
+            <% @user.lois.each do |loi| %>
+              <% if loi.submitted %>
+                <h5> Thank you. </h5>
+                <h5> You submitted a letter of interest on  <%= loi.updated_at %>:</h5>
+                <%= link_to "View submitted loi", "/lois/#{loi.id}", class: "btn btn-default" %>
+              <% else %>
+              <h5> You started a letter of interest form on <%= loi.created_at %>:</h5>
+                <p><%= link_to "Continue editing loi", "/lois/#{loi.id}/edit", class: "btn btn-default" %></p>
+              <% end %>
+            <% end %>
+          <% else %>
+            <p><%= link_to "Fill out loi", "/lois/new", class: "btn btn-default" %></p>
+          <% end %>
 
-<p> <%= @user.email %> </p>
-
-<% if !@user.lois.empty? %>
-
-  <% @user.lois.each do |loi| %>
-    <% if loi.submitted %>
-      <p><%= link_to "View submitted loi", "/lois/#{loi.id}", class: "btn btn-default" %></p>
-    <% else %>
-      <p><%= link_to "Continue editing loi", "/lois/#{loi.id}/edit", class: "btn btn-default" %></p>
-    <% end %>
-  <% end %>
-<% else %>
-  <p><%= link_to "Fill out loi", "/lois/new", class: "btn btn-default" %></p>
-<% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 

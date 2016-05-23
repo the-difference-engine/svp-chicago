@@ -11,73 +11,19 @@
 	text-align: center;
 }
 
-#login{
-	// background-color: #d3d3d3;
-	// background-image: url("http://www.transparenttextures.com/patterns/classy-fabric.png");
-	font-size: 20px;
-	text-align: center;	
-	// margin-top: 5%;
-	// padding: 5%;
-	margin-top: 90px;
+.login{
 	padding: 50px;
-  box-shadow: 6px 6px 8px rgba(0,0,0,0.21);
-  border-width: 1px;
-  border-style: solid;
-  border-color: #A2A2A2;
-  background-color: #FFFFFF;
-	a{
-		color: black;
-	}
-	a:hover{
-		color: #0060b2;
-		text-decoration: none;
-		transition: all 0.5s;
-	}
+	// a{
+	// 	color: black;
+	// }
+	// a:hover{
+	// 	color: #0060b2;
+	// 	text-decoration: none;
+	// 	transition: all 0.5s;
+	// }
 }
 
-#sign-up{
-	// background-color: #d3d3d3;
-	// background-image: url("http://www.transparenttextures.com/patterns/classy-fabric.png");
-	font-size: 20px;
-	text-align: center;	
-	// margin-top: 5%;
-	// padding: 5%;
-	margin-top: 90px;
+.user{
 	padding: 50px;
-  box-shadow: 6px 6px 8px rgba(0,0,0,0.21);
-  border-width: 1px;
-  border-style: solid;
-  border-color: #A2A2A2;
-  background-color: #FFFFFF;
-
-	a{
-		color: black;
-		font-size: 15px;
-	}
-	a:hover{
-		color: #0060b2;
-		text-decoration: none;
-		transition: all 0.5s;
-	}
-	p{
-		padding-bottom: 0px;
-	}
-}
-
-#new-password{
-	background-color: #d3d3d3;
-	background-image: url("http://www.transparenttextures.com/patterns/classy-fabric.png");
-	border-radius: 5px;
-	text-align: center;
-	margin-top: 5%;
-	padding: 5%;
-	a{
-		font-size: 18px;
-		color: black;
-	}
-	a:hover{
-		color: #0060b2;
-		text-decoration: none;
-		transition: all 0.5s;
-	}
+	margin: auto;
 }
