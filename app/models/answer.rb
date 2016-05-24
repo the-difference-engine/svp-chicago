@@ -4,6 +4,8 @@ class Answer < ActiveRecord::Base
   has_one :fte
   has_many :challenges
 
+  # validates :answer, presence: true
+
 
 
 end

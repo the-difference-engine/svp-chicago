@@ -3,37 +3,39 @@ class Loi < ActiveRecord::Base
   has_many :ratings
   belongs_to :user
 
-  def fte_amount_1_total
-    amount = 0
-    answers.each do |answer|
-      if answer.fte
-        # amount += answer.fte.amount_1
-      end
-    end
+  validates :name, :email, presence: true
 
-    return amount
-  end
+  # def fte_amount_1_total
+  #   amount = 0
+  #   answers.each do |answer|
+  #     if answer.fte
+  #       # amount += answer.fte.amount_1
+  #     end
+  #   end
 
-  def fte_amount_2_total
-    amount = 0
-    answers.each do |answer|
-      if answer.fte
-        # amount += answer.fte.amount_2
-      end
-    end
+  #   return amount
+  # end
 
-    return amount
-  end
+  # def fte_amount_2_total
+  #   amount = 0
+  #   answers.each do |answer|
+  #     if answer.fte
+  #       # amount += answer.fte.amount_2
+  #     end
+  #   end
 
-  def fte_amount_3_total
-    amount = 0
-    answers.each do |answer|
-      if answer.fte
-        # amount += answer.fte.amount_3
-      end
-    end
-    return amount
-  end
+  #   return amount
+  # end
+
+  # def fte_amount_3_total
+  #   amount = 0
+  #   answers.each do |answer|
+  #     if answer.fte
+  #       # amount += answer.fte.amount_3
+  #     end
+  #   end
+  #   return amount
+  # end
 
   def org_name
     answers.find_by(question_id: Question.find_by(question: "Organization").id).answer

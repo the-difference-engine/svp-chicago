@@ -199,14 +199,17 @@
 
           console
 
-        $http.post('/api/v1/lois.json', newLoi).then(function(response){
-            console.log(response.data.loi_id);
+        $http.post('/api/v1/lois.json', newLoi).success(function(response){
+
             if ($scope.submitted){
               window.location = '/thanks/' + response.data.loi_id;
             } else {
                 window.location = '/';
               }
-          });
+          }).error(function(response){
+            $scope.errors = response.errors;
+            console.log($scope.errors);
+          })
 
       } else {
         alert("Form is invalid");

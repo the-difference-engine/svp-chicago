@@ -1,37 +1,45 @@
 class Api::V1::LoisController < ApplicationController
-	skip_before_action :verify_authenticity_token, only: [:index, :update]
+	skip_before_action :verify_authenticity_token, only: [:index, :update, :create]
 
   def index
   	@lois = Loi.where(submitted: true)
   end
 
   def create
-    @loi = Loi.new({name: params[:name], email: params[:email], submitted: params[:submitted]})
+    errors = []
 
-    if @loi.save
+    @loi = Loi.new({name: params[:name], email: params[:email], submitted: params[:submitted], user_id: current_user.id})
+
+    if @loi.save 
 
       params[:contact_answers].each do |answer_hash|
-        answer = Answer.create(loi_id: @loi.id, question_id: answer_hash[:question_id], answer: answer_hash[:answer]) 
+        answer = Answer.create(loi_id: @loi.id, question_id: answer_hash[:question_id], answer: answer_hash[:answer])
+        errors << answer.question.question if !answer.valid?
+
       end
 
       params[:organization_answers].each do |answer_hash|
         answer = Answer.create(loi_id: @loi.id, question_id: answer_hash[:question_id], answer: answer_hash[:answer]) 
+        errors << answer.question.question if !answer.valid?
       end
 
       params[:overview_answers].each do |answer_hash|
         answer = Answer.create(loi_id: @loi.id, question_id: answer_hash[:question_id], answer: answer_hash[:answer]) 
+        errors << answer.question.question if !answer.valid?
       end
 
       params[:vision_answers].each do |answer_hash|
         answer = Answer.create(loi_id: @loi.id, question_id: answer_hash[:question_id], answer: answer_hash[:answer]) 
+        errors << answer.question.question if !answer.valid?
       end
 
       params[:concern_answers].each do |answer_hash|
         answer = Answer.create(loi_id: @loi.id, question_id: answer_hash[:question_id], answer: answer_hash[:answer]) 
+        errors << answer.question.question if !answer.valid?
       end
 
       params[:challenge_answers].each do |answer_hash|
-        answer = Answer.create(loi_id: @loi.id, question_id: answer_hash[:question_id], answer: answer_hash[:answer])
+        answer = Answer.create(loi_id: @loi.id, question_id: answer_hash[:question_id], answer: "CHALLENGE")
 
         Fte.create(answer_id: answer.id, amount_1: answer_hash[:fte_1], amount_2: answer_hash[:fte_2], amount_3: answer_hash[:fte_3])
 
@@ -42,33 +50,37 @@ class Api::V1::LoisController < ApplicationController
 
       params[:referral_answers].each do |answer_hash|
         answer = Answer.create(loi_id: @loi.id, question_id: answer_hash[:question_id], answer: answer_hash[:answer]) 
+        errors << answer.question.question if !answer.valid?
       end
 
       params[:demographic_answers].each do |answer_hash|
         answer = Answer.create(loi_id: @loi.id, question_id: answer_hash[:question_id], answer: answer_hash[:answer]) 
+        errors << answer.question.question if !answer.valid?
       end
 
       params[:geographic_answers].each do |answer_hash|
         answer = Answer.create(loi_id: @loi.id, question_id: answer_hash[:question_id], answer: answer_hash[:answer]) 
+        errors << answer.question.question if !answer.valid?
       end
 
-      # NotifierMailer.welcome_email(@loi).deliver_now
-    Mail.defaults do
-      delivery_method :smtp, {
-      :address => 'smtp.gmail.com',
-      :port => '587',
-      :user_name => ENV['GMAILUSER'],
-      :password => ENV['GMAILPASSWORD'],
-      :authentication => :plain,
-      :enable_starttls_auto => true
-      }
-    end
+      # Mail.defaults do
+      #   delivery_method :smtp, {
+      #   :address => 'smtp.gmail.com',
+      #   :port => '587',
+      #   :user_name => ENV['GMAILUSER'],
+      #   :password => ENV['GMAILPASSWORD'],
+      #   :authentication => :plain,
+      #   :enable_starttls_auto => true
+      #   }
+      # end
 
-    if @loi.submitted
-      Mail.new( :to => @loi.email, :from => 'me@mail.com', :subject => 'boomtown', :body => File.read('app/views/submission_email.html.erb')).deliver!
-    end
+      # Mail.new( :to => @loi.email, :from => 'me@mail.com', :subject => 'boomtown', :body => File.read('app/views/submission_email.html.erb')).deliver!
 
-      render json: { message: "Loi Created", loi_id: @loi.id }, status: 200
+      if errors.empty?
+        render json: { message: "Loi Created", loi_id: @loi.id }, status: 200
+      else
+        render json: {errors: errors}, status: 422
+      end
     else
       render json: { errors: @post.errors.full_messages }, status: 422
     end
