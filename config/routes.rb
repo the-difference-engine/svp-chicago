@@ -28,6 +28,7 @@ Rails.application.routes.draw do
       get '/answers' => 'answers#index'
       get '/ratings' => 'ratings#index'
       get '/ratings/:id' => 'ratings#show'
+      patch 'ratings/:id' => 'ratings#update'
       
     end
   end

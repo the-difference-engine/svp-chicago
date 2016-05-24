@@ -6,7 +6,8 @@
 					<h1>Ratings</h1>
 				</div>
 				<div class="filter">
-					<input ng-model="orgNameFilter" placeholder="Filter" list="orgNames" class="form-control">
+					<p>This is a list of all the LOI submissions and the corresponding rankings.</p>
+					<input ng-model="orgNameFilter" placeholder="Type here to filter the list by any criteria." list="orgNames" class="form-control">
 	        	<datalist id="orgNames">
 							<option ng-repeat="rating in ratings">{{rating.org_name}}</option>
 						</datalist>
@@ -59,7 +60,17 @@
 							<td>{{ rating.q2 }}</td>
 							<td>{{ rating.q3 }}</td>
 							<td>{{ rating.q4 }}</td>
-							<td>{{ rating.q5 }}</td>
+							<td ng-show="rating.user.id==currentUserId">
+									<select class="form-control" name="singleSelect" id="singleSelect" ng-model="rating.q5" ng-change="submitInvite(rating.q5, rating.id)">
+	                  <option value="">--Select--</option>
+	                  <option value="Yes">Yes</option>
+	                  <option value="No">No</option>
+	                  <option value="Maybe">Maybe</option>
+	                </select>
+              </td>
+              <td ng-show="rating.user.id!=currentUserId">
+									{{rating.q5}}
+              </td>
 							<td>{{ rating.weighted_score }}</td>
 							<td>{{ rating.user.email }}</td>
 						</tr>

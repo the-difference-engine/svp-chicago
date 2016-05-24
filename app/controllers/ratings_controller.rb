@@ -3,7 +3,7 @@ class RatingsController < ApplicationController
   
   def index
     
-    # @rating_questions = ["Organization Name", "Fits SVP Criteria", "Potention SVP Impact", "Level of Excitement", "Benefit to SVP", "Invite to Submit RFP?", "Weighted Score", "Rated By"]
+    gon.current_user_id = current_user.id
 
     if user_signed_in? && current_user.admin
       @ratings = Rating.all
