@@ -159,7 +159,7 @@ class Api::V1::LoisController < ApplicationController
 
         answer = Answer.find(answer_hash[:id])
 
-        answer.fte.update(amount_1: answer_hash[:fte_1], amount_2: answer_hash[:fte_2], amount_3: answer_hash[:fte_3])
+        answer.fte.update(amount_1: answer_hash[:fte][:amount_1], amount_2: answer_hash[:fte][:amount_2], amount_3: answer_hash[:fte][:amount_3])
 
         answer_hash[:challenges].each do |challenge|
           new_challenge = Challenge.find(challenge[:id])

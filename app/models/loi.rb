@@ -3,7 +3,7 @@ class Loi < ActiveRecord::Base
   has_many :ratings
   belongs_to :user
 
-  validates :name, :email, presence: true
+  # validates :name, :email, presence: true
 
   # def fte_amount_1_total
   #   amount = 0

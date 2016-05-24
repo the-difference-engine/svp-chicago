@@ -36,9 +36,7 @@
 
     $scope.submit = function(isValid){
 
-  
       if (1) {
-
         var newLoi = {
           name: $scope.loi.name,
           email: $scope.loi.email,
@@ -54,10 +52,7 @@
           geographic_answers: $scope.loi.geographic_answers
         };
 
-      console.log(newLoi);
-
         $http.patch('/api/v1/lois/' + $scope.activeId + '.json', newLoi).then(function(response){
-            console.log(response.data.loi_id);
             if ($scope.submitted){
               window.location = '/thanks/' + response.data.loi_id;
             } else {

@@ -6,21 +6,57 @@
           
           <h2>Welcome!</h2>
           <h4>You are currently logged in as: <%= @user.email %> </h4>
-          <hr>
+          <br>
+          <% if @user.admin && !@user.super_admin %>
+            <h5> You currently have administrator privileges.</h5>
+            <h5> You can: </h5>
+            <ul>
+              <li>Review all the submitted LOIs <a href="/lois">here</a>.</li>
+              <li>You can see a list of your ratings <a href="/ratings">here</a>.</li>
+            </ul>
+          <% elsif @user.admin && @user.super_admin %>
+            <h5> You currently have super-administrator privileges.</h5>
+            <h5> You can: </h5>
+            <ul>
+              <li>Review all the submitted LOIs: 
+              <%= link_to "LOIs", "/LOIs", class: "btn btn-default" %></li>
+              <li>You can see a list of all ratings:
+              <%= link_to "Ratings", "/ratings", class: "btn btn-default" %></li>
+              <li>You can see a list of users: 
+              <%= link_to "Users", "/users", class: "btn btn-default" %></li>
+              <li>You can add, edit or delete LOI questions:
+              <%= link_to "Questions", "/questions", class: "btn btn-default" %></li>
+            </ul>
+          <% else %>
+            <h5> You are here to submit a Letter of Interest to SVP-Chicago.</h5>
+            <h5> You can: </h5>
+            <ul>
+              <li>Start a new application here <a href="/lois/new">here</a>.</li>
+            </ul>
+          <% end %>
+        </div>
+
+        <div class="col-md-6">
+          <h4>Start a new Letter of Interest.</h4>
+          <h5>Fill out as much as you can, you can always save and come back later.</h5>
+          <p><%= link_to "Start LOI", "/lois/new", class: "btn btn-default" %></p>
+          <br>
+          
           <% if !@user.lois.empty? %>
+            <h4>Previous Submissions:</h4>
+            <ul>
             <% @user.lois.each do |loi| %>
               <% if loi.submitted %>
-                <h5> Thank you. </h5>
-                <h5> You submitted a letter of interest on  <%= loi.updated_at %>:</h5>
-                <%= link_to "View submitted loi", "/lois/#{loi.id}", class: "btn btn-default" %>
+                <li> You submitted a letter of interest on  <%= loi.updated_at %>:
+                <%= link_to "View LOI", "/lois/#{loi.id}", class: "btn btn-default" %></li>
               <% else %>
-              <h5> You started a letter of interest form on <%= loi.created_at %>:</h5>
-                <p><%= link_to "Continue editing loi", "/lois/#{loi.id}/edit", class: "btn btn-default" %></p>
+              <li> You edited a letter of interest form on <%= loi.updated_at %>:
+                <%= link_to "Continue LOI", "/lois/#{loi.id}/edit", class: "btn btn-default" %></li>
               <% end %>
             <% end %>
-          <% else %>
-            <p><%= link_to "Fill out loi", "/lois/new", class: "btn btn-default" %></p>
+            </ul>
           <% end %>
+        
 
         </div>
       </div>

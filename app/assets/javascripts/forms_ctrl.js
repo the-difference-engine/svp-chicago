@@ -170,15 +170,11 @@
       });
     };
 
-
-
     $scope.submitNow = function(){
       $scope.submitted = true;
     };
 
     $scope.submit = function(name, email, isValid){
-
-      console.log($scope.challenge_formData);
   
       if (isValid) {
 
@@ -197,18 +193,15 @@
           geographic_answers: $scope.geographic_formData
         };
 
-          console
-
         $http.post('/api/v1/lois.json', newLoi).success(function(response){
-
+            console.log(response.loi_id);
             if ($scope.submitted){
-              window.location = '/thanks/' + response.data.loi_id;
+              window.location = '/thanks/' + response.loi_id;
             } else {
                 window.location = '/';
               }
           }).error(function(response){
             $scope.errors = response.errors;
-            console.log($scope.errors);
           })
 
       } else {
