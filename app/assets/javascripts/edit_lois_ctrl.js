@@ -53,11 +53,7 @@
         };
 
         $http.patch('/api/v1/lois/' + $scope.activeId + '.json', newLoi).then(function(response){
-            if ($scope.submitted){
-              window.location = '/thanks/' + response.data.loi_id;
-            } else {
-                window.location = '/';
-              }
+            window.location = '/thanks/' + response.data.loi_id;
           });
 
       } else {

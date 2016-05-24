@@ -56,9 +56,9 @@ class RatingsController < ApplicationController
   end
 
   def update
-    @rating = Rating.new(
+    @rating = Rating.find(params[:id])
+    @rating.update(
       user_id: current_user.id,
-      loi_id: params[:loi_id],
       q1: params[:q1],
       q2: params[:q2],
       q3: params[:q3],
@@ -68,9 +68,9 @@ class RatingsController < ApplicationController
     )
     if @rating.save 
       redirect_to '/ratings'
-      flash[:success] = "Rating Submitted!"
+      flash[:success] = "Rating Updated!"
     else
-      render :new
+      render :edit
     end
   end
 

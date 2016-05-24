@@ -9,7 +9,7 @@
     //GET CURRENT USER ID USING GON GEM
     $scope.currentUserId = gon.current_user_id;
 
-    $scope.activeRatingId = "";
+    // $scope.activeRatingId = "";
     $scope.descending = false;
 
     $scope.setup = function(){
@@ -56,9 +56,9 @@
       for (var i=0; i < ratings.length; i++){
         if (ratings[i].user_id == $scope.currentUserId){
           $scope.activeRatingId = ratings[i].id;
-          return true
+          return true;
         } else {
-          return false
+          return false;
         };
       };
     };

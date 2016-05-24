@@ -5,17 +5,18 @@
 				<div class="form-heading">
 					<h1>Ratings</h1>
 				</div>
-			
+				<div class="filter">
+					<input ng-model="orgNameFilter" placeholder="Filter" list="orgNames" class="form-control">
+	        	<datalist id="orgNames">
+							<option ng-repeat="rating in ratings">{{rating.org_name}}</option>
+						</datalist>
+					</div>
 					<table class="table table-hover table-bordered">
 						<tr>
 							<th>
 								<p ng-click="sortBy('org_name')">
 	                Organization Name
 	              </p>
-	              <input ng-model="orgNameFilter" placeholder="Please Select" list="orgNames" class="form-control">
-	              	<datalist id="orgNames">
-        						<option ng-repeat="rating in ratings">{{rating.org_name}}</option>
-      						</datalist>
 							</th>
 							<th>
 								<p ng-click="sortBy('q1')">
@@ -49,10 +50,6 @@
 								<p ng-click="sortBy('user.email')">
 									Rated By
 								</p>
-									<input ng-model="raterFilter" placeholder="Please Select" list="names" class="form-control">
-		              	<datalist id="names">
-	        						<option ng-repeat="rating in ratings">{{rating.user.email}}</option>
-	      						</datalist>
 							</th>
 						</tr>
 						

@@ -1,12 +1,16 @@
 <div class="site-container">
   <div id="form-paper">
     <div class="form-heading">
-      <% if user_signed_in? %>
-        <h1> LOI Submission Review </h1>
-      <% else %>
-        <h1> Thank you for your submission! </h1>
-        <p> Please review and double check your submission, click edit to correct </p>
-      <% end %>
+      <h1>
+        LOI Submission Review 
+        <% if current_user.admin %>
+          <% if current_user.ratings.find_by(loi_id: @loi.id) != nil %>
+            <%= link_to "Edit Rating", "/ratings/#{current_user.ratings.find_by(loi_id: @loi.id).id}/edit", :class => "btn btn-danger", :role => "button" %>
+            <% else %>
+            <%= link_to "Rate", "/ratings/new?loi=#{@loi.id}", :class => "btn btn-danger", :role => "button" %>
+          <% end %>
+        <% end %>
+        </h1>
     </div> 
       <div class="form-body">
 
@@ -229,13 +233,12 @@
           </div>
         </div>
 
+        <div class="btn-container">
+          <% if user_signed_in? %>
+            <%= link_to "Rate", "/ratings/new?loi=#{@loi.id}", :class => "btn btn-danger", :role => "button" %>
+          <% end %>
+        </div>
+
     </div>
   </div>
-        <% if user_signed_in? %>
-          <%= link_to "Rate", "/ratings/new?loi=#{@loi.id}", :class => "btn btn-default", :role => "button" %>
-        <% end %>
-
-        <% if current_user && current_user.admin %>
-          <%= link_to "Delete", "/lois/#{@loi.id}", method: :delete, data:{confirm: "Are You Sure"}, :class => "btn btn-default", :role => "button" %>
-        <% end %>
 </div>

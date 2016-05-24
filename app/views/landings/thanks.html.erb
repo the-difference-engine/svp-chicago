@@ -1,16 +1,26 @@
-<div class="thank-you-container">
-  <div class="inner-thank-you-container">
-    <%= image_tag("svp_logo.jpg") %>
+<div class="site-container">
+  <div id="form-paper">
+  <div class="thank-you-container"> 
+    <a href="http://www.socialventurepartners.org/chicago/"><%= image_tag("svp_logo.jpg") %></a>
 
-    <h1>Thanks you for your submission, <%= @loi.name %>!</h1>
+    <% if @loi.submitted %>
 
-    <p>You should recieve a confirmation email at <%= @loi.email %>. </p>
+      <h1>Thank you for your submission, <%= @loi.name %>!</h1>
+      <p>You should recieve a confirmation email at <%= @loi.email %>. </p>
+      <p> Have a nice day! </p>
 
-    <p> Have a nice day! </p>
+    <% else %>
+      
+      <h1>Thank you for your starting an application, <%= @loi.name %>! </h1>
+      <p>Please click below to continue submitting a Letter of Interest.</p>
+      <p> Have a nice day! </p>
 
-    <p> <a href="http://www.socialventurepartners.org/chicago/"> SVP Chicago </a> </p>
+    <% end %>
+
 
     <br>
-
+    <%= link_to "My Applications", "/users/#{current_user.id}", class: "btn btn-primary" %>
+    <br>
+    </div>
   </div>
 </div>

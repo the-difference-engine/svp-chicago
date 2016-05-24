@@ -2,7 +2,7 @@ class Api::V1::RatingsController < ApplicationController
 	skip_before_action :verify_authenticity_token, only: [:index]
   def index
 
-  	if user_signed_in? && current_user.admin
+  	if user_signed_in? && current_user.super_admin
   	  @ratings = Rating.all
   	else
   	  @ratings = Rating.where(user_id: current_user.id)

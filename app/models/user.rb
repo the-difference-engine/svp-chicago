@@ -6,4 +6,5 @@ class User < ActiveRecord::Base
 
 
   has_many :lois
+  has_many :ratings
 end

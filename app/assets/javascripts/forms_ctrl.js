@@ -194,16 +194,10 @@
         };
 
         $http.post('/api/v1/lois.json', newLoi).success(function(response){
-            console.log(response.loi_id);
-            if ($scope.submitted){
-              window.location = '/thanks/' + response.loi_id;
-            } else {
-                window.location = '/';
-              }
+            window.location = '/thanks/' + response.loi_id;
           }).error(function(response){
             $scope.errors = response.errors;
           })
-
       } else {
         alert("Form is invalid");
       };
