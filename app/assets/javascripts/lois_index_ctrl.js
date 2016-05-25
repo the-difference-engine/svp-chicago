@@ -16,6 +16,7 @@
 
       $http.get('/api/v1/lois.json').then(function(response){
         $scope.lois = response.data;
+        console.log($scope.lois[0].ratings)
       });
 
       $http.get('/api/v1/questions.json').then(function(response){
@@ -61,6 +62,20 @@
           return false;
         };
       };
+    };
+
+    //THIS FUNCTION JUST AVERAGES UP THE RATINGS FOR EACH LOI
+    $scope.avgRatingPerLoi = function(ratings){
+      if (ratings.length > 0){
+        var score = 0;
+        for (var i=0; i < ratings.length; i++){
+          console.log(score);
+          score = score + parseFloat(ratings[i].weighted_score);
+        };
+        return (score/ratings.length).toFixed(2);
+      } else {
+        return "No Ratings";
+      }
     };
 
   }]);

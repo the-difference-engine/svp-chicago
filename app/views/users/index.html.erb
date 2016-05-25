@@ -7,18 +7,20 @@
       <tr>
         <th>Email</th>
         <th>Last login</th>
-        <th>Super Admin?</th>
-        <% if user_signed_in? && current_user.admin && current_user.super_admin %>
-          <th> </th>
-        <% end %>
+        <th colspan="2">Admin?</th>
+        <th colspan="2">Super Admin?</th>
       </tr>
       <% @users.each do |user, index| %>
         <tr>
           <td><p><%= user.email %></p></td>
           <td><p><%= user.last_sign_in_at %></p></td>
+          <td><p><%= user.admin ? "Yes" : "No" %></p></td>
+          <% if user_signed_in? && current_user.admin && current_user.super_admin %>
+          <td> <div class="center-btn"><%= link_to "Change", "/users/#{user.id}?admin=true", method: :patch, data:{confirm: "Are you sure you'd like to change admin status?"}, :class => "btn btn-custom", :role => "button" %> </td></div>
+          <% end %>
           <td><p><%= user.super_admin ? "Yes" : "No" %></p></td>
           <% if user_signed_in? && current_user.admin && current_user.super_admin %>
-          <td> <div class="center-btn"><%= link_to "Change", "/users/#{user.id}", method: :patch, data:{confirm: "Are you sure you'd like to change admin status?"}, :class => "btn btn-custom", :role => "button" %> </td></div>
+          <td><div class="center-btn"><%= link_to "Change", "/users/#{user.id}?super_admin=true", method: :patch, data:{confirm: "Are you sure you'd like to change super admin status?"}, :class => "btn btn-custom", :role => "button" %> </td></div>
         <% end %>
         </tr>
       <% end %>

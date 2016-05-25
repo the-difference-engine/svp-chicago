@@ -17,7 +17,7 @@
               </p>
               <input ng-model="orgNameFilter" placeholder="filter" class="form-control">
             </th>
-            <th style="width: 58%;">
+            <th style="width: 50%;">
               <p ng-click="sortBy(loi.answers[selectedAnswer.id])">
                 Please select a question to see and compare
                 <span ng-hide="descending" class="glyphicon glyphicon-triangle-bottom">
@@ -30,7 +30,16 @@
               </select>
 
             </th>
-            <th style="width: 17%; text-align: center;">
+            <th ng-show=<%="#{current_user.super_admin}"%>  style="width: 8%; text-align: center; vertical-align: middle">
+            <p ng-click="sortBy(avgRatingPerLoi)">
+                Average Rating
+                <span ng-hide="descending" class="glyphicon glyphicon-triangle-bottom">
+                </span>
+                <span ng-hide="!descending" class="glyphicon glyphicon-triangle-top">
+                </span>
+              </p>
+            </th>
+            <th style="width: 17%; text-align: center; vertical-align: middle">
               <p>Action</p>
             </th>
             <tr ng-repeat="loi in lois | filter: {org_name: orgNameFilter} | orderBy:sortByAttribute:descending">
@@ -41,6 +50,9 @@
                 <ul class="list-unstyled">
                   <li ng-repeat="answer in formatAnswer(loi.answers[selectedAnswer.id])">{{answer}}</li>
                 </ul>
+              </td>
+              <td ng-show=<%="#{current_user.super_admin}"%> style="text-align: center;">
+                <p>{{avgRatingPerLoi(loi.ratings)}}</p>
               </td>
               <td>
                 <%= link_to "View", "/lois/{{loi.id}}", :class => "btn btn-success btn-rate", :role => "button" %>
