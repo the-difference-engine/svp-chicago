@@ -29,9 +29,12 @@
   .controller("ratingsCtrl", ["$scope", "$http", "$compile", function($scope, $http, $compile){
     window.scope = $scope;
 
-    $scope.descending = false;
-    $scope.setup = function(){
+    //GET CURRENT USER ID USING GON GEM
+    $scope.currentUserId = gon.current_user_id;
 
+    $scope.descending = false;
+
+    $scope.setup = function(){
       $http.get('/api/v1/ratings.json').then(function(response){
         $scope.ratings = response.data;
       });
@@ -40,6 +43,16 @@
     $scope.sortBy = function(sortAttribute){
       $scope.sortByAttribute = sortAttribute;
       $scope.descending = !$scope.descending;
+    };
+
+    //THIS SUBMIT FUNCTION ALLOWS AN ADMIN TO INVITE TO RFP DIRECTLY FROM THE RAINGS INDEX PAGE
+    $scope.submitInvite = function(q5, activeId){
+      var updatedRating = {
+        q5: q5
+      };
+      $http.patch('/api/v1/ratings/' + activeId + '.json', updatedRating).then(function(response){
+        console.log(response.data);
+      });
     };
 
   }]);

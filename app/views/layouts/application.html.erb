@@ -29,7 +29,7 @@
           <% if user_signed_in? %>  
             <li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></li>
               <% if user_signed_in? && !current_user.admin %>
-                <li><%= link_to 'My application', "/users/#{current_user.id}" %></li>
+                <li><%= link_to 'My applications', "/users/#{current_user.id}" %></li>
                 <% end %>
           <% else %>
             <li><a href="/users/sign_up">Sign Up</a></li>
@@ -40,7 +40,7 @@
             <li><a href="/ratings">Ratings</a></li>
           <% end %>
           <% if user_signed_in? && current_user.admin && current_user.super_admin? %>      
-            <li><a href="/questions">LOI Form Builder</a></li>
+            <li><a href="/questions">Edit Questions</a></li>
             <li><a href="/users">Users</a></li>
           <% end %>
           </li>

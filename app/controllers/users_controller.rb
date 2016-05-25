@@ -2,7 +2,8 @@ class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    @users = User.where(admin: true)
+    @admin_users = User.where(admin: true)
+    @users = User.all
   end
 
   def show
@@ -11,7 +12,12 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find_by(id: params[:id])
-    @user.super_admin = !@user.super_admin
+
+    if params[:super_admin]
+      @user.super_admin = !@user.super_admin
+    elsif params[:admin]
+      @user.admin = !@user.admin
+    end
     @user.save
 
     flash[:success] = "Admin Updated"

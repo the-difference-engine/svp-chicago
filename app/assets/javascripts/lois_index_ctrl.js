@@ -9,13 +9,14 @@
     //GET CURRENT USER ID USING GON GEM
     $scope.currentUserId = gon.current_user_id;
 
-    $scope.activeRatingId = "";
+    // $scope.activeRatingId = "";
     $scope.descending = false;
 
     $scope.setup = function(){
 
       $http.get('/api/v1/lois.json').then(function(response){
         $scope.lois = response.data;
+        console.log($scope.lois[0].ratings)
       });
 
       $http.get('/api/v1/questions.json').then(function(response){
@@ -56,11 +57,25 @@
       for (var i=0; i < ratings.length; i++){
         if (ratings[i].user_id == $scope.currentUserId){
           $scope.activeRatingId = ratings[i].id;
-          return true
+          return true;
         } else {
-          return false
+          return false;
         };
       };
+    };
+
+    //THIS FUNCTION JUST AVERAGES UP THE RATINGS FOR EACH LOI
+    $scope.avgRatingPerLoi = function(ratings){
+      if (ratings.length > 0){
+        var score = 0;
+        for (var i=0; i < ratings.length; i++){
+          console.log(score);
+          score = score + parseFloat(ratings[i].weighted_score);
+        };
+        return (score/ratings.length).toFixed(2);
+      } else {
+        return "No Ratings";
+      }
     };
 
   }]);

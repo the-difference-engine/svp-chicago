@@ -3,7 +3,7 @@
     <div class="form-heading">
       <h1>Edit Rating</h1>
     </div>
-      <%= form_tag '/ratings/#{@rating.id}', method: :patch do %>
+      <%= form_tag "/ratings/#{@rating.id}", method: :patch do %>
 
         <%= render "form" %>
     

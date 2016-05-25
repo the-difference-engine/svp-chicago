@@ -1,13 +1,24 @@
 <div class="site-container">
   <div id="form-paper">
     <div class="form-heading">
-      <% if user_signed_in? %>
-        <h1> LOI Submission Review </h1>
-      <% else %>
-        <h1> Thank you for your submission! </h1>
-        <p> Please review and double check your submission, click edit to correct </p>
-      <% end %>
-    </div> 
+
+      <div>
+
+        <h1> 2016 SVP Chicago Letter of Interest </h1>
+        <h2> Sector Focus: Beaking the Cycle of Poverty </h2>
+        <hr>
+
+          <p><b>Completing this Form:</b></p>
+
+          <p>Please enter information directly into the form, using this form as the main body of your Letter of Interest. The boxes will expand to hold your text. You can adjust the page breaks when you have completed the form.</p>
+
+          <p><ul>
+            <li>If you find an item confusing, please feel free to contact us.</li>
+
+            <li>Please use bullet points rather than paragraphs. Brevity is helpful to our partners when reviewing proposals.</li>
+          </ul></p>
+      </div>
+    </div>
 
     <div class="form-body">
 
@@ -272,25 +283,17 @@
             </ol>
 
             <div class="submit-button-container">
-              <button class="btn btn-primary btn-lg submit-button" type="submit">Save and Submit Later</button>
-            </div>
+              <button class="btn btn-success btn-lg" type="submit">Save and Submit Later</button>
 
-            <div class="submit-button-container">
-              <button ng-click="submitNow()" class="btn btn-primary btn-lg submit-button" type="submit">Submit Now</button>
+              <button ng-click="submitNow()" class="btn btn-primary btn-lg" type="submit">Submit Now</button>
             </div>
 
             </form>
-
+          </div>
+          <div class="bottom-text">
+            <h4><b>Thank you for your interest in partnering with Social Venture Partners Chicago!</b></h4>
           </div>
         </div>
-
     </div>
   </div>
-        <% if user_signed_in? %>
-          <%= link_to "Rate", "/ratings/new?loi=#{@loi.id}", :class => "btn btn-default", :role => "button" %>
-        <% end %>
-
-        <% if current_user && current_user.admin %>
-          <%= link_to "Delete", "/lois/#{@loi.id}", method: :delete, data:{confirm: "Are You Sure"}, :class => "btn btn-default", :role => "button" %>
-        <% end %>
 </div>
