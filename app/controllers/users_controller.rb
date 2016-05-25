@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   def index
     @admin_users = User.where(admin: true)
-    @users = User.all
+    @users = User.where(admin: false)
   end
 
   def show
