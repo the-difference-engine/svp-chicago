@@ -2,6 +2,9 @@ class Rating < ActiveRecord::Base
 	belongs_to :user
 	belongs_to :loi
 
+  validates :q1, :q2, :q3, :q4, presence: true
+  validates :q1, :q2, :q3, :q4, numericality: true
+
 	def weighted_score
 		total = q1 + q2 + q3 + q4 
 		total/4.to_f
