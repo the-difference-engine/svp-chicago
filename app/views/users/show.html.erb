@@ -48,10 +48,10 @@
             <ul>
             <% @user.lois.each do |loi| %>
               <% if loi.submitted %>
-                <li> You submitted a letter of interest on  <%= loi.updated_at %>:
+                <li> You submitted a letter of interest on  <%= loi.friendly_loi_time %>:
                 <%= link_to "View LOI", "/lois/#{loi.id}", class: "btn btn-default" %></li>
               <% else %>
-              <li> You edited a letter of interest form on <%= loi.updated_at %>:
+              <li> You edited a letter of interest form on <%= loi.friendly_loi_time %>:
                 <%= link_to "Continue LOI", "/lois/#{loi.id}/edit", class: "btn btn-default" %></li>
               <% end %>
             <% end %>
