@@ -74,7 +74,7 @@ class Api::V1::LoisController < ApplicationController
         }
       end
 
-      Mail.new( :to => @loi.email, :from => 'me@mail.com', :subject => 'paul is the best', :body => File.read('app/views/submission_email.html.erb')).deliver!
+      Mail.new( :to => @loi.email, :from => 'colleen@svpchicago.org', :subject => 'Submission to SVP received', :body => File.read('app/views/submission_email.html.erb')).deliver!
 
       if errors.empty?
         render json: { message: "Loi Created", loi_id: @loi.id }, status: 200
