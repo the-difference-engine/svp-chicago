@@ -1,0 +1,9 @@
+<% @rfp_sections.each do |section| %>
+  <h1><%= section.name %></h1>
+    <% section.rfp_questions.each do |question| %>
+      <p>
+        <%= question.question %>
+        <%= link_to "Edit", "/rfp_questions/#{question.id}/edit", :class => "btn btn-custom", :role => "button" %>
+      </p>
+    <% end %>
+<% end %>

@@ -76,7 +76,15 @@ Rails.application.routes.draw do
   get '/sections' => 'sections#new'
   get '/sections/:id' => 'sections#show'
   post '/sections' => 'sections#create'
+ 
+  get '/rfps/new' => 'rfps#new'
 
-
+  get '/rfp_questions' => 'rfp_questions#index'
+  get '/rfp_questions/new' => 'rfp_questions#new'
+  post '/rfp_questions' => 'rfp_questions#create'
+  get '/rfp_questions/:id' => 'rfp_questions#show'
+  get '/rfp_questions/:id/edit' => 'rfp_questions#edit'
+  patch '/rfp_questions/:id' => 'rfp_questions#update'
+  delete '/rfp_questions/:id' => 'rfp_questions#destroy'
 
 end

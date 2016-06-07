@@ -1,0 +1,27 @@
+<div class="container">
+  <div id="form-paper">
+    <div class="form-heading">
+      <h1>Add a new RFP question</h1>
+    </div>
+    <div class="rating-form">
+      <div class="form-horizontal">
+
+      <%= form_tag '/rfp_questions', method: :post do %>
+          
+        <%= render "form" %>
+
+        <div class="form-group">
+          <%= label_tag :section, nil, class: "col-sm-2 control-label" %>
+          <div class="col-sm-10">
+            <%= collection_select :rfp_section, :rfp_section_id, RfpSection.all, :id, :name, {:prompt => "--Select Section--"}, class: "form-control" %>
+          </div>
+        </div>
+
+        <%= submit_tag "Submit", class: "btn btn-custom" %>
+
+      <% end %>
+
+    </div>
+    </div>
+  </div>
+</div>
