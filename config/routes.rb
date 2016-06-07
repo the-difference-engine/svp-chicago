@@ -42,7 +42,9 @@ Rails.application.routes.draw do
   get 'ratings/show'
 
   get '/landings' => 'landings#index'
-
+  get '/landings/edit' => 'landings#edit'
+  get '/landings/:id' => 'landings#home'
+  patch '/landings/:id' => 'landings#update'
 
   get '/ratings' => 'ratings#index'
   get '/ratings/new' => 'ratings#new'

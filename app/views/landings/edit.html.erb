@@ -13,21 +13,25 @@
       <div class="col-md-6">
         <div class="home-text">
           <h2> Social Venture Partners <span style="color:#0060b2">Chicago</span></h2>
-          <h3><strong><%= @landing.year %> Letter of Interest Form</strong> </h3>
-          <h3>Sector Focus: <i><span style="color:#BC214D">
-          <%= @landing.sector_focus %>
-          </span></i></h3>
+          <h3><strong>
+          <%= form_tag "/landings/#{@landing.id}", method: :patch do %>
+          <%= text_field_tag :year, @landing.year %>  Letter of Interest Form
+          </strong> </h3>
+          <h3>Sector Focus: <i><span style="color:#BC214D"><%= text_field_tag :sector_focus, @landing.sector_focus %></span></i></h3>
+          
         </div>
       </div>
     </div>
 
     <hr>
+    
 
 
   <div class="container">
-    <div class="row">
-      <h2><%= simple_format(@landing.main_points, class:"main-points") %></h2>
-    </div>
+    
+      <%= text_area_tag :main_points, @landing.main_points %>
+    
+
   </div>
 
 
@@ -40,7 +44,7 @@
        
             <h3>
               <ul>
-                <%= simple_format(@landing.gray_section, class:"gray-section") %>
+                <%= text_area_tag :gray_section, @landing.gray_section %>
                 <li>Your organization’s primary focus is to address the cycle of poverty in Chicagoland.</li>
                 <li>Your programs are scalable and replicable.</li>
                 <li>Your programs have a track record of demonstrable success and create lasting impact.</li>
@@ -65,7 +69,9 @@
       </div>
     </div>
 
+<%= submit_tag "Update Page", class: "btn btn-lg btn-primary" %>
 
+    <% end %>
     <div class="get-started">
 
       <% if current_user %>
