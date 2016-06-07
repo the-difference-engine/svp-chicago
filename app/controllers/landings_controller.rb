@@ -12,7 +12,9 @@ class LandingsController < ApplicationController
     @landing.update(
       year: params[:year],
       sector_focus: params[:sector_focus],
-      main_points: params[:main_points]
+      main_points: params[:main_points],
+      gray_section: params[:gray_section],
+      last_point: params[:last_point]
     )
     redirect_to '/home'
   end

@@ -42,12 +42,15 @@ p.main-points {
   margin-bottom:30px;
 }
 
-p.gray_section {
-  background-image: url('bluebullet.svg');
-  background-size: 40px;
+.gray-section {
+  margin-left:-10px;
+}
+
+p.gray-section {
+  background-image: url('bluebullet.png');
   background-position: left top;
   background-repeat: no-repeat;
-  padding-left: 50px; /* Adjust according to image size to push text across. */
+  padding-left: 40px; /* Adjust according to image size to push text across. */
   margin-bottom:30px;
 
 }
