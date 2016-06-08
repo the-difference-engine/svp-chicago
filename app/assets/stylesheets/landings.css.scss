@@ -1,3 +1,6 @@
+.container {
+  height:auto;
+}
 .thank-you-container {
   margin: auto;
   text-align: center;
@@ -40,6 +43,7 @@ p.main-points {
   background-repeat: no-repeat;
   padding-left: 80px; /* Adjust according to image size to push text across. */
   margin-bottom:30px;
+  min-height:55px;
 }
 
 .gray-section {

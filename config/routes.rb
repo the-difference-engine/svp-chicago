@@ -79,6 +79,4 @@ Rails.application.routes.draw do
   get '/sections/:id' => 'sections#show'
   post '/sections' => 'sections#create'
 
-
-
 end

@@ -57,7 +57,7 @@
 
 
     <div class="get-started">
-
+      <p><%= link_to "Edit this page", "/landings/edit", :class => "btn btn-lg btn-primary", :role => "button" %></p>
       <% if current_user %>
   
           <%= link_to "Get Started!", "/users/#{current_user.id}", :class => "btn btn-lg btn-primary", :role => "button" %>
