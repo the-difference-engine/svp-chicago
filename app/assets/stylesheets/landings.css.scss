@@ -1,3 +1,6 @@
+.container {
+  height:auto;
+}
 .thank-you-container {
   margin: auto;
   text-align: center;
@@ -29,4 +32,29 @@
   max-width: 70%;
   text-align: justify;
   margin: auto;
+}
+.main-points {
+  margin-left:20px;
+}
+p.main-points {
+  background-image: url('svp_pin.png');
+  background-size: 50px;
+  background-position: left top;
+  background-repeat: no-repeat;
+  padding-left: 80px; /* Adjust according to image size to push text across. */
+  margin-bottom:30px;
+  min-height:55px;
+}
+
+.gray-section {
+  margin-left:-10px;
+}
+
+p.gray-section {
+  background-image: url('bluebullet.png');
+  background-position: left top;
+  background-repeat: no-repeat;
+  padding-left: 40px; /* Adjust according to image size to push text across. */
+  margin-bottom:30px;
+
 }
