@@ -15,7 +15,7 @@
             <h2> Social Venture Partners <span style="color:#0060b2">Chicago</span></h2>
             <h3><strong>
             <%= form_tag "/landings/#{@landing.id}", method: :patch do %>
-            <%= text_field_tag(:year, @landing.year, size:'6') %>  Letter of Interest Form
+            <%= text_field_tag(:year, @landing.year, size:'4') %>  Letter of Interest Form
             </strong> </h3>
             <h3>Sector Focus: <i><span style="color:#BC214D"><%= text_field_tag(:sector_focus, @landing.sector_focus, size:'26') %></span></i></h3>
             
@@ -29,8 +29,10 @@
 
     <div class="container">
       <div class="row">
-        <h3>For each separate point, please leave a line of space between each one (i.e. hit enter twice).</h3>
-        <h2><%= text_area_tag(:main_points, @landing.main_points, size:'70x10') %></h2>
+        <div class="instruction">
+          <h3>For each separate point, please leave a line of space between each one (i.e. hit enter twice).</h3>
+        </div>
+        <h2><%= text_area_tag(:main_points, @landing.main_points, class: "main-points-edit") %></h2>
       </div>
     </div>
 
@@ -44,7 +46,7 @@
          
               <h3>
                 <ul>
-                  <%= text_area_tag(:gray_section, @landing.gray_section, size: '75x10') %>
+                  <%= text_area_tag(:gray_section, @landing.gray_section, class: "gray-section-edit") %>
                 </ul>
             </h3>
             </div>
@@ -55,12 +57,12 @@
 
       <div class="container">
         <div class="row">
-          <h2><%= text_area_tag(:last_point, @landing.last_point, size:'70x4') %> </h2>
+          <h2><%= text_area_tag(:last_point, @landing.last_point, class: "last-point-edit") %> </h2>
         </div>
       </div>
 
       <div class="get-started">
-        <%= submit_tag "Update Page", class: "btn btn-lg btn-primary" %>
+        <%= submit_tag "Update Page", class: "btn btn-lg btn-danger" %>
         <% end %>
       </div>
 

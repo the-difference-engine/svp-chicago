@@ -55,9 +55,13 @@
       </div>
     </div>
 
-
+    <div id="edit-page">
+      <% if current_user && current_user.super_admin %>
+        <%= link_to "Edit This Page", "/landings/edit", :class => "btn btn-lg btn-danger", :role => "button" %>
+      <% end %>
+    </div>
     <div class="get-started">
-      <p><%= link_to "Edit this page", "/landings/edit", :class => "btn btn-lg btn-primary", :role => "button" %></p>
+      
       <% if current_user %>
   
           <%= link_to "Get Started!", "/users/#{current_user.id}", :class => "btn btn-lg btn-primary", :role => "button" %>
