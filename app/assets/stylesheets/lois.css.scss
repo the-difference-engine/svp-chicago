@@ -111,3 +111,28 @@
   padding: 15px;
 }
 
+.loi-rating-form {
+  width: 100px;
+}
+.loi-rating-form p {
+  text-align:left;
+  font-size: 14px;
+
+}
+.loi-rating-form h4 {
+  text-align:left;
+}
+.loi-rating-form hr {
+  margin-top:10px;
+}
+#rating-pullout {
+  position: fixed;
+  background-color:#ccc;
+  padding:10px;
+  right: 0;
+  top: 100px;
+  border:1px solid #999;
+  box-shadow: 2px 2px 10px #555;
+  width: 3.5em;
+  z-index:2;
+}
