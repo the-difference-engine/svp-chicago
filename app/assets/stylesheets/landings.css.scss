@@ -37,7 +37,7 @@
   margin-left:20px;
 }
 p.main-points {
-  background-image: url('svp_pin.png');
+  background-image: image-url("svp_pin.png");
   background-size: 50px;
   background-position: left top;
   background-repeat: no-repeat;
@@ -71,7 +71,7 @@ p.main-points {
 }
 
 p.gray-section {
-  background-image: url('bluebullet.png');
+  background-image: image-url("bluebullet.png");
   background-position: left top;
   background-repeat: no-repeat;
   padding-left: 40px; /* Adjust according to image size to push text across. */

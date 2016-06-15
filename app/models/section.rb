@@ -1,3 +1,3 @@
 class Section < ActiveRecord::Base
-	has_many :questions, -> { order "id" }
+  has_many :questions, -> { order "id" }
 end
