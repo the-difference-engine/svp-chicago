@@ -25,6 +25,11 @@
     # @sections = Section.order(:id).all
     @loi = Loi.find_by(id: params[:id])
     gon.loi_id = @loi.id
+    if current_user.ratings.find_by(loi_id: @loi.id) == nil
+      @rating = Rating.new
+    else
+      @rating = Rating.find_by(loi_id: params[:id])
+    end
   end
 
   def edit
