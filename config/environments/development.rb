@@ -40,13 +40,23 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
   config.action_mailer.delivery_method = :smtp
-  ActionMailer::Base.smtp_settings = {
-    :authentication => :plain,
-    :address => "smtp.mailgun.org",
-    :port => 587,
-    :domain => ENV['MAILGUN_DOMAIN'],
-    :user_name => ENV['MAILGUN_USER_NAME'],
-    :password => ENV['MAILGUN_PASSWORD']
-  }
+  # ActionMailer::Base.smtp_settings = {
+  #   :authentication => :plain,
+  #   :address => "smtp.mailgun.org",
+  #   :port => 587,
+  #   :domain => ENV['MAILGUN_DOMAIN'],
+  #   :user_name => ENV['MAILGUN_USER_NAME'],
+  #   :password => ENV['MAILGUN_PASSWORD']
+  # }
+  Mail.defaults do
+    delivery_method :smtp, {
+      :address => 'smtp.gmail.com',
+      :port => '587',
+      :user_name => ENV['GMAILUSER'],
+      :password => ENV['GMAILPASSWORD'],
+      :authentication => :plain,
+      :enable_starttls_auto => true
+    }
+  end
   config.action_mailer.default_url_options = { host: 'demo-svp-chicago.herokuapp.com' }
 end

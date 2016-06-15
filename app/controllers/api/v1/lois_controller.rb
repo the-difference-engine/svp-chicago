@@ -63,18 +63,9 @@ class Api::V1::LoisController < ApplicationController
         errors << answer.question.question if !answer.valid?
       end
 
-      Mail.defaults do
-        delivery_method :smtp, {
-        :address => 'smtp.gmail.com',
-        :port => '587',
-        :user_name => ENV['GMAILUSER'],
-        :password => ENV['GMAILPASSWORD'],
-        :authentication => :plain,
-        :enable_starttls_auto => true
-        }
+      if @loi.submitted
+        Mail.new( :to => @loi.email, :from => 'colleen@svpchicago.org', :subject => 'Submission to SVP received', :body => File.read('app/views/submission_email.html.erb')).deliver!
       end
-
-      Mail.new( :to => @loi.email, :from => 'colleen@svpchicago.org', :subject => 'Submission to SVP received', :body => File.read('app/views/submission_email.html.erb')).deliver!
 
       if errors.empty?
         render json: { message: "Loi Created", loi_id: @loi.id }, status: 200
@@ -182,19 +173,8 @@ class Api::V1::LoisController < ApplicationController
         answer.update(answer: answer_hash[:answer])  
       end
 
-      Mail.defaults do
-        delivery_method :smtp, {
-        :address => 'smtp.gmail.com',
-        :port => '587',
-        :user_name => ENV['GMAILUSER'],
-        :password => ENV['GMAILPASSWORD'],
-        :authentication => :plain,
-        :enable_starttls_auto => true
-        }
-      end
-      
       if @loi.submitted
-        Mail.new( :to => @loi.email, :from => 'me@mail.com', :subject => 'boomtown', :body => File.read('app/views/submission_email.html.erb')).deliver!
+        Mail.new( :to => @loi.email, :from => 'colleen@svpchicago.org', :subject => 'Submission to SVP received', :body => File.read('app/views/submission_email.html.erb')).deliver!
       end
 
       render json: { message: "Loi Updated", loi_id: @loi.id }, status: 200
