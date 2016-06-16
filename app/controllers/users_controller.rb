@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, only: [:index, :show]
+  before_action :authenticate_user!, only: [:show]
+  before_action :authenticate_super_admin!, only: [:index]
 
   def index
     @admin_users = User.where(admin: true)
@@ -17,13 +18,21 @@ class UsersController < ApplicationController
       @user.super_admin = !@user.super_admin
     elsif params[:admin]
       @user.admin = !@user.admin
-    elsif params[:deactivate]
-      @user.deleted_at = Time.current
-    end
+    
     @user.save
 
     flash[:success] = "Admin Updated"
-    redirect_to "/users"
+    end
+
+    if params[:active]
+      @user.active_account = !@user.active_account
+
+    @user.save
+
+    flash[:success] = "Account Updated"
+    end
+
+    redirect_to "/users"   
   end
 
 end
