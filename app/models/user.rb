@@ -10,4 +10,9 @@ class User < ActiveRecord::Base
   def number_of_invites
     ratings.where(q5: "Yes").count
   end
+
+  def active_for_authentication?
+    super && active_account?
+  end
+  
 end

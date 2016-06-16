@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:show]
-  before_action :authenticate_super_admin!, only: [:index]
+  before_action :authenticate_super_admin!, only: [:index, :update]
 
   def index
     @admin_users = User.where(admin: true)
