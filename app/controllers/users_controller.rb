@@ -17,10 +17,13 @@ class UsersController < ApplicationController
       @user.super_admin = !@user.super_admin
     elsif params[:admin]
       @user.admin = !@user.admin
+    elsif params[:deactivate]
+      @user.deleted_at = Time.current
     end
     @user.save
 
     flash[:success] = "Admin Updated"
     redirect_to "/users"
   end
+
 end

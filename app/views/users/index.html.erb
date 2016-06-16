@@ -41,6 +41,7 @@
           <th>Email</th>
           <th>Last login</th>
           <th colspan="2">Admin?</th>
+          <th colspan="2">Acitve Account?</th>
           
         </tr>
         <% @users.each do |user, index| %>
@@ -50,7 +51,11 @@
             <td><p><%= user.admin ? "Yes" : "No" %></p></td>
             <% if user_signed_in? && current_user.admin && current_user.super_admin %>
             <td> <div class="center-btn"><%= link_to "Change", "/users/#{user.id}?admin=true", method: :patch, data:{confirm: "Are you sure you'd like to change admin status?"}, :class => "btn btn-custom", :role => "button" %> </td></div>
-            <% end %>
+            #change to user.active ? "Yes" : "No"
+            <td><p><%= user.admin ? "Yes" : "No" %></p></td>
+            <td> <div class="center-btn"><%= link_to "Change", "/users/#{user.id}?deactivate=true", method: :patch, data:{confirm: "Are you sure you'd like to deactivate the account?"}, :class => "btn btn-custom", :role => "button" %> </td></div> 
+            
+          <% end %>
           </tr>
         <% end %>
       </table>
