@@ -3,6 +3,15 @@ FactoryGirl.define do
     email "admin@test.com"
     password "password"
     password_confirmation "password"
+
+    factory :admin do
+      admin true
+    end
+
+    factory :super_admin do
+      admin true
+      super_admin true
+    end
   end
 
   factory :question do
@@ -14,4 +23,5 @@ FactoryGirl.define do
     loi_id 1
     answer "this is an answer"
   end
+  
 end
