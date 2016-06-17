@@ -18,19 +18,14 @@ class UsersController < ApplicationController
       @user.super_admin = !@user.super_admin
     elsif params[:admin]
       @user.admin = !@user.admin
-    
-    @user.save
-
-    flash[:success] = "Admin Updated"
-    end
+    end    
 
     if params[:active]
       @user.active_account = !@user.active_account
+    end
 
     @user.save
-
     flash[:success] = "Account Updated"
-    end
 
     redirect_to "/users"   
   end
