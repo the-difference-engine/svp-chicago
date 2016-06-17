@@ -111,12 +111,15 @@
   padding: 15px;
 }
 
-.loi-rating-form {
-  width: 100px;
-}
-.loi-rating-form p {
+
+.loi-rating-form td {
   text-align:left;
   font-size: 14px;
+  text-transform: uppercase;
+  width:120px;
+  height:100px;
+  vertical-align: bottom;
+  padding:10px;
 
 }
 .loi-rating-form h4 {
@@ -125,14 +128,22 @@
 .loi-rating-form hr {
   margin-top:10px;
 }
+
 #rating-pullout {
   position: fixed;
+  width:270px;
   background-color:#ccc;
-  padding:10px;
   right: 0;
-  top: 100px;
-  border:1px solid #999;
-  box-shadow: 2px 2px 10px #555;
-  width: 3.5em;
+  top: 170px;
   z-index:2;
+}
+#rating-pullout-button {
+  position: fixed;
+  background-color:#ccc;
+  right: 0;
+  width:120px;
+  padding:10px;
+  top: 100px;
+  z-index:4;
+  height:70px;
 }
