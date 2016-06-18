@@ -11,6 +11,7 @@ FactoryGirl.define do
     factory :super_admin do
       admin true
       super_admin true
+      email "superadmin@test.com"
     end
   end
 

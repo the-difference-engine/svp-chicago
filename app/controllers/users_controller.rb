@@ -13,7 +13,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find_by(id: params[:id])
-
+    
     if params[:super_admin]
       @user.super_admin = !@user.super_admin
     elsif params[:admin]
