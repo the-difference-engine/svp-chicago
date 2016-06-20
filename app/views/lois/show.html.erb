@@ -3,83 +3,115 @@
     <div class="form-heading">
       <h1>
         LOI Submission Review 
-        <div id="rating-pullout">
+        <div id="rating-pullout-button">
+          <button type="button" class="btn btn-danger" data-toggle="collapse" aria-expanded="false" aria-controls="loi-ratings" data-target="#loi-ratings">Edit Rating</button>
+        </div>
+
           <% if current_user.admin %>
             <% if current_user.ratings.find_by(loi_id: @loi.id) != nil %>
+              <div id="rating-pullout">
 
               <%= form_tag "/ratings/#{@rating.id}", method: :patch do %>
-
                   <div class="loi-rating-form">
-                  <button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#loi-ratings">Edit Rating</button>
+                  
                   <div id="loi-ratings" class="collapse">
                   
                     <form>
-                      <hr>                  
-                      <p class="rating-label">Fits SVP's Criteria:</p>
-                      <%= select_tag(:q1, options_for_select([['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]], selected: @rating.q1), :prompt => "Rate 1 - 5", class: "form-control loi-rating-form") %>
-                      <hr>
-                      <p class="rating-label"><%= label_tag "Potential SVP Impact:", nil %></p>
-                      <%= select_tag(:q2, options_for_select([['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]], selected: @rating.q2 ), :prompt => "Rate 1 - 5", class: "form-control loi-rating-form") %>
-                      <hr>
-                      
-                      <p class="rating-label"><%= label_tag "Level of Excitement:", nil %></p>
-                      <%= select_tag(:q3, options_for_select([['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]], selected: @rating.q3 ), :prompt => "Rate 1 - 5", class: "form-control loi-rating-form") %>
-                      <hr>
+                      <table>
+                        <tr>
+                          <td>                  
+                          
+                          <%= label_tag "Fits SVP's Criteria:", nil %>
+                          <%= select_tag(:q1, options_for_select([['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]], selected: @rating.q1), :prompt => "Rate 1 - 5", class: "form-control loi-rating-form") %>
+                          </td>
+                          <td>
+                          <%= label_tag "Potential SVP Impact:", nil %>
+                          <%= select_tag(:q2, options_for_select([['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]], selected: @rating.q2 ), :prompt => "Rate 1 - 5", class: "form-control loi-rating-form") %>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <%= label_tag "Level of Excitement:", nil %>
+                            <%= select_tag(:q3, options_for_select([['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]], selected: @rating.q3 ), :prompt => "Rate 1 - 5", class: "form-control loi-rating-form") %>
+                          </td>
+                          <td>
                     
-                      <p class="rating-label"><%= label_tag "Benefit to SVP:", nil %></p>
-                      <%= select_tag(:q4, options_for_select([['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]], selected: @rating.q4 ), :prompt => "Rate 1 - 5", class: "form-control loi-rating-form") %>
-
-                      <hr>
-                      <p class="rating-label"><%= label_tag "Invite to Submit RFP:", nil %></p>
-                      <%= select_tag(:q5, options_for_select([['Yes', 'Yes'], ['No', 'No'], ['Maybe', 'Maybe']], selected: @rating.q5 ), :prompt => "Select", class: "form-control loi-rating-form") %>
-
-      
-                      <%= hidden_field_tag :loi_id, @loi.id %> 
-                      <%= submit_tag 'Edit', class: "btn btn-primary" %>
-
+                            <%= label_tag "Benefit to SVP:", nil %>
+                            <%= select_tag(:q4, options_for_select([['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]], selected: @rating.q4 ), :prompt => "Rate 1 - 5", class: "form-control loi-rating-form") %>
+                          </td>
+                        </tr>
+                      
+                        <tr>
+                          <td>
+                            <%= label_tag "Invite to Submit RFP:", nil %>
+                            <%= select_tag(:q5, options_for_select([['Yes', 'Yes'], ['No', 'No'], ['Maybe', 'Maybe']], selected: @rating.q5 ), :prompt => "Select", class: "form-control loi-rating-form") %>
+                          </td>
+                          <td>
+                            <%= hidden_field_tag :loi_id, @loi.id %> 
+                            <%= submit_tag 'Edit', class: "btn btn-primary" %>
+                          </td>
+                        </tr>
+                      </table>
                     </form>
                   </div>
                   </div>
                 <% end %>
+              </div>
+
               <% else %>
+              <div id="rating-pullout-button">
+                <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#loi-ratings">Rate this LOI</button>
+              </div>
+              <div id="rating-pullout">
+
                 <%= form_tag "/ratings", method: :post do %>
 
                   <div class="loi-rating-form">
-                  <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#loi-ratings">Rate this LOI</button>
                   <div id="loi-ratings" class="collapse">
                   
                     <form>
-                      <hr>                  
-                      <p class="rating-label">Fits SVP's Criteria:</p>
-                      <%= select_tag(:q1, options_for_select([['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]], selected: @rating.q1), :prompt => "Rate 1 - 5", class: "form-control loi-rating-form") %>
-                      <hr>
-                      <p class="rating-label"><%= label_tag "Potential SVP Impact:", nil %></p>
-                      <%= select_tag(:q2, options_for_select([['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]], selected: @rating.q2 ), :prompt => "Rate 1 - 5", class: "form-control loi-rating-form") %>
-                      <hr>
-                      
-                      <p class="rating-label"><%= label_tag "Level of Excitement:", nil %></p>
-                      <%= select_tag(:q3, options_for_select([['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]], selected: @rating.q3 ), :prompt => "Rate 1 - 5", class: "form-control loi-rating-form") %>
-                      <hr>
+                      <table>
+                        <tr>
+                          <td>                  
+                          
+                          <%= label_tag "Fits SVP's Criteria:", nil %>
+                          <%= select_tag(:q1, options_for_select([['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]], selected: @rating.q1), :prompt => "Rate 1 - 5", class: "form-control loi-rating-form") %>
+                          </td>
+                          <td>
+                          <%= label_tag "Potential SVP Impact:", nil %>
+                          <%= select_tag(:q2, options_for_select([['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]], selected: @rating.q2 ), :prompt => "Rate 1 - 5", class: "form-control loi-rating-form") %>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <%= label_tag "Level of Excitement:", nil %>
+                            <%= select_tag(:q3, options_for_select([['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]], selected: @rating.q3 ), :prompt => "Rate 1 - 5", class: "form-control loi-rating-form") %>
+                          </td>
+                          <td>
                     
-                      <p class="rating-label"><%= label_tag "Benefit to SVP:", nil %></p>
-                      <%= select_tag(:q4, options_for_select([['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]], selected: @rating.q4 ), :prompt => "Rate 1 - 5", class: "form-control loi-rating-form") %>
-
-                      <hr>
-                      <p class="rating-label"><%= label_tag "Invite to Submit RFP:", nil %></p>
-                      <%= select_tag(:q5, options_for_select([['Yes', 'Yes'], ['No', 'No'], ['Maybe', 'Maybe']], selected: @rating.q5 ), :prompt => "Select", class: "form-control loi-rating-form") %>
-
-      
-                      <%= hidden_field_tag :loi_id, @loi.id %> 
-                      <%= submit_tag 'Submit', class: "btn btn-primary" %>
-
+                            <%= label_tag "Benefit to SVP:", nil %>
+                            <%= select_tag(:q4, options_for_select([['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]], selected: @rating.q4 ), :prompt => "Rate 1 - 5", class: "form-control loi-rating-form") %>
+                          </td>
+                        </tr>
+                      
+                        <tr>
+                          <td>
+                            <%= label_tag "Invite to Submit RFP:", nil %>
+                            <%= select_tag(:q5, options_for_select([['Yes', 'Yes'], ['No', 'No'], ['Maybe', 'Maybe']], selected: @rating.q5 ), :prompt => "Select", class: "form-control loi-rating-form") %>
+                          </td>
+                          <td>
+                            <%= hidden_field_tag :loi_id, @loi.id %> 
+                            <%= submit_tag 'Submit', class: "btn btn-primary" %>
+                          </td>
+                        </tr>
+                      </table>
                     </form>
                   </div>
                   </div>
                 <% end %>
-
+                </div>
             <% end %>
           <% end %>
-        </div>
         </h1>
     </div> 
       <div class="form-body">
