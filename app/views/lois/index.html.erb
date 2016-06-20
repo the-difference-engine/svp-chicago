@@ -55,7 +55,7 @@
                 <p>{{avgRatingPerLoi(loi.ratings)}}</p>
               </td>
               <td>
-                <%= link_to "View", "/lois/{{loi.id}}", :class => "btn btn-success btn-rate", :role => "button" %>
+                <%= link_to "View/Rate", "/lois/{{loi.id}}", :class => "btn btn-success btn-rate", :role => "button" %>
                 <div ng-hide="rated(loi.ratings)">
                   <%= link_to "Rate", "/ratings/new?loi={{loi.id}}", :class => "btn btn-danger btn-rate", :role => "button" %>
                 </div>
