@@ -21,8 +21,10 @@ class UsersController < ApplicationController
     end    
 
     if params[:active]
-      @user.active_account = false
+      Rails.logger @user.active_account = !@user.active_account
     end
+
+    Rails.logger @user
 
     @user.save
     flash[:success] = "Account Updated"
