@@ -7,7 +7,7 @@
       </div>
         <div class="panel panel-default">
           <table class="table table-hover" id="loi-table">
-            <th style="width: 25%;">
+            <th style="width: 20%;">
               <p ng-click="sortBy('org_name')">
                 Organization Name
                 <span ng-hide="descending" class="glyphicon glyphicon-triangle-bottom">
@@ -39,12 +39,12 @@
                 </span>
               </p>
             </th>
-            <th style="width: 17%; text-align: center; vertical-align: middle">
+            <th style="width: 20%; text-align: center; vertical-align: middle">
               <p>Action</p>
             </th>
             <tr ng-repeat="loi in lois | filter: {org_name: orgNameFilter} | orderBy:sortByAttribute:descending">
               <td>
-                <b>{{loi.org_name}}</b>
+                <b>{{loi.org_name}} {{loi.status}}</b>
               </td>
               <td>
                 <ul class="list-unstyled">
@@ -56,12 +56,15 @@
               </td>
               <td>
                 <%= link_to "View/Rate", "/lois/{{loi.id}}", :class => "btn btn-success btn-rate", :role => "button" %>
-                <div ng-hide="rated(loi.ratings)">
-                  <%= link_to "Rate", "/ratings/new?loi={{loi.id}}", :class => "btn btn-danger btn-rate", :role => "button" %>
-                </div>
-                <div ng-show="rated(loi.ratings)">
-                  <%= link_to "Edit Rating", "/ratings/{{activeRatingId}}/edit", :class => "btn btn-danger btn-rate", :role => "button" %>
-                </div>
+
+                  <% if current_user && current_user.super_admin %>
+
+                    <button class="btn btn-info btn-invite" ng-model="loi.status" ng-click="inviteSent(status, loi.id)" ng-if="loi.status == false">Invite to RFP</button>   
+                    <button class="btn btn-error btn-invite inactive-btn" ng-if="loi.status == true">Invited</button>   
+                  <% else %>
+                    <button class="btn btn-danger btn-rate inactive-btn" ng-if="loi.status == false">Super Admin action required</button>
+                    <button class="btn btn-error btn-rate inactive-btn" ng-if="loi.status == true">Invited to RFP</button>
+                  <% end %>
               </td>
             </tr>
           </table>
