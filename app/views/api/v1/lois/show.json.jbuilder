@@ -1,6 +1,8 @@
 json.id @loi.id
 json.name @loi.name
 json.email @loi.email
+json.status @loi.status
+
 json.answers @loi.answers do |answer|
 	json.question_id answer.question_id
 	json.answer answer.answer
