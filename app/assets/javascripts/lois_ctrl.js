@@ -26,8 +26,19 @@
           };
 
         });
+
+        
+            //THIS SUBMIT FUNCTION ALLOWS AN ADMIN TO INVITE TO RFP DIRECTLY FROM THE RAINGS INDEX PAGE
+        $scope.inviteSent = function(status, activeId){
+          var updatedStatus = {
+            status: status
+          };
+          $http.patch('/api/v1/lois/' + activeId + '.json', updatedStatus).then(function(response){
+            console.log(response.data);
+          });
+        };
       
-    };
+      };
 
   }]);
  
