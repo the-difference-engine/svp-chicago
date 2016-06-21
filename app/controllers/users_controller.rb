@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     end    
 
     if params[:active]
-      Rails.logger @user.active_account = !@user.active_account
+      @user.active_account = false
     end
 
     @user.save
