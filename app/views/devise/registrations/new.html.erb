@@ -1,0 +1,46 @@
+<div class="container">
+  <div id="form-paper">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="login">
+          <h2> Welcome</h2>
+          <h4> Lets put some text here explaining why SVP is  asking an applicant to register?</h4>
+          <br>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="login">
+          <h2>Sign Up</h2>
+            <br>
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+            <%= devise_error_messages! %>
+
+            <div class="field">
+              <p><%= f.label :email %></p>
+              <%= f.email_field :email, autofocus: true %>
+            </div>
+
+            <div class="field">
+              <p><%= f.label :password %>
+              <% if @minimum_password_length %>
+              <em>(<%= @minimum_password_length %> characters minimum)</em></p>
+              <% end %>
+              <%= f.password_field :password, autocomplete: "off" %>
+            </div>
+
+            <div class="field">
+              <p><%= f.label :password_confirmation %></p>
+              <%= f.password_field :password_confirmation, autocomplete: "off" %>
+            </div>
+
+            <div class="actions">
+              <%= f.submit "Sign up", class: "btn btn-custom" %>
+            </div>
+          <% end %>
+
+          <%= render "devise/shared/links" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

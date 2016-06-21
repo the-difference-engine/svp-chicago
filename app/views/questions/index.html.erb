@@ -1,20 +1,28 @@
-<h1>All LOI Form Fields</h1>
+<div class="site-container">
+  <div id="form-paper">
+    <div class="form-heading">
+      <h1>LOI Questions</h1>
+    </div>
 
-<%= link_to "Add New Field", "/questions/new", :class => "btn btn-default", :role => "button" %>
 
-<ol>
-  <% @sections.each do |section| %>
-    <li><h4> <%= section.name %> </h4></li>
-    
-    <ul>
-      <% @questions.each do |question| %>
-        <% if question.section_id == section.id %>
-          <li><p> <%= question.question %> <%= link_to "View All", "questions/#{question.id}", :class => "btn btn-default", :role => "button" %>
-              <%= link_to "Edit", "/questions/#{question.id}/edit", :class => "btn btn-default", :role => "button" %>
-              <%= link_to "Delete", "/questions/#{question.id}", method: :delete, data:{confirm: "Are You Sure"}, :class => "btn btn-default", :role => "button" %></p></li>
-        <% end %>
+    <div class="add-question">
+    <%= link_to "Add New Question", "/questions/new", :class => "btn btn-primary btn-question", :role => "button" %>
+    </div>
+
+    <ol>
+      <% @sections.each do |section| %>
+        <h4><li> <%= section.name %> </li></h4>
+        
+        <ul>
+          <% @questions.each do |question| %>
+            <% if question.section_id == section.id %>
+              <li><p> <%= question.question %> 
+                  <%= link_to "Edit", "/questions/#{question.id}/edit", :class => "btn btn-custom", :role => "button" %></p>
+              </li>
+            <% end %>
+          <% end %>
+        </ul>
       <% end %>
-    </ul>
-  <% end %>
-</ol>
-
+    </ol>
+  </div>
+</div>

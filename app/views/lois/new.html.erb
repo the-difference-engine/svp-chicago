@@ -1,139 +1,343 @@
-<div class="form-heading">
+<div class="site-container">
+  <div id="form-paper">
+    <div class="form-heading">
 
-  <h1> 2016 SVP Chicago Letter of Interest </h1>
+      <div>
 
-  <div class="text">
-    <p><b>Completing this Form:</b></p>
+        <h1> 2016 SVP Chicago Letter of Interest </h1>
+        <h2> Sector Focus: Beaking the Cycle of Poverty </h2>
+        <hr>
 
-    <p>Please enter information directly into the form, using this form as the main body of your Letter of Interest. The boxes will expand to hold your text. You can adjust the page breaks when you have completed the form.</p>
+          <p><b>Completing this Form:</b></p>
 
-    <p><ul>
-      <li>If you find an item confusing, please feel free to contact us.</li>
+          <p>Please enter information directly into the form, using this form as the main body of your Letter of Interest. The boxes will expand to hold your text. You can adjust the page breaks when you have completed the form.</p>
 
-      <li>Please use bullet points rather than paragraphs. Brevity is helpful to our partners when reviewing proposals.</li>
-    </ul></p>
-  </div>
+          <p><ul>
+            <li>If you find an item confusing, please feel free to contact us.</li>
 
-  <div class="form">
-    <%= form_tag '/lois', method: :post do %>
+            <li>Please use bullet points rather than paragraphs. Brevity is helpful to our partners when reviewing proposals.</li>
+          </ul></p>
 
-      <div class="input-group">
-        <%= label_tag "Your Name:" %>
-        <%= text_field_tag :name, @loi.name, class: "form-control" %>
+
       </div>
+    </div>
 
-      <div class="input-group">
-        <%= label_tag "Your E-mail:" %>
-        <%= text_field_tag :email, @loi.email, class: "form-control" %>
-      </div>
+  <div class="form-body">
+  <!-- BEGIN ANGULAR -->
 
+    <div ng-app="app">
+      <div ng-controller="formsCtrl" ng-init="setup()">
 
-      <ol>
-        <% @sections.each do |section| %>
-          <h3><li><%= section.name %> </li></h3>
+  <!--       <div class="progress">
+          <div class="progress-bar" role="progressbar" style="width: 70%;">
+            <span class="sr-only">60% Complete</span>
+          </div>
+        </div> -->
+
+        <form name="loiForm" ng-submit="submit(name, email, loiForm.$valid)" novalidate>
           
+          <!-- BEGIN ORDERED LIST / FORM SECTIONS -->
           <ul>
 
-            <% if section.name == "Organizational Capacity Challenges" %>
-                <table class="table">
+            <!-- CONTACT SECTION -->
+
+            <section class="section contact-section" ng-show="activeSectionArray[0]">
+              <h3><li> {{ contact_section.name }} </li></h3>
+                <table class="table table-striped table-bordered">
+                  <fieldset class="form-group">
+                    <tr>
+                      <div class="form-group" ng-class="{ 'has-error' : loiForm.name.$invalid && !loiForm.name.$pristine }">
+                        <td><label> Proposal Contact Name: </label></td>
+                        <td>
+                          <p><input type="text" name="name" ng-model="name" class="form-control" required></p>
+                          <p ng-show="loiForm.name.$invalid && !loiForm.name.$pristine" class="help-block">You name is required.</p>
+                        </td>
+                      </div>
+                    </tr>
+                    <tr>
+                      <div class="form-group" ng-class="{ 'has-error' : loiForm.email.$invalid && !loiForm.email.$pristine }">
+                        <td><label> Proposal Contact Email: </label></td>
+                        <td>
+                          <input type="email" name="email" ng-model="email" class="form-control">
+                          <p ng-show="loiForm.email.$invalid && !loiForm.email.$pristine" class="help-block">Enter a valid email.</p>
+                        </td>
+                      </div>
+                    </tr>
+                    <tr ng-repeat="question in contact_formData">
+                      <td style="width: 25%">
+                        <label> {{question.question}}: </label>
+                      </td>
+                      <td>
+                        <input type="text" class="form-control" ng-model="question.answer">
+                      </td>
+                    </tr>
+                  </fieldset>
+                </table>
+            </section>
+
+            <!-- ORGANIZATION SECTION -->
+
+            <section class="section organization-section" ng-show="activeSectionArray[1]">
+              <h3><li> {{ organization_section.name }} </li></h3>
+                <table class="table table-striped table-bordered">
+                  <fieldset class="form-group">
+                    <tr ng-repeat="question in organization_formData" ng-hide="$last">
+                      <td style="width: 20%">
+                        <label> {{question.question}}: </label>
+                      </td>
+                      <td>
+                        <input type="text" class="form-control" ng-model="question.answer">
+                      </td>
+                    </tr>
+                  </fieldset>
+                </table>
+
+                <table class="table table-striped table-bordered">
+                  <tr>
+                    <td>
+                      <label> {{organization_formData[organization_formData.length - 1].question}} </label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <textarea class="form-control" rows="3" ng-model="organization_formData[organization_formData.length - 1].answer"></textarea>
+                    </td>
+                  </tr>
+                </table>   
+            </section> 
+
+            <!-- OVERVIEW SECTION -->
+
+            <section class="section overview-section" ng-show="activeSectionArray[2]">
+              <h3><li> {{ overview_section.name }} </li></h3>
+                <table class="table table-striped table-bordered" ng-repeat="question in overview_formData">
+                  <tr>
+                    <td>
+                      <label> {{question.question}}: </label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <textarea class="form-control" rows="3" ng-model="question.answer"></textarea>
+                    </td>
+                  </tr>
+                </table>           
+            </section>       
+
+            <!-- VISION SECTION -->
+
+            <section class="section vision-section" ng-show="activeSectionArray[3]">
+              <h3><li> {{ vision_section.name }} </li></h3>
+                <table class="table table-striped table-bordered" ng-repeat="question in vision_formData">
+                  <tr>
+                    <td>
+                      <label> {{question.question}}: </label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <textarea class="form-control" rows="3" ng-model="question.answer"></textarea>
+                    </td>
+                  </tr>
+                </table>           
+            </section>
+
+            <!-- KEY CONCERN SECTION -->
+
+            <section class="section concern-section" ng-show="activeSectionArray[4]">
+              <h3><li> {{ concern_section.name }} </li></h3>
+                <table class="table table-striped table-bordered" ng-repeat="question in concern_formData">
+                  <tr>
+                    <td>
+                      <label> {{question.question}}: </label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <textarea class="form-control" rows="3" ng-model="question.answer"></textarea>
+                    </td>
+                  </tr>
+                </table>           
+            </section>
+            
+            <!-- CHALLENGE SECTION -->
+            
+            <section class="section challenge-section" ng-show="activeSectionArray[5]">
+              <h3><li>{{ challenge_section.name }}</li></h3>
+                <table class="table table-striped table-bordered">
                   <tr>
                     <th>Focus Area</th>
                     <th>Please provide a short description of your top 1-3 challenge(s) in each area that applies</th>
-                    <th>Priority Rank</th>
-                    <th>2015 FTEs</th>
-                    <th>2016 FTEs</th>
-                    <th>2017 FTEs</th>
+                    <th>Priority Rank each as High, Medium or Low</th>
+                    <th colspan="3">
+                      <table class="fte-header-table">
+                        <tr>
+                          <td colspan="3">Please provide the total amount of time you and your staff spend in each focus area expressd in FTEs</td>
+                        </tr>
+                        <tr>
+                          <td>-</td>
+                          <td>-</td>
+                          <td>-</td>
+                        </tr>
+                        <tr>
+                          <td>2015 Staffing (actual)</td>
+                          <td>2016 Staffing (current)</td>
+                          <td>2017 Staffing (projected)</td>
+                        </tr>
+                      </table>
+                    </th>
                   </tr> 
-            <% elsif section.name == "Demographics" %>
-                <table class="table">
-                  <tr>
-                    <th>Sector</th>
-                    <th>Mark an “x” if you have programs addressing this sector</th>
+                  <tr ng-repeat="question in challenge_formData">
+                    <td><label> {{question.question}}: </label></td>
+                    <td>
+                      <input class="form-control" type="text" ng-model="question.challenges[0].challenge">
+                      <input class="form-control" type="text" ng-model="question.challenges[1].challenge" ng-show="activeChallenge[question.question_id]>0">
+                      <input class="form-control" type="text" ng-model="question.challenges[2].challenge" ng-show="activeChallenge[question.question_id]>1">
+                      <p ng-hide="activeChallenge[question.question_id]==2"><a ng-click="addChallenge(question.question_id)">Add Challenge</a></p>
+                    </td>
+                    <td>
+                      <select class="form-control" name="singleSelect" id="singleSelect" ng-model="question.challenges[0].priority">
+                        <option value="">--Select--</option>
+                        <option value="H">High</option>
+                        <option value="M">Medium</option>
+                        <option value="L">Low</option>
+                      </select>
+                      <select class="form-control" name="singleSelect" id="singleSelect" ng-model="question.challenges[1].priority" ng-show="activeChallenge[question.question_id]>0">
+                        <option value="">--Select--</option>
+                        <option value="H">High</option>
+                        <option value="M">Medium</option>
+                        <option value="L">Low</option>
+                      </select>
+                      <select class="form-control" name="singleSelect" id="singleSelect" ng-model="question.challenges[2].priority" ng-show="activeChallenge[question.question_id]>1">
+                        <option value="">--Select--</option>
+                        <option value="H">High</option>
+                        <option value="M">Medium</option>
+                        <option value="L">Low</option>
+                      </select>
+                    </td>
+                    <td><input class="form-control" type="number" ng-model="question.fte_1" ng-change="addFte()"></td>
+                    <td><input class="form-control" type="number" ng-model="question.fte_2" ng-change="addFte()"></td>
+                    <td><input class="form-control" type="number" ng-model="question.fte_3" ng-change="addFte()"></td>
                   </tr>
-            <% elsif section.name == "Geographic Focus" %>
-                <table class="table">
                   <tr>
-                    <th>Focus</th>
-                    <th>Please select whichever applies (if more than one, pick one based on your main program)</th>
+                    <td colspan="3">TOTAL FTEs</td>
+                    <td>{{fte_1}}</td>
+                    <td>{{fte_2}}</td>
+                    <td>{{fte_3}}</td>
                   </tr>
-            <% end %>
+                </table>
+              </section>
+            
+            <!-- REFERRAL SECTION -->
+   
+            <section class="section referral-section" ng-show="activeSectionArray[6]">
+              <h3><li> {{ referral_section.name }} </li></h3>
+                <table class="table table-striped table-bordered" ng-repeat="question in referral_formData">
+                  <tr>
+                    <td>
+                      <label> {{question.question}}: </label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <textarea class="form-control" rows="3" ng-model="question.answer"></textarea>
+                    </td>
+                  </tr>
+                </table>           
+            </section>
 
-            <% @questions.each do |question| %>
+            <!-- CHECKBOX SECTIONS -->
 
-              <% if question.section_id == section.id && section.name == "Organizational Capacity Challenges" %>
+            <section class="section" ng-show="activeSectionArray[7]">
+
+              <div class="row">
+            
+                <!-- DEMOGRAPHIC SECTION -->
+
+                <div class="col-md-6">
+                  <section class="demographic-section">
+                    <h3><li> {{ demographic_section.name }} </li></h3>
+                      <table class="table table-striped table-bordered">
+                        <tr>
+                          <th>Sector</th>
+                          <th>Please select if your programs address this sector</th>
+                        </tr>
+                        <fieldset class="form-group">
+                          <tr ng-repeat="question in demographic_formData">
+                            <td style="width: 40%">
+                              <label> {{question.question}}: </label>
+                            </td>
+                            <td>
+                              <input type="checkbox" class="checkbox" ng-model="question.answer" ng-true-value="'YES'" ng-false-value="''">
+                            </td>
+                          </tr>
+                        </fieldset>
+                      </table>
+                  </section>
+                </div>
+
+                <!-- GEOGRAPHIC FOCUS SECTION -->
+
+                <div class="col-md-6">
+                  <section class="geographic-section">
+                    <h3><li> {{ geographic_section.name }} </li></h3>
+                      <table class="table table-striped table-bordered">
+                        <fieldset class="form-group">
+                          <tr>
+                            <th>Geographic Focus</th>
+                            <th>Please select whichever applies (if more than one, pick the one based on your main program)</th>
+                          </tr>
+                          <tr ng-repeat="question in geographic_formData">
+                            <td style="width: 40%">
+                              <label> {{question.question}}: </label>
+                            </td>
+                            <td>
+                              <input type="checkbox" class="checkbox" ng-model="question.answer" ng-true-value="'YES'" ng-false-value="''">
+                            </td>
+                          </tr>
+                        </fieldset>
+                      </table>
+                  </section>
+                </div>
+              </div>
+          
+            </ul>
+            <!-- END ORDERED LIST / FORM SECTIONS -->
+          
+           
+              <div class="submit-button-container">
                 
-                  <tr>
-                    <td><%= label_tag question.question+':' %></td>
+                  <button class="btn btn-success btn-lg" type="submit">Save and Submit Later</button>
+                
+                  <button ng-click="submitNow()" class="btn btn-primary btn-lg" type="submit">Submit Now</button>
+                
+              </div>
+              
+          
+          
 
-                    <td>
-                      <div id=<%="question_#{question.id}"%>>
-                        <div>
-                          <%= text_field_tag "answers[#{question.id}[challenges][]", nil, class: "form-control" %>
-                        </div>
-                      </div>
-                      
-                      <a id=<%="#{question.id}"%> class="add_field_button">Add More Fields</a>
-                    </td>
+            <!-- <div class="submit-button-container" ng-show="activeSectionArray[7]">
+              <button class="btn btn-primary btn-lg submit-button" type="submit" ng-disabled="loiForm.$invalid">Save and Submit Later</button>
+            </div> -->
 
-                    <td>
-                      <div id=<%="priority_#{question.id}"%>>
-                        <div>
-                          <%= select_tag "answers[#{question.id}[challenges][]", options_for_select(["H", "M", "L"], "H") %>
-                        </div>
-                      </div>
-                    </td>
+          </form>
+        </section>
 
-                    <td><%= text_field_tag "answers[#{question.id}[ftes][]", nil, class: "form-control" %></td>
-                    <td><%= text_field_tag "answers[#{question.id}[ftes][]", nil, class: "form-control" %></td>
-                    <td><%= text_field_tag "answers[#{question.id}[ftes][]", nil, class: "form-control" %></td>
-                  </tr>
-
-                <% elsif question.section_id == section.id && section.name == "Demographics" %>
-
-                  <tr>
-                    <td><%= label_tag question.question+':' %></td>
-                    <td><%= check_box_tag "answers[#{question.id}]", "yes", false %></td>
-                  </tr>
-
-                <% elsif question.section_id == section.id && section.name == "Geographic Focus" %>
-
-                  <tr>
-                    <td><%= label_tag question.question+':' %></td>
-                    <td><%= check_box_tag "answers[#{question.id}]", "yes", false %></td>
-                  </tr>
-
-                <% elsif question.section_id == section.id %>
-
-                  <li><%= label_tag question.question+':' %>
-                  <%= text_field_tag "answers[#{question.id}]", nil, class: "form-control" %></li>
-                  
-                <% end %>
-              <% end %>
-
-              <% if section.name == "Organizational Capacity Challenges" %>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td>TOTAL FTEs</td>
-                  <td>2015 total</td>
-                  <td>2016 total</td>
-                  <td>2017 total</td>
-                </tr>
-              <% elsif section.name == "Demographics" %>
-                </table>
-              <% elsif section.name == "Geographic Focus" %>
-                </table>
-              <% end %>
-            </table>
-          </ul>
-        <% end %>
-      </ol>
-
-        <div>
-          <%= submit_tag "Send", class: "btn btn-default" %>
+        <!-- <div class="form-group btn-container">
+          <button class="btn btn-danger section-btn" ng-click="prevSection()">Previous Section</button>
+          <button class="btn btn-danger section-btn" ng-click="nextSection()">Next Section</button>
+        </div>
+ -->
+ 
+        <div class="bottom-text" ng-show="activeSectionArray[7]">
+          <h4><b>Thank you for your interest in partnering with Social Venture Partners Chicago!</b></h4>
         </div>
 
-      <% end %>
-  </div>
+      </div>
+    </div>
 
+  <!-- END ANGULAR -->
+
+  </div>
+  </div>
 <div>

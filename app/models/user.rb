@@ -3,4 +3,16 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  has_many :lois
+  has_many :ratings
+
+  def number_of_invites
+    ratings.where(q5: "Yes").count
+  end
+
+  def active_for_authentication?
+    super && active_account?
+  end
+  
 end

@@ -1,0 +1,149 @@
+.form-heading {
+  width: 100%;
+  background-color: lightgrey;
+  margin: auto;
+  padding: 25px;
+}
+
+.form-heading h1 {
+  text-align: center;
+}
+
+.form-heading h2 {
+  text-align: center;
+}
+
+.form-container{
+  max-width: 100%;
+  margin: auto;
+}
+
+.form-body {
+  background-color: white;
+  margin: auto;
+}
+
+.fte-header-table {
+  width: 100%;
+  text-align: center;
+}
+
+.form-list li {
+  padding-bottom: 15px;
+}
+
+.challenge-list li {
+  padding: 0px;
+}
+
+.challenge-list {
+  list-style-type: none;
+  list-style: none;
+  padding-left: 0;
+}
+.filter{
+  padding: 25px;
+}
+.submit-button-container {
+  width: 100%;
+  text-align: center;
+  display: inline-block;
+  padding-bottom: 20px;
+}
+
+.btn-container{
+  padding: 20px;
+  text-align: right;
+}
+
+.btn-rate{
+  float: right;
+  margin: 7px;
+}
+
+#loi-table{
+  // background-color: #EBF1F7;
+  
+}
+
+.background{
+  background-color: white;
+}
+
+.table-borderless tbody tr td, .table-borderless tbody tr th, .table-borderless thead tr th {
+    border: none;
+}
+
+.section {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.ng-enter, .ng-move{
+  -webkit-animation: fadeIn 1s;
+  -moz-animation: fadeIn 1s;
+  -o-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+
+.ng-leave{
+  -webkit-animation: fadeOut 1s;
+  -moz-animation: fadeOut 1s;
+  -o-animation: fadeOut 1s;
+  animation: fadeOut 1s;
+}
+
+#form-paper{
+  width: 90%;
+  margin: auto;
+  box-shadow: 6px 6px 8px rgba(0,0,0,0.21);
+  border-width: 1px;
+  border-style: solid;
+  border-color: #A2A2A2;
+  opacity: 0.75;
+  background-color: #FFFFFF;
+}
+
+.bottom-text {
+  text-align: center;
+  padding: 15px;
+}
+
+
+.loi-rating-form td {
+  text-align:left;
+  font-size: 14px;
+  text-transform: uppercase;
+  width:120px;
+  height:100px;
+  vertical-align: bottom;
+  padding:10px;
+
+}
+.loi-rating-form h4 {
+  text-align:left;
+}
+.loi-rating-form hr {
+  margin-top:10px;
+}
+
+#rating-pullout {
+  position: fixed;
+  width:270px;
+  background-color:#ccc;
+  right: 0;
+  top: 170px;
+  z-index:2;
+}
+#rating-pullout-button {
+  position: fixed;
+  background-color:#ccc;
+  right: 0;
+  width:120px;
+  padding:10px;
+  top: 100px;
+  z-index:4;
+  height:70px;
+}

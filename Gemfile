@@ -10,6 +10,7 @@ gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 gem 'devise'
+gem 'gon'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
@@ -28,7 +29,8 @@ gem 'bootstrap-sass'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 gem 'mailgun-ruby', '~>1.0' 
-
+#mail gem to use with gmail
+gem 'mail'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
@@ -40,6 +42,8 @@ group :development, :test do
   gem 'byebug'
   gem 'rspec-rails', '~> 3.0'
   gem 'dotenv-rails'
+  gem 'pry-rails'
+  gem 'factory_girl_rails', '~> 4.7'
 end
 
 group :development do

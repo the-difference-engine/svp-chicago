@@ -1,0 +1,135 @@
+body{
+	font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight: 400;
+	background-color: #2261AD;
+	// background-image: url("http://www.transparenttextures.com/patterns/navy.png");
+	background-image: image-url("wov.png");
+	background-attachment: fixed;
+	margin: 0;
+  padding: 0;
+  padding-top: 130px;
+	// perspective: 1px;
+	// transform-style: preserve-3d;
+  height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.site-container{
+	width: 100%;
+}
+
+
+.navbar-custom{
+	background-color: #2261AD;
+	// background-image: url("http://www.transparenttextures.com/patterns/
+	// 	translucent-fibres.png");
+	height: 100px;
+	font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	border-style: solid;
+  border-bottom: thin solid white;
+}
+
+.navbar-custom li {
+	margin: 10px;
+	margin-top: 20px;
+}
+
+a:hover{
+	background-color: transparent;
+	// -webkit-transition: width 2s, height 2s, background-color 2s, -webkit-transform 2s;
+	// transition: width 2s, height 2s, background-color 2s, transform 2s;
+}
+.navbar .nav > li > a, .navbar .nav > li {
+	background-color: black;
+	color: white;
+	text-shadow: none;
+	font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.navbar-custom .navbar-nav > li > a:hover, .navbar-custom .navbar-nav > li > a:focus {
+    background-color: white;
+    color: black;
+}
+
+
+.img-logo{
+	margin-top: 10px;
+	height: 80px;
+}
+
+.logo-md{
+	height: 300px !important; 
+}
+
+.logo{
+	padding: 30px;
+}
+
+.home-text{
+	padding: 30px;
+}
+
+.center-btn{
+	text-align: center;
+}
+
+.btn-custom{
+	background-color: lightgrey;
+	color: black;
+	border: 0;
+	position: relative;
+	border-radius: 5px;
+	transition: all 0.5s;
+}
+
+.btn-custom:hover{
+	background-color: black;
+	color: lightgrey;
+	transition: 0.5s ease;
+}
+
+footer {
+	padding-top: 20px;
+	text-align: center;
+}
+
+.table {
+	margin-bottom: 0px;
+}
+
+.home-section{
+	margin-top: 30px;
+	padding: 20px;
+	background-color: #E5E0D5;
+	width: 95%;
+	margin-right:auto;
+	border-width: 1px;
+  border-style: solid;
+  border-color: #A2A2A2;
+}
+
+.home-section li {
+	padding: 10px;
+	color: #2261AD;
+}
+
+.home-section h3 {
+	padding: 10px;
+	color: #2261AD;
+}
+
+.svp-pin {
+	margin: 20px;
+}
+
+.get-started {
+
+	text-align: center;
+	margin-top: 30px;
+	margin-bottom: 40px;
+}
+
+.csv-btn{
+	margin: 20px;
+}

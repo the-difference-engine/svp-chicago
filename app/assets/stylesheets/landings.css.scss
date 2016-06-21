@@ -1,11 +1,32 @@
-.home {
-  width: 100%;
+.container {
+  height:auto;
+  width:1170px;
+}
+.thank-you-container {
+  margin: auto;
+  text-align: center;
+  padding-bottom: 50px;
 }
 
-.home img {
-  max-width: 25%;
+.inner-thank-you-container {
+  max-width: 70%;
+  background-color: white;
+  margin: auto;
+  text-align: center;
+  border-radius: 25px;
+  margin-top: 50px;
+}
+
+.thank-you-container img {
+  padding-top: 75px;
+  max-width: 40%;
   display: block;
   margin: auto;
+
+}
+
+.container2 {
+  margin-left:30px;
 }
 
 .home {
@@ -17,16 +38,56 @@
   text-align: justify;
   margin: auto;
 }
-
-.form-heading {
-  width: 100%;
+.main-points {
+  margin-left:20px;
+  width:90%;
+}
+p.main-points {
+  position:relative;
+  margin-right:30px;
+  background-image: image-url("svp_pin.png");
+  background-size: 50px;
+  background-position: left top;
+  background-repeat: no-repeat;
+  padding-left: 80px; /* Adjust according to image size to push text across. */
+  margin-bottom:30px;
+  min-height:55px;
+}
+.instruction {
+  margin-left:30px;
+  width:95%;
+}
+.main-points-edit{ 
+  margin-left:30px;
+  height:400px;
+  width:95%;
 }
 
-.form-heading h1 {
-  text-align: center;
+.last-point-edit{ 
+  margin-left:30px;
+  height:200px;
+  width:95%;
 }
 
-.form {
-  max-width: 70%;
-  margin: auto;
+.gray-section-edit{ 
+  margin-left:20px;
+  height:400px;
+  width:95%;
+}
+.gray-section {
+  margin-left:-10px;
+}
+
+p.gray-section {
+  background-image: image-url("bluebullet.png");
+  background-position: left top;
+  background-repeat: no-repeat;
+  padding-left: 40px; /* Adjust according to image size to push text across. */
+  margin-bottom:30px;
+
+}
+
+#edit-page {
+  text-align:center;
+  margin-top:40px;
 }

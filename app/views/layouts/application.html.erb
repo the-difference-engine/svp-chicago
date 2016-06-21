@@ -2,48 +2,52 @@
 <html>
 <head>
   <title>SvpChicago</title>
+  <%= include_gon %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,100' rel='stylesheet' type='text/css'>
 </head>
 <body>
 
 
 <!-- Navigation Bar -->
+  <nav class="navbar navbar-custom navbar-fixed-top">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header" id="bs-example-navbar-collapse-1">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <%= link_to(image_tag("svp_logo_navbar.png", :alt => "logo", :title => "Home", :class => "img-logo"), "/home") %>
+      </div>
 
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="/home">SVP-Chicago</a>
-    </div>
-
-      <ul class="nav navbar-nav navbar-right">
-        <% if user_signed_in? && current_user.admin %>      
-          <li><a href="/questions">LOI Form Builder</a></li>
-          <li><a href="/users">Users</a></li>
-          <li><a href="/lois">LOIs</a></li>
-          <li><a href="/ratings">Ratings</a></li>
-          <li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></li>
-        <% elsif user_signed_in? %>  
-          <li><a href="/lois">LOIs</a></li>
-          <li><a href="/ratings">My Ratings</a></li>
-          <li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></li>
-        <% else %>
-          <li><a href="/users/sign_up">Sign Up</a></li>
-          <li><a href="/users/sign_in">Sign In</a></li>
-        <% end %>
-        </li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
+        <ul class="nav navbar-nav navbar-right">
+          <% if user_signed_in? %>  
+            <li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></li>
+              <% if user_signed_in? && !current_user.admin %>
+                <li><%= link_to 'My applications', "/users/#{current_user.id}" %></li>
+                <% end %>
+          <% else %>
+            <li><a href="/users/sign_up">Sign Up</a></li>
+            <li><a href="/users/sign_in">Sign In</a></li>
+          <% end %>
+          <% if user_signed_in? && current_user.admin %>
+            <li><a href="/lois">LOIs</a></li>
+            <li><a href="/ratings">Ratings</a></li>
+          <% end %>
+          <% if user_signed_in? && current_user.admin && current_user.super_admin? %>      
+            <li><a href="/questions">Edit Questions</a></li>
+            <li><a href="/users">Users</a></li>
+          <% end %>
+          </li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
 
 <!-- Flash Messages -->
 
@@ -59,5 +63,8 @@
 
 <%= yield %>
 
+<footer>
+  <p>© 2016 Social Venture Partners</p>
+</footer>
 </body>
 </html>

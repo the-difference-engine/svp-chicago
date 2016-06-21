@@ -1,17 +1,27 @@
-<h1> Please edit your question </h1>
+<div class="container">
+  <div id="form-paper">
+    <div class="form-heading">
+      <h1>Edit question</h1>
+    </div>
+    <div class="rating-form">
+      <div class="form-horizontal">
 
-<%= form_tag "/questions/#{@question.id}", method: :patch do %>
+        <%= form_tag "/questions/#{@question.id}", method: :patch do %>
     
-    <div>
-    <%=label_tag :question %>
-    <%= text_field_tag :question, @question.question %>
+        <%= render "form" %>
+
+        <div class="form-group">
+          <%=label_tag :section, nil, class: "col-sm-2 control-label" %>
+          <div class="col-sm-10">
+            <%= collection_select :section, :section_id, Section.all, :id, :name, {:selected => @question.section.id}, class: "form-control" %>
+          </div>
+        </div>
+
+        <%= submit_tag "Update Question", class: "btn btn-default" %>
+
+      <% end %>
+
+      </div>
     </div>
-
-    <div class="input-group">
-      <%=label_tag :section %>
-      <%= collection_select :section, :section_id, Section.all, :id, :name, {:style => "width:200px"}, class: "form-control" %>
-    </div>
-
-    <%= submit_tag "Submit Edit" %>
-
-<% end %>
+  </div>
+</div>

@@ -1,6 +1,51 @@
-.sort-carat{
+.right-btn{
+	float: right;
+	margin-bottom: 0px;
 }
 
-.select-filter{
-	
+#rating-table{
+	background-color: #EBF1F7;
+}
+
+#rating-head{
+	background-color: lightgrey;
+	color: black;
+	padding: 15px;
+	margin-bottom: 0;
+	font-weight: 100;
+	text-align: center;
+	border-radius: 6px;
+}
+
+#rating-new{
+	background-color: white;
+	color: black;
+	padding: 15px;
+	font-weight: 100;
+	text-align: center;
+	border-radius: 6px;
+}
+
+.rating-form {
+	text-align: right;
+	// max-width: 80%;
+	margin: auto;
+	padding-top: 50px;
+	padding-bottom: 20px;
+	padding-right: 80px;
+	padding-left: 80px;
+}
+
+.btn-rating {
+	padding-bottom: 50px;
+	text-align: center;
+	margin: auto;
+}
+
+.rtf {
+	padding: 20px;
+}
+
+.average-row{
+	color: gray;
 }

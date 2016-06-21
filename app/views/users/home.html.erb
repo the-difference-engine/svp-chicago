@@ -1,20 +1,23 @@
+<div class="container">
+  <div class="col-xs-12">
+    <p> Hello, you are currently logged in as <%= current_user.email %>. </p>
 
-<p> Hello, you are currently logged in as <%= current_user.email %>. </p>
+    <% if user_signed_in? && current_user.admin %>
 
-<% if user_signed_in? && current_user.admin %>
-
-  <p> You have ADMIN privileges, so you can: <p>
-  <ul>
-    <li>View and rate LOI submissions.</li>
-    <li>Manage Admin accounsts for yourself and other users.</li>
-    <li>See all user's ratings for the LOI submissions.</li>
-    <li>Add, Delete and Edit questions on the LOI submission form.</li>
-    <li>See answers to individual questions from all LOI submissions</li>
-  </ul>
-<% elsif user_signed_in? %>
-  <p> You have USER privileges, so you can: <p>
-  <ul>
-    <li>View and rate LOI submissions.</li>
-    <li>See all your ratings for the LOI submissions.</li>
-  </ul>
-<% end %>
+      <p> You have ADMIN privileges, so you can: </p>
+      <ul>
+        <li>View and rate LOI submissions.</li>
+        <li>Manage Admin accounsts for yourself and other users.</li>
+        <li>See all user's ratings for the LOI submissions.</li>
+        <li>Add, Delete and Edit questions on the LOI submission form.</li>
+        <li>See answers to individual questions from all LOI submissions</li>
+      </ul>
+    <% elsif user_signed_in? %>
+      <p> You have USER privileges, so you can: </p>
+      <ul>
+        <li>View and rate LOI submissions.</li>
+        <li>See all your ratings for the LOI submissions.</li>
+      </ul>
+    <% end %>
+  </div>
+</div>

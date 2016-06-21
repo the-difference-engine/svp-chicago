@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160415005730) do
+ActiveRecord::Schema.define(version: 20160616030526) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,11 +41,23 @@ ActiveRecord::Schema.define(version: 20160415005730) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "landings", force: :cascade do |t|
+    t.string   "year"
+    t.string   "sector_focus"
+    t.text     "main_points"
+    t.text     "gray_section"
+    t.text     "last_point"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
   create_table "lois", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "submitted",  default: false
+    t.integer  "user_id"
   end
 
   create_table "questions", force: :cascade do |t|
@@ -68,6 +80,25 @@ ActiveRecord::Schema.define(version: 20160415005730) do
     t.integer  "weighted_score"
   end
 
+  create_table "rfp_questions", force: :cascade do |t|
+    t.integer  "rfp_section_id"
+    t.string   "question"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  create_table "rfp_sections", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "rfps", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "sections", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -88,6 +119,8 @@ ActiveRecord::Schema.define(version: 20160415005730) do
     t.boolean  "admin",                  default: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "super_admin",            default: false
+    t.boolean  "active_account",         default: true
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
