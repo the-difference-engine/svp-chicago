@@ -4,24 +4,28 @@
       <h1>Edit question</h1>
     </div>
     <div class="rating-form">
-      <div class="form-horizontal">
 
-        <%= form_tag "/questions/#{@question.id}", method: :patch do %>
-    
-        <%= render "form" %>
+        <div class="form-horizontal">
 
-        <div class="form-group">
-          <%=label_tag :section, nil, class: "col-sm-2 control-label" %>
-          <div class="col-sm-10">
-            <%= collection_select :section, :section_id, Section.all, :id, :name, {:selected => @question.section.id}, class: "form-control" %>
+          <%= form_tag "/questions/#{@question.id}", method: :patch do %>
+      <% if @question.id == 1 %>
+        <h2> You do not have the ability to edit this question. </h2>   
+      <% else %>
+          <%= render "form" %>
+
+          <div class="form-group">
+            <%=label_tag :section, nil, class: "col-sm-2 control-label" %>
+            <div class="col-sm-10">
+              <%= collection_select :section, :section_id, Section.all, :id, :name, {:selected => @question.section.id}, class: "form-control" %>
+            </div>
           </div>
+
+          <%= submit_tag "Update Question", class: "btn btn-default" %>
+
+        <% end %>
+
         </div>
-
-        <%= submit_tag "Update Question", class: "btn btn-default" %>
-
-      <% end %>
-
+        <% end %>
       </div>
-    </div>
   </div>
 </div>
