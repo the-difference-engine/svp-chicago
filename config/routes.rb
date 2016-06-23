@@ -19,6 +19,7 @@ Rails.application.routes.draw do
       post '/lois/' => 'lois#create'
       get '/lois/:id' => 'lois#show'
       patch '/lois/:id' => 'lois#update'
+      put '/lois:/id' => 'lois#index'
 
       get '/questions' => 'questions#index'
       get '/questions/:id' => 'questions#show'
@@ -28,7 +29,7 @@ Rails.application.routes.draw do
       get '/answers' => 'answers#index'
       get '/ratings' => 'ratings#index'
       get '/ratings/:id' => 'ratings#show'
-      patch 'ratings/:id' => 'ratings#update'
+      patch 'ratings/:id.json' => 'ratings#update'
       
     end
   end

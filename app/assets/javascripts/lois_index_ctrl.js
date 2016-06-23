@@ -16,7 +16,7 @@
 
       $http.get('/api/v1/lois.json').then(function(response){
         $scope.lois = response.data;
-        console.log($scope.lois[0].ratings)
+        // console.log($scope.lois[0].ratings);
       });
 
       $http.get('/api/v1/questions.json').then(function(response){
@@ -77,6 +77,23 @@
         return "No Ratings";
       }
     };
+
+    $scope.inviteSent = function(status, loi_id){
+      var updatedStatus = {
+        status: true,
+        loi_id: loi_id
+      };
+        console.log(updatedStatus);
+
+      $http.patch('/api/v1/lois/' + loi_id + '.json', updatedStatus).then(function(response){
+        
+        // $scope.lois.push(response.data);
+      });
+    };
+
+
+
+      
 
   }]);
 
