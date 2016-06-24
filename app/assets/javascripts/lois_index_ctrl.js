@@ -79,6 +79,8 @@
     };
 
     $scope.inviteSent = function(status, loi_id){
+      $scope.activeId = gon.loi_id;
+
       var updatedStatus = {
         status: true,
         loi_id: loi_id
