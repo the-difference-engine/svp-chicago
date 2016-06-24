@@ -19,7 +19,11 @@ Rails.application.routes.draw do
       post '/lois/' => 'lois#create'
       get '/lois/:id' => 'lois#show'
       patch '/lois/:id' => 'lois#update'
-      put '/lois:/id' => 'lois#index'
+
+      get '/invited_lois' => 'invited_lois#index'
+      post '/invited_lois/' => 'invited_lois#create'
+      get '/invited_lois/:id' => 'invited_lois#show'
+      
 
       get '/questions' => 'questions#index'
       get '/questions/:id' => 'questions#show'

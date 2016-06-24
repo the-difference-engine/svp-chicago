@@ -22,6 +22,12 @@
       $http.get('/api/v1/questions.json').then(function(response){
         $scope.questions = response.data;
       });
+
+      $http.get('/api/v1/invited_lois.json').then(function(response) {
+        $scope.invited_lois = response.data;
+
+      });
+
     
     };
 
@@ -77,19 +83,20 @@
         return "No Ratings";
       }
     };
-
+    
     $scope.inviteSent = function(status, loi_id){
-      $scope.activeId = gon.loi_id;
-
       var updatedStatus = {
         status: true,
         loi_id: loi_id
       };
         console.log(updatedStatus);
+        console.log(updatedStatus);
 
-      $http.patch('/api/v1/lois/' + loi_id + '.json', updatedStatus).then(function(response){
-        
-        // $scope.lois.push(response.data);
+
+      $http.post('/api/v1/invited_lois/', updatedStatus).then(function(response){
+        console.log(response.data);
+        $scope.invited_lois.push(response.data);
+        // document.getElementById("invitebtns").innerHTML = "<button class='btn btn-error btn-invite inactive-btn'>Invited</button>";
       });
     };
 

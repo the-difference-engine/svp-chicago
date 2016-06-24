@@ -3,7 +3,6 @@ json.array! @lois do |loi|
 	json.name loi.name
 	json.email loi.email
 	json.org_name loi.org_name
-	json.status loi.status
 	
 	json.answers do
 		loi.answers.each do |answer|
@@ -12,6 +11,12 @@ json.array! @lois do |loi|
 					json.set! answer.question_id, [answer.challenges, answer.fte]
 				end			
 		end
+	end
+
+	json.invited_lois loi.invited_lois do |invited_loi|
+		json.id invited_loi.id
+		json.loi_id invited_loi.loi_id
+		json.status invited_loi.status
 	end
 
 	json.ratings loi.ratings do |rating|
