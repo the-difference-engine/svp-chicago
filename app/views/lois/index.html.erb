@@ -58,12 +58,11 @@
                 <%= link_to "View/Rate", "/lois/{{loi.id}}", :class => "btn btn-success btn-rate", :role => "button" %>
                   
                   <% if current_user && current_user.super_admin %>
-                    <div id="invitebtns">
-                    <button class="btn btn-info btn-invite" ng-click="inviteSent(loi_status, loi.id)" ng-if="loi.invited_lois[0].status != true">Invite to RFP</button>   
-                    </div><button class="btn btn-error btn-invite inactive-btn" ng-if="loi.invited_lois[0].status == true">Invited</button>   
+                    <button class="btn btn-info btn-invite" ng-class="{'disabled': truthValue}" ng-click="inviteSent(loi_status, loi.id); clickit()" ng-if="loi.invited_lois[0].status != true">{{btnText}}</button>
+                    <button class="btn btn-error btn-invite disabled" ng-if="loi.invited_lois[0].status == true">Invited</button>   
                   <% else %>
-                    <button class="btn btn-danger btn-rate inactive-btn" ng-if="loi.invited_lois[0].status != true">Super Admin action required</button>
-                    <button class="btn btn-error btn-rate inactive-btn" ng-if="loi.invited_lois[0].status == true">Invited</button>
+                    <button class="btn btn-danger btn-rate disabled" ng-if="loi.invited_lois[0].status != true">Super Admin action required</button>
+                    <button class="btn btn-error btn-rate disabled" ng-if="loi.invited_lois[0].status == true">Invited</button>
                   <% end %>
               </td>
             </tr>

@@ -11,6 +11,7 @@
 
     // $scope.activeRatingId = "";
     $scope.descending = false;
+    $scope.btnText = "Invite to RFP";
 
     $scope.setup = function(){
 
@@ -83,26 +84,35 @@
         return "No Ratings";
       }
     };
-    
+    $scope.truthValue = false;
+
     $scope.inviteSent = function(status, loi_id){
-      var updatedStatus = {
-        status: true,
-        loi_id: loi_id
-      };
-        console.log(updatedStatus);
-        console.log(updatedStatus);
-
-
-      $http.post('/api/v1/invited_lois/', updatedStatus).then(function(response){
-        console.log(response.data);
-        $scope.invited_lois.push(response.data);
-        // document.getElementById("invitebtns").innerHTML = "<button class='btn btn-error btn-invite inactive-btn'>Invited</button>";
+      var dupes = $scope.invited_lois.filter(function(invited_lois) {
+        return invited_lois.loi_id === parseInt(loi_id) && invited_lois.status;
       });
+      // console.log(dupes);
+      if (dupes.length === 0) {
+        var updatedStatus = {
+          status: true,
+          loi_id: loi_id
+        };
+        console.log(updatedStatus);
+        console.log(updatedStatus);
+
+
+        $http.post('/api/v1/invited_lois/', updatedStatus).then(function(response){
+          console.log(response.data);
+          $scope.invited_lois.push(response.data);
+          // document.getElementById("invitebtns").innerHTML = "<button class='btn btn-error btn-invite inactive-btn'>Invited</button>";
+        });
+        $scope.truthValue = true;
+
+        $scope.btnText = "Invited";
+      } else {
+        alert("error");
+      }
     };
-
-
-
-      
+  
 
   }]);
 
