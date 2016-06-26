@@ -57,9 +57,14 @@
 }
 
 .btn-rate{
-  float: right;
+  float: left;
   margin: 7px;
 }
+
+.btn-invite{
+  margin:7px;
+}
+
 
 #loi-table{
   // background-color: #EBF1F7;
@@ -146,4 +151,7 @@
   top: 100px;
   z-index:4;
   height:70px;
+}
+.inactive-btn {
+  cursor:default;
 }

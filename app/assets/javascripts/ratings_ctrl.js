@@ -44,7 +44,8 @@
       $scope.sortByAttribute = sortAttribute;
       $scope.descending = !$scope.descending;
     };
-
+    
+    
     //THIS SUBMIT FUNCTION ALLOWS AN ADMIN TO INVITE TO RFP DIRECTLY FROM THE RAINGS INDEX PAGE
     $scope.submitInvite = function(q5, activeId){
       var updatedRating = {

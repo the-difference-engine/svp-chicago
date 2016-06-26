@@ -13,6 +13,12 @@ json.array! @lois do |loi|
 		end
 	end
 
+	json.invited_lois loi.invited_lois do |invited_loi|
+		json.id invited_loi.id
+		json.loi_id invited_loi.loi_id
+		json.status invited_loi.status
+	end
+
 	json.ratings loi.ratings do |rating|
 		json.id rating.id
 		json.user_id rating.user_id
