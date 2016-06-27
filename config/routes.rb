@@ -90,6 +90,7 @@ Rails.application.routes.draw do
   delete '/rfp_questions/:id' => 'rfp_questions#destroy'
 
   get '/attachments/new' => 'attachments#new'
+  post '/attachments' => 'attachments#create'
   get '/attacments/:id' => 'attachments#show'
 
 end

@@ -1,10 +1,9 @@
 <h1>Add An Attachment:</h1>
-<%= form_for :attachment, url: users_path, html: { multipart: true } do |form| %>
+<%= form_for @attachment, url: attachments_path, html: { multipart: true } do |form| %>
   <div>
-    <%= form.file_field :file %>
+    <%= form.file_field :attachment_file %>
   </div>
   <div>
     <%= form.submit 'Submit' %>  
-    <%= link_to 'Nevermind', users_path, class: 'button' %>
   </div>    
 <% end %>
