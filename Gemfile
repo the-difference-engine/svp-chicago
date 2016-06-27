@@ -34,6 +34,9 @@ gem 'mail'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
+# For uploading files
+gem "paperclip", "~> 5.0.0.beta1"
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
