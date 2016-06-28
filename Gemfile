@@ -37,6 +37,9 @@ gem 'mail'
 # For uploading files
 gem "paperclip", "~> 5.0.0.beta1"
 
+# Amazon Web Services
+gem 'aws-sdk', '~> 2.3'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
