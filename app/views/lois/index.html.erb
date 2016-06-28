@@ -56,8 +56,8 @@
               </td>
               <td>
                 <% if current_user && current_user.admin %>
-                  <button onclick="window.location.href='/lois/{{loi.id}}'" class="btn btn-success btn-rate" ng-if="loi.ratings[0].user_id != <%= current_user.id %>">View/Rate</button>
-                  <button class="btn btn-success btn-invite" ng-if="loi.ratings[0].user_id == <%= current_user.id %>">View/Edit</button>   
+                  <a type="btn" href="/lois/{{loi.id}}" class="btn btn-success btn-rate" ng-if="loi.ratings[0].user_id != <%= current_user.id %>">View/Rate</a>
+                  <a type="btn" href="/lois/{{loi.id}}" class="btn btn-success btn-invite" ng-if="loi.ratings[0].user_id == <%= current_user.id %>">View/Edit</a>   
 
                 <% end %>
                   <% if current_user && current_user.super_admin %>
