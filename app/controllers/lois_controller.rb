@@ -4,6 +4,7 @@
 
   def index
     @lois = Loi.all
+    @admins_ratings = Rating.where(user_id: current_user.id)
     gon.current_user_id = current_user.id
 
     respond_to do |format|
