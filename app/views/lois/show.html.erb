@@ -336,11 +336,7 @@
           </div>
         </div>
 
-        <div class="btn-container">
-          <% if user_signed_in? && current_user.admin %>
-            <%= link_to "Rate", "/ratings/new?loi=#{@loi.id}", :class => "btn btn-danger", :role => "button" %>
-          <% end %>
-        </div>
+        
 
     </div>
   </div>
