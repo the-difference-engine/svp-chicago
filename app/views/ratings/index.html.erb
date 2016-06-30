@@ -103,7 +103,13 @@
 			</div>
 			<div class="csv-btn">
 				<%= link_to "Download Ratings CSV File", "/ratings.csv", :class => "btn btn-danger", :role => "button" %>
+				<span class="invite-max-btn">
+	    		<% if current_user && current_user.super_admin %>
+	    	  	<%= link_to "Change maximum number of Yes answers per admin", "", :class => "btn btn-danger", :role => "button" %>
+	    		<% end %>
+  			</span>
 			</div>
+		
 		</div>
 </div>
 
