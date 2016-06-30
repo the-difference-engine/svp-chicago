@@ -2,7 +2,8 @@ class RatingsController < ApplicationController
 
   
   def index
-    
+    @ratings_max = 11
+    @yes_ratings = Rating.where(user_id: current_user.id).where(q5: 'Yes')
     gon.current_user_id = current_user.id
 
     if user_signed_in? && current_user.admin

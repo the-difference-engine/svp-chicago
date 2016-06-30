@@ -44,8 +44,17 @@
                       
                         <tr>
                           <td>
+                          <% if @ratings.length < @ratings_max %>
+                          
                             <%= label_tag "Invite to Submit RFP:", nil %>
                             <%= select_tag(:q5, options_for_select([['Yes', 'Yes'], ['No', 'No'], ['Maybe', 'Maybe']], selected: @rating.q5 ), :prompt => "Select", class: "form-control loi-rating-form") %>
+                          
+                          <% else %>
+                            <span class="tooltip-toggle" aria-label="You cannot reply 'Yes' to this question as you have reached your limit. Please edit other LOIs if you wish to invite this organization.">
+                            <%= label_tag "Invite to Submit RFP:", nil %>
+                            </span>
+                            <%= select_tag(:q5, options_for_select([['No', 'No'], ['Maybe', 'Maybe']], selected: @rating.q5 ), :prompt => "Select", class: "form-control loi-rating-form") %>
+                          <% end %>
                           </td>
                           <td>
                             <%= hidden_field_tag :loi_id, @loi.id %> 
@@ -97,8 +106,17 @@
                       
                         <tr>
                           <td>
+                          <% if @ratings.length < @ratings_max %>
+                          
                             <%= label_tag "Invite to Submit RFP:", nil %>
                             <%= select_tag(:q5, options_for_select([['Yes', 'Yes'], ['No', 'No'], ['Maybe', 'Maybe']], selected: @rating.q5 ), :prompt => "Select", class: "form-control loi-rating-form") %>
+                          
+                          <% else %>
+                            <span class="tooltip-toggle" aria-label="You cannot reply 'Yes' to this question as you have reached your limit. Please edit other LOIs if you wish to invite this organization.">
+                            <%= label_tag "Invite to Submit RFP:", nil %>
+                            </span>
+                            <%= select_tag(:q5, options_for_select([['No', 'No'], ['Maybe', 'Maybe']], selected: @rating.q5 ), :prompt => "Select", class: "form-control loi-rating-form") %>
+                          <% end %>
                           </td>
                           <td>
                             <%= hidden_field_tag :loi_id, @loi.id %> 
