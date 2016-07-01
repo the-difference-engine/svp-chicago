@@ -2,16 +2,25 @@
   <div id="form-paper">
     <div class="form-heading">
       <h1>Change maximum number of "Yes" answers per admin</h1>
-      <h3> The number is currently <%= @max.max %> </h3>
     </div>
 
       <%= form_tag "/invite_maxes/1", method: :patch do %>
 
-    
         <div class="btn-rating">
-          <%= submit_tag 'Update Number', class: "btn btn-custom" %>
-        </div>
+          <h3> The number is currently <%= @invite_max.max %> </h3>
+            <%= label_tag "Maximum number:", nil %>
+            <%= number_field_tag :max, 10, min: 2, max: 20, step:1 %>
+            <br />
+            <br />
+            <br />
 
+
+          
+    
+          <div class="btn-rating">
+            <%= submit_tag 'Update Number', class: "btn btn-custom" %>
+          </div>
+        </div>
       </form>
 
     <% end %>
