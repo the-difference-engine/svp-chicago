@@ -25,7 +25,7 @@
   def show
     # @sections = Section.order(:id).all
     @ratings = Rating.where(user_id: current_user.id).where(q5: "Yes")
-    @ratings_max = 0
+    @invite_max = InviteMax.first.max
     @loi = Loi.find_by(id: params[:id])
     gon.loi_id = @loi.id
     if current_user.ratings.find_by(loi_id: @loi.id) == nil

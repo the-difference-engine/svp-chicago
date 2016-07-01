@@ -12,10 +12,10 @@ class InviteMaxesController < ApplicationController
       max: params[:max]
     )
     if @invite_max.save 
-      render :edit
+      redirect_to "/invite_maxes/1/edit"
       flash[:success] = "Number updated!"
     else
-      redirect_to :edit
+      redirect_to '/invite_maxes/1/edit'
       flash[:warning] = "Missing elements in rating!"
 
     end

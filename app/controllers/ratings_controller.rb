@@ -2,7 +2,7 @@ class RatingsController < ApplicationController
 
   
   def index
-    @ratings_max = 11
+    @invite_max = InviteMax.first.max
     @yes_ratings = Rating.where(user_id: current_user.id).where(q5: 'Yes')
     gon.current_user_id = current_user.id
 

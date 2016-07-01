@@ -44,7 +44,7 @@
                       
                         <tr>
                           <td>
-                          <% if @ratings.length < @ratings_max %>
+                          <% if @ratings.length < @invite_max %>
                           
                             <%= label_tag "Invite to Submit RFP:", nil %>
                             <%= select_tag(:q5, options_for_select([['Yes', 'Yes'], ['No', 'No'], ['Maybe', 'Maybe']], selected: @rating.q5 ), :prompt => "Select", class: "form-control loi-rating-form") %>
@@ -106,7 +106,7 @@
                       
                         <tr>
                           <td>
-                          <% if @ratings.length < @ratings_max %>
+                          <% if @ratings.length <= @invite_max %>
                           
                             <%= label_tag "Invite to Submit RFP:", nil %>
                             <%= select_tag(:q5, options_for_select([['Yes', 'Yes'], ['No', 'No'], ['Maybe', 'Maybe']], selected: @rating.q5 ), :prompt => "Select", class: "form-control loi-rating-form") %>
