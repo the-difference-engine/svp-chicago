@@ -91,6 +91,6 @@ Rails.application.routes.draw do
 
   get '/attachments/new' => 'attachments#new'
   post '/attachments' => 'attachments#create'
-  get '/attacments/:id' => 'attachments#show'
+  get '/attachments/:id' => 'attachments#show'
 
 end
