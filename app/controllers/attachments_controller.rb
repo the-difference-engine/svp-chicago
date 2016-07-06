@@ -20,7 +20,8 @@ class AttachmentsController < ApplicationController
 
     # Create an object for the upload
     @attachment = Attachment.new(
-        url: obj.public_url     
+        url: obj.public_url,
+        name: obj.key     
         )
 
     # Save the upload
