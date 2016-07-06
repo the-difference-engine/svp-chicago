@@ -20,6 +20,11 @@ Rails.application.routes.draw do
       get '/lois/:id' => 'lois#show'
       patch '/lois/:id' => 'lois#update'
 
+      get '/invited_lois' => 'invited_lois#index'
+      post '/invited_lois/' => 'invited_lois#create'
+      get '/invited_lois/:id' => 'invited_lois#show'
+      
+
       get '/questions' => 'questions#index'
       get '/questions/:id' => 'questions#show'
 
@@ -28,7 +33,7 @@ Rails.application.routes.draw do
       get '/answers' => 'answers#index'
       get '/ratings' => 'ratings#index'
       get '/ratings/:id' => 'ratings#show'
-      patch 'ratings/:id' => 'ratings#update'
+      patch 'ratings/:id.json' => 'ratings#update'
       
     end
   end
@@ -89,4 +94,6 @@ Rails.application.routes.draw do
   patch '/rfp_questions/:id' => 'rfp_questions#update'
   delete '/rfp_questions/:id' => 'rfp_questions#destroy'
 
+  get 'invite_maxes/:id/edit' => 'invite_maxes#edit'
+  patch 'invite_maxes/:id' => 'invite_maxes#update'
 end

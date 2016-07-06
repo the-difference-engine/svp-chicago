@@ -7,7 +7,7 @@
       </div>
         <div class="panel panel-default">
           <table class="table table-hover" id="loi-table">
-            <th style="width: 25%;">
+            <th style="width: 20%;">
               <p ng-click="sortBy('org_name')">
                 Organization Name
                 <span ng-hide="descending" class="glyphicon glyphicon-triangle-bottom">
@@ -39,12 +39,12 @@
                 </span>
               </p>
             </th>
-            <th style="width: 17%; text-align: center; vertical-align: middle">
+            <th style="width: 20%; text-align: center; vertical-align: middle">
               <p>Action</p>
             </th>
             <tr ng-repeat="loi in lois | filter: {org_name: orgNameFilter} | orderBy:sortByAttribute:descending">
               <td>
-                <b>{{loi.org_name}}</b>
+                <b>{{loi.org_name}} {{loi.invited_lois[0].status}}</b>
               </td>
               <td>
                 <ul class="list-unstyled">
@@ -55,13 +55,18 @@
                 <p>{{avgRatingPerLoi(loi.ratings)}}</p>
               </td>
               <td>
-                <%= link_to "View", "/lois/{{loi.id}}", :class => "btn btn-success btn-rate", :role => "button" %>
-                <div ng-hide="rated(loi.ratings)">
-                  <%= link_to "Rate", "/ratings/new?loi={{loi.id}}", :class => "btn btn-danger btn-rate", :role => "button" %>
-                </div>
-                <div ng-show="rated(loi.ratings)">
-                  <%= link_to "Edit Rating", "/ratings/{{activeRatingId}}/edit", :class => "btn btn-danger btn-rate", :role => "button" %>
-                </div>
+                <% if current_user && current_user.admin %>
+                  <a type="btn" href="/lois/{{loi.id}}" class="btn btn-success btn-rate" ng-if="loi.ratings[0].user_id != <%= current_user.id %>">View/Rate</a>
+                  <a type="btn" href="/lois/{{loi.id}}" class="btn btn-success btn-invite" ng-if="loi.ratings[0].user_id == <%= current_user.id %>">View/Edit</a>   
+
+                <% end %>
+                  <% if current_user && current_user.super_admin %>
+                    <button class="btn btn-info btn-invite" ng-class="{'disabled': truthValue}" ng-click="inviteSent(loi_status, loi.id); clickit()" ng-if="loi.invited_lois[0].status != true">{{btnText}}</button>
+                    <button class="btn btn-error btn-invite disabled" ng-if="loi.invited_lois[0].status == true">Invited</button>   
+                  <% else %>
+                    <button class="btn btn-danger btn-rate disabled" ng-if="loi.invited_lois[0].status != true">Super Admin action required</button>
+                    <button class="btn btn-error btn-rate disabled" ng-if="loi.invited_lois[0].status == true">Invited</button>
+                  <% end %>
               </td>
             </tr>
           </table>
@@ -74,6 +79,7 @@
       <%= link_to "Download LOI CSV File", "/lois.csv", :class => "btn btn-danger", :role => "button" %>
     <% end %>
   </div>
+  
 
   </div>
 </div>

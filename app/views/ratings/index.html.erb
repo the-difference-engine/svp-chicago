@@ -60,14 +60,28 @@
 							<td>{{ rating.q2 }}</td>
 							<td>{{ rating.q3 }}</td>
 							<td>{{ rating.q4 }}</td>
-							<td ng-show="rating.user.id==currentUserId">
-									<select class="form-control" name="singleSelect" id="singleSelect" ng-model="rating.q5" ng-change="submitInvite(rating.q5, rating.id)">
-	                  <option value="">--Select--</option>
-	                  <option value="Yes">Yes</option>
-	                  <option value="No">No</option>
-	                  <option value="Maybe">Maybe</option>
-	                </select>
-              </td>
+							<% if @yes_ratings.length <= @invite_max %>
+
+								<td ng-show="rating.user.id==currentUserId">
+										<select class="form-control" name="singleSelect" id="singleSelect" ng-model="rating.q5" ng-change="submitInvite(rating.q5, rating.id)">
+		                  <option value="">--Select--</option>
+		                  <option value="Yes">Yes</option>
+		                  <option value="No">No</option>
+		                  <option value="Maybe">Maybe</option>
+		                </select>
+	              </td>
+	            <% else %>
+								<td ng-show="rating.user.id==currentUserId">
+                    <span class="tooltip-toggle" aria-label="You cannot reply 'Yes' to this question as you have reached your limit. Please edit other LOIs if you wish to invite this organization.">
+										<select class="form-control" name="singleSelect" id="singleSelect" ng-model="rating.q5" ng-change="submitInvite(rating.q5, rating.id)">
+		                  <option value="">--Select--</option>
+		                  <option value="No">No</option>
+		                  <option value="Maybe">Maybe</option>
+		                </select>
+		                </span>
+	              </td>
+	            <% end %>
+
               <td ng-show="rating.user.id!=currentUserId">
 									{{rating.q5}}
               </td>
@@ -89,7 +103,13 @@
 			</div>
 			<div class="csv-btn">
 				<%= link_to "Download Ratings CSV File", "/ratings.csv", :class => "btn btn-danger", :role => "button" %>
+				<span class="invite-max-btn">
+	    		<% if current_user && current_user.super_admin %>
+	    	  	<%= link_to "Change maximum number of Yes answers per admin", "/invite_maxes/1/edit", :class => "btn btn-danger", :role => "button" %>
+	    		<% end %>
+  			</span>
 			</div>
+		
 		</div>
 </div>
 
