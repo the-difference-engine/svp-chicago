@@ -44,7 +44,7 @@
             </th>
             <tr ng-repeat="loi in lois | filter: {org_name: orgNameFilter} | orderBy:sortByAttribute:descending">
               <td>
-                <b>{{loi.org_name}} {{loi.invited_lois[0].status}}</b>
+                <b>{{loi.org_name}}</b>
               </td>
               <td>
                 <ul class="list-unstyled">

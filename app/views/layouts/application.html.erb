@@ -26,6 +26,7 @@
       </div>
 
         <ul class="nav navbar-nav navbar-right">
+          <li><a href="/">Home</a></li>
           <% if user_signed_in? %>  
             <li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></li>
               <% if user_signed_in? && !current_user.admin %>
