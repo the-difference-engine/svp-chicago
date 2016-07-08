@@ -34,6 +34,13 @@ gem 'mail'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
+# Amazon Web Services
+gem 'aws-sdk', '~> 2.3'
+gem 'aws-sdk-v1'
+
+# For uploading files
+# gem "paperclip", "~> 5.0.0.beta1"
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

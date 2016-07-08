@@ -1,0 +1,23 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf460
+{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f0\fs22 \cf0 \CocoaLigature0 ##################################################\
+#  NOTE FOR UPGRADING FROM 4.3.0 OR EARLIER       #\
+##################################################\
+\
+Paperclip is now compatible with aws-sdk >= 2.0.0.\
+\
+If you are using S3 storage, aws-sdk >= 2.0.0 requires you to make a few small\
+changes:\
+\
+* You must set the `s3_region`\
+* If you are explicitly setting permissions anywhere, such as in an initializer,\
+  note that the format of the permissions changed from using an underscore to\
+  using a hyphen. For example, `:public_read` needs to be changed to\
+  `public-read`.\
+\
+For a walkthrough of upgrading from 4 to 5 and aws-sdk >= 2.0 you can watch\
+http://rubythursday.com/episodes/ruby-snack-27-upgrade-paperclip-and-aws-sdk-in-prep-for-rails-5}

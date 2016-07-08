@@ -94,6 +94,11 @@ Rails.application.routes.draw do
   patch '/rfp_questions/:id' => 'rfp_questions#update'
   delete '/rfp_questions/:id' => 'rfp_questions#destroy'
 
+  get '/attachments/new' => 'attachments#new'
+  post '/attachments' => 'attachments#create'
+  get '/attachments/:id' => 'attachments#show'
+
   get 'invite_maxes/:id/edit' => 'invite_maxes#edit'
   patch 'invite_maxes/:id' => 'invite_maxes#update'
+
 end
