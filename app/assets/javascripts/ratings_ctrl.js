@@ -37,7 +37,22 @@
     $scope.setup = function(){
       $http.get('/api/v1/ratings.json').then(function(response){
         $scope.ratings = response.data;
+        $scope.ratingsLength = response.data.length;
+
       });
+      $http.get('/api/v1/invite_maxes/1.json').then(function(response){
+        $scope.inviteMax = response.data;
+        console.log($scope.inviteMax);
+
+      });
+
+      $http.get('/api/v1/ratings/yes_ratings.json').then(function(response){
+        $scope.yourYesRatings = response.data;
+        $scope.yourYesRatingsLength = response.data.length;
+        console.log($scope.yourYesRatingsLength);
+
+      });
+
     };
 
     $scope.sortBy = function(sortAttribute){
@@ -46,14 +61,42 @@
     };
     
     
+    
     //THIS SUBMIT FUNCTION ALLOWS AN ADMIN TO INVITE TO RFP DIRECTLY FROM THE RAINGS INDEX PAGE
     $scope.submitInvite = function(q5, activeId){
+
+
       var updatedRating = {
         q5: q5
       };
-      $http.patch('/api/v1/ratings/' + activeId + '.json', updatedRating).then(function(response){
-        console.log(response.data);
-      });
+      if (updatedRating.q5 === "Yes" && $scope.yourYesRatingsLength < $scope.inviteMax.max) {
+        $http.patch('/api/v1/ratings/' + activeId + '.json', updatedRating).then(function(response){
+          $scope.yourYesRatingsLength += 1;
+          console.log("new length: " + $scope.yourYesRatingsLength);
+        });
+
+      } else if (updatedRating.q5 === "Yes" && $scope.yourYesRatingsLength === $scope.inviteMax.max) {
+        alert ("blah");
+      
+      } else if ($scope.ratings.q5 === "Yes" && updatedRating.q5 === "Maybe" || updatedRating.q5 === "No"){
+        $http.patch('/api/v1/ratings/' + activeId + '.json', updatedRating).then(function(response){
+          $scope.yourYesRatingsLength -= 1;
+          console.log("new length: " + $scope.yourYesRatingsLength);
+
+        });
+      }
+
+      // } else if (updatedRating.q5 === "No" && $scope.yourYesRatingsLength >= $scope.inviteMax) {
+      //   $http.patch('/api/v1/ratings/' + activeId + '.json', updatedRating).then(function(response){
+      //     $scope.yourYesRatingsLength -= 1;
+      //     console.log("new length: " + $scope.yourYesRatingsLength);
+
+      //   });
+      // } else if (updatedRating.q5 === "Maybe" && $scope.yourYesRatingsLength >= $scope.inviteMax){
+      //     $scope.yourYesRatingsLength -= 1;
+      //     console.log("new length: " + $scope.yourYesRatingsLength);
+      // }
+      
     };
 
   }]);

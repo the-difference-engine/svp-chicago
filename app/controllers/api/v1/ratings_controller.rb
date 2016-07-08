@@ -5,6 +5,7 @@ class Api::V1::RatingsController < ApplicationController
   def index
   	if user_signed_in? && current_user.super_admin
   	  @ratings = Rating.all
+
   	else
   	  @ratings = Rating.where(user_id: current_user.id)
   	end
@@ -12,6 +13,12 @@ class Api::V1::RatingsController < ApplicationController
 
   def show
   	@rating = Rating.find(params[:id])
+
+  end
+
+  def yes_ratings
+    @your_yes_ratings = Rating.where(user_id: current_user.id).where(q5: "Yes")
+    
   end
 
   def update
