@@ -6,9 +6,14 @@
     <div class="rating-form">
       <div class="form-horizontal">
 
-      <%= form_tag '/rfp_questions', method: :post do %>
-          
-        <%= render "form" %>
+        <%= form_tag '/rfp_questions', method: :post do %>
+
+        <div class="form-group">
+          <%=label_tag :question, nil, class: "col-sm-2 control-label" %>
+          <div class="col-sm-10">
+            <%= text_field_tag :question, @rfp_question.question, class: "form-control" %>
+          </div>  
+        </div>
 
         <div class="form-group">
           <%= label_tag :section, nil, class: "col-sm-2 control-label" %>
@@ -17,11 +22,30 @@
           </div>
         </div>
 
+        <div class="form-group">
+          <%= label_tag :question_type, nil, class: "col-sm-2 control-label" %>
+          <div class="col-sm-10">
+            <%= select_tag 'question_type', options_for_select(["single input", "multiple input", "block", "block with multiple inputs"], "single input"), class: "form-control", id: "type_select" %>
+          </div>
+        </div>
+
+      <div id="hide-sub-question">
+        <div class="sub-question">
+          <div class="form-group">
+            <%=label_tag :sub_question, nil, class: "col-sm-2 control-label" %>
+            <div class="col-sm-10">
+              <%= text_field_tag "sub_question[0]", @sub_question.question, class: "form-control" %>
+            </div>  
+          </div>
+        </div>
+        <a id="add">Add another sub-question</a>
+      </div>
+
         <%= submit_tag "Submit", class: "btn btn-custom" %>
 
-      <% end %>
+        <% end %>
 
-    </div>
+      </div>
     </div>
   </div>
 </div>

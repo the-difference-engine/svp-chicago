@@ -1,1 +1,98 @@
-hello 
+<div class="site-container">
+  <div id="form-paper">
+    <div ng-app="app">
+      <div ng-controller="rfpsCtrl" ng-init="setup()">
+        <div class="form-heading">
+
+          <h1> 2016 SVP Chicago Request for Proposal </h1>
+          <hr>
+
+          <p><b>Completing this Form:</b></p>
+
+          <p>Please enter information directly into the form, using this form as the main body of your Letter of Interest. The boxes will expand to hold your text. You can adjust the page breaks when you have completed the form.</p>
+
+          <p><ul>
+            <li>If you find an item confusing, please feel free to contact us.</li>
+
+            <li>Please use bullet points rather than paragraphs. Brevity is helpful to our partners when reviewing proposals.</li>
+          </ul></p>
+        </div>
+        
+        <!-- DISPLAY ERRORS -->
+        <div class="errors" ng-if="errors">
+          <h5> These questions can not be left blank: </h5>
+          <ul ng-repeat="error in errors">
+            <li> {{error}} </li>
+          </ul>
+        </div>
+
+        <!-- START FORM -->  
+        <div class="form-body">
+          <form name="rfpForm" ng-submit="submit(name, email, rfpForm.$valid)" novalidate>
+
+            <div ng-repeat="section in sections">
+             <h1> {{section.name}} </h1>
+
+             <div ng-repeat="question in section.questions">
+
+               <div ng-if="question.question_type == 'single input'">
+                 <div class="form-group">
+                   <label> {{question.question}} </label>
+                   <input class="form-control" ng-model="question.answer">
+                 </div>
+               </div>
+
+               <div ng-if="question.question_type == 'multiple input'">
+                <div class="form-group">
+                   <label> {{question.question}} </label>
+                   <div ng-repeat="answer in question.answers">
+                    <input class="form-control" ng-model="answer.answer">
+                  </div>
+                  <p><a ng-click="addInput(question.id)">Add Input</a></p>
+                </div>
+              </div> 
+
+              <div ng-if="question.question_type == 'block'">
+                <div class="form-group">
+                   <h3><label> {{question.question}} </label></h3>
+                   <div ng-repeat="question in question.sub_questions">
+                    <label> {{question.question}} </label>
+                    <input class="form-control" ng-model="question.answer">
+                  </div>
+                </div>
+              </div> 
+
+              <div ng-if="question.question_type == 'block with multiple inputs'">
+                <div class="form-group">
+                   <h3><label> {{question.question}} </label></h3>
+                  <div class="container">
+                    <div class="row">
+                      <div ng-repeat="sub_question in question.sub_questions">
+                        <div class="col-md-4">
+                          <label> {{sub_question.question}} </label>
+                            <div ng-repeat="answer in sub_question.answers">
+                              <input class="form-control" ng-model="answer.answers">
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                    <p><a ng-click="addInput(question.id)">Add Input</a></p>
+                  </div>
+                </div>
+              </div> 
+            </div>
+
+          </div>
+
+          <div class="submit-button-container">
+            <button class="btn btn-primary btn-lg" type="submit">Submit</button>
+          </div>  
+
+        </form>
+        <!-- END FORM -->
+
+      </div>
+    </div>
+
+  </div>
+</div>
