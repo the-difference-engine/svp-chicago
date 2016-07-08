@@ -5,6 +5,16 @@
     </div>
     <table class="table table-hover table-bordered">
       <tr>
+        <td>
+        <p>Each admin has the ability to answer "Yes" to the question "Invite to Submit RFP" for 10 organizations.</p>
+        <% if current_user && current_user.super_admin %>
+        <p>Edit this amount: </p>
+        <%= form_tag "users" %>
+
+        <% end %>
+        </td>
+      </tr>
+      <tr>
         <th>Email</th>
         <th>Last login</th>
         <th># of Ratings</th>

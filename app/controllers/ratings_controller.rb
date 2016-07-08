@@ -2,7 +2,8 @@ class RatingsController < ApplicationController
 
   
   def index
-    
+    @invite_max = InviteMax.first.max
+    @yes_ratings = Rating.where(user_id: current_user.id).where(q5: 'Yes')
     gon.current_user_id = current_user.id
 
     if user_signed_in? && current_user.admin
@@ -47,7 +48,9 @@ class RatingsController < ApplicationController
   		redirect_to '/ratings'
   		flash[:success] = "Rating Submitted!"
   	else
-  		render :new
+  		redirect_to :back
+      flash[:warning] = "Missing elements in rating!"
+
   	end
   end
 
@@ -67,10 +70,12 @@ class RatingsController < ApplicationController
       weighted_score: 5
     )
     if @rating.save 
-      redirect_to '/ratings'
+      redirect_to '/lois'
       flash[:success] = "Rating Updated!"
     else
-      render :edit
+      redirect_to :back
+      flash[:warning] = "Missing elements in rating!"
+
     end
   end
 

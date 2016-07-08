@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160705192029) do
+ActiveRecord::Schema.define(version: 20160630233814) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,19 @@ ActiveRecord::Schema.define(version: 20160705192029) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "invite_maxes", force: :cascade do |t|
+    t.integer  "max"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "invited_lois", force: :cascade do |t|
+    t.integer  "loi_id"
+    t.boolean  "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "landings", force: :cascade do |t|
     t.string   "year"
     t.string   "sector_focus"
@@ -71,6 +84,10 @@ ActiveRecord::Schema.define(version: 20160705192029) do
     t.datetime "updated_at",                 null: false
     t.boolean  "submitted",  default: false
     t.integer  "user_id"
+<<<<<<< HEAD
+=======
+    t.boolean  "status"
+>>>>>>> 4d553bfb015b61ffc7beb7a15f34177de2ed41d2
   end
 
   create_table "questions", force: :cascade do |t|

@@ -3,6 +3,7 @@ class Api::V1::LoisController < ApplicationController
 
   def index
   	@lois = Loi.where(submitted: true)
+    @invited_lois = InvitedLoi.all
   end
 
   def create
@@ -80,7 +81,7 @@ class Api::V1::LoisController < ApplicationController
   
   def show
   	@loi = Loi.find(params[:id])
-
+    @invited_loi = InvitedLoi.find_by(loi_id: @loi.id)
     @contact_answers = []
     @organization_answers = []
     @overview_answers = []
