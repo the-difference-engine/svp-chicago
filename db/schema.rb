@@ -24,6 +24,19 @@ ActiveRecord::Schema.define(version: 20160630233814) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "attachments", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "loi_id"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.string   "attachment_file_file_name"
+    t.string   "attachment_file_content_type"
+    t.integer  "attachment_file_file_size"
+    t.datetime "attachment_file_updated_at"
+    t.string   "url"
+    t.string   "name"
+  end
+
   create_table "challenges", force: :cascade do |t|
     t.integer  "answer_id"
     t.string   "challenge"
@@ -71,7 +84,10 @@ ActiveRecord::Schema.define(version: 20160630233814) do
     t.datetime "updated_at",                 null: false
     t.boolean  "submitted",  default: false
     t.integer  "user_id"
+<<<<<<< HEAD
+=======
     t.boolean  "status"
+>>>>>>> 4d553bfb015b61ffc7beb7a15f34177de2ed41d2
   end
 
   create_table "questions", force: :cascade do |t|
