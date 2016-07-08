@@ -3,12 +3,13 @@
     <div class="form-heading">
       <h1>
         LOI Submission Review 
-        <div id="rating-pullout-button">
-          <button type="button" class="btn btn-danger" data-toggle="collapse" aria-expanded="false" aria-controls="loi-ratings" data-target="#loi-ratings">Edit Rating</button>
-        </div>
+        <% if current_user.admin %>
+          <% if current_user.ratings.find_by(loi_id: @loi.id) != nil %>
+            <div id="rating-pullout-button">
+              <button type="button" class="btn btn-danger" data-toggle="collapse" aria-expanded="false" aria-controls="loi-ratings" data-target="#loi-ratings">Edit Rating</button>
+            </div>
 
-          <% if current_user.admin %>
-            <% if current_user.ratings.find_by(loi_id: @loi.id) != nil %>
+          
               <div id="rating-pullout">
 
               <%= form_tag "/ratings/#{@rating.id}", method: :patch do %>
@@ -43,8 +44,17 @@
                       
                         <tr>
                           <td>
+                          <% if @ratings.length < @invite_max %>
+                          
                             <%= label_tag "Invite to Submit RFP:", nil %>
                             <%= select_tag(:q5, options_for_select([['Yes', 'Yes'], ['No', 'No'], ['Maybe', 'Maybe']], selected: @rating.q5 ), :prompt => "Select", class: "form-control loi-rating-form") %>
+                          
+                          <% else %>
+                            <span class="tooltip-toggle" aria-label="You cannot reply 'Yes' to this question as you have reached your limit. Please edit other LOIs if you wish to invite this organization.">
+                            <%= label_tag "Invite to Submit RFP:", nil %>
+                            </span>
+                            <%= select_tag(:q5, options_for_select([['No', 'No'], ['Maybe', 'Maybe']], selected: @rating.q5 ), :prompt => "Select", class: "form-control loi-rating-form") %>
+                          <% end %>
                           </td>
                           <td>
                             <%= hidden_field_tag :loi_id, @loi.id %> 
@@ -96,8 +106,17 @@
                       
                         <tr>
                           <td>
+                          <% if @ratings.length < @invite_max %>
+                          
                             <%= label_tag "Invite to Submit RFP:", nil %>
                             <%= select_tag(:q5, options_for_select([['Yes', 'Yes'], ['No', 'No'], ['Maybe', 'Maybe']], selected: @rating.q5 ), :prompt => "Select", class: "form-control loi-rating-form") %>
+                          
+                          <% else %>
+                            <span class="tooltip-toggle" aria-label="You cannot reply 'Yes' to this question as you have reached your limit. Please edit other LOIs if you wish to invite this organization.">
+                            <%= label_tag "Invite to Submit RFP:", nil %>
+                            </span>
+                            <%= select_tag(:q5, options_for_select([['No', 'No'], ['Maybe', 'Maybe']], selected: @rating.q5 ), :prompt => "Select", class: "form-control loi-rating-form") %>
+                          <% end %>
                           </td>
                           <td>
                             <%= hidden_field_tag :loi_id, @loi.id %> 
@@ -164,7 +183,7 @@
               <!-- OVERVIEW SECTION -->
 
               <section class="section overview-section">
-                <h3><li> OVERVIEW </li></h3>
+                <h3><li> Overview </li></h3>
                   <table class="table table-striped table-bordered">
                     <tr ng-repeat="answer in loi.overview_answers">
                       <td style="width: 20%">
@@ -269,7 +288,7 @@
               <!-- REFERRAL SECTION -->
 
               <section class="section concern-section">
-                <h3><li> REFERRAL </li></h3>
+                <h3><li> Referral </li></h3>
                   <table class="table table-striped table-bordered">
                     <tr ng-repeat="answer in loi.referral_answers">
                       <td style="width: 20%">
@@ -288,14 +307,14 @@
 
                 <div class="col-md-6">
                   <section class="section demographic-section">
-                    <h3><li> DEMOGRAPHICS </li></h3>
+                    <h3><li> Demographics </li></h3>
                       <table class="table table-striped table-bordered">
                         <tr>
                           <th>Sector</th>
                           <th>Please select if you programs addressing this sector</th>
                         </tr>
                         <tr ng-repeat="answer in loi.demographic_answers">
-                          <td style="width: 20%">
+                          <td style="width: 40%">
                             <b>{{answer.question.question}}:</b>
                           </td>
                           <td>
@@ -310,7 +329,7 @@
 
                 <div class="col-md-6">
                   <section class="section geographic-section">
-                    <h3><li> GEOGRAPHIC INFORMATION </li></h3>
+                    <h3><li> Geographic information </li></h3>
                       <table class="table table-striped table-bordered">
                       
                           <tr>
@@ -318,7 +337,7 @@
                             <th>Please select whichever applies (if more than one, pick the one based on your main program)</th>
                           </tr>
                           <tr ng-repeat="answer in loi.geographic_answers">
-                            <td style="width: 20%">
+                            <td style="width: 40%">
                               <b>{{answer.question.question}}:</b>
                             </td>
                             <td>
@@ -335,11 +354,7 @@
           </div>
         </div>
 
-        <div class="btn-container">
-          <% if user_signed_in? && current_user.admin %>
-            <%= link_to "Rate", "/ratings/new?loi=#{@loi.id}", :class => "btn btn-danger", :role => "button" %>
-          <% end %>
-        </div>
+        
 
     </div>
   </div>

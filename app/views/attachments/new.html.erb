@@ -1,0 +1,5 @@
+<h1>Add An Attachment:</h1>
+<%= form_tag attachments_path, enctype: 'multipart/form-data' do %>
+    <%= file_field_tag :file  %>
+    <%= submit_tag 'Upload file' %>     
+<% end %>

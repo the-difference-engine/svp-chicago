@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160616030526) do
+ActiveRecord::Schema.define(version: 20160705192029) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,19 @@ ActiveRecord::Schema.define(version: 20160616030526) do
     t.string   "answer"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "attachments", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "loi_id"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.string   "attachment_file_file_name"
+    t.string   "attachment_file_content_type"
+    t.integer  "attachment_file_file_size"
+    t.datetime "attachment_file_updated_at"
+    t.string   "url"
+    t.string   "name"
   end
 
   create_table "challenges", force: :cascade do |t|
@@ -37,6 +50,19 @@ ActiveRecord::Schema.define(version: 20160616030526) do
     t.integer  "amount_1"
     t.integer  "amount_2"
     t.integer  "amount_3"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "invite_maxes", force: :cascade do |t|
+    t.integer  "max"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "invited_lois", force: :cascade do |t|
+    t.integer  "loi_id"
+    t.boolean  "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -58,6 +84,7 @@ ActiveRecord::Schema.define(version: 20160616030526) do
     t.datetime "updated_at",                 null: false
     t.boolean  "submitted",  default: false
     t.integer  "user_id"
+    t.boolean  "status"
   end
 
   create_table "questions", force: :cascade do |t|

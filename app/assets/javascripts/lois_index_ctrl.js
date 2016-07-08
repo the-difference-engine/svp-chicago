@@ -11,17 +11,24 @@
 
     // $scope.activeRatingId = "";
     $scope.descending = false;
+    $scope.btnText = "Invite to RFP";
 
     $scope.setup = function(){
 
       $http.get('/api/v1/lois.json').then(function(response){
         $scope.lois = response.data;
-        console.log($scope.lois[0].ratings)
+        // console.log($scope.lois[0].ratings);
       });
 
       $http.get('/api/v1/questions.json').then(function(response){
         $scope.questions = response.data;
       });
+
+      $http.get('/api/v1/invited_lois.json').then(function(response) {
+        $scope.invited_lois = response.data;
+
+      });
+
     
     };
 
@@ -75,6 +82,39 @@
         return (score/ratings.length).toFixed(2);
       } else {
         return "No Ratings";
+      }
+    };
+
+    $scope.inviteSent = function(status, loi_id){
+      var dupes = $scope.invited_lois.filter(function(invited_lois) {
+        return invited_lois.loi_id === parseInt(loi_id);
+      });
+      if (dupes.length === 0) {
+        var updatedStatus = {
+          status: true,
+          loi_id: loi_id,
+        };
+
+
+        $http.post('/api/v1/invited_lois/', updatedStatus).then(function(response){
+          console.log(response.data);
+          $scope.invited_lois.push(response.data);
+        });
+
+         
+      
+      } else {
+        alert("error");
+      }
+    };
+
+
+    $scope.changeBtn = function(repeatScope) {
+      if (repeatScope.isDisabled) {
+        repeatScope.isDisabled = false;
+      } else {
+        repeatScope.btnText = "Invited";
+        repeatScope.isDisabled = true;
       }
     };
 

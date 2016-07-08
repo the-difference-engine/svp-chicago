@@ -1,6 +1,7 @@
 class Loi < ActiveRecord::Base
   has_many :answers
   has_many :ratings
+  has_many :invited_lois
   belongs_to :user
 
   # validates :name, :email, presence: true
