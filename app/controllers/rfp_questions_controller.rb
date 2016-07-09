@@ -6,17 +6,27 @@ class RfpQuestionsController < ApplicationController
 
   def new
     @rfp_question = RfpQuestion.new 
+    @sub_question = SubQuestion.new
   end
 
   def create
-    @rfp_question = RfpQuestion.new({question: params[:question], rfp_section_id: params[:rfp_section][:rfp_section_id]})
-    if @rfp_question.save
+    ActiveRecord::Base.transaction do
+      @rfp_question = RfpQuestion.new({question: params[:question], rfp_section_id: params[:rfp_section][:rfp_section_id], question_type: params[:question_type]})
+      if @rfp_question.save!
+
+        if params[:question_type] == "block" || params[:question_type] == "block with multiple inputs"
+          params[:sub_question].each do |key, question| 
+            SubQuestion.create!(question: question, rfp_question_id: @rfp_question.id)
+          end
+        end 
+      end 
       flash[:success] = "Question created!"
       redirect_to "/rfp_questions"
-    else 
-      flash[:warning] = "Error"
-      render :new
-    end 
+    end
+  rescue ActiveRecord::RecordInvalid => exception
+    flash[:warning] = exception.message
+    @sub_question = SubQuestion.new
+    render :new
   end
 
   def show

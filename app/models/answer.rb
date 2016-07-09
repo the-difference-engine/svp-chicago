@@ -5,7 +5,4 @@ class Answer < ActiveRecord::Base
   has_many :challenges
 
   # validates :answer, presence: true
-
-
-
 end

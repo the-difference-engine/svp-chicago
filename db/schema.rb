@@ -124,6 +124,7 @@ ActiveRecord::Schema.define(version: 20160705192029) do
     t.string   "question"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.string   "question_type"
   end
 
   create_table "rfp_sections", force: :cascade do |t|
@@ -142,6 +143,13 @@ ActiveRecord::Schema.define(version: 20160705192029) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "sub_questions", force: :cascade do |t|
+    t.integer  "rfp_question_id"
+    t.string   "question"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "users", force: :cascade do |t|
