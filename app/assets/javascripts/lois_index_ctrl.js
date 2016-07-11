@@ -61,14 +61,16 @@
 
     //THIS FUNCTION JUST CHECKS TO SEE IF THE LOI HAS ALREADY BEEN RATED
     $scope.rated = function(ratings){
-      for (var i=0; i < ratings.length; i++){
-        if (ratings[i].user_id == $scope.currentUserId){
-          $scope.activeRatingId = ratings[i].id;
-          return true;
-        } else {
-          return false;
+      if (ratings.length > 0){
+        for (var i=0; i < ratings.length; i++){
+          console.log("id: " + ratings[i].user_id);
+          if (ratings[i].user_id == $scope.currentUserId){
+            $scope.activeRatingId = ratings[i].id;
+            return true;
+          };
         };
       };
+      return false;
     };
 
     //THIS FUNCTION JUST AVERAGES UP THE RATINGS FOR EACH LOI
