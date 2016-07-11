@@ -29,6 +29,10 @@ ActiveRecord::Schema.define(version: 20160705192029) do
     t.integer  "loi_id"
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
     t.string   "attachment_file_file_name"
     t.string   "attachment_file_content_type"
     t.integer  "attachment_file_file_size"
@@ -107,11 +111,20 @@ ActiveRecord::Schema.define(version: 20160705192029) do
     t.integer  "weighted_score"
   end
 
+  create_table "rfp_answers", force: :cascade do |t|
+    t.integer  "rfp_question_id"
+    t.integer  "rfp_id"
+    t.string   "answer"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
   create_table "rfp_questions", force: :cascade do |t|
     t.integer  "rfp_section_id"
     t.string   "question"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.string   "question_type"
   end
 
   create_table "rfp_sections", force: :cascade do |t|
@@ -130,6 +143,13 @@ ActiveRecord::Schema.define(version: 20160705192029) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "sub_questions", force: :cascade do |t|
+    t.integer  "rfp_question_id"
+    t.string   "question"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "users", force: :cascade do |t|
