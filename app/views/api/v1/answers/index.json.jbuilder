@@ -1,3 +1,4 @@
+
 json.array! @answers do |answer|
 
   json.id answer.id

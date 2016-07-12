@@ -23,6 +23,9 @@ Rails.application.routes.draw do
       get '/invited_lois' => 'invited_lois#index'
       post '/invited_lois/' => 'invited_lois#create'
       get '/invited_lois/:id' => 'invited_lois#show'
+
+      get '/invite_maxes' => 'invite_maxes#index'
+      get '/invite_maxes/:id' => 'invite_maxes#show'
       
 
       get '/questions' => 'questions#index'
@@ -32,6 +35,7 @@ Rails.application.routes.draw do
       post '/answers' => 'answers#create'
       get '/answers' => 'answers#index'
       get '/ratings' => 'ratings#index'
+      get '/ratings/yes_ratings' => 'ratings#yes_ratings'
       get '/ratings/:id' => 'ratings#show'
       patch 'ratings/:id.json' => 'ratings#update'
 
