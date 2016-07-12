@@ -26,6 +26,11 @@
           </ul>
         </div>
 
+        <!-- START FORM -->  
+        <div class="form-body">
+          <form name="rfpForm" ng-submit="submit(name, email, rfpForm.$valid)" novalidate>
+
+            <div ng-repeat="section in sections">
              <h1> {{section.name}} </h1>
 
              <div ng-repeat="question in section.questions">
@@ -91,4 +96,5 @@
 
   </div>
 </div>
+
 
