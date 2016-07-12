@@ -70,16 +70,7 @@
 		                </select>
 	              </td>
 
-	              <td ng-show="rating.user.id==currentUserId" ng-if="yourYesRatingsLength > inviteMax.max">
-                    <span class="tooltip-toggle" aria-label="You cannot reply 'Yes' to this question as you have reached your limit. Please edit other LOIs if you wish to invite this organization.">
-										<select class="form-control" name="singleSelect" id="singleSelect" ng-model="rating.q5" ng-change="submitInvite(rating.q5, rating.id)">
-		                  <option value="">--Select--</option>
-		                  <option value="No">No</option>
-		                  <option value="Maybe">Maybe</option>
-		                </select>
-		                </span>
-	              </td>
-	              <td ng-show="rating.user.id==currentUserId" ng-if="yourYesRatingsLength === inviteMax.max">
+	              <td ng-show="rating.user.id==currentUserId" ng-if="yourYesRatingsLength >= inviteMax.max">
                     <span class="tooltip-toggle" aria-label="You cannot reply 'Yes' to this question as you have reached your limit. Please edit other LOIs if you wish to invite this organization.">
 										<select class="form-control" name="singleSelect" id="singleSelect" ng-model="rating.q5" ng-change="submitInvite(rating.q5, rating.id)">
 		                  <option value="">--Select--</option>
@@ -89,9 +80,10 @@
 		                </select>
 		                </span>
 	              </td>
+	              
 	            <% elsif @yes_ratings.length == @invite_max %>
 
-	              <td ng-show="rating.user.id==currentUserId" ng-if="yourYesRatingsLength === inviteMax.max">
+	              <td ng-show="rating.user.id==currentUserId" ng-if="yourYesRatingsLength >= inviteMax.max">
                     <span class="tooltip-toggle" aria-label="You cannot reply 'Yes' to this question as you have reached your limit. Please edit other LOIs if you wish to invite this organization.">
 										<select class="form-control" name="singleSelect" id="singleSelect" ng-model="rating.q5" ng-change="submitInvite(rating.q5, rating.id)">
 		                  <option value="">--Select--</option>
@@ -110,15 +102,7 @@
 		                </select>
 	              </td>
 
-	              <td ng-show="rating.user.id==currentUserId" ng-if="yourYesRatingsLength > inviteMax.max">
-                    <span class="tooltip-toggle" aria-label="You cannot reply 'Yes' to this question as you have reached your limit. Please edit other LOIs if you wish to invite this organization.">
-										<select class="form-control" name="singleSelect" id="singleSelect" ng-model="rating.q5" ng-change="submitInvite(rating.q5, rating.id)">
-		                  <option value="">--Select--</option>
-		                  <option value="No">No</option>
-		                  <option value="Maybe">Maybe</option>
-		                </select>
-		                </span>
-	              </td>
+	              
 
 	            <% else %>
 								<td ng-show="rating.user.id==currentUserId" ng-if="yourYesRatingsLength >= inviteMax.max">
