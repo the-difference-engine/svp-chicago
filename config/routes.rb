@@ -38,7 +38,8 @@ Rails.application.routes.draw do
       get '/ratings/yes_ratings' => 'ratings#yes_ratings'
       get '/ratings/:id' => 'ratings#show'
       patch 'ratings/:id.json' => 'ratings#update'
-      
+
+      get '/rfp_sections' => 'rfp_sections#index'  
     end
   end
 
@@ -98,6 +99,11 @@ Rails.application.routes.draw do
   patch '/rfp_questions/:id' => 'rfp_questions#update'
   delete '/rfp_questions/:id' => 'rfp_questions#destroy'
 
+  get '/attachments/new' => 'attachments#new'
+  post '/attachments' => 'attachments#create'
+  get '/attachments/:id' => 'attachments#show'
+
   get 'invite_maxes/:id/edit' => 'invite_maxes#edit'
   patch 'invite_maxes/:id' => 'invite_maxes#update'
+
 end

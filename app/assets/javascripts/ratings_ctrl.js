@@ -75,17 +75,38 @@
           console.log("new length: " + $scope.yourYesRatingsLength);
         });
 
+
       } else if (updatedRating.q5 === "Yes" && $scope.yourYesRatingsLength === $scope.inviteMax.max) {
         alert ("blah");
-      
-      } else if ($scope.ratings.q5 === "Yes" && updatedRating.q5 === "Maybe" || updatedRating.q5 === "No"){
+        console.log("not adding");
+
+      } else if ($scope.ratings.q5 === "Yes" && updatedRating.q5 === "No") {
         $http.patch('/api/v1/ratings/' + activeId + '.json', updatedRating).then(function(response){
           $scope.yourYesRatingsLength -= 1;
           console.log("new length: " + $scope.yourYesRatingsLength);
 
         });
-      }
 
+      } else if ($scope.ratings.q5 === "Yes" && updatedRating.q5 === "Maybe") {
+        $http.patch('/api/v1/ratings/' + activeId + '.json', updatedRating).then(function(response){
+          $scope.yourYesRatingsLength -= 1;
+          console.log("new length: " + $scope.yourYesRatingsLength);
+
+        });
+      
+      } else if ($scope.ratings.q5 === "Maybe" && updatedRating.q5 === "No") {
+        $http.patch('/api/v1/ratings/' + activeId + '.json', updatedRating).then(function(response){
+          console.log("no");
+
+        });
+      
+      } else if ($scope.ratings.q5 === "No" && updatedRating.q5 === "Maybe") {
+        $http.patch('/api/v1/ratings/' + activeId + '.json', updatedRating).then(function(response){
+          
+          console.log("maybe");
+
+        });
+      }
       // } else if (updatedRating.q5 === "No" && $scope.yourYesRatingsLength >= $scope.inviteMax) {
       //   $http.patch('/api/v1/ratings/' + activeId + '.json', updatedRating).then(function(response){
       //     $scope.yourYesRatingsLength -= 1;

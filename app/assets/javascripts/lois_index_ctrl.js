@@ -61,14 +61,16 @@
 
     //THIS FUNCTION JUST CHECKS TO SEE IF THE LOI HAS ALREADY BEEN RATED
     $scope.rated = function(ratings){
-      for (var i=0; i < ratings.length; i++){
-        if (ratings[i].user_id == $scope.currentUserId){
-          $scope.activeRatingId = ratings[i].id;
-          return true;
-        } else {
-          return false;
+      if (ratings.length > 0){
+        for (var i=0; i < ratings.length; i++){
+          console.log("id: " + ratings[i].user_id);
+          if (ratings[i].user_id == $scope.currentUserId){
+            $scope.activeRatingId = ratings[i].id;
+            return true;
+          };
         };
       };
+      return false;
     };
 
     //THIS FUNCTION JUST AVERAGES UP THE RATINGS FOR EACH LOI
@@ -84,35 +86,39 @@
         return "No Ratings";
       }
     };
-    $scope.truthValue = false;
 
     $scope.inviteSent = function(status, loi_id){
       var dupes = $scope.invited_lois.filter(function(invited_lois) {
-        return invited_lois.loi_id === parseInt(loi_id) && invited_lois.status;
+        return invited_lois.loi_id === parseInt(loi_id);
       });
-      // console.log(dupes);
       if (dupes.length === 0) {
         var updatedStatus = {
           status: true,
-          loi_id: loi_id
+          loi_id: loi_id,
         };
-        console.log(updatedStatus);
-        console.log(updatedStatus);
 
 
         $http.post('/api/v1/invited_lois/', updatedStatus).then(function(response){
           console.log(response.data);
           $scope.invited_lois.push(response.data);
-          // document.getElementById("invitebtns").innerHTML = "<button class='btn btn-error btn-invite inactive-btn'>Invited</button>";
         });
-        $scope.truthValue = true;
 
-        $scope.btnText = "Invited";
+         
+      
       } else {
         alert("error");
       }
     };
-  
+
+
+    $scope.changeBtn = function(repeatScope) {
+      if (repeatScope.isDisabled) {
+        repeatScope.isDisabled = false;
+      } else {
+        repeatScope.btnText = "Invited";
+        repeatScope.isDisabled = true;
+      }
+    };
 
   }]);
 

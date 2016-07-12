@@ -44,7 +44,7 @@
             </th>
             <tr ng-repeat="loi in lois | filter: {org_name: orgNameFilter} | orderBy:sortByAttribute:descending">
               <td>
-                <b>{{loi.org_name}} {{loi.invited_lois[0].status}}</b>
+                <b>{{loi.org_name}}</b>
               </td>
               <td>
                 <ul class="list-unstyled">
@@ -56,12 +56,12 @@
               </td>
               <td>
                 <% if current_user && current_user.admin %>
-                  <a type="btn" href="/lois/{{loi.id}}" class="btn btn-success btn-rate" ng-if="loi.ratings[0].user_id != <%= current_user.id %>">View/Rate</a>
-                  <a type="btn" href="/lois/{{loi.id}}" class="btn btn-success btn-invite" ng-if="loi.ratings[0].user_id == <%= current_user.id %>">View/Edit</a>   
+                  <a type="btn" href="/lois/{{loi.id}}" class="btn btn-success btn-rate" ng-show="!rated(loi.ratings)">View/Rate</a>
+                  <a type="btn" href="/lois/{{loi.id}}" class="btn btn-warning btn-invite" ng-show="rated(loi.ratings)">View/Edit</a>   
 
                 <% end %>
                   <% if current_user && current_user.super_admin %>
-                    <button class="btn btn-info btn-invite" ng-class="{'disabled': truthValue}" ng-click="inviteSent(loi_status, loi.id); clickit()" ng-if="loi.invited_lois[0].status != true">{{btnText}}</button>
+                    <button class="btn btn-info btn-invite" ng-class="{'disabled': isDisabled}" ng-click="inviteSent(loi_status, loi.id); changeBtn(this)" ng-if="loi.invited_lois[0].status != true">{{btnText}}</button>
                     <button class="btn btn-error btn-invite disabled" ng-if="loi.invited_lois[0].status == true">Invited</button>   
                   <% else %>
                     <button class="btn btn-danger btn-rate disabled" ng-if="loi.invited_lois[0].status != true">Super Admin action required</button>
