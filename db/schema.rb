@@ -27,16 +27,8 @@ ActiveRecord::Schema.define(version: 20160705192029) do
   create_table "attachments", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "loi_id"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
-    t.datetime "avatar_updated_at"
-    t.string   "attachment_file_file_name"
-    t.string   "attachment_file_content_type"
-    t.integer  "attachment_file_file_size"
-    t.datetime "attachment_file_updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string   "url"
     t.string   "name"
   end
