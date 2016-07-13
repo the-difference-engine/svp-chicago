@@ -38,7 +38,6 @@
       $http.get('/api/v1/ratings.json').then(function(response){
         $scope.ratings = response.data;
         $scope.ratingsLength = response.data.length;
-        console.log('test');
 
       });
       $http.get('/api/v1/invite_maxes/1.json').then(function(response){
