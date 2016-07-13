@@ -61,7 +61,6 @@
 							<td>{{ rating.q3 }}</td>
 							<td>{{ rating.q4 }}</td>
 							<% if @yes_ratings.length < @invite_max %>
-								<td>test</td>
 								<td ng-show="rating.user.id==currentUserId" ng-if="yourYesRatingsLength < inviteMax.max">
 										<select class="form-control" name="singleSelect" id="singleSelect" ng-model="rating.q5" ng-change="submitInvite(rating.q5, rating.id)">
 		                  <option value="">--Select--</option>
