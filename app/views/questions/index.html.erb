@@ -17,10 +17,10 @@
           <% @questions.each do |question| %>
             <% if question.section_id == section.id %>
               <li><p> <%= question.question %> 
-                <% if question.id != 1 %>
-                  <%= link_to "Edit", "/questions/#{question.id}/edit", :class => "btn btn-custom", :role => "button" %></p>
+                <% if question.question == 'Organization' %>
+                  <button class="btn btn-danger">Question cannot be edited</button>                  
                 <% else %>
-                  <button class="btn btn-danger">Question cannot be edited</button>
+                  <%= link_to "Edit", "/questions/#{question.id}/edit", :class => "btn btn-custom", :role => "button" %></p>
                 <% end %> 
               </li>
             <% end %>
