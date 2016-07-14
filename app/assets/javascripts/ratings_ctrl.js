@@ -35,11 +35,11 @@
     $scope.descending = false;
 
     $scope.setup = function(){
-      $http.get('/api/v1/ratings.json').then(function(response){
-        $scope.ratings = response.data;
-        $scope.ratingsLength = response.data.length;
+      // $http.get('/api/v1/ratings.json').then(function(response){
+      //   $scope.ratings = response.data;
+      //   $scope.ratingsLength = response.data.length;
 
-      });
+      // });
       $http.get('/api/v1/invite_maxes/1.json').then(function(response){
         $scope.inviteMax = response.data;
         console.log($scope.inviteMax);
