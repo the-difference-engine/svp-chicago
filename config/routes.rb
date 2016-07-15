@@ -35,7 +35,8 @@ Rails.application.routes.draw do
       get '/ratings/:id' => 'ratings#show'
       patch 'ratings/:id.json' => 'ratings#update'
 
-      get '/rfp_sections' => 'rfp_sections#index'  
+      get '/rfp_sections' => 'rfp_sections#index'
+      post '/rfp_sections' => 'rfp_sections#create'  
     end
   end
 
