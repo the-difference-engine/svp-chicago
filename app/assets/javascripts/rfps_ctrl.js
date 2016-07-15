@@ -49,7 +49,7 @@
 
     };
 
-    $scope.submit = function(name, email, isValid){
+    $scope.submit = function(isValid){
   
       if (isValid) {
 

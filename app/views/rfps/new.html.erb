@@ -28,7 +28,7 @@
 
         <!-- START FORM -->  
         <div class="form-body">
-          <form name="rfpForm" ng-submit="submit(name, email, rfpForm.$valid)" novalidate>
+          <form name="rfpForm" ng-submit="submit(rfpForm.$valid)" novalidate>
 
             <div ng-repeat="section in sections">
              <h1> {{section.name}} </h1>
@@ -71,7 +71,7 @@
                         <div class="col-md-4">
                           <label> {{sub_question.question}} </label>
                             <div ng-repeat="answer in sub_question.answers">
-                              <input class="form-control" ng-model="answer.answers">
+                              <input class="form-control" ng-model="answer.answer">
                             </div>
                         </div>
                       </div>
