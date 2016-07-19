@@ -89,13 +89,13 @@ rfp_subquestion_array = [
 ]
 
 rfp_sections.each do |section|
-  rfp_section = RfpSection.create!(section)
+  rfp_section = RfpSection.create!(name: section)
   rfp_question_array.each do |question|
-    if question[rfp_section] == section
-      rfp_question = RfpQuestion.create!(rfp_section_id: rfp_section.id, question: question[question], question_type: question[question_type])
-      rfp_subquestions_array.each do |subquestion|
-        if subquestion[rfp_question] == question
-          SubQuestion.create!(rfp_question_id: rfp_question.id, question: subquestion[question])
+    if question[:rfp_section] == section
+      rfp_question = RfpQuestion.create!(rfp_section_id: rfp_section.id, question: question[:question], question_type: question[:question_type])
+      rfp_subquestion_array.each do |subquestion|
+        if subquestion[:rfp_question] == question[:question]
+          SubQuestion.create!(rfp_question_id: rfp_question.id, question: subquestion[:question])
         end
       end
     end
@@ -146,8 +146,8 @@ questions_array = [
 section_array.each do |section|
   loi_section = Section.create!(name: section)
   questions_array.each do |question|
-    if question[section] == section
-      Question.create!(question: question[question], section_id: loi_section.id)
+    if question[:section] == section
+      Question.create!(question: question[:question], section_id: loi_section.id)
     end
   end
 end
