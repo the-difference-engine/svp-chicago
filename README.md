@@ -19,7 +19,17 @@ How to run app:
 * rake db:create
     * If your Postgres doesn't have root user, you will have to create one; reference the following website for help: 
         * http://www.postgresql.org/docs/9.1/static/app-createuser.html
+        * Use `psql postgres` to access Postgres command line.
+        * Type `\du` to see a list of users.
+        * If you need to create a root user: `CREATE USER root;`
+        * Then: `ALTER USER root CREATEDB;`
+        * Other commands:
+            * `CREATE DATABASE "svp-chicago_development";`
+            * `GRANT ALL PRIVILEGES ON DATABASE "svp-chicago_development" to root;`
+            * `ALTER DATABASE "svp-chicago_development" OWNER TO root;`
+            * `\q` to quit.
 * rake db:migrate
+* rake db:seed
 * start the server
 
 Deployment instructions
