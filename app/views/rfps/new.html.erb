@@ -30,78 +30,72 @@
         <div class="form-body">
           <form name="rfpForm" ng-submit="submit(rfpForm.$valid)" novalidate>
 
-
             <div ng-repeat="section in sections">
               <div class="well rfp-section">
-              <h1> {{section.name}} </h1>
+                <h1> {{section.name}} </h1>
 
-               <div ng-repeat="question in section.questions">
+                <div ng-repeat="question in section.questions">
 
-                 <div ng-if="question.question_type == 'single input'">
-                   <div class="form-group">
-                     <label> {{question.question}} </label>
-                     <input class="form-control" ng-model="question.answer">
-                   </div>
-                 </div>
-
-                 <div ng-if="question.question_type == 'multiple input'">
-                  <div class="form-group">
-                     <label> {{question.question}} </label>
-                     <div ng-repeat="answer in question.answers">
-                      <input class="form-control" ng-model="answer.answer">
-                    </div>
-                    <p><a ng-click="addInput(question.id)">Add Input</a></p>
-                  </div>
-                </div> 
-
-                <div ng-if="question.question_type == 'block'">
-                  <div class="form-group">
-                     <h3><label> {{question.question}} </label></h3>
-                    <div class="well rfp-well">
-                     <div ng-repeat="question in question.sub_questions">
+                  <div ng-if="question.question_type == 'single input'">
+                    <div class="form-group">
                       <label> {{question.question}} </label>
                       <input class="form-control" ng-model="question.answer">
                     </div>
                   </div>
-                  </div>
-                </div> 
 
-                <div ng-if="question.question_type == 'block with multiple inputs'">
-                  <div class="form-group">
-                     <h3><label> {{question.question}} </label></h3>
-                     <div class="well rfp-well">
-                      <div class="container">
-                      <div class="row">
-                        <div ng-repeat="sub_question in question.sub_questions">
-                          <div class="col-md-4" style="width:31%">
-                            <label> {{sub_question.question}} </label>
-                              <div ng-repeat="answer in sub_question.answers">
-                                <input class="form-control" ng-model="answer.answer">
-                              </div>
-                          </div>
-                        </div>
+                  <div ng-if="question.question_type == 'multiple input'">
+                    <div class="form-group">
+                      <label> {{question.question}} </label>
+                      <div ng-repeat="answer in question.answers">
+                        <input class="form-control" ng-model="answer.answer">
                       </div>
                       <p><a ng-click="addInput(question.id)">Add Input</a></p>
                     </div>
+                  </div> 
+
+                  <div ng-if="question.question_type == 'block'">
+                    <div class="form-group">
+                      <h3><label> {{question.question}} </label></h3>
+                      <div class="well rfp-well">
+                        <div ng-repeat="question in question.sub_questions">
+                          <label> {{question.question}} </label>
+                          <input class="form-control" ng-model="question.answer">
+                        </div>
+                      </div>
+                    </div>
+                  </div> 
+
+                  <div ng-if="question.question_type == 'block with multiple inputs'">
+                    <div class="form-group">
+                      <h3><label> {{question.question}} </label></h3>
+                      <div class="well rfp-well">
+                        <div class="container">
+                          <div class="row">
+                            <div ng-repeat="sub_question in question.sub_questions">
+                              <div class="col-md-4" style="width:31%">
+                                <label> {{sub_question.question}} </label>
+                                <div ng-repeat="answer in sub_question.answers">
+                                  <input class="form-control" ng-model="answer.answer">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <p><a ng-click="addInput(question.id)">Add Input</a></p>
+                        </div>
+                      </div>
+                    </div> 
                   </div>
                 </div> 
-              </div>
-              </div>
-
+              </div> 
             </div>
-
-          </div>
-
-          <div class="submit-button-container">
-            <button class="btn btn-primary btn-lg" type="submit">Submit</button>
-          </div>  
-
-        </form>
-        <!-- END FORM -->
-
+            <div class="submit-button-container">
+              <button class="btn btn-primary btn-lg" type="submit">Submit</button>
+            </div>  
+          </form>
+          <!-- END FORM -->
+        </div>
       </div>
     </div>
-
   </div>
 </div>
 
