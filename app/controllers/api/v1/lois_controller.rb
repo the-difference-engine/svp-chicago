@@ -154,8 +154,12 @@ class Api::V1::LoisController < ApplicationController
         answer.fte.update(amount_1: answer_hash[:fte][:amount_1], amount_2: answer_hash[:fte][:amount_2], amount_3: answer_hash[:fte][:amount_3])
 
         answer_hash[:challenges].each do |challenge|
-          new_challenge = Challenge.find(challenge[:id])
-          new_challenge.update(challenge: challenge[:challenge], priority: challenge[:priority]) 
+          if challenge[:id]
+            new_challenge = Challenge.find(challenge[:id])
+            new_challenge.update(challenge: challenge[:challenge], priority: challenge[:priority])
+          else 
+            Challenge.create(answer_id: answer.id, challenge: challenge[:challenge], priority: challenge[:priority])
+          end
         end
       end
 
