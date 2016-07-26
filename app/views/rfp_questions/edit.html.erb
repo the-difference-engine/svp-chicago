@@ -22,5 +22,14 @@
       <% end %>
 
     </div>
+    <div style="text-align:left;">
+      <h4>Question Type: <%= @rfp_question.question_type %> </h4>
+      <% if @rfp_question.question_type == 'block' || @rfp_question.question_type == 'block with multiple inputs' %>
+      <h4>Sub Questions:</h4>
+        <% @rfp_question.sub_questions.each do |sub_question| %>
+          <p><%= sub_question.question %></p>
+        <% end %>
+      <% end %>
+      </div>
     </div>
   </div>

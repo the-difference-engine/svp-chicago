@@ -1,10 +1,30 @@
-<% @rfp_sections.each do |section| %>
-<h2><%= section.name %></h2>
-<% section.rfp_questions.each do |question| %>
-<p>
-  <%= question.question %>
-  <%= link_to "Edit", "/rfp_questions/#{question.id}/edit", :class => "btn btn-custom", :role => "button" %>
-</p>
-<% end %>
-<% end %>
+<div class="site-container">
+  <div id="form-paper">
+    <div class="form-heading">
+      <h1>RFP Questions</h1>
+    </div>
+
+    <div class="add-question">
+      <%= link_to "Add New Question", "/rfp_questions/new", :class => "btn btn-primary btn-question", :role => "button" %>
+    </div>
+
+    <div>
+    <ol>
+      <% @rfp_sections.each do |section| %>
+        <h2><li><%= section.name %></li></h2>
+          <ul>
+            <% section.rfp_questions.each do |question| %>
+              <li>
+                <p>
+                  <%= question.question %>
+                  <%= link_to "Edit", "/rfp_questions/#{question.id}/edit", :class => "btn btn-custom", :role => "button" %>
+                </p>
+              </li>
+            <% end %>
+          </ul>
+        <% end %>
+      </ol>
+
+</div>
+</div>
 
