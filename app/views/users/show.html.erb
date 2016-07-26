@@ -25,7 +25,9 @@
               <li>You can see a list of users: 
               <%= link_to "Users", "/users", class: "btn btn-default" %></li>
               <li>You can add, edit or delete LOI questions:
-              <%= link_to "Questions", "/questions", class: "btn btn-default" %></li>
+              <%= link_to "LOI Questions", "/questions", class: "btn btn-default" %></li>
+              <li>You can add, edit or delete RFP questions:
+              <%= link_to "RFP Questions", "/rfp_questions", class: "btn btn-default" %></li>
             </ul>
           <% else %>
             <h5> You are here to submit a Letter of Interest to SVP-Chicago.</h5>
@@ -38,13 +40,16 @@
         </div>
 
         <div class="col-md-6">
-          <h4>Start a new Letter of Interest.</h4>
-          <h5>Fill out as much as you can, you can always save and come back later.</h5>
-          <p><%= link_to "Start LOI", "/lois/new", class: "btn btn-default" %></p>
-          <br>
+          <% if @user.admin %>
+            <h4>View available Forms</h4>
+            <h5>These are the forms that are currently available:</h5>
+            <p><%= link_to "LOI Form", "/lois/new", class: "btn btn-default" %></p>
+            <p><%= link_to "RFP Form", "/rfps/new", class: "btn btn-default" %></p>
+            <br>
+          <% end %>
           
           <% if !@user.lois.empty? %>
-            <h4>Previous Submissions:</h4>
+            <h4>Your Previous Submissions:</h4>
             <ul>
             <% @user.lois.each do |loi| %>
               <% if loi.submitted %>

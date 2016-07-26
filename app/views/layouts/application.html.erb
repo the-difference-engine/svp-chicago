@@ -26,8 +26,10 @@
       </div>
 
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="/">Home</a></li>
-          <% if user_signed_in? %>  
+          <% if user_signed_in? %>
+            <% if current_user.admin %>
+              <li><a href="/">Dashboard</a></li>
+            <% end %>
             <li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></li>
               <% if user_signed_in? && !current_user.admin %>
                 <li><%= link_to 'My applications', "/users/#{current_user.id}" %></li>
@@ -41,7 +43,8 @@
             <li><a href="/ratings">Ratings</a></li>
           <% end %>
           <% if user_signed_in? && current_user.admin && current_user.super_admin? %>      
-            <li><a href="/questions">Edit Questions</a></li>
+            <li><a href="/questions">Edit LOI Questions</a></li>
+            <li><a href="/questions">Edit RFP Questions</a></li>
             <li><a href="/users">Users</a></li>
           <% end %>
           </li>
