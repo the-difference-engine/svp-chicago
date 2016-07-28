@@ -47,7 +47,7 @@ gem 'aws-sdk-v1'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-  gem 'rspec-rails', '~> 3.0'
+  gem 'rspec-rails', '~> 3.5'
   gem 'dotenv-rails'
   gem 'pry-rails'
   gem 'factory_girl_rails', '~> 4.7'
