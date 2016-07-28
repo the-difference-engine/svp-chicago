@@ -69,7 +69,7 @@ RSpec.describe UsersController, type: :controller do
         FactoryGirl.create(:user)
 
         patch :update, id: User.last.id, admin: true
-        binding.pry
+        # binding.pry
         expect(User.last.admin).to be(true)
       end
 
