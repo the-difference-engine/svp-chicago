@@ -85,9 +85,22 @@
                       </div>
                     </div> 
                   </div>
+
                 </div> 
+
               </div> 
             </div>
+
+            <div>
+              <div class="well rfp-section">
+                <h1>Add Attachment</h1>
+                <%= form_tag attachments_path, enctype: 'multipart/form-data', style: 'margin-top:30px; border:1px solid black;' do %>
+                  <%= file_field_tag :file  %>
+                  <%= submit_tag 'Upload file', class: "btn btn-large btn-info", style: "margin-top:20px;" %>     
+                <% end %>
+              </div>
+            </div>
+
             <div class="submit-button-container">
               <button class="btn btn-primary btn-lg" type="submit">Submit</button>
             </div>  
