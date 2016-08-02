@@ -19,6 +19,19 @@ class Api::V1::RfpSectionsController < ApplicationController
      end
    end
    # if errors.empty?
+    obj = S3_BUCKET.objects[params[:file].original_filename]
+
+    # Upload the file
+    obj.write(
+      file: params[:file],
+      acl: :public_read
+    )
+
+    # Create an object for the upload
+    attachment_url = obj.public_url
+    attachment_name = obj.key
+  
+
      @rfp = Rfp.new(user_id: current_user.id)
      @rfp.save
      params[:rfp_sections].each do |section|
