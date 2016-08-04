@@ -7,6 +7,7 @@ Some of the main features found in this web application include:
 3.  A rating system used to rate applicants’ applications
 
 Application details:
+
 * Ruby version: 2.1.4 
 * Rails version: 4.2.5 
 * This is a Postgres database
@@ -38,13 +39,14 @@ How to run app:
         * `user.save`
 
 
-Deployment instructions
+Deployment instructions:
+
 * git push qa qa:master
 * git push demo demo:master
 * git push prod master
 
     * As a new Heroku collaborator, use these commands to set up your git remotes:
-        QA: `heroku git:remote -a qa-YOUR-APP-NAME -r qa`
-        DEMO: `heroku git:remote -a demo-YOUR-APP-NAME -r demo`
-        PROD: `heroku git:remote -a prod-YOUR-APP-NAME -r prod`
+        * QA: `heroku git:remote -a qa-YOUR-APP-NAME -r qa`
+        * DEMO: `heroku git:remote -a demo-YOUR-APP-NAME -r demo`
+        * PROD: `heroku git:remote -a prod-YOUR-APP-NAME -r prod`
 
