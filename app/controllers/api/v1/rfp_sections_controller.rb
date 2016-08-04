@@ -38,7 +38,7 @@ class Api::V1::RfpSectionsController < ApplicationController
            if question["sub_questions"]
              question["sub_questions"].each do |sub_question|
                if sub_question["answer"]
-                 RfpAnswer.create(rfp_id: @rfp.id, rfp_question_id: sub_question["id"], answer: sub_question["answer"])
+                 RfpAnswer.create(rfp_id: @rfp.id, rfp_question_id: question["id"], answer: sub_question["answer"])
                end
              end
            end
