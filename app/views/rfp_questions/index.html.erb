@@ -6,12 +6,13 @@
 
     <div class="add-question">
       <%= link_to "Add New Question", "/rfp_questions/new", :class => "btn btn-primary btn-question", :role => "button" %>
+      <%= link_to "Add New Section", "/rfp_sections/new", :class => "btn btn-primary btn-question", :role => "button" %>
     </div>
 
     <div>
     <ol>
       <% @rfp_sections.each do |section| %>
-        <h2><li><%= section.name %></li></h2>
+        <h2><li><%= section.name %><%= link_to "Edit", "/rfp_sections/#{section.id}/edit", :class => "btn btn-custom", :role => "button" %></li></h2>
           <ul>
             <% section.rfp_questions.each do |question| %>
               <li>
