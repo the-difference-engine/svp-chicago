@@ -32,7 +32,7 @@ class Api::V1::RfpSectionsController < ApplicationController
     attachment_name = obj.key
   
 
-     @rfp = Rfp.new(user_id: current_user.id)
+     @rfp = Rfp.new(user_id: current_user.id, attachment_url: attachment_url)
      @rfp.save
      params[:rfp_sections].each do |section|
        section["questions"].each do |question|
