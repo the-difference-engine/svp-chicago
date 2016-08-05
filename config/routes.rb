@@ -108,4 +108,10 @@ Rails.application.routes.draw do
   get 'invite_maxes/:id/edit' => 'invite_maxes#edit'
   patch 'invite_maxes/:id' => 'invite_maxes#update'
 
+  get '/rfp_sections/new' => 'rfp_sections#new'
+  post '/rfp_sections' => 'rfp_sections#create'
+  get '/rfp_sections/:id/edit' => 'rfp_sections#edit'
+  patch 'rfp_sections/:id' => 'rfp_sections#update'
+  delete 'rfp_sections/:id' => 'rfp_sections#destroy'
+
 end
