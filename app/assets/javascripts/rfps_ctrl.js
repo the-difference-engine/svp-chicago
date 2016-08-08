@@ -88,5 +88,15 @@
       };
     };
 
+    $scope.uploadAttachment = function() {
+      $http.post('/api/v1/attachments.json').success(function(response){
+            console.log(response);
+            alert('Your file has been uploaded');
+          }).error(function(response){
+            $scope.errors = response;
+            console.log(response);
+          })
+    };
+
   }]);
 }());
