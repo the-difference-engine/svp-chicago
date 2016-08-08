@@ -29,12 +29,14 @@
               <li>You can add, edit or delete RFP questions:
               <%= link_to "RFP Questions", "/rfp_questions", class: "btn btn-default" %></li>
             </ul>
-          <% else %>
-            <h5> You are here to submit a Letter of Interest to SVP-Chicago.</h5>
-            <h5> You can: </h5>
-            <ul>
-              <li>Start a new application here <a href="/lois/new">here</a>.</li>
-            </ul>
+          <% elsif @user_loi_status  %>
+            <h4>Congratulations! Your LOI has been approved and you have been invited to fill an RPF form. </h4>
+              <p><a href="/rfps/new" class="btn btn-success">Click for RFP form</a></p>
+
+            <% else %>
+
+            <h5>You can submit a Letter of Interest (LOI) to SVP-Chicago.</h5>
+              <a href="/lois/new" class="btn btn-primary">Click for LOI form</a>
           <% end %>
           <br>
         </div>
