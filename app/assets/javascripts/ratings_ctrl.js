@@ -42,7 +42,6 @@
       });
       $http.get('/api/v1/invite_maxes/1.json').then(function(response){
         $scope.inviteMax = response.data;
-        console.log($scope.inviteMax);
 
       });
 

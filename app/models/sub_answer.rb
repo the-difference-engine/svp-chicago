@@ -3,5 +3,6 @@ class SubAnswer < ActiveRecord::Base
   belongs_to :sub_question
   belongs_to :rfp
   belongs_to :user
+  belongs_to :rfp_answer
 
 end

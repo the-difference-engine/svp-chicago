@@ -16,6 +16,7 @@
           $scope.loi = response.data;
           console.log($scope.loi);
 
+          $scope.activeChallenge = {};
           //ADD THE TOAL FTES
           $scope.fte_1 = 0;
           $scope.fte_2 = 0;
@@ -32,6 +33,15 @@
     //SETS TO TRUE IF APPLICANT IS FINISHED WITH LOI FORM
     $scope.submitNow = function(){
       $scope.submitted = true;
+    };
+
+    $scope.addChallenge = function(questionId){
+      if ($scope.activeChallenge[questionId] == 1){
+        $scope.activeChallenge[questionId] = 2;
+      } else {
+        $scope.activeChallenge[questionId] = 1;
+      }
+      console.log($scope.activeChallenge);
     };
 
     $scope.submit = function(isValid){

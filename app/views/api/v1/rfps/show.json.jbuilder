@@ -1,16 +1,26 @@
 json.id @rfp.id
-
 json.user_id @rfp.user_id
 
-json.answers @rfp.rfp_answers do |answer|
-  json.question answer.rfp_question
-  if answer.rfp_question.question_type == "block"
-    answer.rfp_question.sub_questions.each do |sub_question|
-      json.sub_question sub_question
-      sub_question.sub_answers.each do |sub_answer|
-        json.sub_answer sub_answer
-      end 
-    end 
+json.array! @rfp_sections.each do |rfp_section|
+  json.rfp_section rfp_section.name
+
+  json.rfp_questions rfp_section.rfp_questions.each do |rfp_question|
+    json.rfp_question rfp_question.question
+
+    @rfp.rfp_answers.each do |rfp_answer|
+
+      if rfp_answer.rfp_question_id == rfp_question.id
+        json.rfp_answer = rfp_answer.answer
+
+        if rfp_answer.sub_answers.length > 0
+
+          json.sub_questions rfp_answer.sub_answers.each do |sub_answer|
+            json.sub_question sub_answer.sub_question.question
+            json.sub_answer sub_answer.answer
+          end
+
+        end
+      end
+    end
   end
-  json.answer answer.answer
 end

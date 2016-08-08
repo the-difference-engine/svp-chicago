@@ -160,34 +160,35 @@
                       <td><b>{{answer.question.question}}:</b></td>
                       <td>
                         <ol class="challenge-list">
-                          <li ng-show="!answer.challenges[0].challenge==''">
+                          <li>
                             <input type="text" class="form-control" ng-model="answer.challenges[0].challenge">
                           </li>
-                          <li ng-show="!answer.challenges[1].challenge==''">
+                          <li ng-show="!answer.challenges[1].challenge=='' || activeChallenge[answer.question.id] > 0">
                             <input type="text" class="form-control" ng-model="answer.challenges[1].challenge">
                           </li>
-                          <li ng-show="!answer.challenges[2].challenge==''">
+                          <li ng-show="!answer.challenges[2].challenge=='' || activeChallenge[answer.question.id] > 1">
                             <input type="text" class="form-control" ng-model="answer.challenges[2].challenge">
                           </li>
                         </ol>
+                        <p><a ng-click="addChallenge(answer.question.id)">Add Challenge</a></p>
                       </td>
                       <td>
                         <ol class="challenge-list">
-                          <li ng-show="!answer.challenges[0].priority==''">
+                          <li>
                             <select class="form-control" name="singleSelect" id="singleSelect" ng-model="answer.challenges[0].priority">
                               <option value="H">High</option>
                               <option value="M">Medium</option>
                               <option value="L">Low</option>
                             </select>
                           </li>
-                          <li ng-show="!answer.challenges[1].priority==''">
+                          <li ng-show="!answer.challenges[1].priority=='' || activeChallenge[answer.question.id] > 0">
                             <select class="form-control" name="singleSelect" id="singleSelect" ng-model="answer.challenges[1].priority">
                               <option value="H">High</option>
                               <option value="M">Medium</option>
                               <option value="L">Low</option>
                             </select>
                           </li>
-                          <li ng-show="!answer.challenges[2].priority==''">
+                          <li ng-show="!answer.challenges[2].priority=='' || activeChallenge[answer.question.id] > 1">
                             <select class="form-control" name="singleSelect" id="singleSelect" ng-model="answer.challenges[2].priority">
                               <option value="H">High</option>
                               <option value="M">Medium</option>

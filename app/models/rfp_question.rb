@@ -5,7 +5,7 @@ class RfpQuestion < ActiveRecord::Base
   has_many :rfp_answers
 
   validates :question, presence: true
-  validates :rfp_section, presence: true
+  validates :rfp_section_id, presence: true
   validates :question_type, presence: true
 
 end
