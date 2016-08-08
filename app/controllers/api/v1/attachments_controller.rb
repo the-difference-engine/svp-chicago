@@ -1,4 +1,8 @@
 class Api::V1::AttachmentsController < ApplicationController
+  def index
+    @attachments = Attachment.all
+  end
+
   def create
     # Make an object in your bucket for your upload
     obj = S3_BUCKET.objects[params[:file].original_filename]
