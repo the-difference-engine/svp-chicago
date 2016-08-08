@@ -41,6 +41,9 @@ Rails.application.routes.draw do
 
       get '/rfp_sections' => 'rfp_sections#index'
       post '/rfp_sections' => 'rfp_sections#create'  
+
+      get '/attachments' => 'attachments#index'
+      post '/attachments' => 'attachments#create'
     end
   end
 
