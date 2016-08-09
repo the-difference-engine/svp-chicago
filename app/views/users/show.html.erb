@@ -29,18 +29,15 @@
               <li>You can add, edit or delete RFP questions:
               <%= link_to "RFP Questions", "/rfp_questions", class: "btn btn-default" %></li>
             </ul>
-          <% elsif @user_loi_status  %>
-            <h4>Congratulations! Your LOI has been approved and you have been invited to fill an RPF form. </h4>
+          <% elsif @user_loi_status %>
+            <h4>Congratulations! Your LOI has been approved and you have been invited to fill an RFP form. </h4>
               <p><a href="/rfps/new" class="btn btn-success">Click for RFP form</a></p>
-
             <% else %>
-
             <h5>You can submit a Letter of Interest (LOI) to SVP-Chicago.</h5>
               <a href="/lois/new" class="btn btn-primary">Click for LOI form</a>
           <% end %>
           <br>
         </div>
-
         <div class="col-md-6">
           <% if @user.admin %>
             <h4>View available Forms</h4>
@@ -49,7 +46,6 @@
             <p><%= link_to "RFP Form", "/rfps/new", class: "btn btn-default" %></p>
             <br>
           <% end %>
-          
           <% if !@user.lois.empty? %>
             <h4>Your Previous Submissions:</h4>
             <ul>
@@ -64,8 +60,6 @@
             <% end %>
             </ul>
           <% end %>
-        
-
         </div>
       </div>
     </div>
