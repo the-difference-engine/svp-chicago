@@ -7,7 +7,7 @@
     $scope.setup = function(){
 
       $http.get('/api/v1/rfp_sections.json').then(function(response){
-        $scope.sections = response.data; 
+        $scope.sections = response.data;
 
         //FOR CURRENT PROGRAMS SECTION:
         //Assign this question to recieve mutiple answers
@@ -86,12 +86,6 @@
           };
         };
       };
-    };
-
-    $scope.uploadAttachment = function() {
-      $http.post('/api/v1/attachments.json').success(function(response){
-        alert('Your file has been uploaded');
-      })
     };
 
   }]);

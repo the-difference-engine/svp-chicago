@@ -3,7 +3,7 @@
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# Note that this schema.rb definition is the authoritative source for your
+# Note that this schema.  rb definition is the authoritative source for your
 # database schema. If you need to create the application database on another
 # system, you should be using db:schema:load, not running all the migrations
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
@@ -104,6 +104,14 @@ ActiveRecord::Schema.define(version: 20160802020244) do
     t.integer  "weighted_score"
   end
 
+  create_table "rfp_answers", force: :cascade do |t|
+    t.integer  "rfp_question_id"
+    t.integer  "rfp_id"
+    t.string   "answer"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
   create_table "rfp_questions", force: :cascade do |t|
     t.integer  "rfp_section_id"
     t.string   "question"
@@ -130,6 +138,16 @@ ActiveRecord::Schema.define(version: 20160802020244) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "sub_answers", force: :cascade do |t|
+    t.integer  "sub_question_id"
+    t.integer  "user_id"
+    t.integer  "rfp_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "answer"
+    t.integer  "rfp_answer_id"
   end
 
   create_table "sub_questions", force: :cascade do |t|

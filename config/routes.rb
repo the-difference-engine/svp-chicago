@@ -41,6 +41,9 @@ Rails.application.routes.draw do
 
       get '/rfp_sections' => 'rfp_sections#index'
       post '/rfp_sections' => 'rfp_sections#create'
+
+      get '/rfps' => 'rfps#index'
+      get '/rfps/:id' => 'rfps#show'
     end
   end
 
@@ -90,7 +93,9 @@ Rails.application.routes.draw do
   get '/sections/:id' => 'sections#show'
   post '/sections' => 'sections#create'
  
+  get '/rfps' => 'rfps#index'
   get '/rfps/new' => 'rfps#new'
+  get '/rfps/:id' => 'rfps#show'
 
   get '/rfp_questions' => 'rfp_questions#index'
   get '/rfp_questions/new' => 'rfp_questions#new'
