@@ -3,7 +3,7 @@ class RfpsController < ApplicationController
     user_has_loi = Loi.find_by(user_id:current_user.id)
 
     if user_has_loi
-      user_loi_status = user_loi.status
+      user_loi_status = user_has_loi.status
     else
       user_loi_status = false
     end
