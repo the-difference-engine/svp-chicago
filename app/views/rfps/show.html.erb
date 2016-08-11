@@ -5,9 +5,31 @@
         <div class="form-heading">
 
           <h1> RFP Submission Review </h1>
-        
-        <div>
-             <h1> {{}} </h1>
-        </div>
 
+          <div class="form-body">
+            <div ng-repeat= "section in sections">
+              <div class="well rfp-section">
+                <h1> {{section.rfp_section}} </h1>
+
+                <div ng-repeat= "question in section.rfp_questions">
+                  <div ng-if="question.rfp_answer != 'See Subs'">
+                    <p>{{question.rfp_question}} {{question.rfp_answer}}</p>
+                  </div>
+                  <div ng-if="question.rfp_answer == 'See Subs'">
+                  <div ng-repeat="sub_question in question.sub_questions"
+                  <h3> {{sub_question.sub_question}} {{sub_question.sub_answer}}</h3>
+                  </div>
+
+
+
+
+                </div>
+
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
+    </div>
+  </div> 
+

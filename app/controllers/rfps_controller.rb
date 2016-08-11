@@ -5,6 +5,10 @@ class RfpsController < ApplicationController
     if !user_loi_status
       redirect_to '/'
     end
-    
   end 
+
+ def show
+  @rfp = Rfp.find(params[:id])
+  gon.id = @rfp.id
+ end 
 end
