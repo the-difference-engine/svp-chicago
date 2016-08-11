@@ -104,6 +104,14 @@ ActiveRecord::Schema.define(version: 20160808233406) do
     t.integer  "weighted_score"
   end
 
+  create_table "rfp_answers", force: :cascade do |t|
+    t.integer  "rfp_question_id"
+    t.integer  "rfp_id"
+    t.string   "answer"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
   create_table "rfp_questions", force: :cascade do |t|
     t.integer  "rfp_section_id"
     t.string   "question"
