@@ -17,3 +17,4 @@
 //= require angular-animate
 //= require app
 //= require_tree .
+//= require angularjs-file-upload
