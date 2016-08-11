@@ -9,8 +9,13 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(current_user.id)
+    user_has_loi = Loi.find_by(user_id:current_user.id)
 
-    @user_loi_status = Loi.find_by(user_id:current_user.id).status
+    if user_has_loi
+      @user_loi_status = Loi.find_by(user_id:current_user.id).status
+    else 
+      @user_loi_status = false
+    end
   end
 
   def update
