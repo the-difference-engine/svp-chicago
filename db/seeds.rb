@@ -56,7 +56,7 @@ rfp_question_array = [
   {rfp_section: "Affiliations and Collaborations (if applicable)", question: "What local and national affiliations do you have?", question_type: "single input"},
   {rfp_section: "Affiliations and Collaborations (if applicable)", question: "How are you leveraging partners and networks in the Chicagoland area to enhance the services you provide?", question_type: "single input"},
   {rfp_section: "Affiliations and Collaborations (if applicable)", question: "Which are national or parent organizations? What are your responsibilities to these organizations?", question_type: "single input"},
-  {rfp_section: "Affiliations and Collaborations (if applicable)", question: "If affiliated with a national or parent organization, describe the roles you each play in the following:", question_type: "block"},
+  {rfp_section: "Affiliations and Collaborations (if applicable)", question: "If affiliated with a national or parent organization, describe the roles you each play in the following:", question_type: "multiple input"},
   {rfp_section: "Legal Actions", question: "Please describe any current, anticipated, or past civil, criminal, legal or regulatory issues, violations, lawsuits, or claims against the organization or any personnel.", question_type: "single input"}
 ]
 
