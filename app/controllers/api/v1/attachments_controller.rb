@@ -9,7 +9,7 @@ class Api::V1::AttachmentsController < ApplicationController
 
     # Upload the file
     obj.write(
-      file: params[:attachment],
+      file: params[:file],
       acl: :public_read
     )
 

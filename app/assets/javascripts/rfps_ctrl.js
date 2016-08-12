@@ -1,7 +1,9 @@
 (function() {
   "use strict";
 
-  angular.module("app", ["angularFileUpload"]).controller("rfpsCtrl", ["$scope", "$http", "$compile", function($scope, $http, $compile, FileUploader){
+  angular
+  .module("app", ["angularFileUpload"])
+  .controller("rfpsCtrl", ["$scope", "$http", "$compile", function($scope, $http, $compile, FileUploader){
     window.scope = $scope;
     $scope.uploader = new FileUploader({url: '/'});
 
@@ -90,12 +92,9 @@
     };
 
     $scope.uploadAttachment = function() {
-      var newFile = document.getElementById("file").files[0];
-      var newAttachment = { attachment: newFile };
-      console.log(newFile);
-      console.log(newAttachment);
+      
 
-      $http.post('/api/v1/attachments.json', newAttachment).success(function(response){
+      $http.post('/api/v1/attachments.json').success(function(response){
         alert('Your file has been uploaded');
       })
 
