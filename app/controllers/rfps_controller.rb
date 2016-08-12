@@ -13,4 +13,9 @@ class RfpsController < ApplicationController
     end
     
   end 
+
+  def index
+    @rfps = Rfp.all
+  end
+  
 end
