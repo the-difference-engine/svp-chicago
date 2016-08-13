@@ -1,4 +1,5 @@
 class Api::V1::AttachmentsController < ApplicationController
+
   def index
     @attachments = Attachment.all
   end
@@ -16,7 +17,8 @@ class Api::V1::AttachmentsController < ApplicationController
     # Create an object for the upload
     attachment = Attachment.create(
         url: obj.public_url,
-        name: obj.key  
+        name: obj.key,
+        user_id: $attachment_user_id
         )
 
     # Save the upload

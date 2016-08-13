@@ -1,5 +1,8 @@
 class RfpsController < ApplicationController
   def new
+    # get user id for attachments api controller create method
+    $attachment_user_id = current_user.id
+
     user_has_loi = Loi.find_by(user_id:current_user.id)
 
     if user_has_loi
