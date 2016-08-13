@@ -87,7 +87,6 @@
                   </div>
 
                 </div> 
-
               </div> 
             </div>
 
@@ -95,18 +94,18 @@
               <div class="form-group">
                 <h3><label> Upload File </label></h3>
                 <div class="well rfp-well">
-                  <div ng-app="app">
-                    <div ng-controller="AppController">
-                      <input type="file" nv-file-select uploader="uploader"/><br/>
-                      <h3 ng-click="uploadAttachment()">Submit</h3>
-                    </div>
+                  <div>  
+                    <div>
+                       <input type="file" file-model="myFile"/>
+                       <button ng-click="uploadFile()" class="btn btn-info" style="margin-top:15px;">Upload File</button>
+                    </div>      
                   </div>
                 </div>
               </div>
             </div>
 
             <div class="submit-button-container">
-              <button class="btn btn-primary btn-lg" type="submit">Submit</button>
+              <button class="btn btn-primary btn-lg" ng-click="submitForm()">Submit</button>
             </div>  
           </form>
           <!-- END FORM -->

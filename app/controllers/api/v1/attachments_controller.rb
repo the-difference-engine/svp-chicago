@@ -14,17 +14,17 @@ class Api::V1::AttachmentsController < ApplicationController
     )
 
     # Create an object for the upload
-    Attachment.create(
-        url: 'obj.public_url',
-        name: 'obj.key'  
+    attachment = Attachment.create(
+        url: obj.public_url,
+        name: obj.key  
         )
 
-    # # Save the upload
-    # if @attachment.save
-    #   # happy path
-    # else
-    #   # sad path
-    # end
+    # Save the upload
+    if attachment.save  
+      render json: { message: "File Uploaded"}, status: 200
+    else
+      render json: { errors: @post.errors.full_messages }, status: 422
+    end
   end
 
 end
