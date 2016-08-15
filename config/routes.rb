@@ -40,11 +40,10 @@ Rails.application.routes.draw do
       patch 'ratings/:id.json' => 'ratings#update'
 
       get '/rfp_sections' => 'rfp_sections#index'
-      post '/rfp_sections' => 'rfp_sections#create'
+      post '/rfp_sections' => 'rfp_sections#create'  
 
-      get '/rfps' => 'rfps#index'
-      get '/rfps/:id' => 'rfps#show'
-
+      get '/attachments' => 'attachments#index'
+      post '/attachments' => 'attachments#create'
     end
   end
 
@@ -94,9 +93,7 @@ Rails.application.routes.draw do
   get '/sections/:id' => 'sections#show'
   post '/sections' => 'sections#create'
  
-  get '/rfps' => 'rfps#index'
   get '/rfps/new' => 'rfps#new'
-  get '/rfps/:id' => 'rfps#show'
 
   get '/rfp_questions' => 'rfp_questions#index'
   get '/rfp_questions/new' => 'rfp_questions#new'
