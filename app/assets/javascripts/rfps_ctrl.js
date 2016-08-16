@@ -73,8 +73,6 @@
                   question_type: "block with multiple inputs",
                   answers: [{}]
                 };
-                // console.log($scope.sections[i].questions[j].sub_questions[k])
-
               };
             };
           };
@@ -94,7 +92,7 @@
           window.location.href = '/rfps';
         }).error(function(response){
           $scope.errors = response;
-          console.log("error");
+          console.log($scope.errors);
         })
     };
 
