@@ -1,9 +1,45 @@
 (function() {
   "use strict";
 
-  var app = angular.module('app', []);
+  angular.module('app')
 
-  app.controller("rfpsCtrl", ["$scope", "$http", "$compile", "fileUpload", function($scope, $http, $compile, fileUpload){
+  .directive('fileModel', ['$parse', function ($parse) {
+    return {
+       restrict: 'A',
+       link: function(scope, element, attrs) {
+          var model = $parse(attrs.fileModel);
+          var modelSetter = model.assign;
+
+          element.bind('change', function(){
+             scope.$apply(function(){
+                modelSetter(scope, element[0].files[0]);
+             });
+          });
+       }
+    };
+  }])
+
+ .service('fileUpload', ['$http', function ($http) {
+    this.uploadFileToUrl = function(file, uploadUrl) {
+       var fd = new FormData();
+       fd.append('file', file);
+
+       $http.post(uploadUrl, fd, {
+          transformRequest: angular.identity,
+          headers: {'Content-Type': undefined}
+       })
+
+       .success(function(){
+          alert("Your file has been successfully uploaded!");
+       })
+
+       .error(function(){
+          alert("Something went wrong. Did you select a file?");
+       });
+    }
+  }])
+
+  .controller("rfpsCtrl", ["$scope", "$http", "$compile", "fileUpload", function($scope, $http, $compile, fileUpload){
     window.scope = $scope;
 
     $scope.setup = function(){
@@ -37,18 +73,14 @@
                   question_type: "block with multiple inputs",
                   answers: [{}]
                 };
-                console.log($scope.sections[i].questions[j].sub_questions[k])
+                // console.log($scope.sections[i].questions[j].sub_questions[k])
 
               };
-      
             };
-
           };
-
         };
-
+        console.log($scope.sections);
       });
-
     };
 
     $scope.submitForm = function(){
@@ -62,7 +94,7 @@
           window.location.href = '/rfps';
         }).error(function(response){
           $scope.errors = response;
-          console.log(response);
+          console.log("error");
         })
     };
 
@@ -85,50 +117,14 @@
 
     $scope.uploadFile = function(){
        var file = $scope.myFile;
-       
+
        console.log('file is ' );
        console.dir(file);
-       
+
        var uploadUrl = "/api/v1/attachments.json";
        fileUpload.uploadFileToUrl(file, uploadUrl);
     };
 
-  }]);
-
-  app.directive('fileModel', ['$parse', function ($parse) {
-    return {
-       restrict: 'A',
-       link: function(scope, element, attrs) {
-          var model = $parse(attrs.fileModel);
-          var modelSetter = model.assign;
-          
-          element.bind('change', function(){
-             scope.$apply(function(){
-                modelSetter(scope, element[0].files[0]);
-             });
-          });
-       }
-    };
-  }]);
-
- app.service('fileUpload', ['$http', function ($http) {
-    this.uploadFileToUrl = function(file, uploadUrl){
-       var fd = new FormData();
-       fd.append('file', file);
-    
-       $http.post(uploadUrl, fd, {
-          transformRequest: angular.identity,
-          headers: {'Content-Type': undefined}
-       })
-    
-       .success(function(){
-          alert("Your file has been successfully uploaded!");
-       })
-    
-       .error(function(){
-          alert("Something went wrong. Did you select a file?");
-       });
-    }
   }]);
 
 }());
