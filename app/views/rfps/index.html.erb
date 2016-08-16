@@ -13,18 +13,77 @@
         <!-- START QUESTION OVERVIEW -->  
         
 
-            <div>
-             <h1> {{rfps}} </h1>
+        <!-- BELOW NEEDS TO BE CHANGED TO RFP VARIABLES -->
+            <div class="panel panel-default">
+              <table class="table table-hover" id="loi-table">
+                <th style="width: 20%;">
+                  <p ng-click="sortBy('org_name')">
+                    Organization Name
+                    <span ng-hide="descending" class="glyphicon glyphicon-triangle-bottom">
+                    </span>
+                    <span ng-hide="!descending" class="glyphicon glyphicon-triangle-top">
+                    </span>
+                  </p>
+                  <input ng-model="orgNameFilter" placeholder="filter" class="form-control">
+                </th>
+                <th style="width: 50%;">
+                  <p ng-click="sortBy(loi.answers[selectedAnswer.id])">
+                    Please select a question to see and compare
+                    <span ng-hide="descending" class="glyphicon glyphicon-triangle-bottom">
+                    </span>
+                    <span ng-hide="!descending" class="glyphicon glyphicon-triangle-top">
+                    </span>
+                  </p>
+                  <select class="form-control" ng-model="selectedAnswer" ng-options="question.question group by question.section for question in questions">
+                    <option value="">-- choose question --</option>
+                  </select>
+
+                </th>
+                <th ng-show=<%="#{current_user.super_admin}"%>  style="width: 8%; text-align: center; vertical-align: middle">
+                <p ng-click="sortBy(avgRatingPerLoi)">
+                    Average Rating
+                    <span ng-hide="descending" class="glyphicon glyphicon-triangle-bottom">
+                    </span>
+                    <span ng-hide="!descending" class="glyphicon glyphicon-triangle-top">
+                    </span>
+                  </p>
+                </th>
+                <th style="width: 20%; text-align: center; vertical-align: middle">
+                  <p>Action</p>
+                </th>
+                <tr ng-repeat="rfp in rfps">
+                  <td>
+                    <b>{{rfp.org_name}}</b>
+
+                  </td>
+                  <td>
+                    <ul class="list-unstyled">
+                      <li ng-repeat="answer in formatAnswer(loi.answers[selectedAnswer.id])">{{answer}}</li>
+                    </ul>
+                  </td>
+                  <td ng-show=<%="#{current_user.super_admin}"%> style="text-align: center;">
+                    <p>{{avgRatingPerLoi(loi.ratings)}}</p>
+                  </td>
+                  <td>
+                    <% if current_user && current_user.admin %>
+                      <a type="btn" href="/lois/{{loi.id}}" class="btn btn-success btn-rate" ng-show="!rated(loi.ratings)">View/Rate</a>
+                      <a type="btn" href="/lois/{{loi.id}}" class="btn btn-warning btn-invite" ng-show="rated(loi.ratings)">View/Edit</a>   
+
+                    <% end %>
+                      <% if current_user && current_user.super_admin %>
+                        <button class="btn btn-info btn-invite" ng-class="{'disabled': isDisabled}" ng-click="inviteSent(loi_status, loi.id); changeBtn(this)" ng-if="loi.invited_lois[0].status != true">{{btnText}}</button>
+                        <button class="btn btn-error btn-invite disabled" ng-if="loi.invited_lois[0].status == true">Invited</button>   
+                      <% else %>
+                        <button class="btn btn-danger btn-rate disabled" ng-if="loi.invited_lois[0].status != true">Super Admin action required</button>
+                        <button class="btn btn-error btn-rate disabled" ng-if="loi.invited_lois[0].status == true">Invited</button>
+                      <% end %>
+                  </td>
+                </tr>
+              </table>
             </div>
 
-          
 
-          <div class="submit-button-container">
-            <button class="btn btn-primary btn-lg" type="submit">Submit</button>
-          </div>  
 
-       
-        <!-- END FORM -->
 
       </div>
     </div>
