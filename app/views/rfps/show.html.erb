@@ -7,29 +7,84 @@
           <h1> RFP Submission Review </h1>
 
           <div class="form-body">
-            <div ng-repeat= "section in sections">
-              <div class="well rfp-section">
-                <h1> {{section.rfp_section}} </h1>
 
-                <div ng-repeat= "question in section.rfp_questions">
-                  <div ng-if="question.rfp_answer != 'See Subs'">
-                    <p>{{question.rfp_question}} {{question.rfp_answer}}</p>
-                  </div>
-                  <div ng-if="question.rfp_answer == 'See Subs'">
-                  <div ng-repeat="sub_question in question.sub_questions"
-                  <h3> {{sub_question.sub_question}} {{sub_question.sub_answer}}</h3>
-                  </div>
+            <ol class="form-list">
+              <!-- REPEAT SECTIONS -->
+              <div ng-repeat= "section in sections track by $index" >
+
+                <div>
+                  <h1> {{section.rfp_section}} </h1>
+
+                  <!-- REPEAT RFP-QUESTIONS -->
+                  <table class="table table-striped table-bordered" >
 
 
+                    <tr ng-repeat="question in section.rfp_questions" ng-if="question.rfp_answer != 'See Subs'">
+
+                      <td class="td-question">
+                        <b>
+                          {{question.rfp_question}}:
+                        </b>
+                      </td> 
+
+                      <td class="td-answer" ng-if="question.rfp_answer != null">
+                        {{question.rfp_answer}}
+                      </td>
+
+                      <td ng-if="question.rfp_answer == null">
+                        <table class="table table-striped table-bordered">
+
+                          <!-- REPEAT MULTIPLE INPUTS -->
+                          <tr ng-repeat="answer in question.rfp_answers">
+                            <td class="td-answer">
+                              {{answer.rfp_answer}}
+                            </td>
+                          </tr>
+                          <!-- END REPEAT MULTIPLE INPUTS -->
+
+                        </table>
+                      </td>
+
+                    </tr>
+
+                    <!-- REPEAT SUB-QUESTIONS -->
+                    <tr ng-repeat="question in section.rfp_questions" ng-if="question.rfp_answer == 'See Subs'">
+                      <td class="td-question">
+                        <b>
+                          {{question.rfp_question}}:
+                        </b>
+                      </td>
+
+                      <td>
+                        <table class="table table-striped table-bordered" >
+
+                          <tr ng-repeat="sub_question in question.sub_questions">
+                            <td class="td-question">
+                              <b>
+                                {{sub_question.sub_question}}: 
+                              </b>
+                            </td>
+
+                            <td class="td-answer">
+                              {{sub_question.sub_answer}}
+                            </td>
+                          </tr>
+
+                        </table>
+                      </td>
+                    </tr>
+                    <!-- END REPEAT SUB-QUESTIONS -->
 
 
+                  </table>
+                  <!-- END REPEAT RFP-QUESTIONS -->
                 </div>
-
+              </div>
+              <!-- END REPEAT SECTIONS -->
+              <ol>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div> 
-
+    </div> 
