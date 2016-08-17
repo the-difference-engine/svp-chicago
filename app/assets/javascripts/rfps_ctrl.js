@@ -81,15 +81,16 @@
       });
     };
 
-    $scope.submitForm = function(){
+    $scope.submitForm = function(submitStatus){      
       var newRfp = {
-        rfp_sections: $scope.sections
+        rfp_sections: $scope.sections,
+        submitted: submitStatus
       };
       console.log(newRfp);
       console.log($scope.sections[3]);
       $http.post('/api/v1/rfp_sections.json', newRfp).success(function(response){
           console.log(response);
-          window.location.href = '/rfps';
+          window.location.href = '/';
         }).error(function(response){
           $scope.errors = response;
           console.log($scope.errors);
