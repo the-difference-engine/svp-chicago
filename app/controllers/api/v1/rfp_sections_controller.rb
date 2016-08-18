@@ -19,7 +19,7 @@ class Api::V1::RfpSectionsController < ApplicationController
       end
     end
     # if errors.empty?
-    @rfp = Rfp.new(user_id: current_user.id)
+    @rfp = Rfp.new(user_id: current_user.id, submitted: params[:submitted])
     @rfp.save
     params[:rfp_sections].each do |section|
       section["questions"].each do |question|

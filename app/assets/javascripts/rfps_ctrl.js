@@ -81,18 +81,23 @@
       });
     };
 
-    $scope.submitForm = function(){
+    $scope.submitForm = function(submitStatus){      
       var newRfp = {
-        rfp_sections: $scope.sections
+        rfp_sections: $scope.sections,
+        submitted: submitStatus
       };
       console.log(newRfp);
       console.log($scope.sections[3]);
       $http.post('/api/v1/rfp_sections.json', newRfp).success(function(response){
-          console.log(response);
-          window.location.href = '/rfps';
+          if (submitStatus == true) {
+            alert("Your request for proposal has been submitted!");
+          } else {
+            alert("Your request for proposal form has been saved.");
+          }
+          window.location.href = '/';
         }).error(function(response){
           $scope.errors = response;
-          console.log($scope.errors);
+          alert($scope.errors);
         })
     };
 
