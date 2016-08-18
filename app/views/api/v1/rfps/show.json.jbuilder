@@ -10,7 +10,7 @@ json.array! @rfp_sections.each do |rfp_section|
     @rfp.rfp_answers.each do |rfp_answer|
 
       if rfp_answer.rfp_question_id == rfp_question.id
-        json.rfp_answer = rfp_answer.answer
+        json.rfp_answer rfp_answer.answer
 
         if rfp_answer.sub_answers.length > 0
 

@@ -14,8 +14,14 @@ class RfpsController < ApplicationController
     unless user_loi_status || current_user.super_admin
       redirect_to '/'
     end
-    
+  
   end 
+
+
+ def show
+  @rfp = Rfp.find(params[:id])
+  gon.id = @rfp.id
+ end 
 
   def index
     @rfps = Rfp.all
