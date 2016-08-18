@@ -94,6 +94,7 @@ Rails.application.routes.draw do
   post '/sections' => 'sections#create'
  
   get '/rfps/new' => 'rfps#new'
+  get '/rfps/:id' => 'rfps#show'
 
   get '/rfp_questions' => 'rfp_questions#index'
   get '/rfp_questions/new' => 'rfp_questions#new'
