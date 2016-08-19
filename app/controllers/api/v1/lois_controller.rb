@@ -1,6 +1,10 @@
 class Api::V1::LoisController < ApplicationController
 	skip_before_action :verify_authenticity_token, only: [:index, :update, :create]
 
+  def loi_submitted_email_to_admin
+    @loi = Loi.find_by(user_id: current_user.id)
+  end
+
   def index
   	@lois = Loi.where(submitted: true)
     @invited_lois = InvitedLoi.all
@@ -65,7 +69,27 @@ class Api::V1::LoisController < ApplicationController
       end
 
       if @loi.submitted
-        Mail.new( :to => @loi.email, :from => 'colleen@svpchicago.org', :subject => 'Submission to SVP received', :body => File.read('app/views/submission_email.html.erb')).deliver!
+        Mail.new( 
+          :to => @loi.email, 
+          :from => 'colleen@svpchicago.org', 
+          :subject => 'Submission to SVP received', 
+          :body => File.read('app/views/submission_email.html.erb'),
+          :content_type => 'text/html; charset=UTF-8'
+        ).deliver!
+
+        File.open('app/templates/request_alert.html.erb', 'w') { |file| file.write(
+        "<p>A user has submitted an LOI form</p>
+        <p>Click below to see it</p>
+        <p><a href=/lois/#{@loi.id}>View LOI</a></p>"
+        ) }
+
+        Mail.new( 
+          :to => 'paulyk1983@gmail.com', 
+          :from => 'svptesting1871@gmail.com', 
+          :subject => 'A letter of interest has been submitted', 
+          :body => File.read('app/views/lois/loi_submitted_email_to_admin.html.erb'),
+          :content_type => 'text/html; charset=UTF-8'
+        ).deliver!        
       end
 
       if errors.empty?
