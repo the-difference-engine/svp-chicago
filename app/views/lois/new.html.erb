@@ -50,7 +50,7 @@
                         <td><label> Proposal Contact Name: </label></td>
                         <td>
                           <p><input type="text" name="name" ng-model="name" class="form-control" required></p>
-                          <p ng-show="loiForm.name.$invalid && !loiForm.name.$pristine" class="help-block">You name is required.</p>
+                          <p ng-show="loiForm.name.$invalid && !loiForm.name.$pristine" class="error-class" style="color:red;">You name is required.</p>
                         </td>
                       </div>
                     </tr>
@@ -59,7 +59,7 @@
                         <td><label> Proposal Contact Email: </label></td>
                         <td>
                           <input type="email" name="email" ng-model="email" class="form-control">
-                          <p ng-show="loiForm.email.$invalid && !loiForm.email.$pristine" class="help-block">Enter a valid email.</p>
+                          <p ng-show="loiForm.email.$invalid && !loiForm.email.$pristine" class="error-class" style="color:red;">Enter a valid email.</p>
                         </td>
                       </div>
                     </tr>
