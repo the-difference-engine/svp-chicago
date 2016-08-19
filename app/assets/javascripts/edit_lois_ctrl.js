@@ -70,7 +70,7 @@
           });
 
       } else {
-        alert("Form is invalid");
+        alert("Form is invalid. See area marked in red.");
       };
 
     };
