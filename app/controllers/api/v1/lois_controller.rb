@@ -77,12 +77,6 @@ class Api::V1::LoisController < ApplicationController
           :content_type => 'text/html; charset=UTF-8'
         ).deliver!
 
-        File.open('app/templates/request_alert.html.erb', 'w') { |file| file.write(
-        "<p>A user has submitted an LOI form</p>
-        <p>Click below to see it</p>
-        <p><a href=/lois/#{@loi.id}>View LOI</a></p>"
-        ) }
-
         Mail.new( 
           :to => 'paulyk1983@gmail.com', 
           :from => 'svptesting1871@gmail.com', 
