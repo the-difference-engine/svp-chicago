@@ -26,7 +26,7 @@
 
         <div ng-controller="editLoisCtrl" ng-init="setup()">
 
-          <form name="loiForm" ng-submit="submit(loiForm.$valid)" novalidate>
+          <form name="loiForm" ng-submit="submit(loi.name, loi.email, loiForm.$valid)" novalidate>
 
             <ol class="form-list">
             
@@ -36,11 +36,11 @@
                 <h3><li> Contact </li></h3>
                   <table class="table table-striped table-bordered">
                     <tr>
-                      <div class="form-group" ng-class="{ 'has-error' : loiForm.loi.name.$invalid}">
+                      <div class="form-group" ng-class="{ 'has-error' : loiForm.name.$invalid }">
                       <td><b>Proposal Contact Name:</b></td>
                       <td>
                         <p><input type="text" name="name" ng-model="loi.name" class="form-control" required></p>
-                        <p ng-show="loiForm.loi.name.$invalid" class="help-block">You name is required.</p>
+                        <p ng-show="loiForm.name.$invalid" class="error-class" style="color:red;">You name is required.</p>
                       </td>
                       </div>
                     </tr>
@@ -49,7 +49,7 @@
                       <td><b>Proposal Contact Email:</b></td>
                       <td>
                         <p><input type="email" name="email" ng-model="loi.email" class="form-control"></p>
-                        <p ng-show="loiForm.loi.email.$invalid" class="help-block">Enter a valid email.</p>
+                        <p ng-show="loiForm.email.$invalid" class="error-class" style="color:red;">Enter a valid email.</p>
                       </td>
                       </div>
                     </tr>

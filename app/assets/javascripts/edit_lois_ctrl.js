@@ -44,9 +44,12 @@
       console.log($scope.activeChallenge);
     };
 
-    $scope.submit = function(isValid){
+    $scope.submit = function(name, email, isValid){
+      console.log(name);
+      console.log(email);
+      console.log(isValid);
 
-      if (1) {
+      if (isValid) {
         var newLoi = {
           name: $scope.loi.name,
           email: $scope.loi.email,
@@ -67,7 +70,7 @@
           });
 
       } else {
-        alert("Form is invalid");
+        alert("Form is invalid. See area marked in red.");
       };
 
     };
