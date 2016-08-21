@@ -1,6 +1,7 @@
 class Api::V1::SectionsController < ApplicationController
 
   skip_before_action :verify_authenticity_token, only: [:index]
+  before_action :authenticate_user!, only: [:new, :show, :create, :index]
 
   def index
     @contact_section = Section.find_by(name: "Contact Information")
@@ -13,7 +14,7 @@ class Api::V1::SectionsController < ApplicationController
     @demographic_section = Section.find_by(name: "Demographics")
     @geographic_section = Section.find_by(name: "Geographic Focus")
 
-    @sections = Section.order(:id).all 
+    @sections = Section.order(:id).all
 
   end
 
@@ -30,7 +31,7 @@ class Api::V1::SectionsController < ApplicationController
 
   def show
     @section = Section.find(params[:id])
-    @questions = Question.where(section_id: @section.id) 
+    @questions = Question.where(section_id: @section.id)
   end
 
 end

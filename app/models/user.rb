@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
 
   has_many :lois
   has_many :ratings
+  has_many :rfps
 
   def number_of_invites
     ratings.where(q5: "Yes").count
@@ -14,5 +15,5 @@ class User < ActiveRecord::Base
   def active_for_authentication?
     super && active_account?
   end
-  
+
 end
