@@ -9,6 +9,8 @@ class Rfp < ActiveRecord::Base
     rfp_answers.find_by(rfp_question_id: RfpQuestion.find_by(question: "Organization").id).answer
   end
 
-
+  def friendly_loi_time
+    updated_at.strftime("%m/%d/%Y")
+  end
 
 end

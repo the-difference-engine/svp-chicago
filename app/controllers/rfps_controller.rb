@@ -14,8 +14,21 @@ class RfpsController < ApplicationController
       user_loi_status = false
     end
 
-    unless user_loi_status || current_user.super_admin
-      redirect_to '/'
+    user_has_rfps = Rfp.where(user_id: current_user.id)
+
+    if user_has_rfps
+      user_has_rfps.each do |rfp|
+        if rfp.submitted
+          flash[:warning] = "You already submitted an RFP on #{rfp.updated_at}. Only one RFP Submission is permitted."
+          redirect_to "/"
+          break
+        end
+      end
+    else
+      unless user_loi_status || current_user.super_admin
+        flash[:warning] = "Restricted Access"
+        redirect_to "/"
+      end
     end
 
   end
