@@ -1,4 +1,7 @@
 class RfpsController < ApplicationController
+  before_action :authenticate_user!, only: [:index, :destroy, :edit, :show, :new]
+  before_action :authenticate_admin!, only: [:index, :destroy]
+
   def new
     # get user id for attachments api controller create method
     $attachment_user_id = current_user.id
@@ -14,17 +17,17 @@ class RfpsController < ApplicationController
     unless user_loi_status || current_user.super_admin
       redirect_to '/'
     end
-  
-  end 
+
+  end
 
 
  def show
   @rfp = Rfp.find(params[:id])
   gon.id = @rfp.id
- end 
+ end
 
   def index
     @rfps = Rfp.all
   end
-  
+
 end

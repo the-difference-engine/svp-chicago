@@ -1,6 +1,6 @@
 class RatingsController < ApplicationController
+  before_action :authenticate_admin!
 
-  
   def index
     @invite_max = InviteMax.first.max
     @yes_ratings = Rating.where(user_id: current_user.id).where(q5: 'Yes')
@@ -44,7 +44,7 @@ class RatingsController < ApplicationController
   		q5: params[:q5],
   		weighted_score: 5
   	)
-  	if @rating.save 
+  	if @rating.save
   		redirect_to '/ratings'
   		flash[:success] = "Rating Submitted!"
   	else
@@ -69,7 +69,7 @@ class RatingsController < ApplicationController
       q5: params[:q5],
       weighted_score: 5
     )
-    if @rating.save 
+    if @rating.save
       redirect_to '/lois'
       flash[:success] = "Rating Updated!"
     else

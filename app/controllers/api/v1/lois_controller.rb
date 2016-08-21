@@ -1,5 +1,7 @@
 class Api::V1::LoisController < ApplicationController
 	skip_before_action :verify_authenticity_token, only: [:index, :update, :create]
+  before_action :authenticate_user!, only: [:new, :show, :update]
+  before_action :authenticate_admin!, only: [:index, :destroy]
 
   def index
   	@lois = Loi.where(submitted: true)
@@ -11,7 +13,7 @@ class Api::V1::LoisController < ApplicationController
 
     @loi = Loi.new({name: params[:name], email: params[:email], submitted: params[:submitted], user_id: current_user.id})
 
-    if @loi.save 
+    if @loi.save
 
       params[:contact_answers].each do |answer_hash|
         answer = Answer.create(loi_id: @loi.id, question_id: answer_hash[:question_id], answer: answer_hash[:answer])
@@ -20,22 +22,22 @@ class Api::V1::LoisController < ApplicationController
       end
 
       params[:organization_answers].each do |answer_hash|
-        answer = Answer.create(loi_id: @loi.id, question_id: answer_hash[:question_id], answer: answer_hash[:answer]) 
+        answer = Answer.create(loi_id: @loi.id, question_id: answer_hash[:question_id], answer: answer_hash[:answer])
         errors << answer.question.question if !answer.valid?
       end
 
       params[:overview_answers].each do |answer_hash|
-        answer = Answer.create(loi_id: @loi.id, question_id: answer_hash[:question_id], answer: answer_hash[:answer]) 
+        answer = Answer.create(loi_id: @loi.id, question_id: answer_hash[:question_id], answer: answer_hash[:answer])
         errors << answer.question.question if !answer.valid?
       end
 
       params[:vision_answers].each do |answer_hash|
-        answer = Answer.create(loi_id: @loi.id, question_id: answer_hash[:question_id], answer: answer_hash[:answer]) 
+        answer = Answer.create(loi_id: @loi.id, question_id: answer_hash[:question_id], answer: answer_hash[:answer])
         errors << answer.question.question if !answer.valid?
       end
 
       params[:concern_answers].each do |answer_hash|
-        answer = Answer.create(loi_id: @loi.id, question_id: answer_hash[:question_id], answer: answer_hash[:answer]) 
+        answer = Answer.create(loi_id: @loi.id, question_id: answer_hash[:question_id], answer: answer_hash[:answer])
         errors << answer.question.question if !answer.valid?
       end
 
@@ -50,17 +52,17 @@ class Api::V1::LoisController < ApplicationController
       end
 
       params[:referral_answers].each do |answer_hash|
-        answer = Answer.create(loi_id: @loi.id, question_id: answer_hash[:question_id], answer: answer_hash[:answer]) 
+        answer = Answer.create(loi_id: @loi.id, question_id: answer_hash[:question_id], answer: answer_hash[:answer])
         errors << answer.question.question if !answer.valid?
       end
 
       params[:demographic_answers].each do |answer_hash|
-        answer = Answer.create(loi_id: @loi.id, question_id: answer_hash[:question_id], answer: answer_hash[:answer]) 
+        answer = Answer.create(loi_id: @loi.id, question_id: answer_hash[:question_id], answer: answer_hash[:answer])
         errors << answer.question.question if !answer.valid?
       end
 
       params[:geographic_answers].each do |answer_hash|
-        answer = Answer.create(loi_id: @loi.id, question_id: answer_hash[:question_id], answer: answer_hash[:answer]) 
+        answer = Answer.create(loi_id: @loi.id, question_id: answer_hash[:question_id], answer: answer_hash[:answer])
         errors << answer.question.question if !answer.valid?
       end
 
@@ -78,7 +80,7 @@ class Api::V1::LoisController < ApplicationController
     end
 
   end
-  
+
   def show
   	@loi = Loi.find(params[:id])
     @invited_loi = InvitedLoi.find_by(loi_id: @loi.id)
@@ -124,27 +126,27 @@ class Api::V1::LoisController < ApplicationController
 
       params[:contact_answers].each do |answer_hash|
         answer = Answer.find(answer_hash[:id])
-        answer.update(answer: answer_hash[:answer]) 
+        answer.update(answer: answer_hash[:answer])
       end
 
       params[:organization_answers].each do |answer_hash|
         answer = Answer.find(answer_hash[:id])
-        answer.update(answer: answer_hash[:answer]) 
+        answer.update(answer: answer_hash[:answer])
       end
 
       params[:overview_answers].each do |answer_hash|
         answer = Answer.find(answer_hash[:id])
-        answer.update(answer: answer_hash[:answer]) 
+        answer.update(answer: answer_hash[:answer])
       end
 
       params[:vision_answers].each do |answer_hash|
         answer = Answer.find(answer_hash[:id])
-        answer.update(answer: answer_hash[:answer]) 
+        answer.update(answer: answer_hash[:answer])
       end
 
       params[:concern_answers].each do |answer_hash|
         answer = Answer.find(answer_hash[:id])
-        answer.update(answer: answer_hash[:answer]) 
+        answer.update(answer: answer_hash[:answer])
       end
 
       params[:challenge_answers].each do |answer_hash|
@@ -157,7 +159,7 @@ class Api::V1::LoisController < ApplicationController
           if challenge[:id]
             new_challenge = Challenge.find(challenge[:id])
             new_challenge.update(challenge: challenge[:challenge], priority: challenge[:priority])
-          else 
+          else
             Challenge.create(answer_id: answer.id, challenge: challenge[:challenge], priority: challenge[:priority])
           end
         end
@@ -165,17 +167,17 @@ class Api::V1::LoisController < ApplicationController
 
       params[:referral_answers].each do |answer_hash|
         answer = Answer.find(answer_hash[:id])
-        answer.update(answer: answer_hash[:answer]) 
+        answer.update(answer: answer_hash[:answer])
       end
 
       params[:demographic_answers].each do |answer_hash|
         answer = Answer.find(answer_hash[:id])
-        answer.update(answer: answer_hash[:answer])  
+        answer.update(answer: answer_hash[:answer])
       end
 
       params[:geographic_answers].each do |answer_hash|
         answer = Answer.find(answer_hash[:id])
-        answer.update(answer: answer_hash[:answer])  
+        answer.update(answer: answer_hash[:answer])
       end
 
       if @loi.submitted
@@ -186,6 +188,6 @@ class Api::V1::LoisController < ApplicationController
     else
       render json: { errors: @post.errors.full_messages }, status: 422
     end
-   
+
   end
 end

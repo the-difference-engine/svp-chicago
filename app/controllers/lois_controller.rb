@@ -1,5 +1,5 @@
  class LoisController < ApplicationController
-  before_action :authenticate_user!, only: [:index, :destroy, :edit, :show]
+  before_action :authenticate_user!, only: [:index, :destroy, :edit, :show, :new]
   before_action :authenticate_admin!, only: [:index, :destroy]
 
   def index
@@ -11,11 +11,11 @@
       format.html
       format.csv { send_data @lois.to_csv, filename: "lois-#{Date.today}.csv" }
     end
-    
+
   end
 
   def new
-    
+
   end
 
   def create
@@ -37,10 +37,15 @@
 
   def edit
     @loi = Loi.find_by(id: params[:id])
-    gon.loi_id = @loi.id
-    @sections = Section.all
-    @questions = Question.all
-    @answers = Answer.where(loi_id: @loi.id)
+    if @loi.submitted
+      flash[:warning] = "Submitted Applications can not be altered."
+      redirect_to '/'
+    else
+      gon.loi_id = @loi.id
+      @sections = Section.all
+      @questions = Question.all
+      @answers = Answer.where(loi_id: @loi.id)
+    end
   end
 
   def update

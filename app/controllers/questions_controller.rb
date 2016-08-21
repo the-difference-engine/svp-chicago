@@ -1,4 +1,5 @@
 class QuestionsController < ApplicationController
+  before_action :authenticate_super_admin!
 
   def index
     @sections = Section.order(:id).all
