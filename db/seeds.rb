@@ -102,7 +102,7 @@ rfp_sections.each do |section|
   end
 end
 
-section_array = ["Organization","Contact Information","Overview and Mission","Vision","Key Concerns","Organizational Capacity Challenges","Referral Source","Demographics","Geographic Focus"]
+section_array = ["Contact Information","Organization","Overview and Mission","Vision","Key Concerns","Organizational Capacity Challenges","Referral Source","Demographics","Geographic Focus"]
 
 questions_array = [
   {question: "Organization", section: "Organization"},
