@@ -3,7 +3,7 @@
     <div class="user">
       <div class="row">
         <div class="col-md-6">
-          
+
           <h2>Welcome!</h2>
           <h4>You are currently logged in as: <%= @user.email %> </h4>
           <br>
@@ -18,11 +18,11 @@
             <h5> You currently have super-administrator privileges.</h5>
             <h5> You can: </h5>
             <ul>
-              <li>Review all the submitted LOIs: 
+              <li>Review all the submitted LOIs:
               <%= link_to "LOIs", "/lois", class: "btn btn-default" %></li>
               <li>You can see a list of all ratings:
               <%= link_to "Ratings", "/ratings", class: "btn btn-default" %></li>
-              <li>You can see a list of users: 
+              <li>You can see a list of users:
               <%= link_to "Users", "/users", class: "btn btn-default" %></li>
               <li>You can add, edit or delete LOI questions:
               <%= link_to "LOI Questions", "/questions", class: "btn btn-default" %></li>
@@ -47,7 +47,7 @@
             <br>
           <% end %>
           <% if !@user.lois.empty? %>
-            <h4>Your Previous Submissions:</h4>
+            <h4>Your Previous LOI Submissions:</h4>
             <ul>
             <% @user.lois.each do |loi| %>
               <% if loi.submitted %>
@@ -56,6 +56,21 @@
               <% else %>
               <li> You edited a letter of interest form on <%= loi.friendly_loi_time %>:
                 <%= link_to "Continue LOI", "/lois/#{loi.id}/edit", class: "btn btn-default" %></li>
+              <% end %>
+            <% end %>
+            </ul>
+          <% end %>
+
+          <% if !@user.rfps.empty? %>
+            <h4>Your Previous RFP Submissions:</h4>
+            <ul>
+            <% @user.rfps.each do |rfp| %>
+              <% if rfp.submitted %>
+                <li> You submitted a request for proposal on  <%= rfp.friendly_loi_time %>:
+                <%= link_to "View RFP", "/rfps/#{rfp.id}", class: "btn btn-default" %></li>
+              <% else %>
+              <li> You edited a request for proposal form on <%= rfp.friendly_loi_time %>:
+                <%= link_to "Continue RFP", "#", class: "btn btn-default" %></li>
               <% end %>
             <% end %>
             </ul>

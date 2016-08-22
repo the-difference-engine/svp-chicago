@@ -1,11 +1,13 @@
 class RfpQuestionsController < ApplicationController
+  before_action :authenticate_super_admin!
+
   def index
     @rfp_sections = RfpSection.order(:id).all
-    @rfp_questions = RfpQuestion.order(:id).all 
+    @rfp_questions = RfpQuestion.order(:id).all
   end
 
   def new
-    @rfp_question = RfpQuestion.new 
+    @rfp_question = RfpQuestion.new
     @sub_question = SubQuestion.new
   end
 
@@ -15,11 +17,11 @@ class RfpQuestionsController < ApplicationController
       if @rfp_question.save!
 
         if params[:question_type] == "block" || params[:question_type] == "block with multiple inputs"
-          params[:sub_question].each do |key, question| 
+          params[:sub_question].each do |key, question|
             SubQuestion.create!(question: question, rfp_question_id: @rfp_question.id)
           end
-        end 
-      end 
+        end
+      end
       flash[:success] = "Question created!"
       redirect_to "/rfp_questions"
     end

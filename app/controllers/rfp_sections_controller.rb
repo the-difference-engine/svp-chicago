@@ -1,7 +1,7 @@
 class RfpSectionsController < ApplicationController
   def new
   end
-  
+
   def create
     @rfp_section = RfpSection.create(name: params[:name])
 
@@ -12,7 +12,7 @@ class RfpSectionsController < ApplicationController
   def edit
     @rfp_section = RfpSection.find(params[:id])
   end
-  
+
   def update
     rfp_section = RfpSection.find(params[:id])
     rfp_section.update(name: params[:section_name])

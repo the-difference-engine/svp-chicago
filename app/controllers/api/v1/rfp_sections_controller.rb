@@ -1,10 +1,11 @@
 class Api::V1::RfpSectionsController < ApplicationController
 
   skip_before_action :verify_authenticity_token, only: [:index, :update, :create]
+  before_action :authenticate_user!, only: [:new, :show]
 
   def index
     @rfp_sections = RfpSection.order(:id).all
-    
+
 
   end
 
@@ -52,18 +53,18 @@ class Api::V1::RfpSectionsController < ApplicationController
               end
             end
           end
-        end    
+        end
       end
     end
     render json: { message: "RFP Created"}, status: 200
     # else
-    #   render json: errors.to_json, status: 400 
+    #   render json: errors.to_json, status: 400
     # end
   end
 
   def show
     @section = Section.find(params[:id])
-    @questions = Question.where(section_id: @section.id) 
+    @questions = Question.where(section_id: @section.id)
   end
 
 end
