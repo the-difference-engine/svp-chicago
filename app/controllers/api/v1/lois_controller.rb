@@ -79,11 +79,18 @@ class Api::V1::LoisController < ApplicationController
           :content_type => 'text/html; charset=UTF-8'
         ).deliver!
 
+        # The link that gets generated will need to be changed when deploying to production
+        File.open('app/views/loi_submitted_email_to_admin.html.erb', 'w') { |file| file.write(
+        "<p>A user has submitted an LOI form</p>
+        <p>Click below to see it</p>
+        <p><a href='https://demo-svp-chicago.herokuapp.com/lois/#{@loi.id}'>View LOI</a></p>"
+        ) }
+
         Mail.new( 
-          :to => 'paulyk1983@gmail.com', 
+          :to => @loi.email, 
           :from => 'svptesting1871@gmail.com', 
           :subject => 'A letter of interest has been submitted', 
-          :body => File.read('app/views/lois/loi_submitted_email_to_admin.html.erb'),
+          :body => File.read('app/views/loi_submitted_email_to_admin.html.erb'),
           :content_type => 'text/html; charset=UTF-8'
         ).deliver!        
       end
