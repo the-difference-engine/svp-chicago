@@ -7,7 +7,6 @@
   // UPDATING DYNAMICALLY AS THE LIST IS FILTERED
   .filter('avgOfValue', function () {
     return function (data, key) {
-   
         if (angular.isUndefined(data) || (data.length == 0)){
           return 0;
         } else {
@@ -16,7 +15,7 @@
           var i = 0;
 
           angular.forEach(data,function(v,k){
-            sum = sum + parseInt(v[key]);
+            sum = sum + parseFloat(v[key]);
             i++;
           });
 

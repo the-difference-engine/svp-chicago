@@ -77,11 +77,17 @@
     $scope.avgRatingPerLoi = function(ratings){
       if (ratings.length > 0){
         var score = 0;
-        for (var i=0; i < ratings.length; i++){
-          console.log(score);
-          score = score + parseFloat(ratings[i].weighted_score);
+        for (var i = 0; i < ratings.length; i++){
+          if (ratings[i] !== null) {
+            if (i === 1){
+              console.log(score);
+              score = score + parseFloat(ratings[i].weighted_score);  
+            }
+            console.log(score);
+            score = score + parseFloat(ratings[i].weighted_score);
+          }
         };
-        return (score/ratings.length).toFixed(2);
+        return (score / ratings.length).toFixed(2);
       } else {
         return "No Ratings";
       }
