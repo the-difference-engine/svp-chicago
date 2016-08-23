@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     user_has_loi = Loi.find_by(user_id:current_user.id)
 
     if user_has_loi
-      @user_loi_status = Loi.find_by(user_id:current_user.id).status
+      @user_loi_status = InvitedLoi.find_by(loi_id:user_has_loi.id).status
     else 
       @user_loi_status = false
     end
