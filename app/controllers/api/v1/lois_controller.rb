@@ -86,8 +86,9 @@ class Api::V1::LoisController < ApplicationController
         <p><a href='https://demo-svp-chicago.herokuapp.com/lois/#{@loi.id}'>View LOI</a></p>"
         ) }
 
+        super_admins = User.where(super_admin: true)
         Mail.new( 
-          :to => @loi.email, 
+          :to => super_admins,
           :from => 'svptesting1871@gmail.com', 
           :subject => 'A letter of interest has been submitted', 
           :body => File.read('app/views/loi_submitted_email_to_admin.html.erb'),
@@ -205,7 +206,7 @@ class Api::V1::LoisController < ApplicationController
         answer.update(answer: answer_hash[:answer])
       end
 
-      if @loi.submitted
+      if @loi.submitted && !current_user.super_admin
         Mail.new( :to => @loi.email, :from => 'colleen@svpchicago.org', :subject => 'Submission to SVP received', :body => File.read('app/views/submission_email.html.erb')).deliver!
       end
 
