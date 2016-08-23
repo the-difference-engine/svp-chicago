@@ -351,6 +351,11 @@
               </div>
 
             </ol>
+            <p align="center">
+            <% if current_user.super_admin %>
+              <a class='btn btn-warning' href="/lois/<%= @loi.id %>/edit">Edit This Form</a>
+            <% end %>
+            </p>
           </div>
         </div>
 

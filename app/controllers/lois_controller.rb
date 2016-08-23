@@ -37,7 +37,13 @@
 
   def edit
     @loi = Loi.find_by(id: params[:id])
-    if @loi.submitted
+    if @loi.submitted && current_user.super_admin
+      gon.loi_id = @loi.id
+      @sections = Section.all
+      @questions = Question.all
+      @answers = Answer.where(loi_id: @loi.id)
+      flash[:danger] = "Warning, this form has already been submitted."
+    elsif @loi.submitted
       flash[:warning] = "Submitted Applications can not be altered."
       redirect_to '/'
     else
