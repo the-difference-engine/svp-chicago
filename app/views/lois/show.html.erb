@@ -20,29 +20,20 @@
                     <form>
                       <table>
                         <tr>
-                          <td>                  
-                          
-                          <%= label_tag "Fits SVP's Criteria:", nil %>
-                          <%= select_tag(:q1, options_for_select([['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]], selected: @rating.q1), :prompt => "Rate 1 - 5", class: "form-control loi-rating-form") %>
-                          </td>
                           <td>
-                          <%= label_tag "Potential SVP Impact:", nil %>
-                          <%= select_tag(:q2, options_for_select([['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]], selected: @rating.q2 ), :prompt => "Rate 1 - 5", class: "form-control loi-rating-form") %>
+                          <div data-toggle="tooltip" data-placement="bottom" title="Addresses the cycle of poverty; meets criteria – size of organization/budget (Relates to questions 2, 3, and 4 on the LOI)"><%= label_tag "Fits SVP's Criteria:", nil %></div>
+                          <%= select_tag(:q1, options_for_select([['1 – Does not meet criteria', 1], ['2 – Meets few criteria', 2], ['3 – Meets most criteria', 3], ['4 – Meets criteria', 4]], selected: @rating.q1), :prompt => "Rate 1 - 4", class: "form-control loi-rating-form") %>
+                          </td>                        
+                          <td>
+                          <div data-toggle="tooltip" data-placement="bottom" title="Focus on the quality of the capacity building projects identified in the LOI (Relates to questions 5 and 6 on the LOI)"><%= label_tag "Potential SVP Impact:", nil %></div>
+                          <%= select_tag(:q2, options_for_select([['1 – Does not meet criteria', 1], ['2 – Meets few criteria', 2], ['3 – Meets most criteria', 3], ['4 – Meets criteria', 4]], selected: @rating.q2 ), :prompt => "Rate 1 - 4", class: "form-control loi-rating-form") %>
                           </td>
                         </tr>
                         <tr>
                           <td>
                             <%= label_tag "Level of Excitement:", nil %>
-                            <%= select_tag(:q3, options_for_select([['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]], selected: @rating.q3 ), :prompt => "Rate 1 - 5", class: "form-control loi-rating-form") %>
+                            <%= select_tag(:q3, options_for_select([['1 – Does not meet criteria', 1], ['2 – Meets few criteria', 2], ['3 – Meets most criteria', 3], ['4 – Meets criteria', 4]], selected: @rating.q3 ), :prompt => "Rate 1 - 4", class: "form-control loi-rating-form") %>
                           </td>
-                          <td>
-                    
-                            <%= label_tag "Benefit to SVP:", nil %>
-                            <%= select_tag(:q4, options_for_select([['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]], selected: @rating.q4 ), :prompt => "Rate 1 - 5", class: "form-control loi-rating-form") %>
-                          </td>
-                        </tr>
-                      
-                        <tr>
                           <td>
                           <% if @ratings.length < @invite_max %>
                           
@@ -56,6 +47,8 @@
                             <%= select_tag(:q5, options_for_select([['No', 'No'], ['Maybe', 'Maybe']], selected: @rating.q5 ), :prompt => "Select", class: "form-control loi-rating-form") %>
                           <% end %>
                           </td>
+                        </tr>                  
+                        <tr>          
                           <td>
                             <%= hidden_field_tag :loi_id, @loi.id %> 
                             <%= submit_tag 'Edit', class: "btn btn-primary" %>
@@ -84,40 +77,35 @@
                         <tr>
                           <td>                  
                           
-                          <%= label_tag "Fits SVP's Criteria:", nil %>
-                          <%= select_tag(:q1, options_for_select([['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]], selected: @rating.q1), :prompt => "Rate 1 - 5", class: "form-control loi-rating-form") %>
+                          <div data-toggle="tooltip" data-placement="bottom" title="Addresses the cycle of poverty; meets criteria – size of organization/budget (Relates to questions 2, 3, and 4 on the LOI)"><%= label_tag "Fits SVP's Criteria:", nil %></div>
+                          <%= select_tag(:q1, options_for_select([['1 – Does not meet criteria', 1], ['2 – Meets few criteria', 2], ['3 – Meets most criteria', 3], ['4 – Meets criteria', 4]], selected: @rating.q1), :prompt => "Rate 1 - 4", class: "form-control loi-rating-form") %>
                           </td>
-                          <td>
-                          <%= label_tag "Potential SVP Impact:", nil %>
-                          <%= select_tag(:q2, options_for_select([['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]], selected: @rating.q2 ), :prompt => "Rate 1 - 5", class: "form-control loi-rating-form") %>
+                          <td>                          
+                          <div data-toggle="tooltip" data-placement="bottom" title="Focuses on the quality of the capacity building projects identified in the LOI (Relates to questions 5 and 6 on the LOI)"><%= label_tag "Potential SVP Impact:", nil %></div>
+                          <%= select_tag(:q2, options_for_select([['1 – Does not meet criteria', 1], ['2 – Meets few criteria', 2], ['3 – Meets most criteria', 3], ['4 – Meets criteria', 4]], selected: @rating.q2 ), :prompt => "Rate 1 - 4", class: "form-control loi-rating-form") %>
                           </td>
                         </tr>
                         <tr>
                           <td>
                             <%= label_tag "Level of Excitement:", nil %>
-                            <%= select_tag(:q3, options_for_select([['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]], selected: @rating.q3 ), :prompt => "Rate 1 - 5", class: "form-control loi-rating-form") %>
+                            <%= select_tag(:q3, options_for_select([['1 – Does not meet criteria', 1], ['2 – Meets few criteria', 2], ['3 – Meets most criteria', 3], ['4 – Meets criteria', 4]], selected: @rating.q3 ), :prompt => "Rate 1 - 4", class: "form-control loi-rating-form") %>
                           </td>
                           <td>
-                    
-                            <%= label_tag "Benefit to SVP:", nil %>
-                            <%= select_tag(:q4, options_for_select([['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]], selected: @rating.q4 ), :prompt => "Rate 1 - 5", class: "form-control loi-rating-form") %>
+                            <% if @ratings.length < @invite_max %>
+                            
+                              <%= label_tag "Invite to Submit RFP:", nil %>
+                              <%= select_tag(:q5, options_for_select([['Yes', 'Yes'], ['No', 'No'], ['Maybe', 'Maybe']], selected: @rating.q5 ), :prompt => "Select", class: "form-control loi-rating-form") %>
+                            
+                            <% else %>
+                              <span class="tooltip-toggle" aria-label="You cannot reply 'Yes' to this question as you have reached your limit. Please edit other LOIs if you wish to invite this organization.">
+                              <%= label_tag "Invite to Submit RFP:", nil %>
+                              </span>
+                              <%= select_tag(:q5, options_for_select([['No', 'No'], ['Maybe', 'Maybe']], selected: @rating.q5 ), :prompt => "Select", class: "form-control loi-rating-form") %>
+                            <% end %>
                           </td>
                         </tr>
                       
                         <tr>
-                          <td>
-                          <% if @ratings.length < @invite_max %>
-                          
-                            <%= label_tag "Invite to Submit RFP:", nil %>
-                            <%= select_tag(:q5, options_for_select([['Yes', 'Yes'], ['No', 'No'], ['Maybe', 'Maybe']], selected: @rating.q5 ), :prompt => "Select", class: "form-control loi-rating-form") %>
-                          
-                          <% else %>
-                            <span class="tooltip-toggle" aria-label="You cannot reply 'Yes' to this question as you have reached your limit. Please edit other LOIs if you wish to invite this organization.">
-                            <%= label_tag "Invite to Submit RFP:", nil %>
-                            </span>
-                            <%= select_tag(:q5, options_for_select([['No', 'No'], ['Maybe', 'Maybe']], selected: @rating.q5 ), :prompt => "Select", class: "form-control loi-rating-form") %>
-                          <% end %>
-                          </td>
                           <td>
                             <%= hidden_field_tag :loi_id, @loi.id %> 
                             <%= submit_tag 'Submit', class: "btn btn-primary" %>
@@ -364,3 +352,9 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
+</script>

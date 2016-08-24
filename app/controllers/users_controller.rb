@@ -9,10 +9,15 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(current_user.id)
-    user_has_loi = Loi.find_by(user_id:current_user.id)
+    user_has_submitted_loi = Loi.find_by(user_id: current_user.id, submitted: true)
 
-    if user_has_loi
-      @user_loi_status = Loi.find_by(user_id:current_user.id).status
+    if user_has_submitted_loi
+      has_invited_loi = InvitedLoi.find_by(loi_id: user_has_submitted_loi.id)
+      if has_invited_loi
+        @user_loi_status = has_invited_loi.status
+      else
+        @user_loi_status = false
+      end
     else 
       @user_loi_status = false
     end

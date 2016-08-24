@@ -26,17 +26,13 @@
 							</th>
 							<th>
 								<p ng-click="sortBy('q2')">
-									Potention SVP Impact
+									Potential SVP Impact
 								</p>
 							</th>
 							<th>
 								<p ng-click="sortBy('q3')">
 									Level of Excitement
 								</p>
-							</th>
-							<th>
-								<p ng-click="sortBy('q4')">
-									Benefit to SVP
 							</th>
 							<th>
 								<p ng-click="sortBy('q5')">
@@ -59,7 +55,6 @@
 							<td>{{ rating.q1 }}</td>
 							<td>{{ rating.q2 }}</td>
 							<td>{{ rating.q3 }}</td>
-							<td>{{ rating.q4 }}</td>
 							<% if @yes_ratings.length < @invite_max %>
 
 								<td ng-show="rating.user.id==currentUserId" ng-if="yourYesRatingsLength < inviteMax.max">
@@ -128,7 +123,6 @@
 							<td>{{resultValue | avgOfValue:'q1'}}</td>
 							<td>{{resultValue | avgOfValue:'q2'}}</td>
 							<td>{{resultValue | avgOfValue:'q3'}}</td>
-							<td>{{resultValue | avgOfValue:'q4'}}</td>
 							<td> -- </td>
 							<td>{{resultValue | avgOfValue:'weighted_score'}}</td>
 							<td> -- </td>
