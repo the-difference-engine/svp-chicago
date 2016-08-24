@@ -71,6 +71,19 @@ class Api::V1::LoisController < ApplicationController
       end
 
       if @loi.submitted
+
+        company_name = @loi.answers.find_by(question_id:1).answer
+        super_admin = User.where(super_admin: true).first
+
+        # CREATE LOI SUBMISSION CONFIRMATION EMAIL
+        File.open('app/views/submission_email.html.erb', 'w') { |file| file.write(
+        "<p>SVP Chicago has received your submission!</p>
+        <p>Please log in at <a target='_blank' href='#{request.base_url}'>#{request.base_url}</a> and review your submission</p>
+        <p>If revisions to your letter of interest form need to be made or if you have any questions, please email Colleen at colleen@svpchicago.org</p>
+        <p>Social Venture Partners - Chicago</p>"
+        ) }
+
+        # SEND LOI SUBMISSION CONFIRMATION EMAIL TO USER
         Mail.new( 
           :to => @loi.email, 
           :from => 'colleen@svpchicago.org', 
@@ -79,16 +92,16 @@ class Api::V1::LoisController < ApplicationController
           :content_type => 'text/html; charset=UTF-8'
         ).deliver!
 
-        # The link that gets generated will need to be changed when deploying to production
+        # CREATE ADMIN ALERT EMAIL TEMPLATE
         File.open('app/views/loi_submitted_email_to_admin.html.erb', 'w') { |file| file.write(
-        "<p>A user has submitted an LOI form</p>
-        <p>Click below to see it</p>
-        <p><a href='https://demo-svp-chicago.herokuapp.com/lois/#{@loi.id}'>View LOI</a></p>"
+        "<p>A user from the company <i>#{company_name}</i> has submitted an LOI form</p>
+        <p>Click below to log in and see their LOI</p>
+        <p><a target='_blank' href='#{request.base_url}'>#{request.base_url}</a></p>"
         ) }
 
-        super_admins = User.where(super_admin: true)
+        # SEND LOI SUBMISSION ALERT EMAIL TO ADMIN
         Mail.new( 
-          :to => super_admins,
+          :to => super_admin.email,
           :from => 'svptesting1871@gmail.com', 
           :subject => 'A letter of interest has been submitted', 
           :body => File.read('app/views/loi_submitted_email_to_admin.html.erb'),
@@ -207,7 +220,23 @@ class Api::V1::LoisController < ApplicationController
       end
 
       if @loi.submitted && !current_user.super_admin
-        Mail.new( :to => @loi.email, :from => 'colleen@svpchicago.org', :subject => 'Submission to SVP received', :body => File.read('app/views/submission_email.html.erb')).deliver!
+
+        # CREATE LOI SUBMISSION CONFIRMATION EMAIL
+        File.open('app/views/submission_email.html.erb', 'w') { |file| file.write(
+        "<p>SVP Chicago has received your submission!</p>
+        <p>Please log in at <a target='_blank' href='#{request.base_url}'>#{request.base_url}</a> and review your submission</p>
+        <p>If revisions to your letter of interest form need to be made or if you have any questions, please email Colleen at colleen@svpchicago.org</p>
+        <p>Social Venture Partners - Chicago</p>"
+        ) }
+
+        # SEND LOI SUBMISSION CONFIRMATION EMAIL
+        Mail.new( 
+          :to => @loi.email, 
+          :from => 'colleen@svpchicago.org', 
+          :subject => 'Submission to SVP received', 
+          :body => File.read('app/views/submission_email.html.erb'),
+          :content_type => 'text/html; charset=UTF-8'
+        ).deliver!
       end
 
       render json: { message: "Loi Updated", loi_id: @loi.id }, status: 200
