@@ -11,4 +11,10 @@
 /log/*
 !/log/.keep
 /tmp
+
 .env
+
+# Ignore email templates that get re-written by app and therefore do not warrant git commit
+/app/views/loi_acceptance_email.html.erb
+/app/views/loi_submitted_email_to_admin.html.erb
+/app/views/submission_email.html.erb
