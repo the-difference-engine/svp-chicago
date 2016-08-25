@@ -17,7 +17,12 @@
 
       $http.get('/api/v1/lois.json').then(function(response){
         $scope.lois = response.data;
-        // console.log($scope.lois[0].ratings);
+
+        if ($scope.lois.length > 0){
+          for (var i=0; i<$scope.lois.length; i++){
+            $scope.lois[i].avgRatingPerLoi = $scope.avgRatingPerLoi($scope.lois[i].ratings);
+          }
+        }
       });
 
       $http.get('/api/v1/questions.json').then(function(response){
@@ -29,7 +34,6 @@
 
       });
 
-    
     };
 
     $scope.sortBy = function(sortAttribute){
@@ -40,7 +44,7 @@
     //THIS FUNCTION HELPS FORMAT THE ANSWERS FROM THE NG-SELECT
     //NEED THIS TO FORMAT THE SEPARATE CHALLEGES FROM THE ORGANIZATIONAL CAPACITY CHALLENGES SECTION
     //** check api/v1/lois.json to see format **//
-    //** answer[0] are the challenges and answer[1] are the FTEs **// 
+    //** answer[0] are the challenges and answer[1] are the FTEs **//
     $scope.formatAnswer = function(answer){
       if (Array.isArray(answer)){
         var challenges = [];
@@ -63,7 +67,7 @@
     $scope.rated = function(ratings){
       if (ratings.length > 0){
         for (var i=0; i < ratings.length; i++){
-          console.log("id: " + ratings[i].user_id);
+          // console.log("id: " + ratings[i].user_id);
           if (ratings[i].user_id == $scope.currentUserId){
             $scope.activeRatingId = ratings[i].id;
             return true;
@@ -77,17 +81,10 @@
     $scope.avgRatingPerLoi = function(ratings){
       if (ratings.length > 0){
         var score = 0;
-        for (var i = 0; i < ratings.length; i++){
-          if (ratings[i] !== null) {
-            if (i === 1){
-              console.log(score);
-              score = score + parseFloat(ratings[i].weighted_score);  
-            }
-            console.log(score);
-            score = score + parseFloat(ratings[i].weighted_score);
-          }
+        for (var i=0; i < ratings.length; i++){
+          score = score + parseFloat(ratings[i].weighted_score);
         };
-        return (score / ratings.length).toFixed(2);
+        return (score/ratings.length).toFixed(2);
       } else {
         return "No Ratings";
       }
@@ -103,19 +100,15 @@
           loi_id: loi_id,
         };
 
-
         $http.post('/api/v1/invited_lois/', updatedStatus).then(function(response){
           console.log(response.data);
           $scope.invited_lois.push(response.data);
         });
 
-         
-      
       } else {
         alert("error");
       }
     };
-
 
     $scope.changeBtn = function(repeatScope) {
       if (repeatScope.isDisabled) {
