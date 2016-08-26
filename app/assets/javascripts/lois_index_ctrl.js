@@ -11,6 +11,7 @@
 
     // $scope.activeRatingId = "";
     $scope.descending = false;
+    $scope.toggle_class = "glyphicon glyphicon-triangle-top";
     $scope.btnText = "Invite to RFP";
 
     $scope.setup = function(){
@@ -39,6 +40,13 @@
     $scope.sortBy = function(sortAttribute){
       $scope.sortByAttribute = sortAttribute;
       $scope.descending = !$scope.descending;
+
+      if($scope.descending){
+        $scope.toggle_class = "glyphicon glyphicon-triangle-bottom";
+      }
+      else if(!$scope.descending){
+        $scope.toggle_class = "glyphicon glyphicon-triangle-top"
+      }
     };
 
     //THIS FUNCTION HELPS FORMAT THE ANSWERS FROM THE NG-SELECT

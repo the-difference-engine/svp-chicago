@@ -32,6 +32,7 @@
     $scope.currentUserId = gon.current_user_id;
 
     $scope.descending = false;
+    $scope.toggle_class = "glyphicon glyphicon-triangle-top";
 
     $scope.setup = function(){
       $http.get('/api/v1/ratings.json').then(function(response){
@@ -56,6 +57,13 @@
     $scope.sortBy = function(sortAttribute){
       $scope.sortByAttribute = sortAttribute;
       $scope.descending = !$scope.descending;
+
+      if($scope.descending){
+        $scope.toggle_class = "glyphicon glyphicon-triangle-bottom";
+      }
+      else if(!$scope.descending){
+        $scope.toggle_class = "glyphicon glyphicon-triangle-top"
+      }
     };
     
     
