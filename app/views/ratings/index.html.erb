@@ -1,159 +1,157 @@
 <div class="site-container">
-	<div id="form-paper">
-		<div ng-app="app">
-			<div ng-controller="ratingsCtrl" ng-init="setup()">
-				<div class="form-heading">
-					<h1>Ratings</h1>
-				</div>
-				<div class="filter">
-					<p>This is a list of all the LOI submissions and the corresponding rankings.</p>
-					<input ng-model="orgNameFilter" placeholder="Type here to filter the list by any criteria." list="orgNames" class="form-control">
-	        	<datalist id="orgNames">
-							<option ng-repeat="rating in ratings">{{rating.org_name}}</option>
-						</datalist>
-					</div>
-					<table class="table table-hover table-bordered">
-						<tr>
-							<th>
-								<p ng-click="sortBy('org_name')">
-	                Organization Name
-	                <span ng-class="toggle_class">
-                	</span>
-	              </p>
-							</th>
-							<th>
-								<p ng-click="sortBy('q1')">
-									Fits SVP Criteria
-									<span ng-class="toggle_class">
-                	</span>
-	              </p>
-							</th>
-							<th>
-								<p ng-click="sortBy('q2')">
-									Potential SVP Impact
-									<span ng-class="toggle_class">
-                	</span>
-								</p>
-							</th>
-							<th>
-								<p ng-click="sortBy('q3')">
-									Level of Excitement
-									<span ng-class="toggle_class">
-	                </span>
-								</p>
-							</th>
-							<th>
-								<p ng-click="sortBy('q5')">
-									Invite to Submit RFP?
-									<span ng-class="toggle_class">
-                	</span>
-							</th>
-							<th>
-								<p ng-click="sortBy('weighted_score')">
-									Weighted Score
-									<span ng-class="toggle_class">
-                	</span>
-								</p>
-							</th>
-							<th>
-								<p ng-click="sortBy('user.email')">
-									Rated By
-									<span ng-class="toggle_class">
-                	</span>
-								</p>
-							</th>
-						</tr>
-						
-						<tr ng-repeat="rating in resultValue=(ratings | filter:orgNameFilter) | orderBy:sortByAttribute:descending">
-							<td><a href="/lois/{{rating.loi.id}}">{{ rating.org_name }}</a></td>
-							<td>{{ rating.q1 }}</td>
-							<td>{{ rating.q2 }}</td>
-							<td>{{ rating.q3 }}</td>
-							<% if @yes_ratings.length < @invite_max %>
+  <div id="form-paper">
+    <div ng-app="app">
+      <div ng-controller="ratingsCtrl" ng-init="setup()">
+        <div class="form-heading">
+          <h1>Ratings</h1>
+        </div>
+        <div class="filter">
+          <p>This is a list of all the LOI submissions and the corresponding rankings.</p>
+          <input ng-model="orgNameFilter" placeholder="Type here to filter the list by any criteria." list="orgNames" class="form-control">
+            <datalist id="orgNames">
+              <option ng-repeat="rating in ratings">{{rating.org_name}}</option>
+            </datalist>
+          </div>
+          <table class="table table-hover table-bordered">
+            <tr>
+              <th>
+                <p ng-click="sortBy('org_name')">
+                  Organization Name
+                  <span ng-class="toggle_class">
+                  </span>
+                </p>
+              </th>
+              <th>
+                <p ng-click="sortBy('q1')">
+                  Fits SVP Criteria
+                  <span ng-class="toggle_class">
+                  </span>
+                </p>
+              </th>
+              <th>
+                <p ng-click="sortBy('q2')">
+                  Potential SVP Impact
+                  <span ng-class="toggle_class">
+                  </span>
+                </p>
+              </th>
+              <th>
+                <p ng-click="sortBy('q3')">
+                  Level of Excitement
+                  <span ng-class="toggle_class">
+                  </span>
+                </p>
+              </th>
+              <th>
+                <p ng-click="sortBy('q5')">
+                  Invite to Submit RFP?
+                  <span ng-class="toggle_class">
+                  </span>
+              </th>
+              <th>
+                <p ng-click="sortBy('weighted_score')">
+                  Weighted Score
+                  <span ng-class="toggle_class">
+                  </span>
+                </p>
+              </th>
+              <th>
+                <p ng-click="sortBy('user.email')">
+                  Rated By
+                  <span ng-class="toggle_class">
+                  </span>
+                </p>
+              </th>
+            </tr>
+            
+            <tr ng-repeat="rating in resultValue=(ratings | filter:orgNameFilter) | orderBy:sortByAttribute:descending">
+              <td><a href="/lois/{{rating.loi.id}}">{{ rating.org_name }}</a></td>
+              <td>{{ rating.q1 }}</td>
+              <td>{{ rating.q2 }}</td>
+              <td>{{ rating.q3 }}</td>
+              <% if @yes_ratings.length < @invite_max %>
 
-								<td ng-show="rating.user.id==currentUserId" ng-if="yourYesRatingsLength < inviteMax.max">
-										<select class="form-control" name="singleSelect" id="singleSelect" ng-model="rating.q5" ng-change="submitInvite(rating.q5, rating.id)">
-		                  <option value="">--Select--</option>
-		                  <option value="Yes">Yes</option>
-		                  <option value="No">No</option>
-		                  <option value="Maybe">Maybe</option>
-		                </select>
-	              </td>
+                <td ng-show="rating.user.id==currentUserId" ng-if="yourYesRatingsLength < inviteMax.max">
+                    <select class="form-control" name="singleSelect" id="singleSelect" ng-model="rating.q5" ng-change="submitInvite(rating.q5, rating.id)">
+                      <option value="">--Select--</option>
+                      <option value="Yes">Yes</option>
+                      <option value="No">No</option>
+                      <option value="Maybe">Maybe</option>
+                    </select>
+                </td>
 
-	              <td ng-show="rating.user.id==currentUserId" ng-if="yourYesRatingsLength >= inviteMax.max">
+                <td ng-show="rating.user.id==currentUserId" ng-if="yourYesRatingsLength >= inviteMax.max">
                     <span class="tooltip-toggle" aria-label="You cannot reply 'Yes' to this question as you have reached your limit. Please edit other LOIs if you wish to invite this organization.">
-										<select class="form-control" name="singleSelect" id="singleSelect" ng-model="rating.q5" ng-change="submitInvite(rating.q5, rating.id)">
-		                  <option value="">--Select--</option>
-		                  <option disabled="disabled" selected="selected">Yes</option>
-		                  <option value="No">No</option>
-		                  <option value="Maybe">Maybe</option>
-		                </select>
-		                </span>
-	              </td>
-	              
-	            <% elsif @yes_ratings.length == @invite_max %>
+                    <select class="form-control" name="singleSelect" id="singleSelect" ng-model="rating.q5" ng-change="submitInvite(rating.q5, rating.id)">
+                      <option value="">--Select--</option>
+                      <option disabled="disabled" selected="selected">Yes</option>
+                      <option value="No">No</option>
+                      <option value="Maybe">Maybe</option>
+                    </select>
+                    </span>
+                </td>
+                
+              <% elsif @yes_ratings.length == @invite_max %>
 
-	              <td ng-show="rating.user.id==currentUserId" ng-if="yourYesRatingsLength >= inviteMax.max">
+                <td ng-show="rating.user.id==currentUserId" ng-if="yourYesRatingsLength >= inviteMax.max">
                     <span class="tooltip-toggle" aria-label="You cannot reply 'Yes' to this question as you have reached your limit. Please edit other LOIs if you wish to invite this organization.">
-										<select class="form-control" name="singleSelect" id="singleSelect" ng-model="rating.q5" ng-change="submitInvite(rating.q5, rating.id)">
-		                  <option value="">--Select--</option>
-		                  <option disabled="disabled" selected="selected">Yes</option>
-		                  <option value="No">No</option>
-		                  <option value="Maybe">Maybe</option>
-		                </select>
-		                </span>
-	              </td>
-	              <td ng-show="rating.user.id==currentUserId" ng-if="yourYesRatingsLength < inviteMax.max">
-										<select class="form-control" name="singleSelect" id="singleSelect" ng-model="rating.q5" ng-change="submitInvite(rating.q5, rating.id)">
-		                  <option value="">--Select--</option>
-		                  <option value="Yes">Yes</option>
-		                  <option value="No">No</option>
-		                  <option value="Maybe">Maybe</option>
-		                </select>
-	              </td>
+                    <select class="form-control" name="singleSelect" id="singleSelect" ng-model="rating.q5" ng-change="submitInvite(rating.q5, rating.id)">
+                      <option value="">--Select--</option>
+                      <option disabled="disabled" selected="selected">Yes</option>
+                      <option value="No">No</option>
+                      <option value="Maybe">Maybe</option>
+                    </select>
+                    </span>
+                </td>
+                <td ng-show="rating.user.id==currentUserId" ng-if="yourYesRatingsLength < inviteMax.max">
+                    <select class="form-control" name="singleSelect" id="singleSelect" ng-model="rating.q5" ng-change="submitInvite(rating.q5, rating.id)">
+                      <option value="">--Select--</option>
+                      <option value="Yes">Yes</option>
+                      <option value="No">No</option>
+                      <option value="Maybe">Maybe</option>
+                    </select>
+                </td>
 
-	              
+                
 
-	            <% else %>
-								<td ng-show="rating.user.id==currentUserId" ng-if="yourYesRatingsLength >= inviteMax.max">
+              <% else %>
+                <td ng-show="rating.user.id==currentUserId" ng-if="yourYesRatingsLength >= inviteMax.max">
                     <span class="tooltip-toggle" aria-label="You cannot reply 'Yes' to this question as you have reached your limit. Please edit other LOIs if you wish to invite this organization.">
-										<select class="form-control" name="singleSelect" id="singleSelect" ng-model="rating.q5" ng-change="submitInvite(rating.q5, rating.id)">
-		                  <option value="">--Select--</option>
-		                  <option value="No">No</option>
-		                  <option value="Maybe">Maybe</option>
-		                </select>
-		                </span>
-	              </td>
-	            <% end %>
+                    <select class="form-control" name="singleSelect" id="singleSelect" ng-model="rating.q5" ng-change="submitInvite(rating.q5, rating.id)">
+                      <option value="">--Select--</option>
+                      <option value="No">No</option>
+                      <option value="Maybe">Maybe</option>
+                    </select>
+                    </span>
+                </td>
+              <% end %>
 
               <td ng-show="rating.user.id!=currentUserId">
-									{{rating.q5}}
+                  {{rating.q5}}
               </td>
-							<td>{{ rating.weighted_score }}</td>
-							<td>{{ rating.user.email }}</td>
-						</tr>
-						<tr class="average-row">
-							<td>Summary/Average</td>
-							<td>{{resultValue | avgOfValue:'q1'}}</td>
-							<td>{{resultValue | avgOfValue:'q2'}}</td>
-							<td>{{resultValue | avgOfValue:'q3'}}</td>
-							<td> -- </td>
-							<td>{{resultValue | avgOfValue:'weighted_score'}}</td>
-							<td> -- </td>
-						</tr>
-					</table>
-				</div>
-			</div>
-			<div class="csv-btn">
-				<%= link_to "Download Ratings CSV File", "/ratings.csv", :class => "btn btn-danger", :role => "button" %>
-				<span class="invite-max-btn">
-	    		<% if current_user && current_user.super_admin %>
-	    	  	<%= link_to "Change maximum number of Yes answers per admin", "/invite_maxes/1/edit", :class => "btn btn-danger", :role => "button" %>
-	    		<% end %>
-  			</span>
-			</div>
-		
-		</div>
+              <td>{{ rating.weighted_score }}</td>
+              <td>{{ rating.user.email }}</td>
+            </tr>
+            <tr class="average-row">
+              <td>Summary/Average</td>
+              <td>{{resultValue | avgOfValue:'q1'}}</td>
+              <td>{{resultValue | avgOfValue:'q2'}}</td>
+              <td>{{resultValue | avgOfValue:'q3'}}</td>
+              <td> -- </td>
+              <td>{{resultValue | avgOfValue:'weighted_score'}}</td>
+              <td> -- </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="csv-btn">
+        <%= link_to "Download Ratings CSV File", "/ratings.csv", :class => "btn btn-danger", :role => "button" %>
+        <span class="invite-max-btn">
+          <% if current_user && current_user.super_admin %>
+            <%= link_to "Change maximum number of Yes answers per admin", "/invite_maxes/1/edit", :class => "btn btn-danger", :role => "button" %>
+          <% end %>
+        </span>
+      </div>
+    
+    </div>
 </div>
-
-
