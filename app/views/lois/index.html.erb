@@ -10,9 +10,7 @@
             <th style="width: 20%;">
               <p ng-click="sortBy('org_name')">
                 Organization Name
-                <span ng-hide="descending" class="glyphicon glyphicon-triangle-bottom">
-                </span>
-                <span ng-hide="!descending" class="glyphicon glyphicon-triangle-top">
+                <span ng-class="toggle_class">
                 </span>
               </p>
               <input ng-model="orgNameFilter" placeholder="filter" class="form-control">
@@ -20,9 +18,7 @@
             <th style="width: 50%;">
               <p ng-click="sortBy(loi.answers[selectedAnswer.id])">
                 Please select a question to see and compare
-                <span ng-hide="descending" class="glyphicon glyphicon-triangle-bottom">
-                </span>
-                <span ng-hide="!descending" class="glyphicon glyphicon-triangle-top">
+                <span ng-class="toggle_class">
                 </span>
               </p>
               <select class="form-control" ng-model="selectedAnswer" ng-options="question.question group by question.section for question in questions">
@@ -33,9 +29,7 @@
             <th ng-show=<%="#{current_user.super_admin}"%>  style="width: 8%; text-align: center; vertical-align: middle">
             <p ng-click="sortBy(avgRatingPerLoi)">
                 Average Rating
-                <span ng-hide="descending" class="glyphicon glyphicon-triangle-bottom">
-                </span>
-                <span ng-hide="!descending" class="glyphicon glyphicon-triangle-top">
+                <span ng-class="toggle_class">
                 </span>
               </p>
             </th>
