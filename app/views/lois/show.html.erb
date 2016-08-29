@@ -21,14 +21,17 @@
                       <table>
                         <tr>
                           <td>
-                            Fits SVP's Criteria: 
-                              <span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="bottom" title="Addresses the cycle of poverty; meets criteria – size of organization/budget (Relates to questions 2, 3, and 4 on the LOI)">
+                            <div data-toggle="tooltip" data-placement="bottom" title="Addresses the cycle of poverty; meets criteria – size of organization/budget (Relates to questions 2, 3, and 4 on the LOI)">Fits SVP's Criteria: 
+                              <span class="glyphicon glyphicon-question-sign">
                               </span>
+                            </div>  
                             <%= select_tag(:q1, options_for_select([['1 – Does not meet criteria', 1], ['2 – Meets few criteria', 2], ['3 – Meets most criteria', 3], ['4 – Meets criteria', 4]], selected: @rating.q1), :prompt => "Rate 1 - 4", class: "form-control loi-rating-form") %>
                           </td>                        
                           <td>
-                            Potential Impact: <span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="bottom" title="Focus on the quality of the capacity building projects identified in the LOI (Relates to questions 5 and 6 on the LOI)">
-                            </span>
+                            <div data-toggle="tooltip" data-placement="bottom" title="Focus on the quality of the capacity building projects identified in the LOI (Relates to questions 5 and 6 on the LOI)">Potential Impact: 
+                              <span class="glyphicon glyphicon-question-sign">
+                              </span>
+                            </div>  
                             <%= select_tag(:q2, options_for_select([['1 – Does not meet criteria', 1], ['2 – Meets few criteria', 2], ['3 – Meets most criteria', 3], ['4 – Significant Positive Impact', 4]], selected: @rating.q2 ), :prompt => "Rate 1 - 4", class: "form-control loi-rating-form") %>
                           </td>
                         </tr>
@@ -79,14 +82,17 @@
                       <table>
                         <tr>
                           <td>                  
-                            Fits SVP's Criteria: 
-                              <span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="bottom" title="Addresses the cycle of poverty; meets criteria – size of organization/budget (Relates to questions 2, 3, and 4 on the LOI)">
+                            <div data-toggle="tooltip" data-placement="bottom" title="Focus on the quality of the capacity building projects identified in the LOI (Relates to questions 5 and 6 on the LOI)">Fits SVP's Criteria: 
+                              <span class="glyphicon glyphicon-question-sign">
                               </span>
+                            </div>  
                             <%= select_tag(:q1, options_for_select([['1 – Does not meet criteria', 1], ['2 – Meets few criteria', 2], ['3 – Meets most criteria', 3], ['4 – Meets criteria', 4]], selected: @rating.q1), :prompt => "Rate 1 - 4", class: "form-control loi-rating-form") %>
                           </td>
                           <td>
-                            Potential Impact: <span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="bottom" title="Focuses on the quality of the capacity building projects identified in the LOI (Relates to questions 5 and 6 on the LOI)">
-                            </span>
+                            <div data-toggle="tooltip" data-placement="bottom" title="Focus on the quality of the capacity building projects identified in the LOI (Relates to questions 5 and 6 on the LOI)">Potential Impact: 
+                              <span class="glyphicon glyphicon-question-sign">
+                              </span>
+                            </div>  
                             <%= select_tag(:q2, options_for_select([['1 – Does not meet criteria', 1], ['2 – Meets few criteria', 2], ['3 – Meets most criteria', 3], ['4 – Significant Positive Impact', 4]], selected: @rating.q2 ), :prompt => "Rate 1 - 4", class: "form-control loi-rating-form") %>
                           </td>
                         </tr>
