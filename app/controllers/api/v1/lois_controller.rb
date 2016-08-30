@@ -161,6 +161,7 @@ class Api::V1::LoisController < ApplicationController
   def update
     @loi = Loi.find(params[:id])
 
+
     if @loi.update(name: params[:name], email: params[:email], submitted: params[:submitted])
 
       params[:contact_answers].each do |answer_hash|
@@ -237,6 +238,8 @@ class Api::V1::LoisController < ApplicationController
           :body => File.read('app/views/submission_email.html.erb'),
           :content_type => 'text/html; charset=UTF-8'
         ).deliver!
+      else
+        @loi.update(submitted: true)
       end
 
       render json: { message: "Loi Updated", loi_id: @loi.id }, status: 200
