@@ -238,7 +238,7 @@ class Api::V1::LoisController < ApplicationController
           :body => File.read('app/views/submission_email.html.erb'),
           :content_type => 'text/html; charset=UTF-8'
         ).deliver!
-      else
+      elsif @loi.submitted
         @loi.update(submitted: true)
       end
 
