@@ -1,7 +1,7 @@
 class Api::V1::LoisController < ApplicationController
 	skip_before_action :verify_authenticity_token, only: [:index, :update, :create]
-  before_action :authenticate_user!, only: [:new, :show, :update]
-  before_action :authenticate_admin!, only: [:index, :destroy]
+  before_action :authenticate_user!, only: [:index, :new, :show, :update]
+  before_action :authenticate_admin!, only: [:destroy]
 
   def loi_submitted_email_to_admin
     @loi = Loi.find_by(user_id: current_user.id)
