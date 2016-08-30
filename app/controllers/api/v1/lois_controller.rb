@@ -94,8 +94,8 @@ class Api::V1::LoisController < ApplicationController
 
         # CREATE ADMIN ALERT EMAIL TEMPLATE
         File.open('app/views/loi_submitted_email_to_admin.html.erb', 'w') { |file| file.write(
-        "<p>A user from the company <i>#{company_name}</i> has submitted an LOI form</p>
-        <p>Click below to log in and see their LOI</p>
+        "<p>A user from <i>#{@loi.org_name}</i> has submitted a letter of interest.</p>
+        <p>Click below to log in and review their LOI:</p>
         <p><a target='_blank' href='#{request.base_url}'>#{request.base_url}</a></p>"
         ) }
 
