@@ -10,9 +10,7 @@
             <th style="width: 20%;">
               <p ng-click="sortBy('org_name')">
                 Organization Name
-                <span ng-hide="descending" class="glyphicon glyphicon-triangle-bottom">
-                </span>
-                <span ng-hide="!descending" class="glyphicon glyphicon-triangle-top">
+                <span ng-class="toggle_class">
                 </span>
               </p>
               <input ng-model="orgNameFilter" placeholder="filter" class="form-control">
@@ -20,9 +18,7 @@
             <th style="width: 50%;">
               <p ng-click="sortBy(loi.answers[selectedAnswer.id])">
                 Please select a question to see and compare
-                <span ng-hide="descending" class="glyphicon glyphicon-triangle-bottom">
-                </span>
-                <span ng-hide="!descending" class="glyphicon glyphicon-triangle-top">
+                <span ng-class="toggle_class">
                 </span>
               </p>
               <select class="form-control" ng-model="selectedAnswer" ng-options="question.question group by question.section for question in questions">
@@ -31,11 +27,9 @@
 
             </th>
             <th ng-show=<%="#{current_user.super_admin}"%>  style="width: 8%; text-align: center; vertical-align: middle">
-            <p ng-click="sortBy(avgRatingPerLoi)">
+            <p ng-click="sortBy('avgRatingPerLoi')">
                 Average Rating
-                <span ng-hide="descending" class="glyphicon glyphicon-triangle-bottom">
-                </span>
-                <span ng-hide="!descending" class="glyphicon glyphicon-triangle-top">
+                <span ng-class="toggle_class">
                 </span>
               </p>
             </th>
@@ -51,20 +45,20 @@
                   <li ng-repeat="answer in formatAnswer(loi.answers[selectedAnswer.id])">{{answer}}</li>
                 </ul>
               </td>
-              <td ng-show=<%="#{current_user.super_admin}"%> style="text-align: center;">
+              <td ng-show=<%="#{current_user.super_admin}"%> style="text-align:center;">
                 <p>{{avgRatingPerLoi(loi.ratings)}}</p>
               </td>
-              <td>
+              <td style="text-align:center;">
                 <% if current_user && current_user.admin %>
                   <a type="btn" href="/lois/{{loi.id}}" class="btn btn-success btn-rate" ng-show="!rated(loi.ratings)">View/Rate</a>
-                  <a type="btn" href="/lois/{{loi.id}}" class="btn btn-warning btn-invite" ng-show="rated(loi.ratings)">View/Edit</a>   
+                  <a type="btn" href="/lois/{{loi.id}}" class="btn btn-warning btn-invite" ng-show="rated(loi.ratings)">View/Edit</a>
 
                 <% end %>
                   <% if current_user && current_user.super_admin %>
                     <button class="btn btn-info btn-invite" ng-class="{'disabled': isDisabled}" ng-click="inviteSent(loi_status, loi.id); changeBtn(this)" ng-if="loi.invited_lois[0].status != true">{{btnText}}</button>
-                    <button class="btn btn-error btn-invite disabled" ng-if="loi.invited_lois[0].status == true">Invited</button>   
+                    <button class="btn btn-error btn-invite disabled" ng-if="loi.invited_lois[0].status == true">Invited</button>
                   <% else %>
-                    <button class="btn btn-danger btn-rate disabled" ng-if="loi.invited_lois[0].status != true">Super Admin action required</button>
+                    <button class="btn btn-danger btn-rate disabled" ng-if="loi.invited_lois[0].status != true">{{btnText}}</button>
                     <button class="btn btn-error btn-rate disabled" ng-if="loi.invited_lois[0].status == true">Invited</button>
                   <% end %>
               </td>
@@ -79,7 +73,7 @@
       <%= link_to "Download LOI CSV File", "/lois.csv", :class => "btn btn-danger", :role => "button" %>
     <% end %>
   </div>
-  
+
 
   </div>
 </div>
