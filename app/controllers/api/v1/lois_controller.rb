@@ -241,11 +241,13 @@ class Api::V1::LoisController < ApplicationController
       elsif @loi.submitted
         @loi.update(submitted: true)
       end
-
-      render json: { message: "Loi Updated", loi_id: @loi.id }, status: 200
+      if current_user.super_admin
+        render json: {message: "The LOI has been updated", loi_id: @loi.id}, status: 201
+      else
+        render json: {message: "Loi Updated", loi_id: @loi.id }, status: 200
+      end
     else
       render json: { errors: @post.errors.full_messages }, status: 422
     end
-
   end
 end
