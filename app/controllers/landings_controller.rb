@@ -15,11 +15,11 @@ class LandingsController < ApplicationController
       main_points: params[:main_points],
       gray_section: params[:gray_section],
       last_point: params[:last_point]
-    )
+      )
     redirect_to '/home'
   end
 
   def thanks
-    @loi = Loi.find(params[:id])
+    @loi = Loi.find(params[:id]) 
   end
 end

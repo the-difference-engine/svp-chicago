@@ -2,8 +2,8 @@
   "use strict";
 
   angular.module("app").controller("editLoisCtrl", ["$scope", "$http", "$compile", function($scope, $http, $compile)
-    {
-      window.scope = $scope;
+  {
+    window.scope = $scope;
 
       //GET ACTIVE ID USING THE GON GEM
       $scope.activeId = gon.loi_id;
@@ -66,15 +66,23 @@
         };
 
         $http.patch('/api/v1/lois/' + $scope.activeId + '.json', newLoi).then(function(response){
+          console.log(response);
+          if (response.status === 201)
+          {
+            $(".alert").empty();
+            window.location = '/lois?alert='+response.data.message;
+  
+          } else {
             window.location = '/thanks/' + response.data.loi_id;
-          });
+          }
+        });
 
       } else {
         alert("Form is invalid. See area marked in red.");
-      };
+      }
 
     };
 
   }]);
- 
+
 }());

@@ -3,6 +3,9 @@
   before_action :authenticate_admin!, only: [:index, :destroy]
 
   def index
+    if params[:alert]
+      flash.now[:success] = params[:alert]
+    end
     @lois = Loi.all
     @admins_ratings = Rating.where(user_id: current_user.id)
     gon.current_user_id = current_user.id
@@ -42,7 +45,7 @@
       @sections = Section.all
       @questions = Question.all
       @answers = Answer.where(loi_id: @loi.id)
-      flash[:danger] = "Warning, this form has already been submitted."
+      flash.now[:danger] = "Warning, this form has already been submitted."
     elsif @loi.submitted
       flash[:warning] = "Submitted Applications can not be altered."
       redirect_to '/'
