@@ -23,7 +23,7 @@
   end
 
   def show
-    # @sections = Section.order(:id).all
+    # @sections = Section.order(:id).allb
     @ratings = Rating.where(user_id: current_user.id).where(q5: "Yes")
     @invite_max = InviteMax.first.max
     @loi = Loi.find_by(id: params[:id])
