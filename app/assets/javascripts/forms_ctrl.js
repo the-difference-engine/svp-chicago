@@ -21,6 +21,7 @@
   		};
 
       $scope.submitted = false;
+      $scope.invalidSubmission = false;
       $scope.activeSection = 0;
       $scope.activeSectionArray = [true, true, true, true, true, true, true, true];
       
@@ -199,7 +200,9 @@
             $scope.errors = response.errors;
           })
       } else {
+        $scope.invalidSubmission = true;
         alert("Form is invalid. See area marked in red.");
+
       };
 
     };
