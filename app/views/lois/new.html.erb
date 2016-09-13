@@ -98,7 +98,7 @@
 
                         <p ng-if="question.question.indexOf('Number') > -1 || question.question.indexOf('Budget') > -1" ng-show="(loiForm['organization_question_' + $index].$invalid && !loiForm['organization_question_' + $index].$pristine) || (loiForm['organization_question_' + $index].$invalid && invalidSubmission)" class="error-class" style="color:red;">Please enter a numeric value.</p>
 
-                        <p ng-if="!(question.question.indexOf('Number') > -1 || question.question.indexOf('Budget') > -1") ng-show="(loiForm['organization_question_' + $index].$invalid && !loiForm['organization_question_' + $index].$pristine) || (loiForm['organization_question_' + $index].$invalid && invalidSubmission)" class="error-class" style="color:red;">Please fill out the field.</p>
+                        <p ng-if="!(question.question.indexOf('Number') > -1 || question.question.indexOf('Budget') > -1)" ng-show="(loiForm['organization_question_' + $index].$invalid && !loiForm['organization_question_' + $index].$pristine) || (loiForm['organization_question_' + $index].$invalid && invalidSubmission)" class="error-class" style="color:red;">Please fill out the field.</p>
 
                     </div>
 
