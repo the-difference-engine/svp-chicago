@@ -26,8 +26,11 @@
               <%= link_to "Users", "/users", class: "btn btn-default" %></li>
               <li>You can add, edit or delete LOI questions:
               <%= link_to "LOI Questions", "/questions", class: "btn btn-default" %></li>
-              <li>You can add, edit or delete RFP questions:
-              <%= link_to "RFP Questions", "/rfp_questions", class: "btn btn-default" %></li>
+
+              <% if false %>
+                <li>You can add, edit or delete RFP questions:
+                <%= link_to "RFP Questions", "/rfp_questions", class: "btn btn-default" %></li>
+              <% end %>
             </ul>
           <% elsif @user_loi_status %>
             <h4>Congratulations! Your LOI has been approved and you have been invited to fill an RFP form. </h4>
@@ -43,7 +46,9 @@
             <h4>View available Forms</h4>
             <h5>These are the forms that are currently available:</h5>
             <p><%= link_to "LOI Form", "/lois/new", class: "btn btn-default" %></p>
-            <p><%= link_to "RFP Form", "/rfps/new", class: "btn btn-default" %></p>
+            <% if false %>
+              <p><%= link_to "RFP Form", "/rfps/new", class: "btn btn-default" %></p>
+            <% end %>
             <br>
           <% end %>
           <% if !@user.lois.empty? %>
