@@ -89,7 +89,7 @@
                   <h1> {{ organization_section.name }} </h1>
                   <fieldset class="form-group">
 
-                    <div class="form-group" ng-repeat="question in organization_formData" ng-hide="$last">
+                    <div class="form-group" ng-repeat="question in organization_formData">
                         <label> {{question.question}}: </label>
 
                         <input ng-if="question.question.indexOf('Number') > -1 || question.question.indexOf('Budget') > -1" type="number" name="organization_question_{{$index}}" class="form-control" ng-model="organization_question.answer" required>
@@ -103,11 +103,6 @@
                     </div>
 
                   </fieldset>
-
-                  <label> {{organization_formData[organization_formData.length - 1].question}} </label>
-                  <textarea name="np_organization" class="form-control" rows="3" ng-model="organization_formData[organization_formData.length - 1].answer" required></textarea>
-                  
-                  <p ng-show="(loiForm.np_organization.$invalid && !loiForm.np_organization.$pristine) || (loiForm.np_organization.$invalid && invalidSubmission) " class="error-class" style="color:red;">Please fill out the field.</p>
 
               </div>
             </section> 
