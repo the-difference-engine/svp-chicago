@@ -15,6 +15,13 @@ class Api::V1::InvitedLoisController < ApplicationController
       loi_id: params[:loi_id]
 
     )
+
+    #CREATE LOI ACCEPTANCE EMAIL TEMPLATE
+    File.open('app/views/loi_acceptance_email.html.erb', 'w') { |file| file.write(
+        "<p><p>Hello, #{@invited_loi.loi.name}, and Congratulations! You have been invited to fill out a <a href='https://demo-svp-chicago.herokuapp.com/rfps/new'>Request For Proposal</a> form.</p>
+          <p>To get started, log in to your account here: <a href='https://demo-svp-chicago.herokuapp.com'>https://demo-svp-chicago.herokuapp.com</a> and click on the RFP form button.</p>"
+        ) }
+
     Mail.new( 
       :to => @invited_loi.loi.email, 
       :from => 'colleen@svpchicago.org', 
