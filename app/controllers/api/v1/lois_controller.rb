@@ -13,7 +13,7 @@ class Api::V1::LoisController < ApplicationController
   end
 
   def create
-    errors = []
+    # errors = []
 
     @loi = Loi.new({name: params[:name], email: params[:email], submitted: params[:submitted], user_id: current_user.id})
 
@@ -21,28 +21,27 @@ class Api::V1::LoisController < ApplicationController
 
       params[:contact_answers].each do |answer_hash|
         answer = Answer.create(loi_id: @loi.id, question_id: answer_hash[:question_id], answer: answer_hash[:answer])
-        errors << answer.question.question if !answer.valid?
-
+        # errors << answer.question.question if !answer.valid?
       end
 
       params[:organization_answers].each do |answer_hash|
         answer = Answer.create(loi_id: @loi.id, question_id: answer_hash[:question_id], answer: answer_hash[:answer])
-        errors << answer.question.question if !answer.valid?
+        # errors << answer.question.question if !answer.valid?
       end
 
       params[:overview_answers].each do |answer_hash|
         answer = Answer.create(loi_id: @loi.id, question_id: answer_hash[:question_id], answer: answer_hash[:answer])
-        errors << answer.question.question if !answer.valid?
+        # errors << answer.question.question if !answer.valid?
       end
 
       params[:vision_answers].each do |answer_hash|
         answer = Answer.create(loi_id: @loi.id, question_id: answer_hash[:question_id], answer: answer_hash[:answer])
-        errors << answer.question.question if !answer.valid?
+        # errors << answer.question.question if !answer.valid?
       end
 
       params[:concern_answers].each do |answer_hash|
         answer = Answer.create(loi_id: @loi.id, question_id: answer_hash[:question_id], answer: answer_hash[:answer])
-        errors << answer.question.question if !answer.valid?
+        # errors << answer.question.question if !answer.valid?
       end
 
       params[:challenge_answers].each do |answer_hash|
@@ -57,17 +56,17 @@ class Api::V1::LoisController < ApplicationController
 
       params[:referral_answers].each do |answer_hash|
         answer = Answer.create(loi_id: @loi.id, question_id: answer_hash[:question_id], answer: answer_hash[:answer])
-        errors << answer.question.question if !answer.valid?
+        # errors << answer.question.question if !answer.valid?
       end
 
       params[:demographic_answers].each do |answer_hash|
         answer = Answer.create(loi_id: @loi.id, question_id: answer_hash[:question_id], answer: answer_hash[:answer])
-        errors << answer.question.question if !answer.valid?
+        # errors << answer.question.question if !answer.valid?
       end
 
       params[:geographic_answers].each do |answer_hash|
         answer = Answer.create(loi_id: @loi.id, question_id: answer_hash[:question_id], answer: answer_hash[:answer])
-        errors << answer.question.question if !answer.valid?
+        # errors << answer.question.question if !answer.valid?
       end
 
       if @loi.submitted
@@ -86,7 +85,7 @@ class Api::V1::LoisController < ApplicationController
         # SEND LOI SUBMISSION CONFIRMATION EMAIL TO USER
         Mail.new( 
           :to => @loi.email, 
-          :from => 'colleen@svpchicago.org', 
+          :from => 'svptesting1871@gmail.com', 
           :subject => 'Submission to SVP received', 
           :body => File.read('app/views/submission_email.html.erb'),
           :content_type => 'text/html; charset=UTF-8'
@@ -94,7 +93,7 @@ class Api::V1::LoisController < ApplicationController
 
         # CREATE ADMIN ALERT EMAIL TEMPLATE
         File.open('app/views/loi_submitted_email_to_admin.html.erb', 'w') { |file| file.write(
-        "<p>A user from <i>#{@loi.org_name}</i> has submitted a letter of interest.</p>
+        "<p>A user from has submitted a letter of interest.</p>
         <p>Click below to log in and review their LOI:</p>
         <p><a target='_blank' href='#{request.base_url}'>#{request.base_url}</a></p>"
         ) }
@@ -109,11 +108,11 @@ class Api::V1::LoisController < ApplicationController
         ).deliver!        
       end
 
-      if errors.empty?
-        render json: { message: "Loi Created", loi_id: @loi.id }, status: 200
-      else
-        render json: {errors: errors}, status: 422
-      end
+      # if errors.empty?
+      render json: { message: "Loi Created", loi_id: @loi.id }, status: 200
+      # else
+      #   render json: {errors: errors}, status: 422
+      # end
     else
       render json: { errors: @post.errors.full_messages }, status: 422
     end
