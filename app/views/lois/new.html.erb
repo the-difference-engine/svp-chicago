@@ -92,9 +92,9 @@
                     <div class="form-group" ng-repeat="question in organization_formData">
                         <label> {{question.question}}: </label>
 
-                        <input ng-if="question.question.indexOf('Number') > -1 || question.question.indexOf('Budget') > -1" type="number" name="organization_question_{{$index}}" class="form-control" ng-model="organization_question.answer" required>
+                        <input ng-if="question.question.indexOf('Number') > -1 || question.question.indexOf('Budget') > -1" type="number" name="organization_question_{{$index}}" class="form-control" ng-model="question.answer" required>
 
-                        <input ng-if="!(question.question.indexOf('Number') > -1 || question.question.indexOf('Budget') > -1)" type="text" name="organization_question_{{$index}}" class="form-control" ng-model="organization_question.answer" required>
+                        <input ng-if="!(question.question.indexOf('Number') > -1 || question.question.indexOf('Budget') > -1)" type="text" name="organization_question_{{$index}}" class="form-control" ng-model="question.answer" required>
 
                         <p ng-if="question.question.indexOf('Number') > -1 || question.question.indexOf('Budget') > -1" ng-show="(loiForm['organization_question_' + $index].$invalid && !loiForm['organization_question_' + $index].$pristine) || (loiForm['organization_question_' + $index].$invalid && invalidSubmission)" class="error-class" style="color:red;">Please enter a numeric value.</p>
 
