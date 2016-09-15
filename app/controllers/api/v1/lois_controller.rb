@@ -77,7 +77,7 @@ class Api::V1::LoisController < ApplicationController
         # CREATE LOI SUBMISSION CONFIRMATION EMAIL
         File.open('app/views/submission_email.html.erb', 'w') { |file| file.write(
         "<p>SVP Chicago has received your submission!</p>
-        <p>Please log in at <a target='_blank' href='#{request.base_url}'>#{request.base_url}</a> and review your submission</p>
+        <p>Please log in at TEST and review your submission</p>
         <p>If revisions to your letter of interest form need to be made or if you have any questions, please email Colleen at colleen@svpchicago.org</p>
         <p>Social Venture Partners - Chicago</p>"
         ) }
@@ -95,7 +95,7 @@ class Api::V1::LoisController < ApplicationController
         File.open('app/views/loi_submitted_email_to_admin.html.erb', 'w') { |file| file.write(
         "<p>A user from has submitted a letter of interest.</p>
         <p>Click below to log in and review their LOI:</p>
-        <p><a target='_blank' href='#{request.base_url}'>#{request.base_url}</a></p>"
+        <p>TEST</p>"
         ) }
 
         # SEND LOI SUBMISSION ALERT EMAIL TO ADMIN
