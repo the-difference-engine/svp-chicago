@@ -193,11 +193,13 @@
           demographic_answers: $scope.demographic_formData,
           geographic_answers: $scope.geographic_formData
         };
-
+        console.log("posting......");
         $http.post('/api/v1/lois.json', newLoi).success(function(response){
             window.location = '/thanks/' + response.loi_id;
+            console.log("SUCCESS");
           }).error(function(response){
-            $scope.errors = response.errors;
+            // $scope.errors = response.errors;
+            console.log("ERROR");
           })
       } else {
         $scope.invalidSubmission = true;
