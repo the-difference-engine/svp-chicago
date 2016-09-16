@@ -177,7 +177,7 @@
 
     $scope.submit = function(name, email, isValid){
   
-      if (isValid) {
+      if ((isValid && $scope.submitted)  || !$scope.submitted) {
 
         var newLoi = {
           name: name,
