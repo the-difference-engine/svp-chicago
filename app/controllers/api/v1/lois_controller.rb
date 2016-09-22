@@ -222,22 +222,22 @@ class Api::V1::LoisController < ApplicationController
 
       if @loi.submitted && !current_user.super_admin
 
-        # CREATE LOI SUBMISSION CONFIRMATION EMAIL
-        File.open('app/views/submission_email.html.erb', 'w') { |file| file.write(
-        "<p>SVP Chicago has received your submission!</p>
-        <p>Please log in at <a target='_blank' href='#{request.base_url}'>#{request.base_url}</a> and review your submission</p>
-        <p>If revisions to your letter of interest form need to be made or if you have any questions, please email Colleen at colleen@svpchicago.org</p>
-        <p>Social Venture Partners - Chicago</p>"
-        ) }
+        # # CREATE LOI SUBMISSION CONFIRMATION EMAIL
+        # File.open('app/views/submission_email.html.erb', 'w') { |file| file.write(
+        # "<p>SVP Chicago has received your submission!</p>
+        # <p>Please log in at <a target='_blank' href='#{request.base_url}'>#{request.base_url}</a> and review your submission</p>
+        # <p>If revisions to your letter of interest form need to be made or if you have any questions, please email Colleen at colleen@svpchicago.org</p>
+        # <p>Social Venture Partners - Chicago</p>"
+        # ) }
 
-        # SEND LOI SUBMISSION CONFIRMATION EMAIL
-        Mail.new( 
-          :to => @loi.email, 
-          :from => 'colleen@svpchicago.org', 
-          :subject => 'Submission to SVP received', 
-          :body => File.read('app/views/submission_email.html.erb'),
-          :content_type => 'text/html; charset=UTF-8'
-        ).deliver!
+        # # SEND LOI SUBMISSION CONFIRMATION EMAIL
+        # Mail.new( 
+        #   :to => @loi.email, 
+        #   :from => 'colleen@svpchicago.org', 
+        #   :subject => 'Submission to SVP received', 
+        #   :body => File.read('app/views/submission_email.html.erb'),
+        #   :content_type => 'text/html; charset=UTF-8'
+        # ).deliver!
       elsif @loi.submitted
         @loi.update(submitted: true)
       end
