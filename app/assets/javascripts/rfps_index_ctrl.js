@@ -6,6 +6,9 @@
 
     // $scope.activeId = gon.id;
 
+    $scope.descending = false;
+    $scope.toggle_class = "glyphicon glyphicon-triangle-top";
+
     $scope.setup = function(){
 
       $http.get('/api/v1/rfps.json').then(function(response){
@@ -24,6 +27,18 @@
       // });
 
     };
+
+    $scope.sortBy = function(sortAttribute){
+      $scope.sortByAttribute = sortAttribute;
+      $scope.descending = !$scope.descending;
+
+      if($scope.descending){
+        $scope.toggle_class = "glyphicon glyphicon-triangle-bottom";
+      }
+      else if(!$scope.descending){
+        $scope.toggle_class = "glyphicon glyphicon-triangle-top"
+      }
+    }
   
 
   }]);
