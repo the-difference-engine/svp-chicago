@@ -7,6 +7,18 @@ class UsersController < ApplicationController
     @users = User.where(admin: false)
   end
 
+  def create
+    # Create the user from params
+    @user = User.new(params[:user])
+    if @user.save
+      # Deliver the signup email
+      UserNotifier.send_notification(@user).deliver
+      redirect_to(@user, :notice => 'User created')
+    else
+      render :action => 'new'
+    end
+  end
+
   def show
     @user = User.find(current_user.id)
     user_has_submitted_loi = Loi.find_by(user_id: current_user.id, submitted: true)
