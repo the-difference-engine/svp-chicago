@@ -13,7 +13,7 @@ class RfpsController < ApplicationController
     else
       user_loi_status = false
     end
-f
+
     user_has_rfps = Rfp.where(user_id: current_user.id)
 
     if user_has_rfps
