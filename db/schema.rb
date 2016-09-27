@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160819222539) do
+ActiveRecord::Schema.define(version: 20160927001535) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -115,9 +115,10 @@ ActiveRecord::Schema.define(version: 20160819222539) do
   create_table "rfp_questions", force: :cascade do |t|
     t.integer  "rfp_section_id"
     t.string   "question"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.string   "question_type"
+    t.boolean  "is_active",      default: true
   end
 
   create_table "rfp_sections", force: :cascade do |t|
