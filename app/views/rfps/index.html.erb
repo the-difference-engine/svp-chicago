@@ -25,7 +25,7 @@
                   <input ng-model="orgNameFilter" placeholder="filter" class="form-control">
                 </th>
                 <th style="width: 50%;">
-                  <p ng-click="sortBy(Rfp.answers[selectedAnswer.id])">
+                  <p ng-click="sortBy(Rfp.rfp_answers[selectedAnswer.id])">
                     Please select a question to review and compare
                     <span ng-class="toggle_class">
                     </span>
@@ -52,7 +52,7 @@
                   </td>
                   <td>
                     <ul class="list-unstyled">
-                      <li ng-repeat="answer in formatAnswer(rfp.answers[selectedAnswer.id])">{{answer}}</li>
+                      <li ng-repeat="answer in formatAnswer(rfp.rfp_answers[selectedAnswer.id - 1]) track by $index">{{answer}}</li>
                     </ul>
                   </td>
                   <td ng-show=<%="#{current_user.super_admin}"%> style="text-align: center;">
