@@ -20,6 +20,7 @@
                   <p>
                     <%= question.question %>
                     <%= link_to "Edit", "/rfp_questions/#{question.id}/edit", :class => "btn btn-custom", :role => "button" %>
+                    <%= link_to "Delete", "/rfp_questions/#{question.id}", :class => "btn btn-custom", :role => "button", :method => "delete", data: { :confirm => "Are you sure?" }%>
                   </p>
                 </li>
               <% end %>

@@ -49,11 +49,11 @@ class RfpQuestionsController < ApplicationController
   end
 
   def destroy
-    @question = Question.find_by(id: params[:id])
-    @question.destroy
+    @rfp_question = RfpQuestion.find_by(id: params[:id])
+    @rfp_question.update({is_active: false})
 
     flash[:warning] = "Question deleted"
-    redirect_to "/questions"
+    redirect_to "/rfp_questions"
   end
 
 end
