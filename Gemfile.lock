@@ -201,6 +201,8 @@ GEM
     seed_dump (3.2.4)
       activerecord (>= 4)
       activesupport (>= 4)
+    sendgrid (1.2.4)
+      json
     slop (3.6.0)
     spring (1.7.2)
     sprockets (3.6.3)
@@ -258,10 +260,11 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   seed_dump
+  sendgrid
   spring
   turbolinks
   uglifier (>= 1.3.0)
   web-console (~> 2.0)
 
 BUNDLED WITH
-   1.11.2
+   1.12.5
