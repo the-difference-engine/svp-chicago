@@ -4,32 +4,43 @@
       <div class="row">
         <div class="col-md-6">
 
-          <h2>Welcome!</h2>
-          <h4>You are currently logged in as: <%= @user.email %> </h4>
+          <h1>Welcome!</h1>
+        
           <br>
+          
           <% if @user.admin && !@user.super_admin %>
-            <h5> You currently have administrator privileges.</h5>
-            <h5> You can: </h5>
+            <h4>You are currently logged in with administrator privileges as: <%= @user.email %> </h4>
+            <table class="table table-hover">
+            <tr>
+            </tr>
             <ul>
-              <li>Review all the submitted LOIs <a href="/lois">here</a>.</li>
-              <li>You can see a list of your ratings <a href="/ratings">here</a>.</li>
+            <tr>
+              <td><a href="/lois" class="btn btn-primary btn-s">Review all the submitted LOIs</a></td>
+              <td><a href="/ratings" class="btn btn-primary btn-s">See a list of your ratings</a></td>
+              </tr>
             </ul>
+            </table>
           <% elsif @user.admin && @user.super_admin %>
-            <h5> You currently have super-administrator privileges.</h5>
-            <h5> You can: </h5>
+            <h4>You are currently logged in with super-administrator priviliges as: <%= @user.email %> </h4>
+            <table class="table table-hover">
+            <tr>
+            </tr>
+            <tr>
+            <br>
             <ul>
-              <li>Review all the submitted LOIs:
-              <%= link_to "LOIs", "/lois", class: "btn btn-default" %></li>
-              <li>You can see a list of all ratings:
-              <%= link_to "Ratings", "/ratings", class: "btn btn-default" %></li>
-              <li>You can see a list of users:
-              <%= link_to "Users", "/users", class: "btn btn-default" %></li>
-              <li>You can add, edit or delete LOI questions:
-              <%= link_to "LOI Questions", "/questions", class: "btn btn-default" %></li>
-
+              <td style="text-align: center;" ><%= link_to "Review all submitted LOIs", "/lois", {:style=>'width: 235.03px;', :class=>'btn btn-primary btn-s'} %></td>
+            
+              <td style="text-align: center;"><%= link_to "See a list of all ratings", "/ratings", {:style=>'width: 235.03px;', :class=>'btn btn-primary btn-s'}%></td>
+          </tr>
+          <tr>
+              <td style="border-top: none; text-align: center;"><%= link_to "See list of all users", "/users",  {:style=>'width: 235.03px;', :class=>'btn btn-primary btn-s'} %></td>
+             
+              <td style="border-top: none; text-align: center;"><%= link_to "Add, Edit or Delete LOI questions", "/questions", {:style=>'width: 235.03px;', :class=>'btn btn-primary btn-s'}%></td>
+              </tr>
+              </table>
               <% if false %>
                 <li>You can add, edit or delete RFP questions:
-                <%= link_to "RFP Questions", "/rfp_questions", class: "btn btn-default" %></li>
+                <%= link_to "RFP Questions", "/rfp_questions", class: "btn btn-default btn-xs" %></li>
               <% end %>
             </ul>
           <% elsif @user_loi_status %>
@@ -43,9 +54,10 @@
         </div>
         <div class="col-md-6">
           <% if @user.admin %>
-            <h4>View available Forms</h4>
-            <h5>These are the forms that are currently available:</h5>
-            <p><%= link_to "LOI Form", "/lois/new", class: "btn btn-default" %></p>
+            <h2>View available Forms</h2>
+            <br>
+            <h4 style="padding-top: 7px;">These are the forms that are currently available:</h4>
+            <p><%= link_to "LOI Form", "/lois/new", class: "btn btn-default btn-xs" %></p>
             <% if false %>
               <p><%= link_to "RFP Form", "/rfps/new", class: "btn btn-default" %></p>
             <% end %>
