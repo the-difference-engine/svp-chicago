@@ -3,13 +3,13 @@ class RfpQuestionsController < ApplicationController
 
   def index
     @rfp_sections = RfpSection.order(:id).all
-    @rfp_questions = RfpQuestion.order(:id).all
+    @rfp_questions = RfpQuestion.where(is_active: true).order(:id).all
   end
 
   def new
     @rfp_question = RfpQuestion.new
     @sub_question = SubQuestion.new
-  end
+  endfi
 
   def create
     ActiveRecord::Base.transaction do

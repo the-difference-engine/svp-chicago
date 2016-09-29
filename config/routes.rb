@@ -119,5 +119,5 @@ Rails.application.routes.draw do
   get '/rfp_sections/:id/edit' => 'rfp_sections#edit'
   patch 'rfp_sections/:id' => 'rfp_sections#update'
   delete 'rfp_sections/:id' => 'rfp_sections#destroy'
-
+  
 end
