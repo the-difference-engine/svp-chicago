@@ -23,15 +23,14 @@
                   <% if question.question == 'Organization' %>
                       <button class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Currently unable to Edit">Edit</button>
                   <% else %>
-                    <!-- don't forget to change the link -->
-                    <%= link_to "Edit", "", :class => "btn btn-primary", :role => "button" %>
+                    <%= link_to "Edit", "/rfp_questions/#{question.id}/edit", :class => "btn btn-primary", :role => "button" %>
                   <% end %>
                 </td>
                 <td style="width: 10%;text-align:center;">
                   <% if question.question == 'Organization' %>
                     <button class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Currently unable to Delete">Delete</button>
                   <% else %>
-                    <%= link_to "Delete", "", :class => "btn btn-warning", :role => "button", :method => :delete, :confirm => "Are you sure?" %>
+                    <%= link_to "Delete", "/rfp_questions/#{question.id}", :class => "btn btn-warning", :role => "button", :method => :delete, data: { :confirm => "Are you sure?" } %>
                   <% end %>
                 </td>
               <% end %>
