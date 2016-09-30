@@ -41,20 +41,28 @@
     };
 
     $scope.formatAnswer = function(answerToFormat){
-      var subAnswerFormat = [];
+      // var subAnswerFormat = [];
 
-      if (answerToFormat && answerToFormat.rfp_answer === "See Subs"){
-        for(var i = 0; i < answerToFormat.sub_answers.length; i++){
-          subAnswerFormat.push(answerToFormat.sub_answers[i].sub_question + ":  " + answerToFormat.sub_answers[i].sub_answer);
-        }
+      // if (answerToFormat && answerToFormat.rfp_answer === "See Subs"){
+      //   for(var i = 0; i < answerToFormat.sub_answers.length; i++){
+      //     subAnswerFormat.push(answerToFormat.sub_answers[i].sub_question + ":  " + answerToFormat.sub_answers[i].sub_answer);
+      //   }
 
-        return subAnswerFormat;
-      }
-      else if(answerToFormat){
-        subAnswerFormat.push(answerToFormat.rfp_answer);
+      //   return subAnswerFormat;
+      // }
+      // else if(answerToFormat.rfp_question_type == "multiple input"){
 
-        return subAnswerFormat;
-      }
+      // }
+      // else if(answerToFormat){
+      //   subAnswerFormat.push(answerToFormat.rfp_answer);
+
+      //   return subAnswerFormat;
+      // }
+
+      return answerToFormat;
+
+
+
       // if (answerToFormat.sub_questions.length !== 0){
 
       // } else {

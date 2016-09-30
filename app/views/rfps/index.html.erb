@@ -52,7 +52,7 @@
                   </td>
                   <td>
                     <ul class="list-unstyled">
-                      <li ng-repeat="answer in formatAnswer(rfp.rfp_answers[selectedAnswer.id - 1]) track by $index">{{answer}}</li>
+                      <li ng-repeat="answer in formatAnswer(rfp.rfp_answers | filter:rfp_question_id)">{{answer}}</li>
                     </ul>
                   </td>
                   <td ng-show=<%="#{current_user.super_admin}"%> style="text-align: center;">
