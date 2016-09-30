@@ -39,6 +39,8 @@
 
                 <div ng-repeat="question in section.questions">
 
+                <div ng-if="question.is_active === true">
+
                   <div ng-if="question.question_type == 'single input'">
                     <div class="form-group">
                       <label> {{question.question}} </label>
@@ -88,7 +90,7 @@
                       </div>
                     </div> 
                   </div>
-
+                </div>
                 </div> 
               </div> 
             </div>

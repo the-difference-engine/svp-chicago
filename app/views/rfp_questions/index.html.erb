@@ -9,23 +9,42 @@
       <%= link_to "Add New Section", "/rfp_sections/new", :class => "btn btn-primary btn-question", :role => "button" %>
     </div>
 
-    <div>
-      <ol>
-        <% @rfp_sections.each do |section| %>
+    <ol style="width:90%;margin:auto;">
+      <% @rfp_sections.each do |section| %>
         <h2><li><%= section.name %><%= link_to "Edit", "/rfp_sections/#{section.id}/edit", :class => "btn btn-custom", :role => "button" %></li></h2>
-        <ul>
-          <% section.rfp_questions.each do |question| %>
-          <li>
-            <p>
-              <%= question.question %>
-              <%= link_to "Edit", "/rfp_questions/#{question.id}/edit", :class => "btn btn-custom", :role => "button" %>
-            </p>
-          </li>
+        <table class="table table-striped" style="margin-bottom:30px;">
+          <% section.rfp_questions.where(is_active: true).each do |question| %>
+            <tr>
+              <% if question.rfp_section_id == section.id %>
+                <td style="width: 80%">
+                  <h4> <%= question.question %>. </h4>
+                </td>
+                <td style="width: 10%;text-align:right;">
+                  <% if question.question == 'Organization' %>
+                      <button class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Currently unable to Edit">Edit</button>
+                  <% else %>
+                    <!-- don't forget to change the link -->
+                    <%= link_to "Edit", "", :class => "btn btn-primary", :role => "button" %>
+                  <% end %>
+                </td>
+                <td style="width: 10%;text-align:center;">
+                  <% if question.question == 'Organization' %>
+                    <button class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Currently unable to Delete">Delete</button>
+                  <% else %>
+                    <%= link_to "Delete", "", :class => "btn btn-warning", :role => "button", :method => :delete, :confirm => "Are you sure?" %>
+                  <% end %>
+                </td>
+              <% end %>
+            </tr>
           <% end %>
-        </ul>
-        <% end %>
-      </ol>
-
-    </div>
+        </table>
+      <% end %>
+    </ol>
   </div>
+</div>
 
+<script type="text/javascript">
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
+</script>
