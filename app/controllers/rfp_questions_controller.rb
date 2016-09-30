@@ -9,7 +9,7 @@ class RfpQuestionsController < ApplicationController
   def new
     @rfp_question = RfpQuestion.new
     @sub_question = SubQuestion.new
-  endfi
+  end
 
   def create
     ActiveRecord::Base.transaction do
@@ -25,6 +25,7 @@ class RfpQuestionsController < ApplicationController
       flash[:success] = "Question created!"
       redirect_to "/rfp_questions"
     end
+
   rescue ActiveRecord::RecordInvalid => exception
     flash[:warning] = exception.message
     @sub_question = SubQuestion.new
