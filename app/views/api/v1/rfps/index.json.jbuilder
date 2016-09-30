@@ -4,7 +4,7 @@ json.array! @rfps do |rfp|
   json.rfp_answers rfp.rfp_answers.each do |rfp_answer|
 
     json.rfp_question rfp_answer.rfp_question.question
-    json.rfp_question_type rfp_answer.rfp_question.question_type
+    json.rfp_question_id rfp_answer.rfp_question_id
     json.rfp_answer rfp_answer.answer
 
     if rfp_answer.rfp_question.question_type == "block" || rfp_answer.rfp_question.question_type == "block with multiple inputs"
@@ -14,7 +14,7 @@ json.array! @rfps do |rfp|
       end
     end
   end
-end 
+end
 
 
   

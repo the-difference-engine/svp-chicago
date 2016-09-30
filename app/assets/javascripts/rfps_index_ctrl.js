@@ -40,40 +40,26 @@
       }
     };
 
-    $scope.formatAnswer = function(answerToFormat){
-      // var subAnswerFormat = [];
+    $scope.formatAnswer = function(rfpForm, rfpQuestionId){
+      var subAnswerFormat = [];
+      var answerOutput = rfpForm.rfp_answers;
 
-      // if (answerToFormat && answerToFormat.rfp_answer === "See Subs"){
-      //   for(var i = 0; i < answerToFormat.sub_answers.length; i++){
-      //     subAnswerFormat.push(answerToFormat.sub_answers[i].sub_question + ":  " + answerToFormat.sub_answers[i].sub_answer);
-      //   }
+      if(rfpQuestionId){
+        for(var i =  0; i < rfpForm.rfp_answers.length; i++){
+          if(rfpForm.rfp_answers[i].rfp_question_id === rfpQuestionId){
+            if(rfpForm.rfp_answers[i].rfp_answer === "See Subs"){
+              for(var j = 0; j < rfpForm.rfp_answers[i].sub_answers.length; j++){
+                subAnswerFormat.push(rfpForm.rfp_answers[i].sub_answers[j].sub_question + ":  " + rfpForm.rfp_answers[i].sub_answers[j].sub_answer);
+              }
+            }
+            else{
+              subAnswerFormat.push(rfpForm.rfp_answers[i].rfp_answer);
+            }
+          }
+        }
+      }
 
-      //   return subAnswerFormat;
-      // }
-      // else if(answerToFormat.rfp_question_type == "multiple input"){
-
-      // }
-      // else if(answerToFormat){
-      //   subAnswerFormat.push(answerToFormat.rfp_answer);
-
-      //   return subAnswerFormat;
-      // }
-
-      return answerToFormat;
-
-
-
-      // if (answerToFormat.sub_questions.length !== 0){
-
-      // } else {
-      //   answerToFormat["rfp_answer"]
-      // }
-      // if(answerToFormat === "See Subs"){
-      //   return answerToFormat["sub_answers"];
-      // }
-      // else{
-      //   return answerToFormat;
-      // }
+      return subAnswerFormat;
     };
 
   }]);
