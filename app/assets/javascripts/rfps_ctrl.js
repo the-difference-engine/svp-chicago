@@ -98,7 +98,7 @@
         }).error(function(response){
           $scope.errors = response;
           alert($scope.errors);
-        })
+        });
     };
 
     $scope.addInput = function(id){
@@ -119,13 +119,16 @@
     };
 
     $scope.uploadFile = function(){
+       // var resume = $scope.resume;
        var file = $scope.myFile;
 
        console.log('file is ' );
        console.dir(file);
-
+       // console.log('file is ' );
+       // console.dir(resume);
        var uploadUrl = "/api/v1/attachments.json";
        fileUpload.uploadFileToUrl(file, uploadUrl);
+       // fileUpload.uploadFileToUrl(resume, uploadUrl);
     };
 
   }]);

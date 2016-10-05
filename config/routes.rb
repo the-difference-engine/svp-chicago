@@ -45,6 +45,8 @@ Rails.application.routes.draw do
       get '/rfps' => 'rfps#index'
       get '/rfps/:id' => 'rfps#show'
 
+      post '/attachments' => 'attachments#create'
+
     end
   end
 
