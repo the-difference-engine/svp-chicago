@@ -7,7 +7,7 @@ class UserNotifier < ActionMailer::Base
     p "*** **** *****"
     p user
     mail( :to => @user.email,
-    :subject => 'Thanks for submitting your SVP !' )
+    :subject => 'Thanks for submission to SVP!' )
   end
 
   def send_notification_admin(admin)
