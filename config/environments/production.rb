@@ -64,6 +64,14 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
   config.action_mailer.delivery_method = :smtp
+   ActionMailer::Base.smtp_settings = {
+    :authentication => :plain,
+    :address => 'smtp.gmail.com',
+    :port => 587,
+    :user_name => ENV['GMAILUSER'],
+    :password => ENV['GMAILPASSWORD']
+  }
+  config.action_mailer.default_url_options = { host: 'prod-svp-chicago.herokuapp.com' }
  
   Mail.defaults do
     delivery_method :smtp, {
