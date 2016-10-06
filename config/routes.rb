@@ -98,6 +98,14 @@ Rails.application.routes.draw do
   get '/rfps/new' => 'rfps#new'
   get '/rfps/:id' => 'rfps#show'
 
+  get '/rfp_ratings' => 'rfp_ratings#index'
+  get '/rfp_ratings/new' => 'rfp_ratings#new'
+  get '/rfp_ratings/:id' => 'rfp_ratings#show'
+  post '/rfp_ratings' => 'rfp_ratings#create'
+  get '/rfp_ratings/:id/edit' => 'rfp_ratings#edit'
+  patch '/rfp_ratings/:id' => 'rfp_ratings#update'
+  delete '/rfp_ratings/:id' => 'rfp_ratings#destroy'
+
   get '/rfp_questions' => 'rfp_questions#index'
   get '/rfp_questions/new' => 'rfp_questions#new'
   post '/rfp_questions' => 'rfp_questions#create'

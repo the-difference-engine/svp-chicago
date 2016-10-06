@@ -11,7 +11,7 @@
 
     <ol style="width:90%;margin:auto;">
       <% @rfp_sections.each do |section| %>
-        <h2><li><%= section.name %><%= link_to "Edit", "/rfp_sections/#{section.id}/edit", :class => "btn btn-custom", :role => "button" %></li></h2>
+        <h2><div><li><%= section.name %><%= link_to "Edit", "/rfp_sections/#{section.id}/edit", :class => "btn btn-primary", :role => "button"%></div></li></h2>
         <table class="table table-striped" style="margin-bottom:30px;">
           <% section.rfp_questions.where(is_active: true).each do |question| %>
             <tr>
