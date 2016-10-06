@@ -24,11 +24,19 @@
     </div>
     <div style="text-align:left;">
       <h4>Question Type: <%= @rfp_question.question_type %> </h4>
+      <br>
       <% if @rfp_question.question_type == 'block' || @rfp_question.question_type == 'block with multiple inputs' %>
       <h4>Sub Questions:</h4>
+      <table class="table">
         <% @rfp_question.sub_questions.each do |sub_question| %>
+        <tr>
+          <td>
           <p><%= sub_question.question %></p>
+          </td>
+            <td><%= link_to "Edit", "/sub_questions/#{sub_question.id}/edit", class: "btn btn-primary"%></td>
+          </tr>
         <% end %>
+        </table>
       <% end %>
       </div>
     </div>

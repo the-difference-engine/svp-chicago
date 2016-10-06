@@ -15,67 +15,61 @@
 
         <!-- BELOW NEEDS TO BE CHANGED TO RFP VARIABLES -->
             <div class="panel panel-default">
-              <table class="table table-hover" id="loi-table">
+              <table class="table table-hover" id="Rfp-table">
                 <th style="width: 20%;">
                   <p ng-click="sortBy('org_name')">
                     Organization Name
-                    <span ng-hide="descending" class="glyphicon glyphicon-triangle-bottom">
-                    </span>
-                    <span ng-hide="!descending" class="glyphicon glyphicon-triangle-top">
+                    <span ng-class="toggle_class">
                     </span>
                   </p>
                   <input ng-model="orgNameFilter" placeholder="filter" class="form-control">
                 </th>
                 <th style="width: 50%;">
-                  <p ng-click="sortBy(loi.answers[selectedAnswer.id])">
-                    Please select a question to see and compare
-                    <span ng-hide="descending" class="glyphicon glyphicon-triangle-bottom">
-                    </span>
-                    <span ng-hide="!descending" class="glyphicon glyphicon-triangle-top">
+                  <p ng-click="sortBy(Rfp.rfp_answers[selectedAnswer.id])">
+                    Please select a question to review and compare
+                    <span ng-class="toggle_class">
                     </span>
                   </p>
-                  <select class="form-control" ng-model="selectedAnswer" ng-options="question.question group by question.section for question in questions">
+                  <select class="form-control" ng-model="selectedAnswer" ng-options="rfp_question.rfp_question group by rfp_question.section for rfp_question in rfp_questions">
                     <option value="">-- choose question --</option>
                   </select>
 
                 </th>
                 <th ng-show=<%="#{current_user.super_admin}"%>  style="width: 8%; text-align: center; vertical-align: middle">
-                <p ng-click="sortBy(avgRatingPerLoi)">
+                <p ng-click="sortBy(avgRatingPerRfp)">
                     Average Rating
-                    <span ng-hide="descending" class="glyphicon glyphicon-triangle-bottom">
-                    </span>
-                    <span ng-hide="!descending" class="glyphicon glyphicon-triangle-top">
+                    <span ng-class="toggle_class">
                     </span>
                   </p>
                 </th>
                 <th style="width: 20%; text-align: center; vertical-align: middle">
                   <p>Action</p>
                 </th>
-                <tr ng-repeat="rfp in rfps">
+                <tr ng-repeat="rfp in rfps | filter: {org_name: orgNameFilter} | orderBy:sortByAttribute:descending">
                   <td>
                     <b>{{rfp.org_name}}</b>
 
                   </td>
                   <td>
                     <ul class="list-unstyled">
-                      <li ng-repeat="answer in formatAnswer(loi.answers[selectedAnswer.id])">{{answer}}</li>
+                      <li ng-repeat="answer in formatAnswer(rfp, selectedAnswer.id) track by $index">{{answer}}</li>
                     </ul>
                   </td>
                   <td ng-show=<%="#{current_user.super_admin}"%> style="text-align: center;">
-                    <p>{{avgRatingPerLoi(loi.ratings)}}</p>
+                    <p>{{avgRatingPerRfp(rfp.ratings)}}</p>
                   </td>
                   <td>
                     <% if current_user && current_user.admin %>
-                      <a type="btn" href="/lois/{{loi.id}}" style="width:106.38px" class="btn btn-success btn-rate" ng-show="!rated(loi.ratings)">View/Rate</a>
-                      <a type="btn" href="/lois/{{loi.id}}" style="width:106.38px" class="btn btn-warning btn-invite" ng-show="rated(loi.ratings)">View/Edit</a>   
+                      <a type="btn" href="/rfps/{{rfp.id}}" style="width:106.38px" class="btn btn-success btn-rate" ng-show="!rated(rfp.ratings)">View/Rate</a>
+                      <a type="btn" href="/rfps/{{rfp.id}}" style="width:106.38px" class="btn btn-warning btn-invite" ng-show="rated(rfp.ratings)">View/Edit</a>   
 
                     <% end %>
                       <% if current_user && current_user.super_admin %>
-                        <button style="width:106.38px" class="btn btn-info btn-invite" ng-class="{'disabled': isDisabled}" ng-click="inviteSent(loi_status, loi.id); changeBtn(this)" ng-if="loi.invited_lois[0].status != true">{{btnText}}</button>
-                        <button style="width:106.38px" class="btn btn-error btn-invite disabled" ng-if="loi.invited_lois[0].status == true">Invited</button>   
+                        <button style="width:106.38px" class="btn btn-info btn-invite" ng-class="{'disabled': isDisabled}" ng-click="inviteSent(rfp_status, rfp.id); changeBtn(this)" ng-if="rfp.invited_rfps[0].status != true">{{btnText}}</button>
+                        <button style="width:106.38px" class="btn btn-error btn-invite disabled" ng-if="rfp.invited_rfps[0].status == true">Invited</button>   
                       <% else %>
-                        <button style="width:106.38px" class="btn btn-danger btn-rate disabled" ng-if="loi.invited_lois[0].status != true">Super Admin action required</button>
-                        <button style="width:106.38px" class="btn btn-error btn-rate disabled" ng-if="loi.invited_lois[0].status == true">Invited</button>
+                        <button style="width:106.38px" class="btn btn-danger btn-rate disabled" ng-if="rfp.invited_rfps[0].status != true">Super Admin action required</button>
+                        <button style="width:106.38px" class="btn btn-error btn-rate disabled" ng-if="rfp.invited_rfps[0].status == true">Invited</button>
                       <% end %>
                   </td>
                 </tr>

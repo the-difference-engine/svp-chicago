@@ -35,8 +35,9 @@ class RfpsController < ApplicationController
 
 
  def show
-  @rfp = Rfp.find(params[:id])
-  gon.id = @rfp.id
+    @rfp = Rfp.find(params[:id])
+    @rfp_sections = RfpSection.order('id ASC').all
+    gon.id = @rfp.id
  end
 
   def index
