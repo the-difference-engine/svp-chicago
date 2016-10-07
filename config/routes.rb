@@ -44,6 +44,7 @@ Rails.application.routes.draw do
 
       get '/rfps' => 'rfps#index'
       get '/rfps/:id' => 'rfps#show'
+      get '/rfp_questions' => 'rfp_questions#index'
 
       post '/attachments' => 'attachments#create'
 
@@ -122,4 +123,7 @@ Rails.application.routes.draw do
   patch 'rfp_sections/:id' => 'rfp_sections#update'
   delete 'rfp_sections/:id' => 'rfp_sections#destroy'
 
+  get '/sub_questions/:id/edit' => 'sub_questions#edit'
+  patch '/sub_questions/:id' => 'sub_questions#update'
+  
 end

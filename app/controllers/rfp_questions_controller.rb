@@ -3,7 +3,7 @@ class RfpQuestionsController < ApplicationController
 
   def index
     @rfp_sections = RfpSection.order(:id).all
-    @rfp_questions = RfpQuestion.order(:id).all
+    @rfp_questions = RfpQuestion.where(is_active: true).order(:id).all
   end
 
   def new
@@ -25,6 +25,7 @@ class RfpQuestionsController < ApplicationController
       flash[:success] = "Question created!"
       redirect_to "/rfp_questions"
     end
+
   rescue ActiveRecord::RecordInvalid => exception
     flash[:warning] = exception.message
     @sub_question = SubQuestion.new
@@ -49,11 +50,11 @@ class RfpQuestionsController < ApplicationController
   end
 
   def destroy
-    @question = Question.find_by(id: params[:id])
-    @question.destroy
+    @rfp_question = RfpQuestion.find_by(id: params[:id])
+    @rfp_question.update({is_active: false})
 
     flash[:warning] = "Question deleted"
-    redirect_to "/questions"
+    redirect_to "/rfp_questions"
   end
 
 end
