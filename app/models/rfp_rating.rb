@@ -1,2 +1,4 @@
 class RfpRating < ActiveRecord::Base
+  belongs_to :user
+  belongs_to :rfp
 end

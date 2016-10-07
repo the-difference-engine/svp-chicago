@@ -3,10 +3,10 @@
     <div ng-app="app">
       <div ng-controller="ratingsCtrl" ng-init="setup()">
         <div class="form-heading">
-          <h1>Ratings</h1>
+          <h1>RFP Ratings</h1>
         </div>
         <div class="filter">
-          <p>This is a list of all the LOI submissions and the corresponding rankings.</p>
+          <p>This is a list of all the RFP submissions and the corresponding rankings.</p>
           <input ng-model="orgNameFilter" placeholder="Type here to filter the list by any criteria." list="orgNames" class="form-control">
             <datalist id="orgNames">
               <option ng-repeat="rating in ratings">{{rating.org_name}}</option>
@@ -152,6 +152,8 @@
           <% end %>
         </span>
       </div>
-    
+      <div class="question-bullets">
+        <h1>I do things</h1>
+      </div>
     </div>
 </div>
