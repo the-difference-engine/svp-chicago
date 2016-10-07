@@ -30,7 +30,8 @@
        })
 
        .success(function(){
-          alert("Your file has been successfully uploaded!");
+
+          // alert("Your file has been successfully uploaded!");
        })
 
        .error(function(){
@@ -43,6 +44,8 @@
     window.scope = $scope;
 
     $scope.setup = function(){
+
+      $scope.confirmation = false;
 
       $http.get('/api/v1/rfp_sections.json').then(function(response){
         $scope.sections = response.data;
@@ -81,7 +84,12 @@
       });
     };
 
-    $scope.submitForm = function(submitStatus){      
+    $scope.submitForm = function(submitStatus){   
+
+      if (submitStatus == true && $scope.confirmation == false) {
+        alert("You need to upload files in order to submit");
+        return;
+      } 
       var newRfp = {
         rfp_sections: $scope.sections,
         submitted: submitStatus
@@ -119,16 +127,38 @@
     };
 
     $scope.uploadFile = function(){
-       // var resume = $scope.resume;
        var file = $scope.myFile;
-
+       var file2 = $scope.myFile2;
+       var file3 = $scope.myFile3;
+       var file4 = $scope.myFile4;
+       var file5 = $scope.myFile5;
+       var file6 = $scope.myFile6;
+       var file7 = $scope.myFile7;
        console.log('file is ' );
        console.dir(file);
-       // console.log('file is ' );
-       // console.dir(resume);
+       console.dir(file2);
        var uploadUrl = "/api/v1/attachments.json";
-       fileUpload.uploadFileToUrl(file, uploadUrl);
-       // fileUpload.uploadFileToUrl(resume, uploadUrl);
+
+       if (file && file2 && file3 && file4 && file5) {
+        fileUpload.uploadFileToUrl(file, uploadUrl);
+        fileUpload.uploadFileToUrl(file2, uploadUrl);
+        fileUpload.uploadFileToUrl(file3, uploadUrl);
+        fileUpload.uploadFileToUrl(file4, uploadUrl);
+        fileUpload.uploadFileToUrl(file5, uploadUrl);
+        $scope.confirmation = true;
+      } else {
+        alert("That upload is required");
+      }
+
+      if (file6) {
+       fileUpload.uploadFileToUrl(file6, uploadUrl);
+     }
+     if (file7) {
+       fileUpload.uploadFileToUrl(file7, uploadUrl);
+     }
+
+      alert("Your files has been successfully uploaded!");
+      
     };
 
   }]);
