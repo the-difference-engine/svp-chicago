@@ -65,11 +65,13 @@ Rails.application.configure do
   # config.action_mailer.raise_delivery_errors = false
   config.action_mailer.delivery_method = :smtp
    ActionMailer::Base.smtp_settings = {
-    :authentication => :plain,
-    :address => 'smtp.gmail.com',
+    :user_name => ENV['SENDGRID_USER'],
+    :password => ENV['SENDGRID_PASSWORD'],
+    :domain => 'localhost:3000',
+    :address => 'smtp.sendgrid.net',
     :port => 587,
-    :user_name => ENV['GMAILUSER'],
-    :password => ENV['GMAILPASSWORD']
+    :authentication => :plain,
+    :enable_starttls_auto => true
   }
   config.action_mailer.default_url_options = { host: 'prod-svp-chicago.herokuapp.com' }
  
