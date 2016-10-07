@@ -1,4 +1,7 @@
 class AttachmentsController < ApplicationController
+  def index
+    @attachments = Attachment.all
+  end
   def show
     @attachment = Attachment.find_by(id: params[:id])
   end

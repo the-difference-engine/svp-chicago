@@ -56,7 +56,10 @@ class Api::V1::RfpSectionsController < ApplicationController
         end
       end
     end
+    @attachments = Attachment.find_by(user_id: current_user.id)
+    @attachments.update(rfp_id: @rfp.id)
     render json: { message: "RFP Created"}, status: 200
+    p @rfp
     # else
     #   render json: errors.to_json, status: 400
     # end
