@@ -44,4 +44,9 @@ class RfpsController < ApplicationController
     @rfps = Rfp.all
   end
 
+  def edit
+    @rfp = Rfp.find(params[:id])
+    gon.id = @rfp.id
+  end
+
 end

@@ -61,7 +61,7 @@
                   <td>
                     <% if current_user && current_user.admin %>
                       <a type="btn" href="/rfps/{{rfp.id}}" style="width:106.38px" class="btn btn-success btn-rate" ng-show="!rated(rfp.ratings)">View/Rate</a>
-                      <a type="btn" href="/rfps/{{rfp.id}}" style="width:106.38px" class="btn btn-warning btn-invite" ng-show="rated(rfp.ratings)">View/Edit</a>   
+                      <a type="btn" href="/rfps/{{rfp.id}}/edit" style="width:106.38px" class="btn btn-warning btn-invite" ng-show="rated(rfp.ratings)">View/Edit</a>   
 
                     <% end %>
                       <% if current_user && current_user.super_admin %>
