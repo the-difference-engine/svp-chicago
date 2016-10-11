@@ -19,21 +19,24 @@
 
     $scope.addInput = function(id){
       console.log(id);
-      console.log($scope.sections);
       for(var i=0; i<$scope.sections.length;i++){
-
         for(var j=0; j<$scope.sections[i].rfp_questions.length;j++){
           if($scope.sections[i].rfp_questions[j].question_id==id){
             if($scope.sections[i].rfp_questions[j].question_type==="multiple input"){
               $scope.sections[i].rfp_questions[j].rfp_answers.push({});
             } else if ($scope.sections[i].rfp_questions[j].question_type==="block with multiple inputs"){
               for(var k=0; k<$scope.sections[i].rfp_questions[j].sub_questions.length; k++){
-                $scope.sections[i].rfp_questions[j].sub_questions[k].sub_answers.push({});
+                $scope.sections[i].rfp_questions[j].sub_questions[k].answers.push({});
               }
             }
           };
         };
       };
+    };
+
+    //SETS TO TRUE IF APPLICANT IS FINISHED WITH LOI FORM
+    $scope.submitNow = function(){
+      $scope.submitted = true;
     };
 
     $scope.submitForm = function(submitStatus){
@@ -42,7 +45,8 @@
         submitted: submitStatus
       };
       console.log(newRfp);
-      $http.patch('/api/v1/rfp_sections/' + $scope.activeId +'.json', newRfp).success(function(response){
+      console.log($scope.sections[3]);
+      $http.post('/api/v1/rfp_sections.json', newRfp).success(function(response){
           if (submitStatus == true) {
             alert("Your request for proposal has been submitted!");
           } else {
