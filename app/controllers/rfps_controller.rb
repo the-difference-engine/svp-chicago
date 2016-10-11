@@ -49,4 +49,10 @@ class RfpsController < ApplicationController
     gon.id = @rfp.id
   end
 
+  def update
+    @rfp = Rfp.find_by(id: params[:id])
+
+    @rfp.update()
+  end
+
 end

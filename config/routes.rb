@@ -44,6 +44,7 @@ Rails.application.routes.draw do
 
       get '/rfps' => 'rfps#index'
       get '/rfps/:id' => 'rfps#show'
+      patch '/rfps/:id' => 'rfps#update'
 
       get '/rfp_questions' => 'rfp_questions#index'
 
