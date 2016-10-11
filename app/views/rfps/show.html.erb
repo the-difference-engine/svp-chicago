@@ -80,11 +80,20 @@
                   <!-- END REPEAT RFP-QUESTIONS -->
                 </div>
               </div>
+                <h1> Uploaded Forms</h1>
+                <div>
+                <% @attachments.each do |attachment| %>
+                <h5><%=attachment.doc_type%></h5>
+                <%= link_to attachment.url %>
+                <% end %>
+                <div>
               <!-- END REPEAT SECTIONS -->
               <ol>
               </div>
             </div>
           </div>
         </div>
+
       </div>
     </div> 
+  

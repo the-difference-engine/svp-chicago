@@ -18,7 +18,8 @@ class Api::V1::AttachmentsController < ApplicationController
     attachment = Attachment.create(
         url: obj.public_url,
         name: obj.key,
-        user_id: $attachment_user_id
+        user_id: $attachment_user_id,
+        doc_type: params[:doc_type]
         )
 
     # Save the upload

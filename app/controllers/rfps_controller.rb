@@ -37,6 +37,7 @@ class RfpsController < ApplicationController
  def show
     @rfp = Rfp.find(params[:id])
     @rfp_sections = RfpSection.order('id ASC').all
+    @attachments = Attachment.where(rfp_id: @rfp.id)
     gon.id = @rfp.id
  end
 
