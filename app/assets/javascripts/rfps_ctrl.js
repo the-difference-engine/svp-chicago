@@ -20,11 +20,11 @@
   }])
 
  .service('fileUpload', ['$http', function ($http) {
-    this.uploadFileToUrl = function(file, uploadUrl) {
+    this.uploadFileToUrl = function(file, uploadUrl, type) {
        var fd = new FormData();
        fd.append('file', file);
 
-       $http.post(uploadUrl, fd, {
+       $http.post(uploadUrl+'?doc_type='+type, fd, {
           transformRequest: angular.identity,
           headers: {'Content-Type': undefined}
        })
@@ -140,21 +140,21 @@
        var uploadUrl = "/api/v1/attachments.json";
 
        if (file && file2 && file3 && file4 && file5) {
-        fileUpload.uploadFileToUrl(file, uploadUrl);
-        fileUpload.uploadFileToUrl(file2, uploadUrl);
-        fileUpload.uploadFileToUrl(file3, uploadUrl);
-        fileUpload.uploadFileToUrl(file4, uploadUrl);
-        fileUpload.uploadFileToUrl(file5, uploadUrl);
+        fileUpload.uploadFileToUrl(file, uploadUrl, "IRS Determination Letter");
+        fileUpload.uploadFileToUrl(file2, uploadUrl, "Organization Chart" );
+        fileUpload.uploadFileToUrl(file3, uploadUrl, "Financial Statement: Recent Fiscal Year-End");
+        fileUpload.uploadFileToUrl(file4, uploadUrl, "Financial Statement: Most Recent Month-End");
+        fileUpload.uploadFileToUrl(file5, uploadUrl, "Minutes from Board Meetings");
         $scope.confirmation = true;
       } else {
         alert("That upload is required");
       }
 
       if (file6) {
-       fileUpload.uploadFileToUrl(file6, uploadUrl);
+       fileUpload.uploadFileToUrl(file6, uploadUrl, "Current Strategic Plan");
      }
      if (file7) {
-       fileUpload.uploadFileToUrl(file7, uploadUrl);
+       fileUpload.uploadFileToUrl(file7, uploadUrl, "Most Recent Annual Report");
      }
 
       alert("Your files has been successfully uploaded!");
