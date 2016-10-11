@@ -6,6 +6,9 @@ json.array! @rfp_sections.each do |rfp_section|
 
   json.rfp_questions rfp_section.rfp_questions.each do |rfp_question|
     json.rfp_question rfp_question.question
+    json.is_active rfp_question.is_active
+    json.question_type rfp_question.question_type
+    json.question_id rfp_question.id
 
     @rfp.rfp_answers.each do |rfp_answer|
 

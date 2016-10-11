@@ -44,6 +44,8 @@ Rails.application.routes.draw do
 
       get '/rfps' => 'rfps#index'
       get '/rfps/:id' => 'rfps#show'
+      patch '/rfps/:id' => 'rfps#update'
+
       get '/rfp_questions' => 'rfp_questions#index'
 
       post '/attachments' => 'attachments#create'
@@ -100,6 +102,9 @@ Rails.application.routes.draw do
   get '/rfps' => 'rfps#index'
   get '/rfps/new' => 'rfps#new'
   get '/rfps/:id' => 'rfps#show'
+
+  get '/rfps/:id/edit' => 'rfps#edit'
+  patch '/rfps/:id' => 'rfps#update'
 
   get '/rfp_questions' => 'rfp_questions#index'
   get '/rfp_questions/new' => 'rfp_questions#new'
