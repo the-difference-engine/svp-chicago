@@ -23,30 +23,93 @@
               </th>
               <th>
                 <p ng-click="sortBy('q1')">
-                  Fits SVP Criteria
+                  Q1
                   <span ng-class="toggle_class">
                   </span>
                 </p>
               </th>
               <th>
                 <p ng-click="sortBy('q2')">
-                  Potential SVP Impact
+                  Q2
                   <span ng-class="toggle_class">
                   </span>
                 </p>
               </th>
               <th>
                 <p ng-click="sortBy('q3')">
-                  Level of Excitement
+                  Q3
+                  <span ng-class="toggle_class">
+                  </span>
+                </p>
+              </th>
+              <th>
+                <p ng-click="sortBy('q4')">
+                  Q4
                   <span ng-class="toggle_class">
                   </span>
                 </p>
               </th>
               <th>
                 <p ng-click="sortBy('q5')">
-                  Invite to Submit RFP?
+                  Q5
                   <span ng-class="toggle_class">
                   </span>
+              </th>
+              <th>
+                <p ng-click="sortBy('q6')">
+                  Q4
+                  <span ng-class="toggle_class">
+                  </span>
+                </p>
+              </th>
+              <th>
+                <p ng-click="sortBy('q7')">
+                  q7
+                  <span ng-class="toggle_class">
+                  </span>
+                </p>
+              </th>
+              <th>
+                <p ng-click="sortBy('q8')">
+                  q8
+                  <span ng-class="toggle_class">
+                  </span>
+                </p>
+              </th>
+              <th>
+                <p ng-click="sortBy('q9')">
+                  q9
+                  <span ng-class="toggle_class">
+                  </span>
+                </p>
+              </th>
+              <th>
+                <p ng-click="sortBy('q10')">
+                  q10
+                  <span ng-class="toggle_class">
+                  </span>
+                </p>
+              </th>
+              <th>
+                <p ng-click="sortBy('q11')">
+                  q11
+                  <span ng-class="toggle_class">
+                  </span>
+                </p>
+              </th>
+              <th>
+                <p ng-click="sortBy('q12')">
+                  q12
+                  <span ng-class="toggle_class">
+                  </span>
+                </p>
+              </th>
+              <th>
+                <p ng-click="sortBy('q13')">
+                  q13
+                  <span ng-class="toggle_class">
+                  </span>
+                </p>
               </th>
               <th>
                 <p ng-click="sortBy('weighted_score')">
@@ -137,7 +200,16 @@
               <td>{{resultValue | avgOfValue:'q1'}}</td>
               <td>{{resultValue | avgOfValue:'q2'}}</td>
               <td>{{resultValue | avgOfValue:'q3'}}</td>
-              <td> -- </td>
+              <td>{{resultValue | avgOfValue:'q4'}}</td>
+              <td>{{resultValue | avgOfValue:'q5'}}</td>
+              <td>{{resultValue | avgOfValue:'q6'}}</td>
+              <td>{{resultValue | avgOfValue:'q7'}}</td>
+              <td>{{resultValue | avgOfValue:'q8'}}</td>
+              <td>{{resultValue | avgOfValue:'q9'}}</td>
+              <td>{{resultValue | avgOfValue:'q10'}}</td>
+              <td>{{resultValue | avgOfValue:'q11'}}</td>
+              <td>{{resultValue | avgOfValue:'q12'}}</td>
+              <td>{{resultValue | avgOfValue:'q13'}}</td>
               <td>{{resultValue | avgOfValue:'weighted_score'}}</td>
               <td> -- </td>
             </tr>

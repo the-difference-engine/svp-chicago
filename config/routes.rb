@@ -44,13 +44,11 @@ Rails.application.routes.draw do
 
       get '/rfps' => 'rfps#index'
       get '/rfps/:id' => 'rfps#show'
-
     end
   end
 
   get '/home' => 'landings#home'
   get '/thanks/:id' => 'landings#thanks'
-
 
   get 'ratings/index'
 
