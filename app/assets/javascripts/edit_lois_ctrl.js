@@ -45,6 +45,14 @@
     };
 
     $scope.submit = function(name, email, isValid){
+      
+      if ($scope.submitted) {
+        var areYouSure = confirm("Do you want to Submit? Once the LOI has been submitted it is no longer allowed to be edited. If you need to edit the LOI later, please use the 'Save and Submit Later' button.");
+        if (!areYouSure){
+          $scope.submitted = false;
+          return;
+        }
+      }
       console.log(name);
       console.log(email);
       console.log(isValid);
