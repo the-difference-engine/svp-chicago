@@ -68,11 +68,17 @@
             <ul>
             <% @user.lois.each do |loi| %>
               <% if loi.submitted %>
-                <li> You submitted a letter of interest on  <%= loi.friendly_loi_time %>:
-                <%= link_to "View LOI", "/lois/#{loi.id}", class: "btn btn-default" %></li>
+                <li>
+                  <h3>You submitted a letter of interest on  <%= loi.friendly_loi_time %>.</h3>
+                  <h5>Since this LOI has been submitted, it is no longer editable.</h5>
+                  <%= link_to "View LOI", "/lois/#{loi.id}", class: "btn btn-lg btn-warning" %>
+                </li>
               <% else %>
-              <li> You edited a letter of interest form on <%= loi.friendly_loi_time %>:
-                <%= link_to "Continue LOI", "/lois/#{loi.id}/edit", class: "btn btn-default" %></li>
+                <li> 
+                  <h3>You edited a letter of interest form on <%= loi.friendly_loi_time %>.</h3>
+                  <h4> This form is not yet submitted.</h4>
+                  <%= link_to "Continue LOI", "/lois/#{loi.id}/edit", class: "btn btn-lg btn-success" %>
+                </li>
               <% end %>
             <% end %>
             </ul>
