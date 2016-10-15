@@ -198,20 +198,20 @@
                         </ol>
                       </td>
                       <td>
-                        <input type="number" class="form-control" ng-model="answer.fte.amount_1">
+                        <input type="text" class="form-control" ng-model="answer.fte.amount_1" ng-change="addFte()">
                       </td>
                       <td>
-                        <input type="number" class="form-control" ng-model="answer.fte.amount_2">
+                        <input type="text" class="form-control" ng-model="answer.fte.amount_2" ng-change="addFte()">
                       </td>
                       <td>
-                        <input type="number" class="form-control" ng-model="answer.fte.amount_3">
+                        <input type="text" class="form-control" ng-model="answer.fte.amount_3" ng-change="addFte()">
                       </td>
                     </tr>
                     <tr>
                       <td colspan="3">TOTAL FTEs</td>
-                      <td>{{fte_1}}</td>
-                      <td>{{fte_2}}</td>
-                      <td>{{fte_3}}</td>
+                      <td>{{fte_1 | number:2}}</td>
+                      <td>{{fte_2 | number:2}}</td>
+                      <td>{{fte_3 | number:2}}</td>
                     </tr>
                   </table>
               </section>

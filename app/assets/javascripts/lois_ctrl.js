@@ -20,9 +20,15 @@
           $scope.fte_3 = 0;
 
           for(var i = 0; i < $scope.loi.challenge_answers.length; i++){
-            $scope.fte_1 = $scope.fte_1 + $scope.loi.challenge_answers[i].fte.amount_1;
-            $scope.fte_2 = $scope.fte_2 + $scope.loi.challenge_answers[i].fte.amount_2;
-            $scope.fte_3 = $scope.fte_3 + $scope.loi.challenge_answers[i].fte.amount_3;
+            $scope.fte_1 = $scope.loi.challenge_answers[i].fte.amount_1 ?
+              ($scope.fte_1 + parseFloat($scope.loi.challenge_answers[i].fte.amount_1)) :
+              ($scope.fte_1);
+            $scope.fte_2 = $scope.loi.challenge_answers[i].fte.amount_2 ?
+              ($scope.fte_2 + parseFloat($scope.loi.challenge_answers[i].fte.amount_2)) :
+              ($scope.fte_2);
+            $scope.fte_3 = $scope.loi.challenge_answers[i].fte.amount_3 ?
+              ($scope.fte_3 + parseFloat($scope.loi.challenge_answers[i].fte.amount_3)) :
+              ($scope.fte_3);
           };
 
         });
