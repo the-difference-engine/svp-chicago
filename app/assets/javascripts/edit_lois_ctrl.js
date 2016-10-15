@@ -18,17 +18,40 @@
 
           $scope.activeChallenge = {};
           //ADD THE TOAL FTES
-          $scope.fte_1 = 0;
-          $scope.fte_2 = 0;
-          $scope.fte_3 = 0;
+          $scope.fte_1 = 0.0;
+          $scope.fte_2 = 0.0;
+          $scope.fte_3 = 0.0;
 
           for(var i = 0; i < $scope.loi.challenge_answers.length; i++){
-            $scope.fte_1 = $scope.fte_1 + $scope.loi.challenge_answers[i].fte.amount_1;
-            $scope.fte_2 = $scope.fte_2 + $scope.loi.challenge_answers[i].fte.amount_2;
-            $scope.fte_3 = $scope.fte_3 + $scope.loi.challenge_answers[i].fte.amount_3;
+            $scope.fte_1 = $scope.loi.challenge_answers[i].fte.amount_1 ?
+              ($scope.fte_1 + parseFloat($scope.loi.challenge_answers[i].fte.amount_1)) :
+              ($scope.fte_1);
+            $scope.fte_2 = $scope.loi.challenge_answers[i].fte.amount_2 ?
+              ($scope.fte_2 + parseFloat($scope.loi.challenge_answers[i].fte.amount_2)) :
+              ($scope.fte_2);
+            $scope.fte_3 = $scope.loi.challenge_answers[i].fte.amount_3 ?
+              ($scope.fte_3 + parseFloat($scope.loi.challenge_answers[i].fte.amount_3)) :
+              ($scope.fte_3);
           };
         });
       };
+
+    $scope.addFte = function(){
+      $scope.fte_1 = 0.0;
+      $scope.fte_2 = 0.0;
+      $scope.fte_3 = 0.0;
+      for(var i = 0; i < $scope.loi.challenge_answers.length; i++){
+        $scope.fte_1 = $scope.loi.challenge_answers[i].fte.amount_1 ?
+          ($scope.fte_1 + parseFloat($scope.loi.challenge_answers[i].fte.amount_1)) :
+          ($scope.fte_1);
+        $scope.fte_2 = $scope.loi.challenge_answers[i].fte.amount_2 ?
+          ($scope.fte_2 + parseFloat($scope.loi.challenge_answers[i].fte.amount_2)) :
+          ($scope.fte_2);
+        $scope.fte_3 = $scope.loi.challenge_answers[i].fte.amount_3 ?
+          ($scope.fte_3 + parseFloat($scope.loi.challenge_answers[i].fte.amount_3)) :
+          ($scope.fte_3);
+      };
+    };
 
     //SETS TO TRUE IF APPLICANT IS FINISHED WITH LOI FORM
     $scope.submitNow = function(){
