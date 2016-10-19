@@ -1,0 +1,25 @@
+<div class="container">
+  <div id="form-paper">
+    <div class="form-heading">
+      <h1>Edit subquestion</h1>
+    </div>
+    <div class="rating-form">
+
+        <div class="form-horizontal">
+
+          <%= form_tag "/sub_questions/#{@sub_question.id}", method: :patch do %>
+  
+          <div class="form-group">
+            <%=label_tag :sub_question, nil, class: "col-sm-2 control-label" %>
+            <div class="col-sm-10">
+              <%= text_field_tag :sub_question, @sub_question.question, class: "form-control" %>
+            </div>  
+          </div>
+
+          <%= submit_tag "Update Question", class: "btn btn-default" %>
+
+        </div>
+        <% end %>
+      </div>
+  </div>
+</div>

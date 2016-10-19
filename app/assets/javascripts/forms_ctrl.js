@@ -176,9 +176,16 @@
     };
 
     $scope.submit = function(name, email, isValid){
-  
-      if ((isValid && $scope.submitted)  || !$scope.submitted) {
 
+      if ((isValid && $scope.submitted)  || !$scope.submitted) {
+        if ($scope.submitted) {
+          var areYouSure = confirm("Do you want to Submit? Once the LOI has been submitted it is no longer allowed to be edited. If you need to edit the LOI later, please use the 'Save and Submit Later' button.");
+          if (!areYouSure){
+            $scope.submitted = false;
+            return;
+          }
+        }
+      
         var newLoi = {
           name: name,
           email: email,
@@ -200,13 +207,11 @@
           }).error(function(response){
             // $scope.errors = response.errors;
             console.log("ERROR");
-          })
+          });
       } else {
         $scope.invalidSubmission = true;
         alert("Form is invalid. See area marked in red.");
-
       };
-
     };
 
     $scope.addAnswer = function(newAnswers){
@@ -268,14 +273,14 @@
       $scope.fte_2 = 0;
       $scope.fte_3 = 0;
       for(var i = 0; i < $scope.challenge_formData.length; i++){
-            if ($scope.challenge_formData[i].fte_1 === parseInt($scope.challenge_formData[i].fte_1)) {
-              $scope.fte_1 += parseInt($scope.challenge_formData[i].fte_1);
+            if ($scope.challenge_formData[i].fte_1 === parseFloat($scope.challenge_formData[i].fte_1)) {
+              $scope.fte_1 += parseFloat($scope.challenge_formData[i].fte_1);
             }
-            if ($scope.challenge_formData[i].fte_2 === parseInt($scope.challenge_formData[i].fte_2)) {
-              $scope.fte_2 += parseInt($scope.challenge_formData[i].fte_2);
+            if ($scope.challenge_formData[i].fte_2 === parseFloat($scope.challenge_formData[i].fte_2)) {
+              $scope.fte_2 += parseFloat($scope.challenge_formData[i].fte_2);
             }
-            if ($scope.challenge_formData[i].fte_3 === parseInt($scope.challenge_formData[i].fte_3)) {
-              $scope.fte_3 += parseInt($scope.challenge_formData[i].fte_3);
+            if ($scope.challenge_formData[i].fte_3 === parseFloat($scope.challenge_formData[i].fte_3)) {
+              $scope.fte_3 += parseFloat($scope.challenge_formData[i].fte_3);
             }
           };
     };

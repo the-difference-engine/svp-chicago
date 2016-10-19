@@ -35,12 +35,25 @@ class RfpsController < ApplicationController
 
 
  def show
-  @rfp = Rfp.find(params[:id])
-  gon.id = @rfp.id
+    @rfp = Rfp.find(params[:id])
+    @rfp_sections = RfpSection.order('id ASC').all
+    @attachments = Attachment.where(rfp_id: @rfp.id)
+    gon.id = @rfp.id
  end
 
   def index
     @rfps = Rfp.all
+  end
+
+  def edit
+    @rfp = Rfp.find(params[:id])
+    gon.id = @rfp.id
+  end
+
+  def update
+    @rfp = Rfp.find_by(id: params[:id])
+
+    @rfp.update()
   end
 
 end

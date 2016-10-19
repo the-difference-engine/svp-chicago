@@ -1,0 +1,120 @@
+<div class="site-container">
+  <div id="form-paper">
+    <div ng-app="app">
+      <div ng-controller="editRfpsCtrl" ng-init="setup()">
+        <div class="form-heading">
+
+          <div class="well-1">
+            <h1>SVP <span style="color:#0060b2">Chicago</span> - 2016 Request for Proposal </h1>
+            <div class="container-fluid">
+
+              <p><b>Completing this Form:</b></p>
+
+              <p>Please enter information directly into the form, using this form as the main body of your Letter of Interest. The boxes will expand to hold your text. You can adjust the page breaks when you have completed the form.</p>
+
+              <p><ul>
+                <li>If you find an item confusing, please feel free to contact us.</li>
+
+                <li>Please use bullet points rather than paragraphs. Brevity is helpful to our partners when reviewing proposals.</li>
+              </ul></p>
+            </div>
+          </div>    
+        </div>   
+          
+        <!-- DISPLAY ERRORS -->
+        <div class="errors" ng-if="errors">
+          <h5> These questions can not be left blank: </h5>
+          <ul ng-repeat="error in errors">
+            <li> {{error}} </li>
+          </ul>
+        </div>
+
+        <!-- START FORM -->  
+        <div class="form-body">
+          <form name="rfpForm" enctype="multipart/form-data" accept-charset="UTF-8" ng-submit="submit(rfpForm.$valid)" novalidate>
+
+            <div ng-repeat="section in sections">
+              <div class="well rfp-section">
+                <h1> {{section.rfp_section}} </h1>
+
+                <div ng-repeat="question in section.rfp_questions">
+
+                <div ng-if="question.is_active === true">
+
+                  <div>
+                    <div class="form-group" ng-if="question.question_type != 'multiple input' && question.question_type != 'block' && question.question_type != 'block with multiple inputs'">
+                      <label> {{question.rfp_question}} </label>
+                      <input class="form-control" ng-model="question.rfp_answer">
+                    </div>
+                  </div>
+
+                  <div ng-if="question.question_type == 'multiple input'">
+                    <div class="form-group">
+                      <label> {{question.rfp_question}} </label>
+                      <div ng-repeat="answer in question.rfp_answers">
+                        <input class="form-control" ng-model="answer.rfp_answer">
+                      </div>
+                      <p><a ng-click="addInput(question.question_id)">Add Input</a></p>
+                    </div>
+                  </div> 
+
+                  <div ng-if="question.question_type == 'block'">
+                    <div class="form-group">
+                      <h3><label> {{question.rfp_question}} </label></h3>
+                      <div class="well rfp-well">
+                        <div ng-repeat="question in question.sub_questions">
+                          <label> {{question.sub_question}} </label>
+                          <input class="form-control" ng-model="question.sub_answer">
+                        </div>
+                      </div>
+                    </div>
+                  </div> 
+
+                  <div ng-if="question.question_type == 'block with multiple inputs'">
+                    <div class="form-group">
+                      <h3><label> {{question.rfp_question}} </label></h3>
+                      <div class="well rfp-well">
+                        <div class="container">
+                          <div class="row">
+                            
+                            <div class="col-md-4" style="width:31%" ng-repeat="sub_question in question.sub_questions">
+                              <label> {{sub_question.sub_question}} </label>
+                              <input class="form-control" ng-model="sub_question.sub_answer">
+                            </div>
+                            
+                          </div>
+                          <p><a ng-click="addInput(question.question_id)">Add Input</a></p>
+                        </div>
+                      </div>
+                    </div> 
+                  </div>
+                </div>
+                </div> 
+              </div> 
+            </div>
+
+            <div class="well rfp-section">
+              <div class="form-group">
+                <h3><label> Upload File </label></h3>
+                <div class="well rfp-well">
+                  <div>  
+                    <div>
+                       <input type="file" file-model="myFile"/>
+                       <button ng-click="uploadFile()" class="btn btn-info" style="margin-top:15px;">Upload File</button>
+                    </div>      
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="submit-button-container">
+              <button class="btn btn-success btn-lg" ng-click="submitForm(false)">Save and Submit Later</button>
+              <button class="btn btn-primary btn-lg" ng-click="submitForm(true)">Submit</button>              
+            </div>  
+          </form>
+          <!-- END FORM -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

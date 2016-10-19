@@ -1,1 +1,6 @@
 <h1>All Attachments</h1>
+<% @attachments.each do |attachment| %>
+  <div>
+    <%= link_to attachment.name, attachment.url %>
+  </div>
+<% end %>

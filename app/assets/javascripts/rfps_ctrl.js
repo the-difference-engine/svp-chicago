@@ -20,17 +20,18 @@
   }])
 
  .service('fileUpload', ['$http', function ($http) {
-    this.uploadFileToUrl = function(file, uploadUrl) {
+    this.uploadFileToUrl = function(file, uploadUrl, type) {
        var fd = new FormData();
        fd.append('file', file);
 
-       $http.post(uploadUrl, fd, {
+       $http.post(uploadUrl+'?doc_type='+type, fd, {
           transformRequest: angular.identity,
           headers: {'Content-Type': undefined}
        })
 
        .success(function(){
-          alert("Your file has been successfully uploaded!");
+
+          // alert("Your file has been successfully uploaded!");
        })
 
        .error(function(){
@@ -43,6 +44,8 @@
     window.scope = $scope;
 
     $scope.setup = function(){
+
+      $scope.confirmation = false;
 
       $http.get('/api/v1/rfp_sections.json').then(function(response){
         $scope.sections = response.data;
@@ -81,7 +84,12 @@
       });
     };
 
-    $scope.submitForm = function(submitStatus){      
+    $scope.submitForm = function(submitStatus){   
+
+      if (submitStatus == true && $scope.confirmation == false) {
+        alert("You need to upload files in order to submit");
+        return;
+      } 
       var newRfp = {
         rfp_sections: $scope.sections,
         submitted: submitStatus
@@ -98,7 +106,7 @@
         }).error(function(response){
           $scope.errors = response;
           alert($scope.errors);
-        })
+        });
     };
 
     $scope.addInput = function(id){
@@ -120,12 +128,37 @@
 
     $scope.uploadFile = function(){
        var file = $scope.myFile;
-
+       var file2 = $scope.myFile2;
+       var file3 = $scope.myFile3;
+       var file4 = $scope.myFile4;
+       var file5 = $scope.myFile5;
+       var file6 = $scope.myFile6;
+       var file7 = $scope.myFile7;
        console.log('file is ' );
        console.dir(file);
-
+       console.dir(file2);
        var uploadUrl = "/api/v1/attachments.json";
-       fileUpload.uploadFileToUrl(file, uploadUrl);
+
+       if (file && file2 && file3 && file4 && file5) {
+        fileUpload.uploadFileToUrl(file, uploadUrl, "IRS Determination Letter");
+        fileUpload.uploadFileToUrl(file2, uploadUrl, "Organization Chart" );
+        fileUpload.uploadFileToUrl(file3, uploadUrl, "Financial Statement: Recent Fiscal Year-End");
+        fileUpload.uploadFileToUrl(file4, uploadUrl, "Financial Statement: Most Recent Month-End");
+        fileUpload.uploadFileToUrl(file5, uploadUrl, "Minutes from Board Meetings");
+        $scope.confirmation = true;
+      } else {
+        alert("That upload is required");
+      }
+
+      if (file6) {
+       fileUpload.uploadFileToUrl(file6, uploadUrl, "Current Strategic Plan");
+     }
+     if (file7) {
+       fileUpload.uploadFileToUrl(file7, uploadUrl, "Most Recent Annual Report");
+     }
+
+      alert("Your files has been successfully uploaded!");
+      
     };
 
   }]);

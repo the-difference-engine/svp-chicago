@@ -1,7 +1,7 @@
 <div class="site-container">
   <div id="form-paper">
     <div ng-app="app">
-      <div ng-controller="rfpsIndexCtrl" ng-init="setup()">
+      <div ng-controller="rfpsIndexCtrl" ng-init="setupShow()">
         <div class="form-heading">
 
           <h1> RFP Submission Review </h1>
@@ -21,70 +21,76 @@
                   <h1> {{section.rfp_section}} </h1>
 
                   <!-- REPEAT RFP-QUESTIONS -->
-                  <table class="table table-striped table-bordered" >
+                  <table class="table table-striped table-bordered">
+                    <div ng-repeat="question in section.rfp_questions">
 
 
-                    <tr ng-repeat="question in section.rfp_questions" ng-if="question.rfp_answer != 'See Subs'">
+                      <tr ng-repeat="question in section.rfp_questions">
 
-                      <td class="td-question">
-                        <b>
-                          {{question.rfp_question}}:
-                        </b>
-                      </td> 
+                        <td class="td-question">
+                          <b>
+                            {{question.rfp_question}}:
+                          </b>
+                        </td> 
 
-                      <td class="td-answer" ng-if="question.rfp_answer != null">
-                        {{question.rfp_answer}}
-                      </td>
+                        <td class="td-answer" ng-if="question.rfp_answer != null && question.rfp_answer != 'See Subs'">
+                          {{question.rfp_answer}}
+                        </td>
 
-                      <td ng-if="question.rfp_answer == null">
-                        <table class="table table-striped table-bordered">
+                        <td class="td-answer" ng-if="question.rfp_answers != null">
+                            <table class="table table-striped table-bordered">
 
-                          <!-- REPEAT MULTIPLE INPUTS -->
-                          <tr ng-repeat="answer in question.rfp_answers">
-                            <td class="td-answer">
-                              {{answer.rfp_answer}}
-                            </td>
-                          </tr>
-                          <!-- END REPEAT MULTIPLE INPUTS -->
+                              <!-- REPEAT MULTIPLE INPUTS -->
+                              <tr ng-repeat="answer in question.rfp_answers">
+                                <td class="td-answer">
+                                  {{answer.rfp_answer}}
+                                </td>
+                              </tr>
+                              <!-- END REPEAT MULTIPLE INPUTS -->
 
-                        </table>
-                      </td>
+                            </table>
+                        </td>
 
-                    </tr>
+                        <td class="td-answer" ng-if="question.rfp_answer != null && question.rfp_answer == 'See Subs'">
+                          <table class="table table-striped table-bordered" >
 
-                    <!-- REPEAT SUB-QUESTIONS -->
-                    <tr ng-repeat="question in section.rfp_questions" ng-if="question.rfp_answer == 'See Subs'">
-                      <td class="td-question">
-                        <b>
-                          {{question.rfp_question}}:
-                        </b>
-                      </td>
+                            <tr ng-repeat="sub_question in question.sub_questions">
+                              <td class="td-question">
+                                <b>
+                                  {{sub_question.sub_question}}: 
+                                </b>
+                              </td>
 
-                      <td>
-                        <table class="table table-striped table-bordered" >
+                              <td class="td-answer">
+                                {{sub_question.sub_answer}}
+                              </td>
+                            </tr>
 
-                          <tr ng-repeat="sub_question in question.sub_questions">
-                            <td class="td-question">
-                              <b>
-                                {{sub_question.sub_question}}: 
-                              </b>
-                            </td>
+                          </table>
+                        </td>
 
-                            <td class="td-answer">
-                              {{sub_question.sub_answer}}
-                            </td>
-                          </tr>
+                      </tr>
 
-                        </table>
-                      </td>
-                    </tr>
-                    <!-- END REPEAT SUB-QUESTIONS -->
-
-
+                    </div>
                   </table>
                   <!-- END REPEAT RFP-QUESTIONS -->
                 </div>
               </div>
+                <h1> Uploaded Forms</h1>
+                <h4 style="color:blue;"> Click icon to download</h4>
+               <div>
+
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+
+ 
+                <% @attachments.each do |attachment| %>
+                <h5><%=attachment.doc_type%></h5>
+                <a href="<%=attachment.url %>" target="_blank"><i class="fa fa-file-text-o" style="font-size:24px"></i></a>
+                
+                <% end %>
+
+                <div>
               <!-- END REPEAT SECTIONS -->
               <ol>
               </div>
@@ -92,5 +98,7 @@
           <% end %>
           </div>
         </div>
+
       </div>
     </div> 
+  

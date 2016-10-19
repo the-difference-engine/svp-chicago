@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20161011002821) do
+=======
+ActiveRecord::Schema.define(version: 20161015185615) do
+>>>>>>> cc1230f213782adb571d611a150c21f08dc42ab3
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +35,7 @@ ActiveRecord::Schema.define(version: 20161011002821) do
     t.datetime "updated_at", null: false
     t.string   "url"
     t.string   "name"
+    t.string   "doc_type"
   end
 
   create_table "challenges", force: :cascade do |t|
@@ -43,11 +48,11 @@ ActiveRecord::Schema.define(version: 20161011002821) do
 
   create_table "ftes", force: :cascade do |t|
     t.integer  "answer_id"
-    t.integer  "amount_1"
-    t.integer  "amount_2"
-    t.integer  "amount_3"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.decimal  "amount_1",   precision: 10, scale: 2
+    t.decimal  "amount_2",   precision: 10, scale: 2
+    t.decimal  "amount_3",   precision: 10, scale: 2
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
   create_table "invite_maxes", force: :cascade do |t|
@@ -148,6 +153,7 @@ ActiveRecord::Schema.define(version: 20161011002821) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "rfp_id"
   end
 
   create_table "rfps", force: :cascade do |t|
