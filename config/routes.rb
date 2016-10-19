@@ -44,15 +44,11 @@ Rails.application.routes.draw do
 
       get '/rfps' => 'rfps#index'
       get '/rfps/:id' => 'rfps#show'
-<<<<<<< HEAD
-=======
       patch '/rfps/:id' => 'rfps#update'
 
       get '/rfp_questions' => 'rfp_questions#index'
 
       post '/attachments' => 'attachments#create'
-
->>>>>>> cc1230f213782adb571d611a150c21f08dc42ab3
     end
   end
 
@@ -104,8 +100,9 @@ Rails.application.routes.draw do
   get '/rfps' => 'rfps#index'
   get '/rfps/new' => 'rfps#new'
   get '/rfps/:id' => 'rfps#show'
+  get '/rfps/:id/edit' => 'rfps#edit'
+  patch '/rfps/:id' => 'rfps#update'
 
-<<<<<<< HEAD
   get '/rfp_ratings' => 'rfp_ratings#index'
   get '/rfp_ratings/new' => 'rfp_ratings#new'
   get '/rfp_ratings/:id' => 'rfp_ratings#show'
@@ -113,10 +110,6 @@ Rails.application.routes.draw do
   get '/rfp_ratings/:id/edit' => 'rfp_ratings#edit'
   patch '/rfp_ratings/:id' => 'rfp_ratings#update'
   delete '/rfp_ratings/:id' => 'rfp_ratings#destroy'
-=======
-  get '/rfps/:id/edit' => 'rfps#edit'
-  patch '/rfps/:id' => 'rfps#update'
->>>>>>> cc1230f213782adb571d611a150c21f08dc42ab3
 
   get '/rfp_questions' => 'rfp_questions#index'
   get '/rfp_questions/new' => 'rfp_questions#new'
