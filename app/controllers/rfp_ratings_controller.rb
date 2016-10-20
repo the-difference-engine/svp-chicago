@@ -36,15 +36,26 @@ class RfpRatingsController < ApplicationController
   def create
     @rating = RfpRating.new(
       user_id: current_user.id,
-      loi_id: params[:loi_id],
+      rfp_id: params[:rfp_id],
       q1: params[:q1],
       q2: params[:q2],
       q3: params[:q3],
+      q4: params[:q4],
       q5: params[:q5],
-      weighted_score: 5
+      q6: params[:q6],
+      q7: params[:q7],
+      q8: params[:q8],
+      q9: params[:q9],
+      q10: params[:q10],
+      q11: params[:q11],
+      q12: params[:q12],
+      q13: params[:q13],
+      invite?: params[:invite?],
+      comments: params[:comments],
+      total_score: params[:total_score]
     )
     if @rating.save
-      redirect_to '/ratings'
+      redirect_to '/rfp_ratings'
       flash[:success] = "Rating Submitted!"
     else
       redirect_to :back

@@ -66,12 +66,13 @@
                   </div>
                 <% end %>
               </div>
-
-              <% else %>
-              <div id="rating-pullout-button">
-                <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#loi-ratings">Rate this LOI</button>
-              </div>
-              <div id="rating-pullout">
+              
+          <% else %>
+          <div id="rating-pullout-button">
+            <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#loi-ratings">Rate this LOI</button>
+          </div>
+          
+          <div id="rating-pullout">
 
                 <%= form_tag "/ratings", method: :post do %>
 
