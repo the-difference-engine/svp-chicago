@@ -58,16 +58,18 @@
 
                 <div ng-repeat="question in section.questions">
 
-                <div ng-if="question.is_active === true">
 
-                  <div ng-if="question.question_type == 'single input'">
+              
+
+
+                  <div ng-if="question.question_type === 'single input'">
                     <div class="form-group">
                       <label> {{question.question}} </label>
-                      <textarea rows="3" class="form-control" ng-model="question.answer">
+                      <input class="form-control" ng-model="question.answer">
                     </div>
                   </div>
 
-                  <div ng-if="question.question_type == 'multiple input'">
+                  <div ng-if="question.question_type ==='multiple input'">
                     <div class="form-group">
                       <label> {{question.question}} </label>
                       <div ng-repeat="answer in question.answers">
@@ -76,8 +78,9 @@
                       <p><a ng-click="addInput(question.id)">Add Input</a></p>
                     </div>
                   </div> 
+                  
 
-                  <div ng-if="question.question_type == 'block'">
+                  <div ng-if="question.question_type === 'block'">
                     <div class="form-group">
                       <h3><label> {{question.question}} </label></h3>
                       <div class="well rfp-well">
@@ -89,7 +92,7 @@
                     </div>
                   </div> 
 
-                  <div ng-if="question.question_type == 'block with multiple inputs'">
+                  <div ng-if="question.question_type === 'block with multiple inputs'">
                     <div class="form-group">
                       <h3><label> {{question.question}} </label></h3>
                       <div class="well rfp-well">
@@ -105,12 +108,12 @@
                             </div>
                           </div>
                           <p><a ng-click="addInput(question.id)">Add Input</a></p>
+                          
                         </div>
                       </div>
                     </div> 
                   </div>
-                  </div>
-                </div> 
+                </div>
               </div> 
             </div>
 
@@ -137,7 +140,7 @@
                         <td><input type="file" file-model="myFile2"/></td>
                         <td><input type="file" file-model="myFile3"/></td>
                       </tr>
-                  </table>
+                    </table>
                   </div>
                   <br>
                   <br>

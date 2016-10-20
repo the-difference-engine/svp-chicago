@@ -4,9 +4,7 @@ class Api::V1::RfpSectionsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :show]
 
   def index
-    @rfp_sections = RfpSection.order(:id).all
-
-
+    @rfp_sections = RfpSection.where(is_active: true).order(:id)
   end
 
   def create
