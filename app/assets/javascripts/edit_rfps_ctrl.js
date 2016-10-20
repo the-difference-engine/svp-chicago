@@ -18,11 +18,14 @@
     };
 
     $scope.addInput = function(id){
-      console.log(id);
       for(var i=0; i<$scope.sections.length;i++){
+        console.log("Im here 1");
         for(var j=0; j<$scope.sections[i].rfp_questions.length;j++){
+          console.log("Im here 2");
           if($scope.sections[i].rfp_questions[j].question_id==id){
+            console.log("Im here 3");
             if($scope.sections[i].rfp_questions[j].question_type==="multiple input"){
+              console.log("Im here 4");
               $scope.sections[i].rfp_questions[j].rfp_answers.push({});
             } else if ($scope.sections[i].rfp_questions[j].question_type==="block with multiple inputs"){
               for(var k=0; k<$scope.sections[i].rfp_questions[j].sub_questions.length; k++){
@@ -46,7 +49,7 @@
       };
       console.log(newRfp);
       console.log($scope.sections[3]);
-      $http.post('/api/v1/rfp_sections.json', newRfp).success(function(response){
+      $http.post('/api/v1/rfp_sections'+ $scope.activeId + '.json', newRfp).success(function(response){
           if (submitStatus == true) {
             alert("Your request for proposal has been submitted!");
           } else {

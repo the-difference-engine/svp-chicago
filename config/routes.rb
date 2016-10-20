@@ -41,6 +41,7 @@ Rails.application.routes.draw do
 
       get '/rfp_sections' => 'rfp_sections#index'
       post '/rfp_sections' => 'rfp_sections#create'
+      patch '/rfp_sections' => 'rfp_sections#update'
 
       get '/rfps' => 'rfps#index'
       get '/rfps/:id' => 'rfps#show'
