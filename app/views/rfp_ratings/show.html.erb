@@ -1,22 +1,19 @@
 <table class="table table-hover">
-  <tr>
-    <th>Organization Name</th>
-    <th>Organization Email</th>
-    <th>Fits Svp's Criteria</th>
-    <th>Potential SVP Impact</th>
-    <th>Level of Excitement</th>
-    <th>Benefit to SVP</th>
-    <th>Invite to Submit RFP?</th>
-    <th>Weighted Score</th>
-  </tr>
-  <tr>
-    <td><%= @rft_rating.rfp.name %></td>
-    <td><%= @rft_rating.rfp.email %></td>
-    <td><%= @rft_rating.q1 %></td>
-    <td><%= @rft_rating.q2 %></td>
-    <td><%= @rft_rating.q3 %></td>
-    <td><%= @rft_rating.q4 %></td>
-    <td><%= @rft_rating.q5 %></td>
-<!--     <td><%= @rft_rating.weighted_score %></td>
- -->  </tr>
+    <tr>
+        <th>Organization Name</th>
+        <th>Organization Email</th>
+        <th>Fits Svp's Criteria</th>
+        <th>Potential SVP Impact</th>
+        <th>Level of Excitement</th>
+        <th>Benefit to SVP</th>
+        <th>Invite to Submit RFP?</th>
+        <th>Weighted Score</th>
+    </tr>
+    <tr>
+        <td><%= @rfp_rating.q1 %></td>
+        <td><%= @rfp_rating.q2 %></td>
+        <td><%= @rfp_rating.q3 %></td>
+        <td><%= @rfp_rating.q4 %></td>
+        <td><%= @rfp_rating.q5 %></td>
+    </tr>
 </table>

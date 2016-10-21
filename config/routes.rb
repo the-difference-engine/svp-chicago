@@ -55,10 +55,6 @@ Rails.application.routes.draw do
   get '/home' => 'landings#home'
   get '/thanks/:id' => 'landings#thanks'
 
-  get 'ratings/index'
-
-  get 'ratings/show'
-
   get '/landings' => 'landings#index'
   get '/landings/edit' => 'landings#edit'
   get '/landings/:id' => 'landings#home'

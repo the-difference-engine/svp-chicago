@@ -25,7 +25,7 @@ class RfpRatingsController < ApplicationController
   end
 
   def show
-    @rating = RfpRating.find(params[:id])
+    @rfp_rating = RfpRating.find(params[:id])
   end
 
   def new
@@ -45,14 +45,15 @@ class RfpRatingsController < ApplicationController
       q6: params[:q6],
       q7: params[:q7],
       q8: params[:q8],
+      q8_notes: params[:q8_notes],
       q9: params[:q9],
+      q10_notes: params[:q10_notes],
       q10: params[:q10],
       q11: params[:q11],
       q12: params[:q12],
       q13: params[:q13],
-      invite?: params[:invite?],
       comments: params[:comments],
-      total_score: params[:total_score]
+      # total_score: :q1 + :q2 + :q3 + :q4 + :q5 + :q6 + :q7 + :q9 + :q11
     )
     if @rating.save
       redirect_to '/rfp_ratings'

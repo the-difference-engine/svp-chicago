@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161015185615) do
+ActiveRecord::Schema.define(version: 20161020235819) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -129,7 +129,6 @@ ActiveRecord::Schema.define(version: 20161015185615) do
     t.integer  "q4"
     t.integer  "q5"
     t.integer  "q6"
-    t.boolean  "invite?"
     t.text     "comments"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
@@ -143,6 +142,8 @@ ActiveRecord::Schema.define(version: 20161015185615) do
     t.integer  "q11"
     t.boolean  "q12"
     t.text     "q13"
+    t.text     "q8_notes"
+    t.text     "q10_notes"
   end
 
   create_table "rfp_sections", force: :cascade do |t|
