@@ -17,19 +17,45 @@
       });
     };
 
+    // $scope.addInput = function(id){
+    //   //Begin loop of rfp_sections
+    //   for(var i=0; i<$scope.sections.length;i++){
+    //     //Begin loop of rfp_questions in rfp_section
+    //     for(var j=0; j<$scope.sections[i].rfp_questions.length;j++){
+          
+    //       if($scope.sections[i].rfp_questions[j].question_id==id){
+
+    //         if($scope.sections[i].rfp_questions[j].question_type==="multiple input"){
+
+    //           $scope.sections[i].rfp_questions[j].rfp_answers.push({});
+    //         } else if ($scope.sections[i].rfp_questions[j].question_type==="block with multiple inputs"){
+    //             //Begin loop of sub_questions
+    //             console.log($scope.sections[i].rfp_questions[j].sub_questions);
+    //             $scope.sections[i].rfp_questions[j].sub_questions.push({});
+    //             $scope.sections[i].rfp_questions[j].sub_questions.push({});
+
+    //             // for(var k=0; k<$scope.sections[i].rfp_questions[j].sub_questions.length; k++){
+    //               // console.log($scope.sections[i].rfp_questions[j].sub_questions[k]);
+    //               // $scope.sections[i].rfp_questions[j].sub_questions[k].sub_answer.push({});
+    //           // }
+    //         }
+    //       };
+    //     };
+    //   };
+    // };
+
     $scope.addInput = function(id){
+      console.log(id);
       for(var i=0; i<$scope.sections.length;i++){
-        console.log("Im here 1");
         for(var j=0; j<$scope.sections[i].rfp_questions.length;j++){
-          console.log("Im here 2");
           if($scope.sections[i].rfp_questions[j].question_id==id){
-            console.log("Im here 3");
             if($scope.sections[i].rfp_questions[j].question_type==="multiple input"){
-              console.log("Im here 4");
               $scope.sections[i].rfp_questions[j].rfp_answers.push({});
             } else if ($scope.sections[i].rfp_questions[j].question_type==="block with multiple inputs"){
+                // $scope.sections[i].rfp_questions[j].sub_questions.push({sub_question: "", sub_answer: "" });
               for(var k=0; k<$scope.sections[i].rfp_questions[j].sub_questions.length; k++){
-                $scope.sections[i].rfp_questions[j].sub_questions[k].answers.push({});
+                console.log($scope.sections[i].rfp_questions[j].sub_questions[k]);
+                $scope.sections[i].rfp_questions[j].sub_questions.sub_answers.push({});
               }
             }
           };
@@ -37,7 +63,7 @@
       };
     };
 
-    //SETS TO TRUE IF APPLICANT IS FINISHED WITH LOI FORM
+    //SETS TO TRUE IF APPLICANT IS FINISHED WITH RFP FORM
     $scope.submitNow = function(){
       $scope.submitted = true;
     };
@@ -49,7 +75,7 @@
       };
       console.log(newRfp);
       console.log($scope.sections[3]);
-      $http.post('/api/v1/rfp_sections'+ $scope.activeId + '.json', newRfp).success(function(response){
+      $http.patch('/api/v1/rfp_sections/'+ $scope.activeId + '.json', newRfp).success(function(response){
           if (submitStatus == true) {
             alert("Your request for proposal has been submitted!");
           } else {

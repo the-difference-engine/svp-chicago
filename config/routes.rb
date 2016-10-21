@@ -41,7 +41,7 @@ Rails.application.routes.draw do
 
       get '/rfp_sections' => 'rfp_sections#index'
       post '/rfp_sections' => 'rfp_sections#create'
-      patch '/rfp_sections' => 'rfp_sections#update'
+      patch '/rfp_sections/:id.json' => 'rfp_sections#update'
 
       get '/rfps' => 'rfps#index'
       get '/rfps/:id' => 'rfps#show'
@@ -126,8 +126,8 @@ Rails.application.routes.draw do
   get '/rfp_sections/new' => 'rfp_sections#new'
   post '/rfp_sections' => 'rfp_sections#create'
   get '/rfp_sections/:id/edit' => 'rfp_sections#edit'
-  patch 'rfp_sections/:id' => 'rfp_sections#update'
-  delete 'rfp_sections/:id' => 'rfp_sections#destroy'
+  patch '/rfp_sections/:id' => 'rfp_sections#update'
+  delete '/rfp_sections/:id' => 'rfp_sections#destroy'
 
   get '/sub_questions/:id/edit' => 'sub_questions#edit'
   patch '/sub_questions/:id' => 'sub_questions#update'
