@@ -18,7 +18,10 @@
   end
 
   def new
-
+    if Time.now > Time.new(2016, 10, 21, 17, 0, 0)
+      flash[:warning] = "Deadline has passed"
+      redirect_to '/'
+    end
   end
 
   def create
@@ -44,6 +47,10 @@
   end
 
   def edit
+    if Time.now > Time.new(2016, 10, 21, 17, 0, 0) && !current_user.super_admin
+      flash[:warning] = "Deadline has passed"
+      redirect_to '/'
+    end
     @loi = Loi.find_by(id: params[:id])
     if @loi.submitted && current_user.super_admin
       gon.loi_id = @loi.id

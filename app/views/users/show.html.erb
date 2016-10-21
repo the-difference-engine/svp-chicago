@@ -53,6 +53,11 @@
           <br>
         </div>
         <div class="col-md-6">
+
+          <% if Time.now > Time.new(2016, 10, 21, 17, 0, 0) %>
+            <h2 style="color:red;"> The application deadline has passed. </h2>
+          <% end %>
+
           <% if @user.admin %>
             <h2>View available Forms</h2>
             <br>
