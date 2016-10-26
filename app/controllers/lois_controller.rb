@@ -6,7 +6,7 @@
     if params[:alert]
       flash.now[:success] = params[:alert]
     end
-    @lois = Loi.all
+    @lois = Loi.where(submitted: true)
     @admins_ratings = Rating.where(user_id: current_user.id)
     gon.current_user_id = current_user.id
 

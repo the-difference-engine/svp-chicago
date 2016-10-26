@@ -63,6 +63,11 @@ class Loi < ActiveRecord::Base
             answer.challenges.each do |challenge|
               challenges += "#{challenge.challenge}: #{challenge.priority}. "
             end
+
+            if answer.fte
+              challenges += concat_ftes(answer.fte)
+            end
+
             attribute_answers << challenges
           end
         end
@@ -76,4 +81,20 @@ class Loi < ActiveRecord::Base
     updated_at.strftime("%m/%d/%Y")
   end
 
+  def self.concat_ftes(fte)
+    fte_string = ""
+    if fte.amount_1
+      fte_string += "\nFTEs 2015: #{fte.amount_1}"
+    end
+
+    if fte.amount_2
+      fte_string += "\nFTEs 2016: #{fte.amount_2}"
+    end
+
+    if fte.amount_3
+      fte_string += "\nFTEs 2017: #{fte.amount_3}"
+    end
+
+    fte_string
+  end
 end
