@@ -17,38 +17,14 @@
       });
     };
 
-    // $scope.addInput = function(id){
-    //   //Begin loop of rfp_sections
-    //   for(var i=0; i<$scope.sections.length;i++){
-    //     //Begin loop of rfp_questions in rfp_section
-    //     for(var j=0; j<$scope.sections[i].rfp_questions.length;j++){
-          
-    //       if($scope.sections[i].rfp_questions[j].question_id==id){
-
-    //         if($scope.sections[i].rfp_questions[j].question_type==="multiple input"){
-
-    //           $scope.sections[i].rfp_questions[j].rfp_answers.push({});
-    //         } else if ($scope.sections[i].rfp_questions[j].question_type==="block with multiple inputs"){
-    //             //Begin loop of sub_questions
-    //             console.log($scope.sections[i].rfp_questions[j].sub_questions);
-    //             $scope.sections[i].rfp_questions[j].sub_questions.push({});
-    //             $scope.sections[i].rfp_questions[j].sub_questions.push({});
-
-    //             // for(var k=0; k<$scope.sections[i].rfp_questions[j].sub_questions.length; k++){
-    //               // console.log($scope.sections[i].rfp_questions[j].sub_questions[k]);
-    //               // $scope.sections[i].rfp_questions[j].sub_questions[k].sub_answer.push({});
-    //           // }
-    //         }
-    //       };
-    //     };
-    //   };
-    // };
-
     $scope.addInput = function(id){
       console.log(id);
       for(var i=0; i<$scope.sections.length;i++){
+
         for(var j=0; j<$scope.sections[i].rfp_questions.length;j++){
+
           if($scope.sections[i].rfp_questions[j].question_id==id){
+
             if($scope.sections[i].rfp_questions[j].question_type==="multiple input"){
               $scope.sections[i].rfp_questions[j].rfp_answers.push({});
             } else if ($scope.sections[i].rfp_questions[j].question_type==="block with multiple inputs"){
@@ -58,6 +34,7 @@
                 $scope.sections[i].rfp_questions[j].sub_questions.sub_answers.push({});
               }
             }
+            
           };
         };
       };
