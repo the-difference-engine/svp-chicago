@@ -19,6 +19,8 @@
 
     $scope.addInput = function(id){
       var sub_questions_length = 0;
+      var sub_question_id;
+      var sub_question_count = 0;
       console.log(id);
       for(var i=0; i<$scope.sections.length;i++){
 
@@ -30,7 +32,11 @@
               $scope.sections[i].rfp_questions[j].rfp_answers.push({});
             } else if ($scope.sections[i].rfp_questions[j].question_type==="block with multiple inputs"){
                 // $scope.sections[i].rfp_questions[j].sub_questions.push({sub_question: "", sub_answer: "" });
+
                 sub_questions_length = $scope.sections[i].rfp_questions[j].sub_questions.length;
+
+                
+
               for(var k=0; k < sub_questions_length; k++){
                 //console.log($scope.sections[i].rfp_questions[j].sub_questions[k]);
                 $scope.sections[i].rfp_questions[j].sub_questions.push({});
