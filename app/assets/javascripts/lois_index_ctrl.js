@@ -118,6 +118,27 @@
       }
     };
 
+    $scope.changeReject = function(inputLOI)
+
+      {
+        var confirmation = confirm("Are you Sure");
+        if (!confirmation){
+          return
+        }
+
+        if (inputLOI.reject === false) {
+          inputLOI.reject = true;
+          var rejectStatus = {
+            reject: inputLOI.reject,
+            loi_id: inputLOI.id,
+          }
+         $http.patch('/lois/' + inputLOI.id, rejectStatus).then(function(response){
+          console.log(response.data);
+          $scope.lois.splice(response.data);
+        });
+      }
+    };
+
     $scope.changeBtn = function(repeatScope) {
       if (repeatScope.isDisabled) {
         repeatScope.isDisabled = false;
@@ -126,6 +147,7 @@
         repeatScope.isDisabled = true;
       }
     };
+
 
   }]);
 

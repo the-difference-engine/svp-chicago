@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161015185615) do
+ActiveRecord::Schema.define(version: 20161027013700) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(version: 20161015185615) do
     t.datetime "updated_at",                 null: false
     t.boolean  "submitted",  default: false
     t.integer  "user_id"
-    t.boolean  "status"
+    t.boolean  "reject",     default: true
   end
 
   create_table "questions", force: :cascade do |t|
@@ -120,6 +120,30 @@ ActiveRecord::Schema.define(version: 20161015185615) do
     t.datetime "updated_at",                    null: false
     t.string   "question_type"
     t.boolean  "is_active",      default: true
+  end
+
+  create_table "rfp_ratings", force: :cascade do |t|
+    t.integer  "q1"
+    t.integer  "q2"
+    t.integer  "q3"
+    t.integer  "q4"
+    t.integer  "q5"
+    t.integer  "q6"
+    t.text     "comments"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "total_score"
+    t.integer  "user_id"
+    t.integer  "rfp_id"
+    t.integer  "q7"
+    t.boolean  "q8"
+    t.integer  "q9"
+    t.boolean  "q10"
+    t.integer  "q11"
+    t.boolean  "q12"
+    t.text     "q13"
+    t.text     "q8_notes"
+    t.text     "q10_notes"
   end
 
   create_table "rfp_sections", force: :cascade do |t|

@@ -72,10 +72,19 @@
   def update
     @loi = Loi.find_by(id: params[:id])
 
-    @loi.update({name: params[:name], email: params[:email]})
+    p "*********************"
+    if params[:reject]
+      p '666666666'
+      @loi.reject = true
+      @loi.save
+      render json: @loi
+    else
 
-    flash[:success] = "LOI Updated"
-    redirect_to "/lois/#{@loi.id}"
+      @loi.update({name: params[:name], email: params[:email]})
+
+      flash[:success] = "LOI Updated"
+      redirect_to "/lois/#{@loi.id}"
+    end
   end
 
   def destroy
