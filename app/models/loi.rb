@@ -1,5 +1,5 @@
 class Loi < ActiveRecord::Base
-  has_many :answers
+  has_many :answers, -> { order "question_id" }
   has_many :ratings
   has_many :invited_lois
   belongs_to :user
