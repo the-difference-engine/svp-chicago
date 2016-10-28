@@ -3,6 +3,7 @@ json.array! @lois do |loi|
 	json.name loi.name
 	json.email loi.email
 	json.org_name loi.org_name
+	json.reject loi.reject
 	
 	json.answers do
 		loi.answers.each do |answer|
