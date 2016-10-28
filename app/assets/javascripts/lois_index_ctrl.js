@@ -136,7 +136,7 @@
             console.log(response.data);
              for (var i=0; i < $scope.lois.length; i++) {
                 if ($scope.lois[i].id == inputLOI.id) {
-                  $scope.lois.splice(i);
+                  $scope.lois.splice(i,1);
                 }
           };
         });
