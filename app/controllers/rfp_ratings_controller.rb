@@ -31,6 +31,7 @@ class RfpRatingsController < ApplicationController
   def new
     @rating = RfpRating.new
     @loi_id = params[:loi]
+    @rfp_id = params[:rfp_id]
   end
 
   def create
