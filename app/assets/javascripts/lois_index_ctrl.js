@@ -126,7 +126,7 @@
           return
         }
 
-        if (inputLOI.reject === false) {
+        if (inputLOI.reject === false || inputLOI.reject === null) {
           inputLOI.reject = true;
           var rejectStatus = {
             reject: inputLOI.reject,

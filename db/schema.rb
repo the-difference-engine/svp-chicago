@@ -122,30 +122,6 @@ ActiveRecord::Schema.define(version: 20161027235011) do
     t.boolean  "is_active",      default: true
   end
 
-  create_table "rfp_ratings", force: :cascade do |t|
-    t.integer  "q1"
-    t.integer  "q2"
-    t.integer  "q3"
-    t.integer  "q4"
-    t.integer  "q5"
-    t.integer  "q6"
-    t.text     "comments"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.integer  "total_score"
-    t.integer  "user_id"
-    t.integer  "rfp_id"
-    t.integer  "q7"
-    t.boolean  "q8"
-    t.integer  "q9"
-    t.boolean  "q10"
-    t.integer  "q11"
-    t.boolean  "q12"
-    t.text     "q13"
-    t.text     "q8_notes"
-    t.text     "q10_notes"
-  end
-
   create_table "rfp_sections", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
