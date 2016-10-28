@@ -23,8 +23,10 @@ class Api::V1::AttachmentsController < ApplicationController
         doc_type: params[:doc_type]
         )
 
+
     # Save the upload
     if attachment.save  
+      # attachment.update(user_id: params[:current_user])
       render json: { message: "File Uploaded"}, status: 200
     else
       render json: { errors: @post.errors.full_messages }, status: 422
