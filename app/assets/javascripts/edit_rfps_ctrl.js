@@ -33,13 +33,13 @@
             } else if ($scope.sections[i].rfp_questions[j].question_type==="block with multiple inputs"){
                 // $scope.sections[i].rfp_questions[j].sub_questions.push({sub_question: "", sub_answer: "" });
 
-                sub_questions_length = $scope.sections[i].rfp_questions[j].sub_questions.length;
+                // sub_questions_length = $scope.sections[i].rfp_questions[j].sub_questions.length;
 
                 
 
-              for(var k=0; k < sub_questions_length; k++){
-                //console.log($scope.sections[i].rfp_questions[j].sub_questions[k]);
-                $scope.sections[i].rfp_questions[j].sub_questions.push({});
+              // for(var k=0; k < sub_questions_length; k++){
+                for(var k=0; k<$scope.rfp_sections[i].rfp_questions[j].sub_questions.length; k++){
+                $scope.rfp_sections[i].rfp_questions[j].sub_questions[k].sub_answer.push({});
               }
             }
             
@@ -59,18 +59,18 @@
         submitted: submitStatus
       };
       console.log(newRfp);
-      console.log($scope.sections[3]);
-      $http.patch('/api/v1/rfp_sections/'+ $scope.activeId + '.json', newRfp).success(function(response){
-          if (submitStatus == true) {
-            alert("Your request for proposal has been submitted!");
-          } else {
-            alert("Your request for proposal form has been saved.");
-          }
-          window.location.href = '/';
-        }).error(function(response){
-          $scope.errors = response;
-          alert($scope.errors);
-        })
+      console.log($scope.sections);
+      // $http.patch('/api/v1/rfp_sections/'+ $scope.activeId + '.json', newRfp).success(function(response){
+      //     if (submitStatus == true) {
+      //       alert("Your request for proposal has been submitted!");
+      //     } else {
+      //       alert("Your request for proposal form has been saved.");
+      //     }
+      //     window.location.href = '/';
+      //   }).error(function(response){
+      //     $scope.errors = response;
+      //     alert($scope.errors);
+      //   })
 
     };
 

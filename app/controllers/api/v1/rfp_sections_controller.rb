@@ -97,16 +97,28 @@ class Api::V1::RfpSectionsController < ApplicationController
 
           when "single input"
 
-            if question["rfp_answer"]
-              RfpAnswer.create(rfp_id: @rfp.id, rfp_question_id: question["question_id"], answer: question["rfp_answer"])
+            if RfpAnswer.find_by(rfp_id: @rfp.id, rfp_question_id: question["question_id"])
+
+              RfpAnswer.find_by(rfp_id: @rfp.id, rfp_question_id: question["question_id"]).update(answer: question["rfp_answer"])
+
+            else
+              if question["rfp_answer"]
+                RfpAnswer.create(rfp_id: @rfp.id, rfp_question_id: question["question_id"], answer: question["rfp_answer"])
+              end
             end
 
           when "multiple input"
+
+            if RfpAnswer.find_by(rfp_id: @rfp.id, rfp_question_id: question["question_id"])
+              RfpAnswer.find_by(rfp_id: @rfp.id, rfp_question_id: question["question_id"]).update(answer: question["rfp_answer"])
+
+            else  
 
             if question["rfp_answers"] != [{}]
               question["rfp_answers"].each do |answer|
                 RfpAnswer.create(rfp_id: @rfp.id, rfp_question_id: question["question_id"], answer: answer["rfp_answer"])
               end
+            end
             end
 
           when "block"

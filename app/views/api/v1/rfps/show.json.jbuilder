@@ -29,7 +29,10 @@ json.array! @rfp_sections.each do |rfp_section|
           if rfp_question.question_type == 'block with multiple inputs'
             json.sub_answers rfp_answer.sub_answers
 
-            json.sub_questions rfp_answer.sub_answers.each do |sub_answer|
+            json.sub_questions rfp_answer.sub_answers.each_with_index do |sub_answer, index|
+              
+
+
               json.sub_question sub_answer.sub_question.question
               json.sub_question_id sub_answer.sub_question.id
               json.sub_answer sub_answer.answer
