@@ -13,7 +13,7 @@ class Api::V1::AttachmentsController < ApplicationController
       file: params[:file],
       acl: :public_read
     )
-    p params[:current_user]
+ 
 
     # Create an object for the upload
     attachment = Attachment.create(
@@ -26,7 +26,6 @@ class Api::V1::AttachmentsController < ApplicationController
 
     # Save the upload
     if attachment.save  
-      # attachment.update(user_id: params[:current_user])
       render json: { message: "File Uploaded"}, status: 200
     else
       render json: { errors: @post.errors.full_messages }, status: 422
