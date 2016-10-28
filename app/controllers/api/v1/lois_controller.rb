@@ -8,7 +8,7 @@ class Api::V1::LoisController < ApplicationController
   end
 
   def index
-  	@lois = Loi.where(submitted: true)
+  	@lois = Loi.where(submitted: true).where(reject: false)
     @invited_lois = InvitedLoi.all
   end
 
@@ -166,7 +166,6 @@ class Api::V1::LoisController < ApplicationController
 
   def update
     @loi = Loi.find(params[:id])
-
 
     if @loi.update(name: params[:name], email: params[:email], submitted: params[:submitted])
 

@@ -6,7 +6,7 @@
     if params[:alert]
       flash.now[:success] = params[:alert]
     end
-    @lois = Loi.all
+    @lois = Loi.where(submitted: true)
     @admins_ratings = Rating.where(user_id: current_user.id)
     gon.current_user_id = current_user.id
 
@@ -18,7 +18,10 @@
   end
 
   def new
-
+    if Time.now > Time.new(2016, 10, 21, 17, 0, 0)
+      flash[:warning] = "Deadline has passed"
+      redirect_to '/'
+    end
   end
 
   def create
@@ -44,6 +47,10 @@
   end
 
   def edit
+    if Time.now > Time.new(2016, 10, 21, 17, 0, 0) && !current_user.super_admin
+      flash[:warning] = "Deadline has passed"
+      redirect_to '/'
+    end
     @loi = Loi.find_by(id: params[:id])
     if @loi.submitted && current_user.super_admin
       gon.loi_id = @loi.id
@@ -65,10 +72,19 @@
   def update
     @loi = Loi.find_by(id: params[:id])
 
-    @loi.update({name: params[:name], email: params[:email]})
+    p "*********************"
+    if params[:reject]
+      p '666666666'
+      @loi.reject = true
+      @loi.save
+      render json: @loi
+    else
 
-    flash[:success] = "LOI Updated"
-    redirect_to "/lois/#{@loi.id}"
+      @loi.update({name: params[:name], email: params[:email]})
+
+      flash[:success] = "LOI Updated"
+      redirect_to "/lois/#{@loi.id}"
+    end
   end
 
   def destroy
