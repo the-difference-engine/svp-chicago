@@ -80,9 +80,10 @@
 
  
                 <% @attachments.each do |attachment| %>
+                <%if attachment.url != nil %>
                 <h5><%=attachment.doc_type%></h5>
                 <a href="<%=attachment.url %>" target="_blank"><i class="fa fa-file-text-o" style="font-size:24px"></i></a>
-                
+                <%end%>
                 <% end %>
 
                 <div>
