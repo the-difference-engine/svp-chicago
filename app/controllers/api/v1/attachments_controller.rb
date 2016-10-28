@@ -13,12 +13,13 @@ class Api::V1::AttachmentsController < ApplicationController
       file: params[:file],
       acl: :public_read
     )
+    p params[:current_user]
 
     # Create an object for the upload
     attachment = Attachment.create(
         url: obj.public_url,
         name: obj.key,
-        user_id: $attachment_user_id,
+        user_id: params[:current_user],
         doc_type: params[:doc_type]
         )
 

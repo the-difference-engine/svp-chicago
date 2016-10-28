@@ -7,6 +7,7 @@ class RfpsController < ApplicationController
     $attachment_user_id = current_user.id
 
     user_has_loi = Loi.find_by(user_id:current_user.id)
+    gon.user_id = current_user.id
 
     if user_has_loi
       user_loi_status = user_has_loi.status

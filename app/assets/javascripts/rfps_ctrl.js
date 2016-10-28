@@ -24,7 +24,7 @@
        var fd = new FormData();
        fd.append('file', file);
 
-       $http.post(uploadUrl+'?doc_type='+type, fd, {
+       $http.post(uploadUrl+'?doc_type='+type+'&current_user='+gon.user_id, fd, {
           transformRequest: angular.identity,
           headers: {'Content-Type': undefined}
        })
