@@ -14,7 +14,29 @@ class UserNotifier < ActionMailer::Base
     @admin = admin
     p admin
     mail( :to => @admin.email,
-    :subject => 'An SVP has been submitted!' )
+    :subject => 'An LOI has been submitted!' )
   end
 
+  def send_rfp_notification(user)
+    @user = user
+    p "*** **** *****"
+    p user
+    mail( :to => @user.email,
+    :subject => 'Thanks for submitting an RFP to SVP!' )
+  end
+
+  def send_rfp_notification_admin(admin)
+    @admin = admin
+    p admin
+    mail( :to => @admin.email,
+    :subject => 'An RFP has been submitted!' )
+  end
+
+  def send_rfp_acceptance(user)
+    @user = user
+    p "*** **** *****"
+    p user
+    mail( :to => @user.email,
+    :subject => "You're invited to submit an RFP!" )
+  end
 end
