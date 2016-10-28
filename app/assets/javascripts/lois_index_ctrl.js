@@ -133,8 +133,12 @@
             loi_id: inputLOI.id,
           }
          $http.patch('/lois/' + inputLOI.id, rejectStatus).then(function(response){
-          console.log(response.data);
-          $scope.lois.splice(response.data);
+            console.log(response.data);
+             for (var i=0; i < $scope.lois.length; i++) {
+                if ($scope.lois[i].id == inputLOI.id) {
+                  $scope.lois.splice(i);
+                }
+          };
         });
       }
     };
