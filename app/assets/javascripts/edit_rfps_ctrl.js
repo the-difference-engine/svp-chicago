@@ -18,7 +18,6 @@
     };
 
     $scope.addInput = function(id){
-      console.log(id);
       for(var i=0; i<$scope.sections.length;i++){
 
         for(var j=0; j<$scope.sections[i].rfp_questions.length;j++){
@@ -30,7 +29,6 @@
             } else if ($scope.sections[i].rfp_questions[j].question_type==="block with multiple inputs"){
                 
                 for(var k=0; k<$scope.sections[i].rfp_questions[j].sub_questions.length; k++){
-                  console.log("I am here");
                 $scope.sections[i].rfp_questions[j].sub_questions[k].sub_answers.push({});
               }
             }
