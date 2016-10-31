@@ -110,26 +110,42 @@ class Api::V1::RfpSectionsController < ApplicationController
           when "multiple input"
 
             if RfpAnswer.find_by(rfp_id: @rfp.id, rfp_question_id: question["question_id"])
-              RfpAnswer.find_by(rfp_id: @rfp.id, rfp_question_id: question["question_id"]).update(answer: question["rfp_answer"])
 
-            else  
-
-            if question["rfp_answers"] != [{}]
-              question["rfp_answers"].each do |answer|
-                RfpAnswer.create(rfp_id: @rfp.id, rfp_question_id: question["question_id"], answer: answer["rfp_answer"])
+              RfpAnswer.where(rfp_id: @rfp.id, rfp_question_id: question["question_id"]).each do |answer|
+                answer.update(answer: question["rfp_answer"])
               end
-            end
+
+            else
+
+              if question["rfp_answers"] != [{}]
+                question["rfp_answers"].each do |answer|
+                  RfpAnswer.create(rfp_id: @rfp.id, rfp_question_id: question["question_id"], answer: answer["rfp_answer"])
+                end
+              end
+
             end
 
           when "block"
 
-            @rfp_answer = RfpAnswer.create(rfp_id: @rfp.id, rfp_question_id: question["question_id"], answer: "See Subs")
-            if question["sub_questions"]
-              question["sub_questions"].each do |sub_question|
-                if sub_question["sub_answer"]
-                  SubAnswer.create(rfp_answer_id: @rfp_answer.id, rfp_id: @rfp.id, sub_question_id: sub_question["question_id"], answer: sub_question["sub_answer"], user_id: current_user.id)
+            if RfpAnswer.find_by(rfp_id: @rfp.id, rfp_question_id: question["question_id"])
+
+              SubAnswer.where(rfp_id: @rfp.id, rfp_answer_id: RfpAnswer.find_by(rfp_id: @rfp.id, rfp_question_id: question["question_id"]).id).each do |sub_answer|
+
+                sub_answer.update(answer: sub_question["sub_answer"])
+
+              end
+
+            else
+
+              @rfp_answer = RfpAnswer.create(rfp_id: @rfp.id, rfp_question_id: question["question_id"], answer: "See Subs")
+              if question["sub_questions"]
+                question["sub_questions"].each do |sub_question|
+                  if sub_question["sub_answer"]
+                    SubAnswer.create(rfp_answer_id: @rfp_answer.id, rfp_id: @rfp.id, sub_question_id: sub_question["question_id"], answer: sub_question["sub_answer"], user_id: current_user.id)
+                  end
                 end
               end
+
             end
 
           when "block with multiple inputs"
