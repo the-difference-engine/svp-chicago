@@ -53,7 +53,7 @@ class RfpRatingsController < ApplicationController
       q11: params[:q11],
       q12: params[:q12],
       q13: params[:q13],
-      comments: params[:comments],
+      comments: params[:comments]
       # total_score: :q1 + :q2 + :q3 + :q4 + :q5 + :q6 + :q7 + :q9 + :q11
     )
     if @rating.save
@@ -74,14 +74,26 @@ class RfpRatingsController < ApplicationController
     @rating = RfpRating.find(params[:id])
     @rating.update(
       user_id: current_user.id,
+      rfp_id: params[:rfp_id],
       q1: params[:q1],
       q2: params[:q2],
       q3: params[:q3],
+      q4: params[:q4],
       q5: params[:q5],
-      weighted_score: 5
+      q6: params[:q6],
+      q7: params[:q7],
+      q8: params[:q8],
+      q8_notes: params[:q8_notes],
+      q9: params[:q9],
+      q10_notes: params[:q10_notes],
+      q10: params[:q10],
+      q11: params[:q11],
+      q12: params[:q12],
+      q13: params[:q13],
+      comments: params[:comments]
     )
     if @rating.save
-      redirect_to '/lois'
+      redirect_to '/rfps'
       flash[:success] = "Rating Updated!"
     else
       redirect_to :back

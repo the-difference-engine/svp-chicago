@@ -8,7 +8,7 @@
           <% if current_user.admin %>
             <% if current_user.rfp_ratings.find_by(rfp_id: @rfp.id) != nil %>
              <div id="rating-pullout-button">
-                <button type="button" class="btn btn-danger" data-toggle="collapse" aria-expanded="false" aria-controls="rfp-ratings" data-target="#rfp-ratings">Edit Rating</button>
+                <a id="rating-pullout-button" class="btn btn-danger" href="/rfp_ratings/new?rfp_id=<%=@rfp.id%>" class="btn btn-primary">Edit Rating</a>
               </div>
             <% else %>
                 <a id="rating-pullout-button" class="btn btn-danger" href="/rfp_ratings/new?rfp_id=<%=@rfp.id%>" class="btn btn-primary">New Rating</a>
