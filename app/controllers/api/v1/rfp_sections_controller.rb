@@ -41,8 +41,6 @@ class Api::V1::RfpSectionsController < ApplicationController
             question["sub_questions"].each do |sub_question|
               if sub_question["answer"]
                 SubAnswer.create(rfp_answer_id: @rfp_answer.id, rfp_id: @rfp.id, sub_question_id: sub_question["id"], answer: sub_question["answer"], user_id: current_user.id)
-              else
-                SubAnswer.create(rfp_answer_id: @rfp_answer.id, rfp_id: @rfp.id, sub_question_id: sub_question["id"], answer: "", user_id: current_user.id)
               end
             end
           end
