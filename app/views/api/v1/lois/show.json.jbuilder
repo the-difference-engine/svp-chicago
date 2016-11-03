@@ -1,7 +1,6 @@
 json.id @loi.id
 json.name @loi.name
 json.email @loi.email
-json.status @loi.status
 
 json.invited_lois @loi.invited_lois do |invited_loi|
   json.invited_loi_id invited_loi.id

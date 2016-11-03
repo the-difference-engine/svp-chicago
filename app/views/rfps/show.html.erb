@@ -84,11 +84,29 @@
                   <!-- END REPEAT RFP-QUESTIONS -->
                 </div>
               </div>
+                <h1> Uploaded Forms</h1>
+                <h4 style="color:blue;"> Click icon to download</h4>
+               <div>
+
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+
+ 
+                <% @attachments.each do |attachment| %>
+                <%if attachment.url != nil %>
+                <h5><%=attachment.doc_type%></h5>
+                <a href="<%=attachment.url %>" target="_blank"><i class="fa fa-file-text-o" style="font-size:24px"></i></a>
+                <%end%>
+                <% end %>
+
+                <div>
               <!-- END REPEAT SECTIONS -->
               <ol>
               </div>
             </div>
           </div>
         </div>
+
       </div>
     </div> 
+  

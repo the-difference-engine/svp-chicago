@@ -5,8 +5,6 @@ class Api::V1::RfpSectionsController < ApplicationController
 
   def index
     @rfp_sections = RfpSection.order(:id).all
-
-
   end
 
   def create
@@ -56,8 +54,17 @@ class Api::V1::RfpSectionsController < ApplicationController
         end
       end
     end
-    @attachments = Attachment.find_by(user_id: current_user.id)
-    @attachments.update(rfp_id: @rfp.id)
+    @attachments = Attachment.where(user_id: current_user.id)
+    @attachments.each do |attachment|
+      attachment.update(rfp_id: @rfp.id)
+    end
+
+    UserNotifier.send_rfp_notification(current_user).deliver
+
+    User.where(super_admin: true).each do |admin|
+      UserNotifier.send_rfp_notification_admin(admin).deliver
+    end
+
     render json: { message: "RFP Created"}, status: 200
     p @rfp
     # else

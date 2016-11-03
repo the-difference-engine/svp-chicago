@@ -118,6 +118,31 @@
       }
     };
 
+    $scope.changeReject = function(inputLOI)
+
+      {
+        var confirmation = confirm("Are you Sure");
+        if (!confirmation){
+          return
+        }
+
+        if (inputLOI.reject === false || inputLOI.reject === null) {
+          inputLOI.reject = true;
+          var rejectStatus = {
+            reject: inputLOI.reject,
+            loi_id: inputLOI.id,
+          }
+         $http.patch('/lois/' + inputLOI.id, rejectStatus).then(function(response){
+            console.log(response.data);
+             for (var i=0; i < $scope.lois.length; i++) {
+                if ($scope.lois[i].id == inputLOI.id) {
+                  $scope.lois.splice(i,1);
+                }
+          };
+        });
+      }
+    };
+
     $scope.changeBtn = function(repeatScope) {
       if (repeatScope.isDisabled) {
         repeatScope.isDisabled = false;
@@ -126,6 +151,7 @@
         repeatScope.isDisabled = true;
       }
     };
+
 
   }]);
 

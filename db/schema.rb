@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161014011610) do
+ActiveRecord::Schema.define(version: 20161027235011) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,11 +44,11 @@ ActiveRecord::Schema.define(version: 20161014011610) do
 
   create_table "ftes", force: :cascade do |t|
     t.integer  "answer_id"
-    t.integer  "amount_1"
-    t.integer  "amount_2"
-    t.integer  "amount_3"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.decimal  "amount_1",   precision: 10, scale: 2
+    t.decimal  "amount_2",   precision: 10, scale: 2
+    t.decimal  "amount_3",   precision: 10, scale: 2
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
   create_table "invite_maxes", force: :cascade do |t|
@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(version: 20161014011610) do
     t.datetime "updated_at",                 null: false
     t.boolean  "submitted",  default: false
     t.integer  "user_id"
-    t.boolean  "status"
+    t.boolean  "reject",     default: false
   end
 
   create_table "questions", force: :cascade do |t|
