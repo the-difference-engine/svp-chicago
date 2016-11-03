@@ -18,17 +18,22 @@
     };
 
     $scope.addInput = function(id){
+      //Loop through rfp sections
       for(var i=0; i<$scope.sections.length;i++){
-
+        //Loop through the questions in each section
         for(var j=0; j<$scope.sections[i].rfp_questions.length;j++){
 
+          //Check the question id
           if($scope.sections[i].rfp_questions[j].question_id==id){
 
+            //Push on rfp_answers array if multiple input
+            //Push on sub_answers array if block with multiple inputs
             if($scope.sections[i].rfp_questions[j].question_type==="multiple input"){
               $scope.sections[i].rfp_questions[j].rfp_answers.push({});
             } else if ($scope.sections[i].rfp_questions[j].question_type==="block with multiple inputs"){
                 
-                for(var k=0; k<$scope.sections[i].rfp_questions[j].sub_questions.length; k++){
+              //Loop through sub_questions
+              for(var k=0; k<$scope.sections[i].rfp_questions[j].sub_questions.length; k++){
                 $scope.sections[i].rfp_questions[j].sub_questions[k].sub_answers.push({});
               }
             }
