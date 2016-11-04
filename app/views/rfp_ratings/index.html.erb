@@ -9,7 +9,7 @@
           <p>This is a list of all the RFP submissions and the corresponding rankings.</p>
           <input ng-model="orgNameFilter" placeholder="Type here to filter the list by any criteria." list="orgNames" class="form-control">
             <datalist id="orgNames">
-              <option ng-repeat="rating in ratings">{{rating.org_name}}</option>
+              <option ng-repeat="rfp_rating in rfp_ratings">{{rfp_rating.org_name}}</option>
             </datalist>
           </div>
           <table class="table table-hover table-bordered">

@@ -6,7 +6,7 @@ class Rating < ActiveRecord::Base
   validates :q1, :q2, :q3, numericality: true
 
 	def weighted_score
-		total = q1 + q2 + q2 + q3 
+		total = q1 + (q2 * 2) + q3
 		total/4.to_f
 	end
 

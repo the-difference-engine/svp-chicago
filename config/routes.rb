@@ -48,6 +48,8 @@ Rails.application.routes.draw do
 
       get '/rfp_questions' => 'rfp_questions#index'
 
+      get '/rfp_ratings' => 'rfp_ratings#index'
+
       post '/attachments' => 'attachments#create'
     end
   end
