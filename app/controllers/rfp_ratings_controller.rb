@@ -68,6 +68,7 @@ class RfpRatingsController < ApplicationController
 
   def edit
     @rating = RfpRating.find(params[:id])
+    @rfp_id = @rating.rfp_id
   end
 
   def update
