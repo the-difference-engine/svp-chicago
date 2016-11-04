@@ -8,12 +8,12 @@ json.array! @ratings do |rating|
   json.q3 rating.q3
   json.q4 rating.q4
   json.q5 rating.q5
-  json.q5 rating.q6
-  json.q5 rating.q7
-  json.q5 rating.q8
-  json.q5 rating.q9
-  json.q5 rating.q10
-  json.q5 rating.q11
-  json.q5 rating.q12
-  json.q5 rating.q13
+  json.q6 rating.q6
+  json.q7 rating.q7
+  json.q8 rating.q8
+  json.q9 rating.q9
+  json.q10 rating.q10
+  json.q11 rating.q11
+  json.q12 rating.q12
+  json.q13 rating.q13
 end
