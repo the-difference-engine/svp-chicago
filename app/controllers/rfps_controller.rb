@@ -39,7 +39,7 @@ class RfpsController < ApplicationController
     @rfp_sections = RfpSection.order('id ASC').all
     @attachments = Attachment.where(rfp_id: @rfp.id)
     gon.id = @rfp.id
-    @admins_ratings = RfpRating.where(user_id: current_user.id)
+    @admins_ratings = RfpRating.find_by(user_id: current_user.id, rfp_id: @rfp.id)
  end
 
   def index
