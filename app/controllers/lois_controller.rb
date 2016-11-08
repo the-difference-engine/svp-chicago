@@ -20,7 +20,7 @@
   def new
     if Time.now > Time.new(2016, 10, 21, 17, 0, 0)
       flash[:warning] = "Deadline has passed"
-      redirect_to '/'
+      # redirect_to '/'
     end
   end
 

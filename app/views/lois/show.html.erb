@@ -32,7 +32,7 @@
                               <span class="glyphicon glyphicon-question-sign">
                               </span>
                             </div>  
-                            <%= select_tag(:q2, options_for_select([['1 – Does not meet criteria', 1], ['2 – Meets few criteria', 2], ['3 – Meets most criteria', 3], ['4 – Significant Positive Impact', 4]], selected: @rating.q2 ), :prompt => "Rate 1 - 4", class: "form-control loi-rating-form") %>
+                            <%= select_tag(:q2, options_for_select([['1 – Projects aren’t well articulated or aren’t a good fit for SVP', 1], ['2 – Meets few criteria', 2], ['3 – Meets most criteria', 3], ['4 – Significant Positive Impact', 4]], selected: @rating.q2 ), :prompt => "Rate 1 - 4", class: "form-control loi-rating-form") %>
                           </td>
                         </tr>
                         <tr>
@@ -68,6 +68,7 @@
               </div>
               
           <% else %>
+          
           <div id="rating-pullout-button">
             <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#loi-ratings">Rate this LOI</button>
           </div>
@@ -94,7 +95,7 @@
                               <span class="glyphicon glyphicon-question-sign">
                               </span>
                             </div>  
-                            <%= select_tag(:q2, options_for_select([['1 – Does not meet criteria', 1], ['2 – Meets few criteria', 2], ['3 – Meets most criteria', 3], ['4 – Significant Positive Impact', 4]], selected: @rating.q2 ), :prompt => "Rate 1 - 4", class: "form-control loi-rating-form") %>
+                            <%= select_tag(:q2, options_for_select([['1 – Projects aren’t well articulated or aren’t a good fit for SVP', 1], ['2 – Articulated a few projects that will add capacity and are a good fit for SVP', 2], ['3 – Most of the projects articulated will add capacity and are a good fit for SVP', 3], ['4 – Thoughtful job articulating projects that will add capacity and are a good fit for SVP', 4]], selected: @rating.q2 ), :prompt => "Rate 1 - 4", class: "form-control loi-rating-form") %>
                           </td>
                         </tr>
                         <tr>
