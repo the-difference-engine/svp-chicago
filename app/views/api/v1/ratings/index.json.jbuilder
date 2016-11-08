@@ -9,4 +9,5 @@ json.array! @ratings do |rating|
 	json.q4 rating.q4
 	json.q5 rating.q5
 	json.weighted_score rating.weighted_score
+	json.comment rating.comment
 end

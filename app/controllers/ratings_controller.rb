@@ -41,7 +41,8 @@ class RatingsController < ApplicationController
   		q2: params[:q2],
   		q3: params[:q3],
   		q5: params[:q5],
-  		weighted_score: 5
+  		weighted_score: 5,
+      comment: params[:comment]
   	)
   	if @rating.save
   		redirect_to '/ratings'
@@ -65,7 +66,8 @@ class RatingsController < ApplicationController
       q2: params[:q2],
       q3: params[:q3],
       q5: params[:q5],
-      weighted_score: 5
+      weighted_score: 5,
+      comment: params[:comment]
     )
     if @rating.save
       redirect_to '/lois'
