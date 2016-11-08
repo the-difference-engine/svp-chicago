@@ -30,10 +30,11 @@ json.array! @rfp_sections.each do |rfp_section|
 
             json.sub_questions rfp_question.sub_questions.each do |sub_question|
               json.sub_question sub_question.question
+              json.sub_question_id sub_question.id
               json.sub_answers rfp_answer.sub_answers.each do |sub_answer|
                 if sub_question.id == sub_answer.sub_question_id
-                  json.sub_question_id sub_answer.sub_question.id
                   json.sub_answer sub_answer.answer
+                  json.sub_answer_id sub_answer.id
                 end
               end
             end

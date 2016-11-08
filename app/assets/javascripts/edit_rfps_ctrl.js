@@ -55,17 +55,19 @@
       };
       console.log(newRfp);
       console.log($scope.sections);
-      // $http.patch('/api/v1/rfp_sections/'+ $scope.activeId + '.json', newRfp).success(function(response){
-      //     if (submitStatus == true) {
-      //       alert("Your request for proposal has been submitted!");
-      //     } else {
-      //       alert("Your request for proposal form has been saved.");
-      //     }
-      //     window.location.href = '/';
-      //   }).error(function(response){
-      //     $scope.errors = response;
-      //     alert($scope.errors);
-      //   })
+
+      
+      $http.patch('/api/v1/rfp_sections/'+ $scope.activeId + '.json', newRfp).success(function(response){
+          if (submitStatus == true) {
+            alert("Your request for proposal has been submitted!");
+          } else {
+            alert("Your request for proposal form has been saved.");
+          }
+          // window.location.href = '/';
+        }).error(function(response){
+          $scope.errors = response;
+          alert($scope.errors);
+        })
 
     };
 
