@@ -53,7 +53,15 @@
                             <%= select_tag(:q5, options_for_select([['No', 'No'], ['Maybe', 'Maybe']], selected: @rating.q5 ), :prompt => "Select", class: "form-control loi-rating-form") %>
                           <% end %>
                           </td>
-                        </tr>                  
+                        </tr>
+
+                        <tr>
+                          <td colspan="2" id="rating-pullout-comment-box">  
+                            Comment:                     
+                            <%= text_area_tag :comment, @rating.comment, class: "loi-rating-form form-control"  %>
+                          </td> 
+                        </tr>
+
                         <tr>        
                           <td class="loi-rating-button">
                             <%= hidden_field_tag :loi_id, @loi.id %> 
@@ -114,6 +122,13 @@
                               <%= select_tag(:q5, options_for_select([['No', 'No'], ['Maybe', 'Maybe']], selected: @rating.q5 ), :prompt => "Select", class: "form-control loi-rating-form") %>
                             <% end %>
                           </td>
+                        </tr>
+
+                        <tr>
+                          <td colspan="2" id="rating-pullout-comment-box">  
+                            Comment:                     
+                            <%= text_area_tag :comment, @rating.comment, class: "loi-rating-form form-control"  %>
+                          </td> 
                         </tr>
                       
                         <tr>
