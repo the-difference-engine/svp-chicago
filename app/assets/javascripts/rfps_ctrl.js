@@ -126,6 +126,23 @@
       };
     };
 
+    $scope.removeInput = function(id){
+      console.log(id);
+      for(var i=0; i<$scope.sections.length;i++){
+        for(var j=0; j<$scope.sections[i].questions.length;j++){
+          if($scope.sections[i].questions[j].id==id){
+            if($scope.sections[i].questions[j].question_type==="multiple input"){
+              $scope.sections[i].questions[j].answers.splice(-1);
+            } else if ($scope.sections[i].questions[j].question_type==="block with multiple inputs"){
+              for(var k=0; k<$scope.sections[i].questions[j].sub_questions.length; k++){
+                $scope.sections[i].questions[j].sub_questions[k].answers.splice(-1);
+              }
+            }
+          };
+        };
+      };
+    };
+
     $scope.uploadFile = function(){
        var file = $scope.myFile;
        var file2 = $scope.myFile2;
