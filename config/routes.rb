@@ -41,6 +41,7 @@ Rails.application.routes.draw do
 
       get '/rfp_sections' => 'rfp_sections#index'
       post '/rfp_sections' => 'rfp_sections#create'
+      patch '/rfp_sections/:id.json' => 'rfp_sections#update'
 
       get '/rfps' => 'rfps#index'
       get '/rfps/:id' => 'rfps#show'
@@ -48,18 +49,14 @@ Rails.application.routes.draw do
 
       get '/rfp_questions' => 'rfp_questions#index'
 
-      post '/attachments' => 'attachments#create'
+      get '/rfp_ratings' => 'rfp_ratings#index'
 
+      post '/attachments' => 'attachments#create'
     end
   end
 
   get '/home' => 'landings#home'
   get '/thanks/:id' => 'landings#thanks'
-
-
-  get 'ratings/index'
-
-  get 'ratings/show'
 
   get '/landings' => 'landings#index'
   get '/landings/edit' => 'landings#edit'
@@ -102,9 +99,16 @@ Rails.application.routes.draw do
   get '/rfps' => 'rfps#index'
   get '/rfps/new' => 'rfps#new'
   get '/rfps/:id' => 'rfps#show'
-
   get '/rfps/:id/edit' => 'rfps#edit'
   patch '/rfps/:id' => 'rfps#update'
+
+  get '/rfp_ratings' => 'rfp_ratings#index'
+  get '/rfp_ratings/new' => 'rfp_ratings#new'
+  get '/rfp_ratings/:id' => 'rfp_ratings#show'
+  post '/rfp_ratings' => 'rfp_ratings#create'
+  get '/rfp_ratings/:id/edit' => 'rfp_ratings#edit'
+  patch '/rfp_ratings/:id' => 'rfp_ratings#update'
+  delete '/rfp_ratings/:id' => 'rfp_ratings#destroy'
 
   get '/rfp_questions' => 'rfp_questions#index'
   get '/rfp_questions/new' => 'rfp_questions#new'
@@ -125,8 +129,8 @@ Rails.application.routes.draw do
   get '/rfp_sections/new' => 'rfp_sections#new'
   post '/rfp_sections' => 'rfp_sections#create'
   get '/rfp_sections/:id/edit' => 'rfp_sections#edit'
-  patch 'rfp_sections/:id' => 'rfp_sections#update'
-  delete 'rfp_sections/:id' => 'rfp_sections#destroy'
+  patch '/rfp_sections/:id' => 'rfp_sections#update'
+  delete '/rfp_sections/:id' => 'rfp_sections#destroy'
 
   get '/sub_questions/:id/edit' => 'sub_questions#edit'
   patch '/sub_questions/:id' => 'sub_questions#update'

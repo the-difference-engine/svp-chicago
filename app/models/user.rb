@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :lois
   has_many :ratings
   has_many :rfps
+  has_many :rfp_ratings
 
   def number_of_invites
     ratings.where(q5: "Yes").count

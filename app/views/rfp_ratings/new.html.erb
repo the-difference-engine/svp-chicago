@@ -1,0 +1,20 @@
+<div class="site-container">
+  <div id="form-paper">
+    <div class="form-heading">
+      <h1>New Rating</h1>
+    </div>
+      <%= form_tag '/rfp_ratings', method: :post do %>
+
+      <%= render "form" %>
+    
+      <div class="btn-rating">
+        <%= submit_tag 'Submit Rating', class: "btn btn-custom" %>
+      </div>
+
+    </form>
+
+  <% end %>
+
+  </div>
+  
+</div>
