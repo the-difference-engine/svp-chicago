@@ -79,7 +79,10 @@
                             
                             <div class="col-md-4" style="width:31%" ng-repeat="sub_question in question.sub_questions">
                               <label> {{sub_question.sub_question}} </label>
-                              <input class="form-control" ng-model="sub_question.sub_answer">
+                              <div ng-repeat="sub_answer in sub_question.sub_answers">
+                                
+                                <input class="form-control" ng-model="sub_answer.sub_answer">
+                              </div>
                             </div>
                             
                           </div>

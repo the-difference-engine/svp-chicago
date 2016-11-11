@@ -54,8 +54,21 @@
 
                         <td class="td-answer" ng-if="question.rfp_answer != null && question.rfp_answer == 'See Subs'">
                           <table class="table table-striped table-bordered" >
+                            <tr ng-if="question.question_type == 'block with multiple inputs'" ng-repeat="sub_question in question.sub_questions">
+                              <td class="td-question">
+                                <b>
+                                  {{sub_question.sub_question}}: 
+                                </b>
+                              </td>
+                             
+                              <td  ng-repeat="sub_answer in sub_question.sub_answers" class="td-answer">
+                                {{sub_answer.sub_answer}}
+                              </td>
+                              
+                            </tr>
 
-                            <tr ng-repeat="sub_question in question.sub_questions">
+
+                            <tr ng-if="question.question_type != 'block with multiple inputs'" ng-repeat="sub_question in question.sub_questions">
                               <td class="td-question">
                                 <b>
                                   {{sub_question.sub_question}}: 
@@ -86,9 +99,10 @@
 
  
                 <% @attachments.each do |attachment| %>
+                <%if attachment.url != nil %>
                 <h5><%=attachment.doc_type%></h5>
                 <a href="<%=attachment.url %>" target="_blank"><i class="fa fa-file-text-o" style="font-size:24px"></i></a>
-                
+                <%end%>
                 <% end %>
 
                 <div>

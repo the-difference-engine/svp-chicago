@@ -6,7 +6,7 @@
     if params[:alert]
       flash.now[:success] = params[:alert]
     end
-    @lois = Loi.all
+    @lois = Loi.where(submitted: true).where(reject: nil)
     @admins_ratings = Rating.where(user_id: current_user.id)
     gon.current_user_id = current_user.id
 
@@ -72,10 +72,19 @@
   def update
     @loi = Loi.find_by(id: params[:id])
 
-    @loi.update({name: params[:name], email: params[:email]})
+    p "*********************"
+    if params[:reject]
+      p '666666666'
+      @loi.reject = true
+      @loi.save
+      render json: @loi
+    else
 
-    flash[:success] = "LOI Updated"
-    redirect_to "/lois/#{@loi.id}"
+      @loi.update({name: params[:name], email: params[:email]})
+
+      flash[:success] = "LOI Updated"
+      redirect_to "/lois/#{@loi.id}"
+    end
   end
 
   def destroy

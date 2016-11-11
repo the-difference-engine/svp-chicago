@@ -50,13 +50,20 @@
               </td>
               <td style="text-align:center;">
                 <% if current_user && current_user.admin %>
+                <div>
                   <a type="btn" href="/lois/{{loi.id}}" style="width:106.38px" class="btn btn-success btn-rate" ng-show="!rated(loi.ratings)">View/Rate</a>
                   <a type="btn" href="/lois/{{loi.id}}" style="width:106.38px" class="btn btn-warning btn-invite" ng-show="rated(loi.ratings)">View/Edit</a>
-
+                </div>
                 <% end %>
                   <% if current_user && current_user.super_admin %>
+                  <div>
                     <button style="width:106.38px" class="btn btn-info btn-invite" ng-class="{'disabled': isDisabled}" ng-click="inviteSent(loi_status, loi.id); changeBtn(this)" ng-if="loi.invited_lois[0].status != true">{{btnText}}</button>
                     <button style="width:106.38px" class="btn btn-error btn-invite disabled" ng-if="loi.invited_lois[0].status == true">Invited</button>
+                  </div>
+                  <div>
+                    <button style="width:106.38px" class="btn btn-danger btn-invite" ng-if="loi.reject == false || loi.reject == null" ng-click="changeReject(loi)">Reject LOI</button>
+                  </div>
+
                   <% else %>
                     <!-- <button style="width:106.38px" class="btn btn-danger btn-rate disabled" ng-if="loi.invited_lois[0].status != true">{{btnText}}</button>
                     <button style="width:106.38px" class="btn btn-error btn-rate disabled" ng-if="loi.invited_lois[0].status == true">Invited</button> -->

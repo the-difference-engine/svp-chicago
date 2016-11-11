@@ -157,6 +157,16 @@
   z-index:4;
   height:70px;
 }
+#rating-pullout-comment-box {
+  position: static;
+  background-color:#ccc;
+  right: 0;
+  width: 120px;
+  padding:10px;
+  top: 100px;
+  z-index:4;
+  height:70px;
+}
 .inactive-btn {
   cursor:default;
 }

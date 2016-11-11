@@ -56,6 +56,13 @@
                 </p>
               </th>
               <th>
+                <p ng-click="sortBy('comment')">
+                  Comment
+                  <span ng-class="toggle_class">
+                  </span>
+                </p>
+              </th>
+              <th>
                 <p ng-click="sortBy('user.email')">
                   Rated By
                   <span ng-class="toggle_class">
@@ -130,6 +137,7 @@
                   {{rating.q5}}
               </td>
               <td>{{ rating.weighted_score }}</td>
+              <td>{{ rating.comment }}</td>
               <td>{{ rating.user.email }}</td>
             </tr>
             <tr class="average-row">
