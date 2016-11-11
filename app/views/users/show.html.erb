@@ -98,7 +98,7 @@
                 <%= link_to "View RFP", "/rfps/#{rfp.id}", class: "btn btn-default" %></li>
               <% else %>
               <li> You edited a request for proposal form on <%= rfp.friendly_loi_time %>:
-                <%= link_to "Continue RFP", "#", class: "btn btn-default" %></li>
+                <%= link_to "Continue RFP", "/rfps/#{rfp.id}/edit", class: "btn btn-default" %></li>
               <% end %>
             <% end %>
             </ul>

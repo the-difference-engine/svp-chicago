@@ -95,7 +95,7 @@ class Api::V1::RfpSectionsController < ApplicationController
     @rfp = Rfp.find_by(id: params[:id])
 
 
-    # @rfp = Rfp.new(user_id: current_user.id, submitted: params[:submitted])
+    @rfp.update(submitted: params[:submitted])
     # @rfp.save
 
     #Begin loop through rfp_sections
@@ -212,6 +212,8 @@ class Api::V1::RfpSectionsController < ApplicationController
     # else
     #   render json: errors.to_json, status: 400
     # end
+
+
   end
 
 end
