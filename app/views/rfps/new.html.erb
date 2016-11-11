@@ -75,7 +75,10 @@
                       <div ng-repeat="answer in question.answers">
                         <input class="form-control" ng-model="answer.answer">
                       </div>
-                      <p><a ng-click="addInput(question.id)">Add Input</a></p>
+                      <p>
+                        <a ng-click="addInput(question.id)">Add Input</a>
+                        <a style="color:red" ng-if="question.answers.length>1" ng-click="removeInput(question.id)"> Remove Input </a>
+                      </p>
                     </div>
                   </div> 
                   
@@ -107,7 +110,10 @@
                               </div>
                             </div>
                           </div>
-                          <p><a ng-click="addInput(question.id)">Add Input</a></p>
+                          <p>
+                            <a ng-click="addInput(question.id)">Add Input </a> 
+                            <a style="color:red" ng-if="question.sub_questions[$index].answers.length>1" ng-click="removeInput(question.id)"> Remove Input </a>
+                          </p>
                           
                         </div>
                       </div>
