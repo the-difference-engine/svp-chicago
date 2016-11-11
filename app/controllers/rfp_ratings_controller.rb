@@ -53,6 +53,7 @@ class RfpRatingsController < ApplicationController
       q11: params[:q11],
       q12: params[:q12],
       q13: params[:q13],
+      total_score: @rating.weighted_score,
       comments: params[:comments]
       # total_score: :q1 + :q2 + :q3 + :q4 + :q5 + :q6 + :q7 + :q9 + :q11
     )
@@ -91,6 +92,7 @@ class RfpRatingsController < ApplicationController
       q11: params[:q11],
       q12: params[:q12],
       q13: params[:q13],
+      total_score: @rating.weighted_score,
       comments: params[:comments]
     )
     if @rating.save
