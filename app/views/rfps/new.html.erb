@@ -71,7 +71,7 @@
 
                   <div ng-if="question.question_type ==='multiple input'">
                     <div class="form-group">
-                      <label> {{question.question}} </label>
+                      <label> {{question.rfp_question}} </label>
                       <div ng-repeat="answer in question.answers">
                         <input class="form-control" ng-model="answer.answer">
                       </div>

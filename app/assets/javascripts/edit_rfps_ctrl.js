@@ -18,23 +18,32 @@
     };
 
     $scope.addInput = function(id){
-      console.log(id);
+      //Loop through rfp sections
       for(var i=0; i<$scope.sections.length;i++){
+        //Loop through the questions in each section
         for(var j=0; j<$scope.sections[i].rfp_questions.length;j++){
+
+          //Check the question id
           if($scope.sections[i].rfp_questions[j].question_id==id){
+
+            //Push on rfp_answers array if multiple input
+            //Push on sub_answers array if block with multiple inputs
             if($scope.sections[i].rfp_questions[j].question_type==="multiple input"){
               $scope.sections[i].rfp_questions[j].rfp_answers.push({});
             } else if ($scope.sections[i].rfp_questions[j].question_type==="block with multiple inputs"){
+                
+              //Loop through sub_questions
               for(var k=0; k<$scope.sections[i].rfp_questions[j].sub_questions.length; k++){
-                $scope.sections[i].rfp_questions[j].sub_questions[k].answers.push({});
+                $scope.sections[i].rfp_questions[j].sub_questions[k].sub_answers.push({});
               }
             }
+            
           };
         };
       };
     };
 
-    //SETS TO TRUE IF APPLICANT IS FINISHED WITH LOI FORM
+    //SETS TO TRUE IF APPLICANT IS FINISHED WITH RFP FORM
     $scope.submitNow = function(){
       $scope.submitted = true;
     };
@@ -45,14 +54,16 @@
         submitted: submitStatus
       };
       console.log(newRfp);
-      console.log($scope.sections[3]);
-      $http.post('/api/v1/rfp_sections.json', newRfp).success(function(response){
+      console.log($scope.sections);
+
+      
+      $http.patch('/api/v1/rfp_sections/'+ $scope.activeId + '.json', newRfp).success(function(response){
           if (submitStatus == true) {
             alert("Your request for proposal has been submitted!");
           } else {
             alert("Your request for proposal form has been saved.");
           }
-          window.location.href = '/';
+          // window.location.href = '/';
         }).error(function(response){
           $scope.errors = response;
           alert($scope.errors);
