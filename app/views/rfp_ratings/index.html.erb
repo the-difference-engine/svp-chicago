@@ -5,13 +5,13 @@
         <div class="form-heading">
           <h1>RFP Ratings</h1>
         </div>
-        <div class="filter">
+        <!-- <div class="filter">
           <p>This is a list of all the RFP submissions and the corresponding rankings.</p>
           <input ng-model="orgNameFilter" placeholder="Type here to filter the list by any criteria." list="orgNames" class="form-control">
             <datalist id="orgNames">
               <option ng-repeat="rfp_rating in rfp_ratings">{{rfp_rating.org_name}}</option>
             </datalist>
-          </div>
+          </div> -->
           <table class="table table-hover table-bordered">
             <tr>
               <th>
@@ -132,68 +132,18 @@
               <td>{{ rfp_rating.q1 }}</td>
               <td>{{ rfp_rating.q2 }}</td>
               <td>{{ rfp_rating.q3 }}</td>
-              <% if @yes_ratings.length < @invite_max %>
-
-                <td ng-show="rating.user.id==currentUserId" ng-if="yourYesRatingsLength < inviteMax.max">
-                    <select class="form-control" name="singleSelect" id="singleSelect" ng-model="rating.q5" ng-change="submitInvite(rating.q5, rating.id)">
-                      <option value="">--Select--</option>
-                      <option value="Yes">Yes</option>
-                      <option value="No">No</option>
-                      <option value="Maybe">Maybe</option>
-                    </select>
-                </td>
-
-                <td ng-show="rating.user.id==currentUserId" ng-if="yourYesRatingsLength >= inviteMax.max">
-                    <span class="tooltip-toggle" aria-label="You cannot reply 'Yes' to this question as you have reached your limit. Please edit other LOIs if you wish to invite this organization.">
-                    <select class="form-control" name="singleSelect" id="singleSelect" ng-model="rating.q5" ng-change="submitInvite(rating.q5, rating.id)">
-                      <option value="">--Select--</option>
-                      <option disabled="disabled" selected="selected">Yes</option>
-                      <option value="No">No</option>
-                      <option value="Maybe">Maybe</option>
-                    </select>
-                    </span>
-                </td>
-                
-              <% elsif @yes_ratings.length == @invite_max %>
-
-                <td ng-show="rating.user.id==currentUserId" ng-if="yourYesRatingsLength >= inviteMax.max">
-                    <span class="tooltip-toggle" aria-label="You cannot reply 'Yes' to this question as you have reached your limit. Please edit other LOIs if you wish to invite this organization.">
-                    <select class="form-control" name="singleSelect" id="singleSelect" ng-model="rating.q5" ng-change="submitInvite(rating.q5, rating.id)">
-                      <option value="">--Select--</option>
-                      <option disabled="disabled" selected="selected">Yes</option>
-                      <option value="No">No</option>
-                      <option value="Maybe">Maybe</option>
-                    </select>
-                    </span>
-                </td>
-                <td ng-show="rating.user.id==currentUserId" ng-if="yourYesRatingsLength < inviteMax.max">
-                    <select class="form-control" name="singleSelect" id="singleSelect" ng-model="rating.q5" ng-change="submitInvite(rating.q5, rating.id)">
-                      <option value="">--Select--</option>
-                      <option value="Yes">Yes</option>
-                      <option value="No">No</option>
-                      <option value="Maybe">Maybe</option>
-                    </select>
-                </td>
-
-                
-
-              <% else %>
-                <td ng-show="rating.user.id==currentUserId" ng-if="yourYesRatingsLength >= inviteMax.max">
-                    <span class="tooltip-toggle" aria-label="You cannot reply 'Yes' to this question as you have reached your limit. Please edit other LOIs if you wish to invite this organization.">
-                    <select class="form-control" name="singleSelect" id="singleSelect" ng-model="rating.q5" ng-change="submitInvite(rating.q5, rating.id)">
-                      <option value="">--Select--</option>
-                      <option value="No">No</option>
-                      <option value="Maybe">Maybe</option>
-                    </select>
-                    </span>
-                </td>
-              <% end %>
-
-              <td ng-show="rating.user.id!=currentUserId">
-                  {{rating.q5}}
-              </td>
-              <td>{{ rating.weighted_score }}</td>
-              <td>{{ rating.user.email }}</td>
+              <td>{{ rfp_rating.q4 }}</td>
+              <td>{{ rfp_rating.q5 }}</td>
+              <td>{{ rfp_rating.q6 }}</td>
+              <td>{{ rfp_rating.q7 }}</td>
+              <td>{{ rfp_rating.q8 }}</td>
+              <td>{{ rfp_rating.q9 }}</td>
+              <td>{{ rfp_rating.q10 }}</td>
+              <td>{{ rfp_rating.q11 }}</td>
+              <td>{{ rfp_rating.q12 }}</td>
+              <td>{{ rfp_rating.q13 }}</td>
+              <td>{{ rfp_rating.total_sore }}</td>
+              <td>{{ rfp_rating.user.email }}</td>
             </tr>
             <tr class="average-row">
               <td>Summary/Average</td>
