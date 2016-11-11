@@ -1,0 +1,250 @@
+<div class="site-container">
+  <div id="form-paper">
+    <div ng-app="app">
+      <div ng-controller="RfpRatingsCtrl" ng-init="setup()">
+        <div class="form-heading">
+          <h1>RFP Ratings</h1>
+        </div>
+        <div class="filter">
+          <p>This is a list of all the RFP submissions and the corresponding rankings.</p>
+          <input ng-model="orgNameFilter" placeholder="Type here to filter the list by any criteria." list="orgNames" class="form-control">
+            <datalist id="orgNames">
+              <option ng-repeat="rfp_rating in rfp_ratings">{{rfp_rating.org_name}}</option>
+            </datalist>
+          </div>
+          <table class="table table-hover table-bordered">
+            <tr>
+              <th>
+                <p ng-click="sortBy('org_name')">
+                  Organization Name
+                  <span ng-class="toggle_class">
+                  </span>
+                </p>
+              </th>
+              <th>
+                <p ng-click="sortBy('q1')">
+                  Q1
+                  <span ng-class="toggle_class">
+                  </span>
+                </p>
+              </th>
+              <th>
+                <p ng-click="sortBy('q2')">
+                  Q2
+                  <span ng-class="toggle_class">
+                  </span>
+                </p>
+              </th>
+              <th>
+                <p ng-click="sortBy('q3')">
+                  Q3
+                  <span ng-class="toggle_class">
+                  </span>
+                </p>
+              </th>
+              <th>
+                <p ng-click="sortBy('q4')">
+                  Q4
+                  <span ng-class="toggle_class">
+                  </span>
+                </p>
+              </th>
+              <th>
+                <p ng-click="sortBy('q5')">
+                  Q5
+                  <span ng-class="toggle_class">
+                  </span>
+              </th>
+              <th>
+                <p ng-click="sortBy('q6')">
+                  Q4
+                  <span ng-class="toggle_class">
+                  </span>
+                </p>
+              </th>
+              <th>
+                <p ng-click="sortBy('q7')">
+                  q7
+                  <span ng-class="toggle_class">
+                  </span>
+                </p>
+              </th>
+              <th>
+                <p ng-click="sortBy('q8')">
+                  q8
+                  <span ng-class="toggle_class">
+                  </span>
+                </p>
+              </th>
+              <th>
+                <p ng-click="sortBy('q9')">
+                  q9
+                  <span ng-class="toggle_class">
+                  </span>
+                </p>
+              </th>
+              <th>
+                <p ng-click="sortBy('q10')">
+                  q10
+                  <span ng-class="toggle_class">
+                  </span>
+                </p>
+              </th>
+              <th>
+                <p ng-click="sortBy('q11')">
+                  q11
+                  <span ng-class="toggle_class">
+                  </span>
+                </p>
+              </th>
+              <th>
+                <p ng-click="sortBy('q12')">
+                  q12
+                  <span ng-class="toggle_class">
+                  </span>
+                </p>
+              </th>
+              <th>
+                <p ng-click="sortBy('q13')">
+                  q13
+                  <span ng-class="toggle_class">
+                  </span>
+                </p>
+              </th>
+              <th>
+                <p ng-click="sortBy('weighted_score')">
+                  Weighted Score
+                  <span ng-class="toggle_class">
+                  </span>
+                </p>
+              </th>
+              <th>
+                <p ng-click="sortBy('user.email')">
+                  Rated By
+                  <span ng-class="toggle_class">
+                  </span>
+                </p>
+              </th>
+            </tr>
+            
+            <tr ng-repeat="rfp_rating in resultValue=(rfp_ratings | filter:orgNameFilter) | orderBy:sortByAttribute:descending">
+              <td><a href="/lois/{{rfp_rating.loi.id}}">{{ rfp_rating.org_name }}</a></td>
+              <td>{{ rfp_rating.q1 }}</td>
+              <td>{{ rfp_rating.q2 }}</td>
+              <td>{{ rfp_rating.q3 }}</td>
+              <% if @yes_ratings.length < @invite_max %>
+
+                <td ng-show="rating.user.id==currentUserId" ng-if="yourYesRatingsLength < inviteMax.max">
+                    <select class="form-control" name="singleSelect" id="singleSelect" ng-model="rating.q5" ng-change="submitInvite(rating.q5, rating.id)">
+                      <option value="">--Select--</option>
+                      <option value="Yes">Yes</option>
+                      <option value="No">No</option>
+                      <option value="Maybe">Maybe</option>
+                    </select>
+                </td>
+
+                <td ng-show="rating.user.id==currentUserId" ng-if="yourYesRatingsLength >= inviteMax.max">
+                    <span class="tooltip-toggle" aria-label="You cannot reply 'Yes' to this question as you have reached your limit. Please edit other LOIs if you wish to invite this organization.">
+                    <select class="form-control" name="singleSelect" id="singleSelect" ng-model="rating.q5" ng-change="submitInvite(rating.q5, rating.id)">
+                      <option value="">--Select--</option>
+                      <option disabled="disabled" selected="selected">Yes</option>
+                      <option value="No">No</option>
+                      <option value="Maybe">Maybe</option>
+                    </select>
+                    </span>
+                </td>
+                
+              <% elsif @yes_ratings.length == @invite_max %>
+
+                <td ng-show="rating.user.id==currentUserId" ng-if="yourYesRatingsLength >= inviteMax.max">
+                    <span class="tooltip-toggle" aria-label="You cannot reply 'Yes' to this question as you have reached your limit. Please edit other LOIs if you wish to invite this organization.">
+                    <select class="form-control" name="singleSelect" id="singleSelect" ng-model="rating.q5" ng-change="submitInvite(rating.q5, rating.id)">
+                      <option value="">--Select--</option>
+                      <option disabled="disabled" selected="selected">Yes</option>
+                      <option value="No">No</option>
+                      <option value="Maybe">Maybe</option>
+                    </select>
+                    </span>
+                </td>
+                <td ng-show="rating.user.id==currentUserId" ng-if="yourYesRatingsLength < inviteMax.max">
+                    <select class="form-control" name="singleSelect" id="singleSelect" ng-model="rating.q5" ng-change="submitInvite(rating.q5, rating.id)">
+                      <option value="">--Select--</option>
+                      <option value="Yes">Yes</option>
+                      <option value="No">No</option>
+                      <option value="Maybe">Maybe</option>
+                    </select>
+                </td>
+
+                
+
+              <% else %>
+                <td ng-show="rating.user.id==currentUserId" ng-if="yourYesRatingsLength >= inviteMax.max">
+                    <span class="tooltip-toggle" aria-label="You cannot reply 'Yes' to this question as you have reached your limit. Please edit other LOIs if you wish to invite this organization.">
+                    <select class="form-control" name="singleSelect" id="singleSelect" ng-model="rating.q5" ng-change="submitInvite(rating.q5, rating.id)">
+                      <option value="">--Select--</option>
+                      <option value="No">No</option>
+                      <option value="Maybe">Maybe</option>
+                    </select>
+                    </span>
+                </td>
+              <% end %>
+
+              <td ng-show="rating.user.id!=currentUserId">
+                  {{rating.q5}}
+              </td>
+              <td>{{ rating.weighted_score }}</td>
+              <td>{{ rating.user.email }}</td>
+            </tr>
+            <tr class="average-row">
+              <td>Summary/Average</td>
+              <td>{{resultValue | avgOfValue:'q1'}}</td>
+              <td>{{resultValue | avgOfValue:'q2'}}</td>
+              <td>{{resultValue | avgOfValue:'q3'}}</td>
+              <td>{{resultValue | avgOfValue:'q4'}}</td>
+              <td>{{resultValue | avgOfValue:'q5'}}</td>
+              <td>{{resultValue | avgOfValue:'q6'}}</td>
+              <td>{{resultValue | avgOfValue:'q7'}}</td>
+              <td>{{resultValue | avgOfValue:'q8'}}</td>
+              <td>{{resultValue | avgOfValue:'q9'}}</td>
+              <td>{{resultValue | avgOfValue:'q10'}}</td>
+              <td>{{resultValue | avgOfValue:'q11'}}</td>
+              <td>{{resultValue | avgOfValue:'q12'}}</td>
+              <td>{{resultValue | avgOfValue:'q13'}}</td>
+              <td>{{resultValue | avgOfValue:'weighted_score'}}</td>
+              <td> -- </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="csv-btn">
+        <%= link_to "Download Ratings CSV File", "/ratings.csv", :class => "btn btn-danger", :role => "button" %>
+        <span class="invite-max-btn">
+          <% if current_user && current_user.super_admin %>
+            <%= link_to "Change maximum number of Yes answers per admin", "/invite_maxes/1/edit", :class => "btn btn-danger", :role => "button" %>
+          <% end %>
+        </span>
+      </div>
+      <div class="question-bullets">
+        <h3>Question Legend</h3>
+      </div>
+      <div>
+        <ol>
+          <li>How well does the RFP fit with SVP's criteria?<br><p class="grey">Focus to address the cycle of poverty; scalable and replicable programs; desire for growth and hands-on assistance</p></li>
+          <li>How well is the organization serving its target population as defined by its goal statement?<p class="grey">Focus on demonstrable, sustainable success and lasting impact. Will have a significant, meaningful impact on people with real significant issues/barriers</p></li>
+          <li>What is the organization's potential breadth of impact on their target population?<p class="grey">Focus on demonstrable, sustainable success and lasting impact.</p></li>
+          <li>Is the organization clearly at an inflection point and ready to make that change?<p class="grey">An inflection point could be leadership transition, serving a broader geographic area or new target population, growing/scaling the organization to better serve more people, etc.</p></li>
+          <li>What is SVP's potential to impact the organization through capacity-building support?<p class="grey">Focus on the quality of the capacity building projects identified in the RFP</p> </li>
+          <li>How well does the organization understand the SVP model and how we will work with and help them?<p class="grey">Focus on their articulation of how they expect to work with SVP.</p></li>
+          <li><p>Understands the importance of metrics/processes to measure results?</li>
+          <li><p>Quality of Organization leadership?</p></li>
+          <li><p>Quality of Board of Directors?</p></li>
+          <li><p>Assessment of Business Model?</p></li>
+          <li><p>How excited are you about working with this organization?</p></li>
+          <li><p>Will working with this organization benefit SVP Chicago's reputation and awareness in the community? </p></li>
+          <li><p>Would you invite this organization to present to the committee?</p></li>
+          <li><p>Specific Follow up questions they should address if selected to present:</p></li>
+          <li><p>Comments:</li>
+        </ol>
+      </div>
+    </div>
+</div>

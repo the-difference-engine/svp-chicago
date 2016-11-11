@@ -5,8 +5,14 @@
         <div class="form-heading">
 
           <h1> RFP Submission Review </h1>
-
-          <div class="form-body">
+          <% if current_user.admin %>
+            <% if current_user.rfp_ratings.find_by(rfp_id: @rfp.id) != nil %>
+             <div id="rating-pullout-button">
+                <a id="rating-pullout-button" class="btn btn-danger" href="/rfp_ratings/<%=@admins_ratings.id%>/edit" class="btn btn-primary">Edit Rating</a>
+              </div>
+            <% else %>
+                <a id="rating-pullout-button" class="btn btn-danger" href="/rfp_ratings/new?rfp_id=<%=@rfp.id%>" class="btn btn-primary">New Rating</a>
+            <% end %>
 
             <ol class="form-list">
               <!-- REPEAT SECTIONS -->
@@ -89,7 +95,7 @@
                <div>
 
                 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 
  
                 <% @attachments.each do |attachment| %>
@@ -104,6 +110,7 @@
               <ol>
               </div>
             </div>
+          <% end %>
           </div>
         </div>
 
