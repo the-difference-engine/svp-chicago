@@ -4,6 +4,7 @@ class Rating < ActiveRecord::Base
 
   validates :q1, :q2, :q3, presence: true
   validates :q1, :q2, :q3, numericality: true
+  validates :loi_id, uniqueness: {scope: :user_id, message: "You've already Rated this Id, please refresh the page to edit your rating"}
 
 	def weighted_score
 		total = q1 + (q2 * 2) + q3

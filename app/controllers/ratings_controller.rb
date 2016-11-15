@@ -48,9 +48,15 @@ class RatingsController < ApplicationController
   		redirect_to '/ratings'
   		flash[:success] = "Rating Submitted!"
   	else
+      error_message = "Error! "
+      @rating.errors.full_messages.each_with_index do |message, index|
+        error_message += (message.to_s)
+        if index < @rating.errors.full_messages.length - 1
+          error_message += " | "
+        end
+      end 
   		redirect_to :back
-      flash[:warning] = "Missing elements in rating!"
-
+      flash[:warning] = error_message
   	end
   end
 
