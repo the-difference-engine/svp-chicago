@@ -8,22 +8,21 @@
 
     //GET CURRENT USER ID USING GON GEM
     $scope.currentUserId = gon.current_user_id;
-
     // $scope.activeRatingId = "";
     $scope.descending = false;
     $scope.toggle_class = "glyphicon glyphicon-triangle-top";
     $scope.btnText = "Invite to RFP";
 
     $scope.setup = function(){
-
+      $scope.loading = true;
       $http.get('/api/v1/lois.json').then(function(response){
         $scope.lois = response.data;
-
         if ($scope.lois.length > 0){
           for (var i=0; i<$scope.lois.length; i++){
             $scope.lois[i].avgRatingPerLoi = $scope.avgRatingPerLoi($scope.lois[i].ratings);
           }
         }
+        $scope.loading = false;
       });
 
       $http.get('/api/v1/questions.json').then(function(response){
