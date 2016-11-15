@@ -13,7 +13,7 @@
             <% else %>
                 <a id="rating-pullout-button" class="btn btn-danger" href="/rfp_ratings/new?rfp_id=<%=@rfp.id%>" class="btn btn-primary">New Rating</a>
             <% end %>
-
+          <div class="form-body">
             <ol class="form-list">
               <!-- REPEAT SECTIONS -->
               <div ng-repeat= "section in sections track by $index" >
