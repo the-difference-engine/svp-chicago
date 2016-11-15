@@ -23,7 +23,7 @@
         }      
             
     }
-})
+  })
 
   .controller("ratingsCtrl", ["$scope", "$http", "$compile", function($scope, $http, $compile){
     window.scope = $scope;
