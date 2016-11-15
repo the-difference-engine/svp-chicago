@@ -8,10 +8,10 @@
           <% if current_user.admin %>
             <% if current_user.rfp_ratings.find_by(rfp_id: @rfp.id) != nil %>
              <div id="rating-pullout-button">
-                <a id="rating-pullout-button" class="btn btn-danger" href="/rfp_ratings/<%=@admins_ratings.id%>/edit" class="btn btn-primary">Edit Rating</a>
+                <a href="/rfp_ratings/<%=@admins_ratings.id%>/edit" class="btn btn-danger">Edit Rating</a>
               </div>
             <% else %>
-                <a id="rating-pullout-button" class="btn btn-danger" href="/rfp_ratings/new?rfp_id=<%=@rfp.id%>" class="btn btn-primary">New Rating</a>
+                <div id="rating-pullout-button"><a href="/rfp_ratings/new?rfp_id=<%=@rfp.id%>" class="btn btn-danger">New Rating</a></div>
             <% end %>
           <div class="form-body">
             <ol class="form-list">
