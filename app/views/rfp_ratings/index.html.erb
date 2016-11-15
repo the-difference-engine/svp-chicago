@@ -125,6 +125,7 @@
                   </span>
                 </p>
               </th>
+  
             </tr>
             
             <tr ng-repeat="rfp_rating in resultValue=(rfp_ratings | filter:orgNameFilter) | orderBy:sortByAttribute:descending">
@@ -164,12 +165,12 @@
               <td>{{resultValue | avgOfValue:'q6'}}</td>
               <td>{{resultValue | avgOfValue:'q7'}}</td>
               <td>--</td>
-              <td>{{resultValue | avgOfValue:'q9'}}</td>
-              <td>{{resultValue | avgOfValue:'q10'}}</td>
+              <td>--</td>
+              <td>--</td>
               <td>{{resultValue | avgOfValue:'q11'}}</td>
-              <td>{{resultValue | avgOfValue:'q12'}}</td>
-              <td>{{resultValue | avgOfValue:'q13'}}</td>
-              <td>{{resultValue | avgOfValue:'weighted_score'}}</td>
+              <td>--</td>
+              <td>--</td>
+              <td>{{resultValue | avgOfValue:'total_score'}}</td>
               <td> -- </td>
             </tr>
           </table>
