@@ -2,7 +2,31 @@
   "use strict";
 
 
-  angular.module("app").controller("RfpRatingsCtrl", ["$scope", "$http", "$compile", function($scope, $http, $compile){
+  angular.module("app")
+
+  // THIS FILTER IS USED TO DISPLAY THE AVERAGE OF THE RATINGS
+  // UPDATING DYNAMICALLY AS THE LIST IS FILTERED
+  .filter('avgOfValue', function () {
+    return function (data, key) {
+        if (angular.isUndefined(data) || (data.length == 0)){
+          return 0;
+        } else {
+
+          var sum = 0;
+          var i = 0;
+
+          angular.forEach(data,function(v,k){
+            sum = sum + parseFloat(v[key]);
+            i++;
+          });
+
+          return (sum/i).toFixed(2);
+        }      
+            
+    }
+  })
+
+  .controller("RfpRatingsCtrl", ["$scope", "$http", "$compile", function($scope, $http, $compile){
     window.scope = $scope;
 
     //GET CURRENT USER ID USING GON GEM
