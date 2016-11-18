@@ -152,7 +152,7 @@
                 <span ng-if="!rfp_rating.q12">No</span>
               </td>
               <td>{{ rfp_rating.q13 }}</td>
-              <td>{{ rfp_rating.total_score }}</td>
+              <td>{{ rfp_rating.weighted_score }}</td>
               <td>{{ rfp_rating.user.email }}</td>
             </tr>
             <tr class="average-row">
@@ -170,7 +170,7 @@
               <td>{{resultValue | avgOfValue:'q11'}}</td>
               <td>--</td>
               <td>--</td>
-              <td>{{resultValue | avgOfValue:'total_score'}}</td>
+              <td>{{resultValue | avgOfValue:'weighted_score'}}</td>
               <td> -- </td>
             </tr>
           </table>

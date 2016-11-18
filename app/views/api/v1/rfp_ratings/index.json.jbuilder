@@ -16,5 +16,5 @@ json.array! @ratings do |rating|
   json.q11 rating.q11
   json.q12 rating.q12
   json.q13 rating.q13
-  json.total_score rating.total_score
+  json.weighted_score rating.weighted_score
 end
