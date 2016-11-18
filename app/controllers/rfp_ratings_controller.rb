@@ -54,8 +54,9 @@ class RfpRatingsController < ApplicationController
       q12: params[:q12],
       q13: params[:q13],
       comments: params[:comments]
-      # total_score: :q1 + :q2 + :q3 + :q4 + :q5 + :q6 + :q7 + :q9 + :q11
+      # weighted_score: :q1 + :q2 + :q3 + :q4 + :q5 + :q6 + :q7 + :q9 + :q11
     )
+    @rating.update(weighted_score: @rating.weighted_score)
     if @rating.save
       redirect_to '/rfp_ratings'
       flash[:success] = "Rating Submitted!"
@@ -91,6 +92,7 @@ class RfpRatingsController < ApplicationController
       q11: params[:q11],
       q12: params[:q12],
       q13: params[:q13],
+      weighted_score: @rating.weighted_score,
       comments: params[:comments]
     )
     if @rating.save
