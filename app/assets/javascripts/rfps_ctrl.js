@@ -167,7 +167,7 @@
         alert("Some file uploads are required");
         return -1;
       }
-rrr
+
       if (file6) {
        fileUpload.uploadFileToUrl(file6, uploadUrl, "Current Strategic Plan");
      }
