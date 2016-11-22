@@ -12,8 +12,6 @@
 
       $http.get('/api/v1/rfps/' + $scope.activeId + '.json').then(function(response){
         $scope.sections = response.data;
-        // console.log($scope.sections);
-
       });
     };
 
@@ -44,20 +42,13 @@
     };
 
     function removeMultipleInputFromDatabase(questionId){
-      console.log(questionId);
-
-      console.log('/api/v1/rfp_answers?rfp_id=' + $scope.activeId + "&rfp_question_id=" + questionId);
       $http.delete('/api/v1/rfp_answers?rfp_id=' + $scope.activeId + "&rfp_question_id=" + questionId).then(function(response){
-        console.log(response);
       });
     }
 
     function removeSubQuestionFromDatabase(subQuestionId){
-      console.log(subQuestionId);
 
-      console.log('/api/v1/sub_answers?rfp_id=' + $scope.activeId + "&sub_question_id=" + subQuestionId);
       $http.delete('/api/v1/sub_answers?rfp_id=' + $scope.activeId + "&sub_question_id=" + subQuestionId).then(function(response){
-        console.log(response);
       });
     }
 
@@ -83,7 +74,7 @@
                 
               //Loop through sub_questions
               for(var k=0; k<$scope.sections[i].rfp_questions[j].sub_questions.length; k++){
-                
+
                 var subAnswerHolder = $scope.sections[i].rfp_questions[j].sub_questions[k].sub_answers.splice(-1);
                 //If sub answer exists in the database, remove it
                 if(subAnswerHolder[0].sub_answer_id){
@@ -107,8 +98,6 @@
         rfp_sections: $scope.sections,
         submitted: submitStatus
       };
-      console.log(newRfp);
-      console.log($scope.sections);
 
       
       $http.patch('/api/v1/rfp_sections/'+ $scope.activeId + '.json', newRfp).success(function(response){
