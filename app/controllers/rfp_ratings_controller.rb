@@ -62,7 +62,6 @@ class RfpRatingsController < ApplicationController
     else
       redirect_to :back
       flash[:warning] = "Missing elements in rating!"
-
     end
   end
 
