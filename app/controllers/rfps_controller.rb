@@ -17,7 +17,7 @@ class RfpsController < ApplicationController
 
     user_has_rfps = Rfp.where(user_id: current_user.id)
 
-    if user_has_rfps
+    if user_has_rfps.length > 0  && !current_user.admin
       user_has_rfps.each do |rfp|
         if rfp.submitted
           flash[:warning] = "You already submitted an RFP on #{rfp.updated_at}. Only one RFP Submission is permitted."
