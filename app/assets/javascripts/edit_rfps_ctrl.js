@@ -12,7 +12,7 @@
 
       $http.get('/api/v1/rfps/' + $scope.activeId + '.json').then(function(response){
         $scope.sections = response.data;
-        console.log($scope.sections);
+        // console.log($scope.sections);
 
       });
     };
@@ -35,6 +35,46 @@
               //Loop through sub_questions
               for(var k=0; k<$scope.sections[i].rfp_questions[j].sub_questions.length; k++){
                 $scope.sections[i].rfp_questions[j].sub_questions[k].sub_answers.push({});
+              }
+            }
+            
+          };
+        };
+      };
+    };
+
+    function removeFromDatabase(questionId){
+      console.log(questionId);
+
+      console.log('/api/v1/rfp_answers?rfp_id=' + $scope.activeId + "&rfp_question_id=" + questionId);
+      $http.delete('/api/v1/rfp_answers?rfp_id=' + $scope.activeId + "&rfp_question_id=" + questionId).then(function(response){
+        console.log(response);
+      });
+    }
+
+    $scope.removeInput = function(id){
+      //Loop through rfp sections
+      for(var i=0; i<$scope.sections.length;i++){
+        //Loop through the questions in each section
+        for(var j=0; j<$scope.sections[i].rfp_questions.length;j++){
+
+          //Check the question id
+          if($scope.sections[i].rfp_questions[j].question_id==id){
+
+            if($scope.sections[i].rfp_questions[j].question_type==="multiple input"){
+
+              //removes the last input from rfp_answers array
+              var rfpAnswerHolder = $scope.sections[i].rfp_questions[j].rfp_answers.splice(-1)
+              
+              //if the answer exists in the database removeFromDatabase()
+              if(rfpAnswerHolder[0].rfp_answer_id){
+                removeFromDatabase($scope.sections[i].rfp_questions[j].question_id);
+              }
+            } else if ($scope.sections[i].rfp_questions[j].question_type==="block with multiple inputs"){
+                
+              //Loop through sub_questions
+              for(var k=0; k<$scope.sections[i].rfp_questions[j].sub_questions.length; k++){
+                $scope.sections[i].rfp_questions[j].sub_questions[k].sub_answers.splice(-1).question_id;
               }
             }
             

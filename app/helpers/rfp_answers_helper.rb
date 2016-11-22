@@ -1,0 +1,2 @@
+module RfpAnswersHelper
+end
