@@ -117,7 +117,7 @@
           } else {
             alert("Your request for proposal form has been saved.");
           }
-          // window.location.href = '/';
+          window.location.href = '/';
         }).error(function(response){
           $scope.errors = response;
           alert($scope.errors);
