@@ -7,7 +7,10 @@ class Rfp < ActiveRecord::Base
   has_many :rfp_ratings
 
   def org_name
-    rfp_answers.find_by(rfp_question_id: RfpQuestion.find_by(question: "Organization").id).answer
+    rfp_answer = rfp_answers.find_by(rfp_question_id: RfpQuestion.find_by(question: "Organization").id)
+    if rfp_answer
+      return rfp_answer.answer
+    end
   end
 
   def friendly_loi_time
