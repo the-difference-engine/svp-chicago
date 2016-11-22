@@ -43,11 +43,20 @@
       };
     };
 
-    function removeFromDatabase(questionId){
+    function removeMultipleInputFromDatabase(questionId){
       console.log(questionId);
 
       console.log('/api/v1/rfp_answers?rfp_id=' + $scope.activeId + "&rfp_question_id=" + questionId);
       $http.delete('/api/v1/rfp_answers?rfp_id=' + $scope.activeId + "&rfp_question_id=" + questionId).then(function(response){
+        console.log(response);
+      });
+    }
+
+    function removeSubQuestionFromDatabase(subQuestionId){
+      console.log(subQuestionId);
+
+      console.log('/api/v1/sub_answers?rfp_id=' + $scope.activeId + "&sub_question_id=" + subQuestionId);
+      $http.delete('/api/v1/sub_answers?rfp_id=' + $scope.activeId + "&sub_question_id=" + subQuestionId).then(function(response){
         console.log(response);
       });
     }
@@ -68,13 +77,18 @@
               
               //if the answer exists in the database removeFromDatabase()
               if(rfpAnswerHolder[0].rfp_answer_id){
-                removeFromDatabase($scope.sections[i].rfp_questions[j].question_id);
+                removeMultipleInputFromDatabase($scope.sections[i].rfp_questions[j].question_id);
               }
             } else if ($scope.sections[i].rfp_questions[j].question_type==="block with multiple inputs"){
                 
               //Loop through sub_questions
               for(var k=0; k<$scope.sections[i].rfp_questions[j].sub_questions.length; k++){
-                $scope.sections[i].rfp_questions[j].sub_questions[k].sub_answers.splice(-1).question_id;
+                
+                var subAnswerHolder = $scope.sections[i].rfp_questions[j].sub_questions[k].sub_answers.splice(-1);
+                //If sub answer exists in the database, remove it
+                if(subAnswerHolder[0].sub_answer_id){
+                  removeSubQuestionFromDatabase($scope.sections[i].rfp_questions[j].sub_questions[k].sub_question_id);
+                }
               }
             }
             
