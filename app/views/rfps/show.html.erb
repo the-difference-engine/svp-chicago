@@ -32,7 +32,7 @@
                           <b>
                             {{question.rfp_question}}:
                           </b>
-                        </td> 
+                        </td>
 
                         <td class="td-answer" ng-if="question.rfp_answer != null && question.rfp_answer != 'See Subs'">
                           {{question.rfp_answer}}
@@ -57,21 +57,21 @@
                             <tr ng-if="question.question_type == 'block with multiple inputs'" ng-repeat="sub_question in question.sub_questions">
                               <td class="td-question">
                                 <b>
-                                  {{sub_question.sub_question}}: 
+                                  {{sub_question.sub_question}}:
                                 </b>
                               </td>
-                             
+
                               <td  ng-repeat="sub_answer in sub_question.sub_answers" class="td-answer">
                                 {{sub_answer.sub_answer}}
                               </td>
-                              
+
                             </tr>
 
 
                             <tr ng-if="question.question_type != 'block with multiple inputs'" ng-repeat="sub_question in question.sub_questions">
                               <td class="td-question">
                                 <b>
-                                  {{sub_question.sub_question}}: 
+                                  {{sub_question.sub_question}}:
                                 </b>
                               </td>
 
@@ -97,7 +97,7 @@
                 <meta name="viewport" content="width=device-width, initial-scale=1">
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 
- 
+
                 <% @attachments.each do |attachment| %>
                 <%if attachment.url != nil %>
                 <h5><%=attachment.doc_type%></h5>
@@ -115,5 +115,4 @@
         </div>
 
       </div>
-    </div> 
-  
+    </div>

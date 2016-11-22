@@ -125,9 +125,9 @@
                   </span>
                 </p>
               </th>
-  
+
             </tr>
-            
+
             <tr ng-repeat="rfp_rating in resultValue=(rfp_ratings | filter:orgNameFilter) | orderBy:sortByAttribute:descending">
               <td><a href="/rfps/{{rfp_rating.rfp_id}}">{{ rfp_rating.org_name }}</a></td>
               <td>{{ rfp_rating.q1 }}</td>
