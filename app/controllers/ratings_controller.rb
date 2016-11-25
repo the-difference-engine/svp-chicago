@@ -7,13 +7,13 @@ class RatingsController < ApplicationController
     gon.current_user_id = current_user.id
 
     if user_signed_in? && current_user.super_admin
-      @ratings = Rating.all
+      @ratings = Rating.all.order("id ASC")
       respond_to do |format|
         format.html
         format.csv { send_data @ratings.to_csv, filename: "ratings-#{Date.today}.csv" }
       end
     else
-      @ratings = Rating.where(user_id: current_user.id)
+      @ratings = Rating.where(user_id: current_user.id).order("id ASC")
       respond_to do |format|
         format.html
         format.csv { send_data @ratings.to_csv, filename: "ratings-#{Date.today}.csv" }
