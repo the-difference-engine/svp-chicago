@@ -18,6 +18,7 @@ json.array! @rfp_sections.each do |rfp_section|
           json.rfp_answers @rfp.rfp_answers.each do |multiple_answer|
             if multiple_answer.rfp_question_id == rfp_question.id
               json.rfp_answer multiple_answer.answer
+              json.rfp_answer_id multiple_answer.id
             end
           end
         else

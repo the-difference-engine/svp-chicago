@@ -51,10 +51,12 @@
                   <div ng-if="question.question_type == 'multiple input'">
                     <div class="form-group">
                       <label> {{question.rfp_question}} </label>
-                      <div ng-repeat="answer in question.rfp_answers">
+                      <label> {{question.rfp_answers.length}} </label>
+
+                      <div ng-repeat="answer in question.rfp_answers track by $index">
                         <input class="form-control" ng-model="answer.rfp_answer">
                       </div>
-                      <p><a ng-click="addInput(question.question_id)">Add Input</a></p>
+                      <p><a ng-click="addInput(question.question_id)">Add Input</a> <a ng-if="question.rfp_answers.length>1" style="color:red" ng-click="removeInput(question.question_id)">Remove Input</a></p>
                     </div>
                   </div> 
 
@@ -77,16 +79,19 @@
                         <div class="container">
                           <div class="row">
                             
-                            <div class="col-md-4" style="width:31%" ng-repeat="sub_question in question.sub_questions">
+                            <div class="col-md-4" style="width:31%" ng-repeat="sub_question in question.sub_questions track by $index">
                               <label> {{sub_question.sub_question}} </label>
                               <div ng-repeat="sub_answer in sub_question.sub_answers">
                                 
                                 <input class="form-control" ng-model="sub_answer.sub_answer">
                               </div>
+
+                              
                             </div>
                             
                           </div>
-                          <p><a ng-click="addInput(question.question_id)">Add Input</a></p>
+                              <p><a ng-click="addInput(question.question_id)">Add Input</a> 
+                              <a style="color:red" ng-if="question.sub_questions[$index].sub_answers.length > 1"  ng-click="removeInput(question.question_id)">Remove Input</a></p>
                         </div>
                       </div>
                     </div> 

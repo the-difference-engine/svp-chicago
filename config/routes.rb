@@ -52,6 +52,10 @@ Rails.application.routes.draw do
       get '/rfp_ratings' => 'rfp_ratings#index'
 
       post '/attachments' => 'attachments#create'
+
+      delete '/rfp_answers' => 'rfp_answers#destroy'
+
+      delete '/sub_answers' => 'sub_answers#destroy'
     end
   end
 
