@@ -6,16 +6,14 @@ class RatingsController < ApplicationController
     @yes_ratings = Rating.where(user_id: current_user.id).where(q5: 'Yes')
     gon.current_user_id = current_user.id
 
-    if user_signed_in? && current_user.admin
+    if user_signed_in? && current_user.super_admin
       @ratings = Rating.all
-
       respond_to do |format|
         format.html
         format.csv { send_data @ratings.to_csv, filename: "ratings-#{Date.today}.csv" }
       end
     else
       @ratings = Rating.where(user_id: current_user.id)
-
       respond_to do |format|
         format.html
         format.csv { send_data @ratings.to_csv, filename: "ratings-#{Date.today}.csv" }
