@@ -98,22 +98,25 @@
     };
 
     $scope.inviteSent = function(status, loi_id){
-      var dupes = $scope.invited_lois.filter(function(invited_lois) {
-        return invited_lois.loi_id === parseInt(loi_id);
-      });
-      if (dupes.length === 0) {
-        var updatedStatus = {
-          status: true,
-          loi_id: loi_id,
-        };
 
-        $http.post('/api/v1/invited_lois/', updatedStatus).then(function(response){
-          console.log(response.data);
-          $scope.invited_lois.push(response.data);
+      if(confirm("ARE YOU SURE?")){
+        var dupes = $scope.invited_lois.filter(function(invited_lois) {
+          return invited_lois.loi_id === parseInt(loi_id);
         });
+        if (dupes.length === 0) {
+          var updatedStatus = {
+            status: true,
+            loi_id: loi_id,
+          };
 
-      } else {
-        alert("error");
+          $http.post('/api/v1/invited_lois/', updatedStatus).then(function(response){
+            console.log(response.data);
+            $scope.invited_lois.push(response.data);
+          });
+
+        } else {
+          alert("error");
+        }
       }
     };
 

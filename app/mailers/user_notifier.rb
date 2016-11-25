@@ -4,7 +4,6 @@ class UserNotifier < ActionMailer::Base
   # send a signup email to the user, pass in the user object that   contains the user's email address
   def send_notification(user)
     @user = user
-    p "*** **** *****"
     p user
     mail( :to => @user.email,
     :subject => 'Thanks for submission to SVP!' )
@@ -19,7 +18,6 @@ class UserNotifier < ActionMailer::Base
 
   def send_rfp_notification(user)
     @user = user
-    p "*** **** *****"
     p user
     mail( :to => @user.email,
     :subject => 'Thanks for submitting an RFP to SVP!' )
@@ -34,9 +32,9 @@ class UserNotifier < ActionMailer::Base
 
   def send_rfp_acceptance(user)
     @user = user
-    p "*** **** *****"
     p user
     mail( :to => @user.email,
-    :subject => "You're invited to submit an RFP!" )
+          :cc => 'colleen@svpchicago.org',
+          :subject => "You're invited to submit an RFP!" )
   end
 end
