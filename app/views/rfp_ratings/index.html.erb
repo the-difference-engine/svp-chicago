@@ -105,13 +105,6 @@
                 </p>
               </th>
               <th>
-                <p ng-click="sortBy('q13')">
-                  Q13
-                  <span ng-class="toggle_class">
-                  </span>
-                </p>
-              </th>
-              <th>
                 <p ng-click="sortBy('weighted_score')">
                   Weighted Score
                   <span ng-class="toggle_class">
@@ -151,7 +144,6 @@
                 <span ng-if="rfp_rating.q12">Yes</span>
                 <span ng-if="!rfp_rating.q12">No</span>
               </td>
-              <td>{{ rfp_rating.q13 }}</td>
               <td>{{ rfp_rating.weighted_score }}</td>
               <td>{{ rfp_rating.user.email }}</td>
             </tr>
@@ -168,7 +160,6 @@
               <td>--</td>
               <td>--</td>
               <td>{{resultValue | avgOfValue:'q11'}}</td>
-              <td>--</td>
               <td>--</td>
               <td>{{resultValue | avgOfValue:'weighted_score'}}</td>
               <td> -- </td>
