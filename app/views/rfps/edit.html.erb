@@ -101,16 +101,69 @@
               </div> 
             </div>
 
-            <div class="well rfp-section">
-              <div class="form-group">
-                <h3><label> Upload File </label></h3>
-                <div class="well rfp-well">
-                  <div>  
-                    <div>
-                       <input type="file" file-model="myFile"/>
-                       <button ng-click="uploadFile()" class="btn btn-info" style="margin-top:15px;">Upload File</button>
-                    </div>      
-                  </div>
+
+           <% if @attachments.empty? %>
+              <div class="well rfp-section">
+                <div class="form-group">
+                  <h3><label> Upload Files </label></h3>
+                  <div class="well rfp-well">
+                    <div>  
+                      <div>
+                      <div style="overflow-x:auto;">
+                        <table class="fixed">
+                         <tr>
+                          <th style="width:20px">Determination Letter from the IRS</th>
+                          <th style="width:20px">Organization Chart</th>
+                          <th style="width:20px">Minutes From Two Most Recent Board Meetings</th>
+                        </tr>
+                        <tr>
+                          <td><p style="color: red">required</p></td>
+                          <td><p style="color: red">required</p></td>
+                          <td><p style="color: red">required</p></td>
+                        </tr>
+                        <tr>
+                          <td><input type="file" file-model="myFile"/></td>
+                          <td><input type="file" file-model="myFile2"/></td>
+                          <td><input type="file" file-model="myFile3"/></td>
+                        </tr>
+                      </table>
+                    </div>
+                    <br>
+                    <br>
+                    <div style="overflow-x:auto;">
+                        <table class="fixed">
+                        <caption style="font-weight:bold; text-align:center; color: red;"> We also need your Financial Statements as follows: </caption>
+                         <tr>
+                          <th>For the most recent fiscal year end: <br>1. Statement of Activities(Profit and Loss) <br> 2. Balance Sheet <br>3. Audit or Review Report of independent CPA (if applicable) <br>4. From 990</th>
+                          <th>For the current fiscal year, as of the most recent month-end: <br> 1. Year-To-Date Statement of Activities (Profit and Loss) <br> 2. Balance Sheet</th>
+                        </tr>
+                        <tr>
+                          <td><p style="color: red">required</p></td>
+                          <td><p style="color: red">required</p></td>
+                        </tr>
+                        <tr>
+                          <td><input type="file" file-model="myFile4"/></td>
+                          <td><input type="file" file-model="myFile5"/></td>
+                        </tr>
+                    </table>
+                    </div>
+              <% else %>
+             <h1> Uploaded Forms</h1>
+             <h4 style="color:blue;"> Click icon to download</h4>
+            <div>
+
+             <meta name="viewport" content="width=device-width, initial-scale=1">
+             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+
+            
+             <% @attachments.each do |attachment| %>
+             <%if attachment.url != nil %>
+             <h5><%=attachment.doc_type%></h5>
+             <a href="<%=attachment.url %>" target="_blank"><i class="fa fa-file-text-o" style="font-size:24px"></i></a>
+             <%end%>
+             <% end %>
+              
+
                 </div>
               </div>
             </div>

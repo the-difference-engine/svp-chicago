@@ -41,6 +41,9 @@ class RfpsController < ApplicationController
     @attachments = Attachment.where(rfp_id: @rfp.id)
     gon.id = @rfp.id
     @admins_ratings = RfpRating.find_by(user_id: current_user.id, rfp_id: @rfp.id)
+    @doc_type_array = [ "IRS Determination Letter", 
+                        "Organization Chart",
+                        "Financial Statement: Recent Fiscal Year-End"]
  end
 
   def index
@@ -49,6 +52,8 @@ class RfpsController < ApplicationController
 
   def edit
     @rfp = Rfp.find(params[:id])
+    @attachments = Attachment.where(rfp_id: @rfp.id)
+    
     gon.id = @rfp.id
   end
 
