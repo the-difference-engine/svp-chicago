@@ -82,13 +82,11 @@ class RfpRatingsController < ApplicationController
       q6: params[:q6],
       q7: params[:q7],
       q8: params[:q8],
-      q8_notes: params[:q8_notes],
       q9: params[:q9],
-      q10_notes: params[:q10_notes],
       q10: params[:q10],
       q11: params[:q11],
       q12: params[:q12],
-      weighted_score: @rating.weighted_score,
+      follow_up: params[:follow_up],
       comments: params[:comments]
     )
     if @rating.save
