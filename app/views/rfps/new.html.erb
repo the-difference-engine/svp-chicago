@@ -23,7 +23,7 @@
 
               <br><b>Due Date: Friday, January 6, 2017, by 5:00 p.m.</b>
 
-              Please e-mail your proposal to:<br>
+              Please e-mail your proposal to Colleen Scrivner:<br>
               <b><%= mail_to "colleen@svpchicago.org", "Colleen Scrivner", subject: "RFP Inquiry" %></b>, director of marketing &amp; operations, SVP Chicago.<br><br>
 
               <b>Using this Form:</b>
@@ -71,11 +71,14 @@
 
                   <div ng-if="question.question_type ==='multiple input'">
                     <div class="form-group">
-                      <label> {{question.rfp_question}} </label>
+                      <label> {{question.question}} </label>
                       <div ng-repeat="answer in question.answers">
                         <input class="form-control" ng-model="answer.answer">
                       </div>
-                      <p><a ng-click="addInput(question.id)">Add Input</a></p>
+                      <p>
+                        <a ng-click="addInput(question.id)">Add Input</a>
+                        <a style="color:red" ng-if="question.answers.length>1" ng-click="removeInput(question.id)"> Remove Input </a>
+                      </p>
                     </div>
                   </div> 
                   
@@ -107,7 +110,10 @@
                               </div>
                             </div>
                           </div>
-                          <p><a ng-click="addInput(question.id)">Add Input</a></p>
+                          <p>
+                            <a ng-click="addInput(question.id)">Add Input </a> 
+                            <a style="color:red" ng-if="question.sub_questions[$index].answers.length>1" ng-click="removeInput(question.id)"> Remove Input </a>
+                          </p>
                           
                         </div>
                       </div>

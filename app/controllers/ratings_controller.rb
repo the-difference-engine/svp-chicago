@@ -6,16 +6,14 @@ class RatingsController < ApplicationController
     @yes_ratings = Rating.where(user_id: current_user.id).where(q5: 'Yes')
     gon.current_user_id = current_user.id
 
-    if user_signed_in? && current_user.admin
-      @ratings = Rating.all
-
+    if user_signed_in? && current_user.super_admin
+      @ratings = Rating.all.order("id ASC")
       respond_to do |format|
         format.html
         format.csv { send_data @ratings.to_csv, filename: "ratings-#{Date.today}.csv" }
       end
     else
-      @ratings = Rating.where(user_id: current_user.id)
-
+      @ratings = Rating.where(user_id: current_user.id).order("id ASC")
       respond_to do |format|
         format.html
         format.csv { send_data @ratings.to_csv, filename: "ratings-#{Date.today}.csv" }
@@ -48,9 +46,15 @@ class RatingsController < ApplicationController
   		redirect_to '/ratings'
   		flash[:success] = "Rating Submitted!"
   	else
+      error_message = "Error! "
+      @rating.errors.full_messages.each_with_index do |message, index|
+        error_message += (message.to_s)
+        if index < @rating.errors.full_messages.length - 1
+          error_message += " | "
+        end
+      end 
   		redirect_to :back
-      flash[:warning] = "Missing elements in rating!"
-
+      flash[:warning] = error_message
   	end
   end
 

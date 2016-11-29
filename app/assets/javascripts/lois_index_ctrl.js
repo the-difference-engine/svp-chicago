@@ -8,22 +8,21 @@
 
     //GET CURRENT USER ID USING GON GEM
     $scope.currentUserId = gon.current_user_id;
-
     // $scope.activeRatingId = "";
     $scope.descending = false;
     $scope.toggle_class = "glyphicon glyphicon-triangle-top";
     $scope.btnText = "Invite to RFP";
 
     $scope.setup = function(){
-
+      $scope.loading = true;
       $http.get('/api/v1/lois.json').then(function(response){
         $scope.lois = response.data;
-
         if ($scope.lois.length > 0){
           for (var i=0; i<$scope.lois.length; i++){
             $scope.lois[i].avgRatingPerLoi = $scope.avgRatingPerLoi($scope.lois[i].ratings);
           }
         }
+        $scope.loading = false;
       });
 
       $http.get('/api/v1/questions.json').then(function(response){
@@ -99,22 +98,25 @@
     };
 
     $scope.inviteSent = function(status, loi_id){
-      var dupes = $scope.invited_lois.filter(function(invited_lois) {
-        return invited_lois.loi_id === parseInt(loi_id);
-      });
-      if (dupes.length === 0) {
-        var updatedStatus = {
-          status: true,
-          loi_id: loi_id,
-        };
 
-        $http.post('/api/v1/invited_lois/', updatedStatus).then(function(response){
-          console.log(response.data);
-          $scope.invited_lois.push(response.data);
+      if(confirm("ARE YOU SURE?")){
+        var dupes = $scope.invited_lois.filter(function(invited_lois) {
+          return invited_lois.loi_id === parseInt(loi_id);
         });
+        if (dupes.length === 0) {
+          var updatedStatus = {
+            status: true,
+            loi_id: loi_id,
+          };
 
-      } else {
-        alert("error");
+          $http.post('/api/v1/invited_lois/', updatedStatus).then(function(response){
+            console.log(response.data);
+            $scope.invited_lois.push(response.data);
+          });
+
+        } else {
+          alert("error");
+        }
       }
     };
 

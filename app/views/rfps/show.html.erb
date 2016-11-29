@@ -8,12 +8,12 @@
           <% if current_user.admin %>
             <% if current_user.rfp_ratings.find_by(rfp_id: @rfp.id) != nil %>
              <div id="rating-pullout-button">
-                <a id="rating-pullout-button" class="btn btn-danger" href="/rfp_ratings/<%=@admins_ratings.id%>/edit" class="btn btn-primary">Edit Rating</a>
+                <a href="/rfp_ratings/<%=@admins_ratings.id%>/edit" class="btn btn-danger">Edit Rating</a>
               </div>
             <% else %>
-                <a id="rating-pullout-button" class="btn btn-danger" href="/rfp_ratings/new?rfp_id=<%=@rfp.id%>" class="btn btn-primary">New Rating</a>
+                <div id="rating-pullout-button"><a href="/rfp_ratings/new?rfp_id=<%=@rfp.id%>" class="btn btn-danger">New Rating</a></div>
             <% end %>
-
+          <div class="form-body">
             <ol class="form-list">
               <!-- REPEAT SECTIONS -->
               <div ng-repeat= "section in sections track by $index" >
@@ -53,6 +53,7 @@
                         </td>
 
                         <td class="td-answer" ng-if="question.rfp_answer != null && question.rfp_answer == 'See Subs'">
+<<<<<<< HEAD
                           <table class="table table-striped table-bordered" >
                             <tr ng-if="question.question_type == 'block with multiple inputs'" ng-repeat="sub_question in question.sub_questions">
                               <td class="td-question">
@@ -66,6 +67,22 @@
                               </td>
 
                             </tr>
+=======
+                          <div class="row">
+                            <div class="col-md-4" ng-if="question.question_type == 'block with multiple inputs'" ng-repeat="sub_question in question.sub_questions">
+                              
+                              <p align="center" style="height:35px;">
+                                <b>{{sub_question.sub_question}}: </b>
+                              </p>
+
+                              
+                             
+                              <p ng-repeat="sub_answer in sub_question.sub_answers" class="td-answer">
+                                {{sub_answer.sub_answer}}
+                              </p>
+                            </div>
+                          </div>
+>>>>>>> 71a4bc6cf5d9a520f634af783c9ff4b3b47b27e4
 
 
                             <tr ng-if="question.question_type != 'block with multiple inputs'" ng-repeat="sub_question in question.sub_questions">
@@ -80,7 +97,7 @@
                               </td>
                             </tr>
 
-                          </table>
+
                         </td>
 
                       </tr>

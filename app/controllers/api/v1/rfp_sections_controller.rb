@@ -32,6 +32,10 @@ class Api::V1::RfpSectionsController < ApplicationController
             question["answers"].each do |answer|
               RfpAnswer.create(rfp_id: @rfp.id, rfp_question_id: question["id"], answer: answer["answer"])
             end
+          else
+            question["answers"].each do |answer|
+              RfpAnswer.create(rfp_id: @rfp.id, rfp_question_id: question["id"], answer: "")
+            end
           end
           when "block"
           @rfp_answer = RfpAnswer.create(rfp_id: @rfp.id, rfp_question_id: question["id"], answer: "See Subs")
@@ -50,6 +54,10 @@ class Api::V1::RfpSectionsController < ApplicationController
             if sub_question["answers"] != [{}]
               sub_question["answers"].each do |answer|
                 SubAnswer.create(rfp_answer_id: @rfp_answer.id, rfp_id: @rfp.id, sub_question_id: sub_question["id"], answer: answer["answer"], user_id: current_user.id)
+              end
+            else
+              sub_question["answers"].each do |answer|
+                SubAnswer.create(rfp_answer_id: @rfp_answer.id, rfp_id: @rfp.id, sub_question_id: sub_question["id"], answer: "", user_id: current_user.id)
               end
             end
           end
@@ -95,7 +103,7 @@ class Api::V1::RfpSectionsController < ApplicationController
     @rfp = Rfp.find_by(id: params[:id])
 
 
-    # @rfp = Rfp.new(user_id: current_user.id, submitted: params[:submitted])
+    @rfp.update(submitted: params[:submitted])
     # @rfp.save
 
     #Begin loop through rfp_sections
@@ -212,6 +220,8 @@ class Api::V1::RfpSectionsController < ApplicationController
     # else
     #   render json: errors.to_json, status: 400
     # end
+
+
   end
 
 end

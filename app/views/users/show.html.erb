@@ -48,26 +48,16 @@
               <p><a href="/rfps/new" class="btn btn-success">Click for RFP form</a></p>
             <% else %>
             <h5>You can submit a Letter of Interest (LOI) to SVP-Chicago.</h5>
-              <a href="/lois/new" class="btn btn-primary">Click for LOI form</a>
+              <a href="/lois/new" class="btn btn-default disabled">Click for LOI form</a>
           <% end %>
           <br>
         </div>
         <div class="col-md-6">
 
           <% if Time.now > Time.new(2016, 10, 21, 17, 0, 0) %>
-            <h2 style="color:red;"> The application deadline has passed. </h2>
+            <h2 style="color:red;"> The LOI application deadline has passed. </h2>
           <% end %>
 
-          <% if @user.admin %>
-            <h2>View available Forms</h2>
-            <br>
-            <h4 style="padding-top: 7px;">These are the forms that are currently available:</h4>
-            <p><%= link_to "LOI Form", "/lois/new", class: "btn btn-default btn-xs" %></p>
-            <% if false %>
-              <p><%= link_to "RFP Form", "/rfps/new", class: "btn btn-default" %></p>
-            <% end %>
-            <br>
-          <% end %>
           <% if !@user.lois.empty? %>
             <h4>Your Previous LOI Submissions:</h4>
             <ul>
@@ -76,13 +66,13 @@
                 <li>
                   <h3>You submitted a letter of interest on  <%= loi.friendly_loi_time %>.</h3>
                   <h5>Since this LOI has been submitted, it is no longer editable.</h5>
-                  <%= link_to "View LOI", "/lois/#{loi.id}", class: "btn btn-lg btn-warning" %>
+                  <%= link_to "View LOI", "/lois/#{loi.id}", class: "btn btn-lg btn-success" %>
                 </li>
               <% else %>
                 <li> 
                   <h3>You edited a letter of interest form on <%= loi.friendly_loi_time %>.</h3>
                   <h4> This form is not yet submitted.</h4>
-                  <%= link_to "Continue LOI", "/lois/#{loi.id}/edit", class: "btn btn-lg btn-success" %>
+                  <%= link_to "Continue LOI", "/lois/#{loi.id}/edit", class: "btn btn-lg btn-warning" %>
                 </li>
               <% end %>
             <% end %>
@@ -95,10 +85,10 @@
             <% @user.rfps.each do |rfp| %>
               <% if rfp.submitted %>
                 <li> You submitted a request for proposal on  <%= rfp.friendly_loi_time %>:
-                <%= link_to "View RFP", "/rfps/#{rfp.id}", class: "btn btn-default" %></li>
+                <%= link_to "View RFP", "/rfps/#{rfp.id}", class: "btn btn-lg btn-success" %></li>
               <% else %>
               <li> You edited a request for proposal form on <%= rfp.friendly_loi_time %>:
-                <%= link_to "Continue RFP", "#", class: "btn btn-default" %></li>
+                <%= link_to "Continue RFP", "/rfps/#{rfp.id}/edit", class: "btn btn-lg btn-warning" %></li>
               <% end %>
             <% end %>
             </ul>

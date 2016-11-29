@@ -126,6 +126,23 @@
       };
     };
 
+    $scope.removeInput = function(id){
+      console.log(id);
+      for(var i=0; i<$scope.sections.length;i++){
+        for(var j=0; j<$scope.sections[i].questions.length;j++){
+          if($scope.sections[i].questions[j].id==id){
+            if($scope.sections[i].questions[j].question_type==="multiple input"){
+              $scope.sections[i].questions[j].answers.splice(-1);
+            } else if ($scope.sections[i].questions[j].question_type==="block with multiple inputs"){
+              for(var k=0; k<$scope.sections[i].questions[j].sub_questions.length; k++){
+                $scope.sections[i].questions[j].sub_questions[k].answers.splice(-1);
+              }
+            }
+          };
+        };
+      };
+    };
+
     $scope.uploadFile = function(){
        var file = $scope.myFile;
        var file2 = $scope.myFile2;
@@ -147,7 +164,8 @@
         fileUpload.uploadFileToUrl(file5, uploadUrl, "Minutes from Board Meetings");
         $scope.confirmation = true;
       } else {
-        alert("That upload is required");
+        alert("Some file uploads are required");
+        return -1;
       }
 
       if (file6) {
@@ -157,7 +175,7 @@
        fileUpload.uploadFileToUrl(file7, uploadUrl, "Most Recent Annual Report");
      }
 
-      alert("Your files has been successfully uploaded!");
+      alert("Your files were successfully uploaded! If you are satisfied with your information, hit the Submit button to send to SVP. Otherwise click the Save button to return and edit later.");
       
     };
 
