@@ -69,7 +69,7 @@ class Api::V1::RfpSectionsController < ApplicationController
       attachment.update(rfp_id: @rfp.id)
     end
 
-    UserNotifier.send_rfp_notification(current_user).deliver
+    UserNotifier.send_loi_rejection(current_user).deliver
 
     User.where(super_admin: true).each do |admin|
       UserNotifier.send_rfp_notification_admin(admin).deliver
