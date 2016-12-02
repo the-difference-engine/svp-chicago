@@ -1,11 +1,11 @@
 (function() {
   "use strict";
 
-  angular.module("app").controller("loisCtrl", ["$scope", "$http", "$compile", function($scope, $http, $compile)
-    {
+  angular.module("app").controller("loisCtrl", ["$scope", "$http", "$compile", function($scope, $http, $compile) {
       window.scope = $scope;
 
       //GET ACTIVE ID USING THE GON GEM
+      // activeID or
       $scope.activeId = gon.loi_id;
 
       $scope.setup = function(){

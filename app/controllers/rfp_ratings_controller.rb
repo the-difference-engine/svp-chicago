@@ -46,23 +46,21 @@ class RfpRatingsController < ApplicationController
       q6: params[:q6],
       q7: params[:q7],
       q8: params[:q8],
-      q8_notes: params[:q8_notes],
       q9: params[:q9],
-      q10_notes: params[:q10_notes],
       q10: params[:q10],
       q11: params[:q11],
       q12: params[:q12],
-      q13: params[:q13],
+      follow_up: params[:follow_up],
       comments: params[:comments]
-      # total_score: :q1 + :q2 + :q3 + :q4 + :q5 + :q6 + :q7 + :q9 + :q11
+      # weighted_score: :q1 + :q2 + :q3 + :q4 + :q5 + :q6 + :q7 + :q9 + :q11
     )
+    @rating.update(weighted_score: @rating.weighted_score)
     if @rating.save
       redirect_to '/rfp_ratings'
       flash[:success] = "Rating Submitted!"
     else
       redirect_to :back
       flash[:warning] = "Missing elements in rating!"
-
     end
   end
 
@@ -84,13 +82,11 @@ class RfpRatingsController < ApplicationController
       q6: params[:q6],
       q7: params[:q7],
       q8: params[:q8],
-      q8_notes: params[:q8_notes],
       q9: params[:q9],
-      q10_notes: params[:q10_notes],
       q10: params[:q10],
       q11: params[:q11],
       q12: params[:q12],
-      q13: params[:q13],
+      follow_up: params[:follow_up],
       comments: params[:comments]
     )
     if @rating.save

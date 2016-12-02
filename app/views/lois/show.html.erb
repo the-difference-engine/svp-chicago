@@ -2,36 +2,36 @@
   <div id="form-paper">
     <div class="form-heading">
       <h1>
-        LOI Submission Review 
+        LOI Submission Review
         <% if current_user.admin %>
           <% if current_user.ratings.find_by(loi_id: @loi.id) != nil %>
             <div id="rating-pullout-button">
               <button type="button" class="btn btn-danger" data-toggle="collapse" aria-expanded="false" aria-controls="loi-ratings" data-target="#loi-ratings">Edit Rating</button>
             </div>
 
-          
+
               <div id="rating-pullout">
 
               <%= form_tag "/ratings/#{@rating.id}", method: :patch do %>
                   <div class="loi-rating-form">
-                  
+
                   <div id="loi-ratings" class="collapse">
-                  
+
                     <form>
                       <table>
                         <tr>
                           <td>
-                            <div data-toggle="tooltip" data-placement="bottom" title="Addresses the cycle of poverty; meets criteria – size of organization/budget (Relates to questions 2, 3, and 4 on the LOI)">Fits SVP's Criteria: 
+                            <div data-toggle="tooltip" data-placement="bottom" title="Addresses the cycle of poverty; meets criteria – size of organization/budget (Relates to questions 2, 3, and 4 on the LOI)">Fits SVP's Criteria:
                               <span class="glyphicon glyphicon-question-sign">
                               </span>
-                            </div>  
+                            </div>
                             <%= select_tag(:q1, options_for_select([['1 – Does not meet criteria', 1], ['2 – Meets few criteria', 2], ['3 – Meets most criteria', 3], ['4 – Meets criteria', 4]], selected: @rating.q1), :prompt => "Rate 1 - 4", class: "form-control loi-rating-form") %>
-                          </td>                        
+                          </td>
                           <td>
-                            <div data-toggle="tooltip" data-placement="bottom" title="Focus on the quality of the capacity building projects identified in the LOI (Relates to questions 5 and 6 on the LOI)">Potential Impact: 
+                            <div data-toggle="tooltip" data-placement="bottom" title="Focus on the quality of the capacity building projects identified in the LOI (Relates to questions 5 and 6 on the LOI)">Potential Impact:
                               <span class="glyphicon glyphicon-question-sign">
                               </span>
-                            </div>  
+                            </div>
                             <%= select_tag(:q2, options_for_select([['1 – Projects aren’t well articulated or aren’t a good fit for SVP', 1], ['2 – Articulated a few projects that will add capacity and are a good fit for SVP', 2], ['3 – Most of the projects articulated will add capacity and are a good fit for SVP', 3], ['4 – Thoughtful job articulating projects that will add capacity and are a good fit for SVP', 4]], selected: @rating.q2 ), :prompt => "Rate 1 - 4", class: "form-control loi-rating-form") %>
                           </td>
                         </tr>
@@ -42,10 +42,10 @@
                           </td>
                           <td>
                           <% if @ratings.length < @invite_max %>
-                          
+
                             Invite to Submit RFP:
                             <%= select_tag(:q5, options_for_select([['Yes', 'Yes'], ['No', 'No'], ['Maybe', 'Maybe']], selected: @rating.q5 ), :prompt => "Select", class: "form-control loi-rating-form") %>
-                          
+
                           <% else %>
                             <span class="tooltip-toggle" aria-label="You cannot reply 'Yes' to this question as you have reached your limit. Please edit other LOIs if you wish to invite this organization.">
                             Invite to Submit RFP:
@@ -56,15 +56,15 @@
                         </tr>
 
                         <tr>
-                          <td colspan="2" id="rating-pullout-comment-box">  
-                            Comment:                     
+                          <td colspan="2" id="rating-pullout-comment-box">
+                            Comment:
                             <%= text_area_tag :comment, @rating.comment, class: "loi-rating-form form-control"  %>
-                          </td> 
+                          </td>
                         </tr>
 
-                        <tr>        
+                        <tr>
                           <td class="loi-rating-button">
-                            <%= hidden_field_tag :loi_id, @loi.id %> 
+                            <%= hidden_field_tag :loi_id, @loi.id %>
                             <%= submit_tag 'Edit', class: "btn btn-primary" %>
                           </td>
                         </tr>
@@ -74,34 +74,34 @@
                   </div>
                 <% end %>
               </div>
-              
+
           <% else %>
           <div id="rating-pullout-button">
             <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#loi-ratings">Rate this LOI</button>
           </div>
-          
+
           <div id="rating-pullout">
 
                 <%= form_tag "/ratings", method: :post do %>
 
                   <div class="loi-rating-form">
                   <div id="loi-ratings" class="collapse">
-                  
+
                     <form>
                       <table>
                         <tr>
-                          <td>                  
-                            <div data-toggle="tooltip" data-placement="bottom" title="Addresses the cycle of poverty; meets criteria – size of organization/budget (Relates to questions 2, 3, and 4 on the LOI)">Fits SVP's Criteria: 
+                          <td>
+                            <div data-toggle="tooltip" data-placement="bottom" title="Focus on the quality of the capacity building projects identified in the LOI (Relates to questions 5 and 6 on the LOI)">Fits SVP's Criteria:
                               <span class="glyphicon glyphicon-question-sign">
                               </span>
-                            </div>  
+                            </div>
                             <%= select_tag(:q1, options_for_select([['1 – Does not meet criteria', 1], ['2 – Meets few criteria', 2], ['3 – Meets most criteria', 3], ['4 – Meets criteria', 4]], selected: @rating.q1), :prompt => "Rate 1 - 4", class: "form-control loi-rating-form") %>
                           </td>
                           <td>
-                            <div data-toggle="tooltip" data-placement="bottom" title="Focus on the quality of the capacity building projects identified in the LOI (Relates to questions 5 and 6 on the LOI)">Potential Impact: 
+                            <div data-toggle="tooltip" data-placement="bottom" title="Focus on the quality of the capacity building projects identified in the LOI (Relates to questions 5 and 6 on the LOI)">Potential Impact:
                               <span class="glyphicon glyphicon-question-sign">
                               </span>
-                            </div>  
+                            </div>
                             <%= select_tag(:q2, options_for_select([['1 – Projects aren’t well articulated or aren’t a good fit for SVP', 1], ['2 – Articulated a few projects that will add capacity and are a good fit for SVP', 2], ['3 – Most of the projects articulated will add capacity and are a good fit for SVP', 3], ['4 – Thoughtful job articulating projects that will add capacity and are a good fit for SVP', 4]], selected: @rating.q2 ), :prompt => "Rate 1 - 4", class: "form-control loi-rating-form") %>
                           </td>
                         </tr>
@@ -112,10 +112,10 @@
                           </td>
                           <td>
                             <% if @ratings.length < @invite_max %>
-                            
+
                               Invite to Submit RFP:
                               <%= select_tag(:q5, options_for_select([['Yes', 'Yes'], ['No', 'No'], ['Maybe', 'Maybe']], selected: @rating.q5 ), :prompt => "Select", class: "form-control loi-rating-form") %>
-                            
+
                             <% else %>
                               <span class="tooltip-toggle" aria-label="You cannot reply 'Yes' to this question as you have reached your limit. Please edit other LOIs if you wish to invite this organization.">
                               Invite to Submit RFP:
@@ -126,15 +126,15 @@
                         </tr>
 
                         <tr>
-                          <td colspan="2" id="rating-pullout-comment-box">  
-                            Comment:                     
+                          <td colspan="2" id="rating-pullout-comment-box">
+                            Comment:
                             <%= text_area_tag :comment, nil, class: "loi-rating-form form-control"  %>
-                          </td> 
+                          </td>
                         </tr>
-                      
+
                         <tr>
                           <td class="loi-rating-button">
-                            <%= hidden_field_tag :loi_id, @loi.id %> 
+                            <%= hidden_field_tag :loi_id, @loi.id %>
                             <%= submit_tag 'Submit', class: "btn btn-primary" %>
                           </td>
                         </tr>
@@ -147,7 +147,7 @@
             <% end %>
           <% end %>
         </h1>
-    </div> 
+    </div>
       <div class="form-body">
 
         <div ng-app="app">
@@ -270,7 +270,7 @@
                           </tr>
                         </table>
                       </th>
-                    </tr> 
+                    </tr>
                     <tr ng-repeat="answer in loi.challenge_answers">
                       <td><b>{{answer.question.question}}:</b></td>
                       <td>
@@ -317,7 +317,7 @@
               </section>
 
               <div class="row">
-            
+
                 <!-- DEMOGRAPHIC SECTION -->
 
                 <div class="col-md-6">
@@ -346,7 +346,7 @@
                   <section class="section geographic-section">
                     <h3><li> Geographic information </li></h3>
                       <table class="table table-striped table-bordered">
-                      
+
                           <tr>
                             <th>Geographic Focus</th>
                             <th>Please select whichever applies (if more than one, pick the one based on your main program)</th>
@@ -359,7 +359,7 @@
                               {{answer.answer}}
                             </td>
                           </tr>
-                   
+
                       </table>
                   </section>
                 </div>
@@ -374,7 +374,7 @@
           </div>
         </div>
 
-        
+
 
     </div>
   </div>

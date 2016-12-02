@@ -57,56 +57,49 @@
               </th>
               <th>
                 <p ng-click="sortBy('q6')">
-                  Q4
+                  Q6
                   <span ng-class="toggle_class">
                   </span>
                 </p>
               </th>
               <th>
                 <p ng-click="sortBy('q7')">
-                  q7
+                  Q7
                   <span ng-class="toggle_class">
                   </span>
                 </p>
               </th>
               <th>
                 <p ng-click="sortBy('q8')">
-                  q8
+                  Q8
                   <span ng-class="toggle_class">
                   </span>
                 </p>
               </th>
               <th>
                 <p ng-click="sortBy('q9')">
-                  q9
+                  Q9
                   <span ng-class="toggle_class">
                   </span>
                 </p>
               </th>
               <th>
                 <p ng-click="sortBy('q10')">
-                  q10
+                  Q10
                   <span ng-class="toggle_class">
                   </span>
                 </p>
               </th>
               <th>
                 <p ng-click="sortBy('q11')">
-                  q11
+                  Q11
                   <span ng-class="toggle_class">
                   </span>
                 </p>
               </th>
               <th>
                 <p ng-click="sortBy('q12')">
-                  q12
-                  <span ng-class="toggle_class">
-                  </span>
-                </p>
-              </th>
-              <th>
-                <p ng-click="sortBy('q13')">
-                  q13
+                  Q12
                   <span ng-class="toggle_class">
                   </span>
                 </p>
@@ -125,75 +118,34 @@
                   </span>
                 </p>
               </th>
+
             </tr>
-            
+
             <tr ng-repeat="rfp_rating in resultValue=(rfp_ratings | filter:orgNameFilter) | orderBy:sortByAttribute:descending">
-              <td><a href="/lois/{{rfp_rating.loi.id}}">{{ rfp_rating.org_name }}</a></td>
+              <td><a href="/rfps/{{rfp_rating.rfp_id}}">{{ rfp_rating.org_name }}</a></td>
               <td>{{ rfp_rating.q1 }}</td>
               <td>{{ rfp_rating.q2 }}</td>
               <td>{{ rfp_rating.q3 }}</td>
-              <% if @yes_ratings.length < @invite_max %>
-
-                <td ng-show="rating.user.id==currentUserId" ng-if="yourYesRatingsLength < inviteMax.max">
-                    <select class="form-control" name="singleSelect" id="singleSelect" ng-model="rating.q5" ng-change="submitInvite(rating.q5, rating.id)">
-                      <option value="">--Select--</option>
-                      <option value="Yes">Yes</option>
-                      <option value="No">No</option>
-                      <option value="Maybe">Maybe</option>
-                    </select>
-                </td>
-
-                <td ng-show="rating.user.id==currentUserId" ng-if="yourYesRatingsLength >= inviteMax.max">
-                    <span class="tooltip-toggle" aria-label="You cannot reply 'Yes' to this question as you have reached your limit. Please edit other LOIs if you wish to invite this organization.">
-                    <select class="form-control" name="singleSelect" id="singleSelect" ng-model="rating.q5" ng-change="submitInvite(rating.q5, rating.id)">
-                      <option value="">--Select--</option>
-                      <option disabled="disabled" selected="selected">Yes</option>
-                      <option value="No">No</option>
-                      <option value="Maybe">Maybe</option>
-                    </select>
-                    </span>
-                </td>
-                
-              <% elsif @yes_ratings.length == @invite_max %>
-
-                <td ng-show="rating.user.id==currentUserId" ng-if="yourYesRatingsLength >= inviteMax.max">
-                    <span class="tooltip-toggle" aria-label="You cannot reply 'Yes' to this question as you have reached your limit. Please edit other LOIs if you wish to invite this organization.">
-                    <select class="form-control" name="singleSelect" id="singleSelect" ng-model="rating.q5" ng-change="submitInvite(rating.q5, rating.id)">
-                      <option value="">--Select--</option>
-                      <option disabled="disabled" selected="selected">Yes</option>
-                      <option value="No">No</option>
-                      <option value="Maybe">Maybe</option>
-                    </select>
-                    </span>
-                </td>
-                <td ng-show="rating.user.id==currentUserId" ng-if="yourYesRatingsLength < inviteMax.max">
-                    <select class="form-control" name="singleSelect" id="singleSelect" ng-model="rating.q5" ng-change="submitInvite(rating.q5, rating.id)">
-                      <option value="">--Select--</option>
-                      <option value="Yes">Yes</option>
-                      <option value="No">No</option>
-                      <option value="Maybe">Maybe</option>
-                    </select>
-                </td>
-
-                
-
-              <% else %>
-                <td ng-show="rating.user.id==currentUserId" ng-if="yourYesRatingsLength >= inviteMax.max">
-                    <span class="tooltip-toggle" aria-label="You cannot reply 'Yes' to this question as you have reached your limit. Please edit other LOIs if you wish to invite this organization.">
-                    <select class="form-control" name="singleSelect" id="singleSelect" ng-model="rating.q5" ng-change="submitInvite(rating.q5, rating.id)">
-                      <option value="">--Select--</option>
-                      <option value="No">No</option>
-                      <option value="Maybe">Maybe</option>
-                    </select>
-                    </span>
-                </td>
-              <% end %>
-
-              <td ng-show="rating.user.id!=currentUserId">
-                  {{rating.q5}}
+              <td>{{ rfp_rating.q4 }}</td>
+              <td>{{ rfp_rating.q5 }}</td>
+              <td>{{ rfp_rating.q6 }}</td>
+              <td>{{ rfp_rating.q7 }}</td>
+              <td>
+                <span ng-if="rfp_rating.q8">Yes</span>
+                <span ng-if="!rfp_rating.q8">No</span>
               </td>
-              <td>{{ rating.weighted_score }}</td>
-              <td>{{ rating.user.email }}</td>
+              <td>{{ rfp_rating.q9 }}</td>
+              <td>
+                <span ng-if="rfp_rating.q10">Yes</span>
+                <span ng-if="!rfp_rating.q10">No</span>
+              </td>
+              <td>{{ rfp_rating.q11 }}</td>
+              <td>
+                <span ng-if="rfp_rating.q12">Yes</span>
+                <span ng-if="!rfp_rating.q12">No</span>
+              </td>
+              <td>{{ rfp_rating.weighted_score }}</td>
+              <td>{{ rfp_rating.user.email }}</td>
             </tr>
             <tr class="average-row">
               <td>Summary/Average</td>
@@ -204,12 +156,11 @@
               <td>{{resultValue | avgOfValue:'q5'}}</td>
               <td>{{resultValue | avgOfValue:'q6'}}</td>
               <td>{{resultValue | avgOfValue:'q7'}}</td>
-              <td>{{resultValue | avgOfValue:'q8'}}</td>
-              <td>{{resultValue | avgOfValue:'q9'}}</td>
-              <td>{{resultValue | avgOfValue:'q10'}}</td>
+              <td>--</td>
+              <td>--</td>
+              <td>--</td>
               <td>{{resultValue | avgOfValue:'q11'}}</td>
-              <td>{{resultValue | avgOfValue:'q12'}}</td>
-              <td>{{resultValue | avgOfValue:'q13'}}</td>
+              <td>--</td>
               <td>{{resultValue | avgOfValue:'weighted_score'}}</td>
               <td> -- </td>
             </tr>
