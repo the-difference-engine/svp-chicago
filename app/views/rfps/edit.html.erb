@@ -148,25 +148,76 @@
                     </table>
                     </div>
               <% else %>
-             <h1> Uploaded Forms</h1>
-             <h4 style="color:blue;"> Click icon to download</h4>
-            <div>
+                        <h1> Uploaded Forms</h1>
+                       <h4 style="color:blue;"> Click icon to download</h4>
+                      <div>
 
-             <meta name="viewport" content="width=device-width, initial-scale=1">
-             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+                       <meta name="viewport" content="width=device-width, initial-scale=1">
+                       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 
-            
-             <% @attachments.each do |attachment| %>
-             <%if attachment.url != nil %>
-             <h5><%=attachment.doc_type%></h5>
-             <a href="<%=attachment.url %>" target="_blank"><i class="fa fa-file-text-o" style="font-size:24px"></i></a>
-             <%end%>
-             <% end %>
-              
+                        <% @attachments.each do |attachment| %>
+                          <%if attachment.url != nil %>
+                            <h5><%=attachment.doc_type%></h5>
+                            <a href="<%=attachment.url %>" target="_blank"><i class="fa fa-file-text-o" style="font-size:24px"></i></a>
+                          <%end%>
+                        <% end %>
+                      <% if @opt_attachment1.empty? && @opt_attachment2.empty? %>
+                         <div style="overflow-x:auto;">
+                            <table class="fixed">
+                            <caption style="font-weight:bold; text-align:center; color: green;"> Please also submit the following if you have: </caption>
+                             <tr>
+                              <th style="width:20px">Current Strategic Plan</th>
+                              <th style="width:20px">Balance Sheet</th>
+                            </tr>
+                            <tr>
+                              <td><p style="color: green">optional</p></td>
+                              <td><p style="color: green">optional</p></td>
+                            </tr>
+                            <tr>
+                             <td><input type="file" file-model="myFile6"/></td>
+                              <td><input type="file" file-model="myFile7"/></td>
+                            </tr>
+                        </table>
+                        </div>
+                      <% elsif @opt_attachment1.empty? %>
+                          <div style="overflow-x:auto;">
+                              <table class="fixed">
+                              <caption style="font-weight:bold; text-align:center; color: green;"> Please also submit the following if you have: </caption>
+                               <tr>
+                                <th style="width:20px">Current Strategic Plan</th>
+                              </tr>
+                              <tr>
+                                <td><p style="color: green">optional</p></td>
+                              </tr>
+                              <tr>
+                               <td><input type="file" file-model="myFile6"/></td>
+                              </tr>
+                          </table>
+                          </div>
+                      <% elsif @opt_attachment2.empty? %>
+                         <div style="overflow-x:auto;">
+                            <table class="fixed">
+                            <caption style="font-weight:bold; text-align:center; color: green;"> Please also submit the following if you have: </caption>
+                             <tr>
+                              <th style="width:20px">Balance Sheet</th>
+                            </tr>
+                            <tr>
+                              <td><p style="color: green">optional</p></td>
+                            </tr>
+                            <tr>
+                              <td><input type="file" file-model="myFile7"/></td>
+                            </tr>
+                        </table>
+                        </div>
+                    <% end %>
+              <% end %>
+              <br>
+
+              <button ng-click="uploadFile()" class="btn btn-info" style="margin-top:15px;">Upload File</button>
 
                 </div>
               </div>
-            </div>
+            
 
             <div class="submit-button-container">
               <button class="btn btn-success btn-lg" ng-click="submitForm(false)">Save and Submit Later</button>

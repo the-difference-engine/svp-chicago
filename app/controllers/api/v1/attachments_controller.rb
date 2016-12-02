@@ -23,6 +23,10 @@ class Api::V1::AttachmentsController < ApplicationController
         doc_type: params[:doc_type]
         )
 
+    if params[:rfp_id]
+      attachment.update(rfp_id: params[:rfp_id])
+    end
+
 
     # Save the upload
     if attachment.save  

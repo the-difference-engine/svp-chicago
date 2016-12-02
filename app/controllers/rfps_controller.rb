@@ -53,8 +53,15 @@ class RfpsController < ApplicationController
   def edit
     @rfp = Rfp.find(params[:id])
     @attachments = Attachment.where(rfp_id: @rfp.id)
-    
+    @opt_attachment2 = @attachments.where(doc_type: "Current Strategic Plan")
+    @opt_attachment1 = @attachments.where(doc_type: "Most Recent Annual Report")
     gon.id = @rfp.id
+    gon.user_id = current_user.id
+    if @attachments.length >= 5
+      gon.req = true
+    else
+      gon.req = false
+    end
   end
 
   def update

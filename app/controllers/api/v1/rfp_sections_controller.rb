@@ -64,7 +64,7 @@ class Api::V1::RfpSectionsController < ApplicationController
         end
       end
     end
-    @attachments = Attachment.where(user_id: current_user.id)
+    @attachments = Attachment.where("created_at > ?", Time.now - 60)
     @attachments.each do |attachment|
       attachment.update(rfp_id: @rfp.id)
     end
@@ -213,7 +213,7 @@ class Api::V1::RfpSectionsController < ApplicationController
       end
     end
     # @attachments = Attachment.find_by(user_id: current_user.id)
-    # @attachments.update(rfp_id: @rfp.id)
+    @attachments.update(rfp_id: @rfp.id)
 
     render json: { message: "RFP Created"}, status: 200
     p @rfp
