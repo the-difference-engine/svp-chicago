@@ -13,6 +13,8 @@ class Rfp < ActiveRecord::Base
     end
   end
 
+  
+
   def friendly_loi_time
     updated_at.strftime("%m/%d/%Y")
   end
