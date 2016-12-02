@@ -68,7 +68,7 @@
                     <button style="width:106.38px" class="btn btn-error btn-invite disabled" ng-if="loi.invited_lois[0].status == true">Invited</button>
                   </div>
                   <div>
-                    <button style="width:106.38px" class="btn btn-danger btn-invite" ng-if="loi.reject == false || loi.reject == null" ng-click="changeReject(loi)">Reject LOI</button>
+                    <button style="width:106.38px" class="btn btn-danger btn-invite" ng-if="loi.reject == false || loi.reject == null" ng-click="changeReject(loi)">Delete LOI</button>
                   </div>
 
                   <% else %>
@@ -84,10 +84,17 @@
 
   <div class="csv-btn">
     <% if current_user && current_user.admin %>
-      <%= link_to "Download LOI CSV File", "/lois.csv", :class => "btn btn-danger", :role => "button" %>
+      <%= link_to "Download LOI CSV File", "/lois.csv", :class => "btn btn-primary", :role => "button" %>
     <% end %>
   </div>
 
+  <hr>
+
+  <div class="csv-btn span7 text-center">
+    <% if current_user && current_user.super_admin %>
+      <%= link_to "Send Rejection Emails", "/emails", :class => "btn btn-danger", :role => "button" %>
+    <% end %>
+  </div>
 
   </div>
 </div>
