@@ -45,6 +45,11 @@ class RfpsController < ApplicationController
 
   def index
     @rfps = Rfp.all
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data @rfps.to_csv, filename: "rfps-#{Date.today}.csv" }
+    end
   end
 
   def edit
