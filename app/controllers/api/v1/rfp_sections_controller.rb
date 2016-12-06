@@ -71,10 +71,14 @@ class Api::V1::RfpSectionsController < ApplicationController
       attachment.update(rfp_id: @rfp.id)
     end
 
-    UserNotifier.send_rfp_notification(current_user).deliver
+    if @rfp.submitted
 
-    User.where(super_admin: true).each do |admin|
-      UserNotifier.send_rfp_notification_admin(admin).deliver
+      UserNotifier.send_rfp_notification(current_user).deliver
+
+      User.where(super_admin: true).each do |admin|
+        UserNotifier.send_rfp_notification_admin(admin).deliver
+      end
+
     end
 
     render json: { message: "RFP Created"}, status: 200
@@ -149,7 +153,7 @@ class Api::V1::RfpSectionsController < ApplicationController
             else
 
               #Need to CONFIRM 
-              if question["rfp_answers"] != [{}]
+              if question["rfp_answers"] != [{}] || question["rfp_answers"] != nil
                 question["rfp_answers"].each do |answer|
                   RfpAnswer.create(rfp_id: @rfp.id, rfp_question_id: question["question_id"], answer: answer["rfp_answer"])
                 end
@@ -163,7 +167,7 @@ class Api::V1::RfpSectionsController < ApplicationController
 
               # sub_answers = SubAnswer.where(rfp_id: @rfp.id, rfp_answer_id: RfpAnswer.find_by(rfp_id: @rfp.id, rfp_question_id: question["question_id"]).id)
 
-              p "************************"
+              
 
               # sub_answers.each do |sub_answer|
               #   p sub_answer
@@ -215,18 +219,22 @@ class Api::V1::RfpSectionsController < ApplicationController
       end
     end
 
-    UserNotifier.send_rfp_notification(current_user).deliver
-
-    User.where(super_admin: true).each do |admin|
-      UserNotifier.send_rfp_notification_admin(admin).deliver
-    end
-      
     @newattachments = Attachment.where(user_id: current_user.id).where("created_at > ?", Time.now - 1800)
     
     if @newattachments.length != 7
       @newattachments.each do |attachment|
         attachment.update(rfp_id: @rfp.id)
       end
+    end
+
+    if @rfp.submitted
+
+      UserNotifier.send_rfp_notification(current_user).deliver
+
+      User.where(super_admin: true).each do |admin|
+        UserNotifier.send_rfp_notification_admin(admin).deliver
+      end
+
     end
 
     render json: { message: "RFP Created" }, status: 200
