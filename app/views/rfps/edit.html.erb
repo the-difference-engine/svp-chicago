@@ -5,21 +5,40 @@
         <div class="form-heading">
 
           <div class="well-1">
-            <h1>SVP <span style="color:#0060b2">Chicago</span> - 2016 Request for Proposal </h1>
+            <h1>SVP <span style="color:#0060b2">Chicago</span> - 2016 Request for Proposal - Edit</h1>
             <div class="container-fluid">
 
               <p><b>Completing this Form:</b></p>
 
-              <p>Please enter information directly into the form, using this form as the main body of your Letter of Interest. The boxes will expand to hold your text. You can adjust the page breaks when you have completed the form.</p>
+              Social Venture Partners Chicago has sent this request for investment proposal (RFP) to
+              a select group of 12 nonprofit organizations in the Chicagoland area. Through this document, we hope to gather information we need to choose how to invest our money, time, and expertise to successfully address breaking the poverty cycle. <br>
 
-              <p><ul>
-                <li>If you find an item confusing, please feel free to contact us.</li>
+              <br> We will make a three year commitment to provide the selected organization with:
+              <ul>
+                <li>Capacity-building support</li>
+                <li>$25,000 for general operating support – renewable annually (up to three years)</li>
+              </ul>
 
-                <li>Please use bullet points rather than paragraphs. Brevity is helpful to our partners when reviewing proposals.</li>
-              </ul></p>
+              We look forward to your submission!<br>
+
+              <br><b>Due Date: Friday, January 6, 2017, by 5:00 p.m.</b>
+
+              Please e-mail your proposal to Colleen Scrivner:<br>
+              <b><%= mail_to "colleen@svpchicago.org", "Colleen Scrivner", subject: "RFP Inquiry" %></b>, director of marketing &amp; operations, SVP Chicago.<br><br>
+
+              <b>Using this Form:</b>
+              Please enter information directly into this form. <b>The boxes will expand to hold your text. </b>You can adjust the page breaks when you have completed the form.
+              <ul>
+                <li>Your proposal must not exceed 11 pages in length. This cover page and the requested attachments are not counted in the 11 page maximum.</li>
+                <li>If you find an item confusing, please feel free to contact us. We understand that some of our nomenclature could be unfamiliar. We also understand that you may not yet have established some capabilities or processes, and indicating that fact by inserting “Not Yet
+                Established” or “To Be Determined” is completely acceptable.</li>
+                <li>Whenever possible, please use bullet points rather than paragraphs. Brevity will be highly advantageous to you during our review process.</li>
+              </ul>
+
+              For questions about items in the RFP, contact <b><%= mail_to "colleen@svpchicago.org", "Colleen Scrivner", subject: "RFP Inquiry" %>,</b> SVP Chicago director of marketing &amp; operations, at <b><%= mail_to "colleen@svpchicago.org", "colleen@svpchicago.org", subject: "RFP Inquiry" %></b>.
             </div>
           </div>    
-        </div>   
+        </div>    
           
         <!-- DISPLAY ERRORS -->
         <div class="errors" ng-if="errors">
@@ -101,19 +120,197 @@
               </div> 
             </div>
 
-            <div class="well rfp-section">
-              <div class="form-group">
-                <h3><label> Upload File </label></h3>
-                <div class="well rfp-well">
-                  <div>  
-                    <div>
-                       <input type="file" file-model="myFile"/>
-                       <button ng-click="uploadFile()" class="btn btn-info" style="margin-top:15px;">Upload File</button>
-                    </div>      
-                  </div>
+
+              <div class="well rfp-section">
+                <div class="form-group">
+           <% if @attachments.empty? %>
+                  <h3><label> Upload Files </label></h3>
+                  <div class="well rfp-well">
+                    <div>  
+                      <div>
+                      <div style="overflow-x:auto;">
+                        <table class="fixed">
+                         <tr>
+                          <th style="width:20px">Determination Letter from the IRS</th>
+                          <th style="width:20px">Organization Chart</th>
+                          <th style="width:20px">Minutes From Two Most Recent Board Meetings</th>
+                        </tr>
+                        <tr>
+                          <td><p style="color: red">required</p></td>
+                          <td><p style="color: red">required</p></td>
+                          <td><p style="color: red">required</p></td>
+                        </tr>
+                        <tr>
+                          <td><input type="file" file-model="myFile"/></td>
+                          <td><input type="file" file-model="myFile2"/></td>
+                          <td><input type="file" file-model="myFile3"/></td>
+                        </tr>
+                      </table>
+                    </div>
+                    <br>
+                    <br>
+                    <div style="overflow-x:auto;">
+                        <table class="fixed">
+                        <caption style="font-weight:bold; text-align:center; color: red;"> We also need your Financial Statements as follows: </caption>
+                         <tr>
+                          <th>For the most recent fiscal year end: <br>1. Statement of Activities(Profit and Loss) <br> 2. Balance Sheet <br>3. Audit or Review Report of independent CPA (if applicable) <br>4. From 990</th>
+                          <th>For the current fiscal year, as of the most recent month-end: <br> 1. Year-To-Date Statement of Activities (Profit and Loss) <br> 2. Balance Sheet</th>
+                        </tr>
+                        <tr>
+                          <td><p style="color: red">required</p></td>
+                          <td><p style="color: red">required</p></td>
+                        </tr>
+                        <tr>
+                          <td><input type="file" file-model="myFile4"/></td>
+                          <td><input type="file" file-model="myFile5"/></td>
+                        </tr>
+                    </table>
+                    </div>
+                    <br>
+                    <br>
+                     <div style="overflow-x:auto;">
+                        <table class="fixed">
+                        <caption style="font-weight:bold; text-align:center; color: green;"> Please also submit the following if you have: </caption>
+                         <tr>
+                          <th style="width:20px">Current Strategic Plan</th>
+                          <th style="width:20px">Balance Sheet</th>
+                        </tr>
+                        <tr>
+                          <td><p style="color: green">optional</p></td>
+                          <td><p style="color: green">optional</p></td>
+                        </tr>
+                        <tr>
+                         <td><input type="file" file-model="myFile6"/></td>
+                          <td><input type="file" file-model="myFile7"/></td>
+                        </tr>
+                    </table>
+                    </div>
+              <% else %>
+                        <h1> Uploaded Forms</h1>
+                       <h4 style="color:blue;"> Click icon to download</h4>
+                      <div>
+
+                       <meta name="viewport" content="width=device-width, initial-scale=1">
+                       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+
+                        <% @attachments.each do |attachment| %>
+                          <%if attachment.url != nil %>
+                            <h5><%=attachment.doc_type%></h5>
+                            <a href="<%=attachment.url %>" target="_blank"><i class="fa fa-file-text-o" style="font-size:24px"></i></a>
+                          <%end%>
+                        <% end %>
+                        <% if @attachments.length < 5 %>
+                          <h3><label> Upload Required Files </label></h3>
+                          <h6>All 5 Required Documents Must Be Uploaded Before Submitting</h6>
+                          <div class="well rfp-well">
+                            <div>  
+                              <div>
+                              <div style="overflow-x:auto;">
+                                <table class="fixed">
+                                 <tr>
+                                  <th style="width:20px">Determination Letter from the IRS</th>
+                                  <th style="width:20px">Organization Chart</th>
+                                  <th style="width:20px">Minutes From Two Most Recent Board Meetings</th>
+                                </tr>
+                                <tr>
+                                  <td><p style="color: red">required</p></td>
+                                  <td><p style="color: red">required</p></td>
+                                  <td><p style="color: red">required</p></td>
+                                </tr>
+                                <tr>
+                                  <td><input type="file" file-model="myFile"/></td>
+                                  <td><input type="file" file-model="myFile2"/></td>
+                                  <td><input type="file" file-model="myFile3"/></td>
+                                </tr>
+                              </table>
+                            </div>
+                            <br>
+                            <br>
+                            <div style="overflow-x:auto;">
+                                <table class="fixed">
+                                <caption style="font-weight:bold; text-align:center; color: red;"> We also need your Financial Statements as follows: </caption>
+                                 <tr>
+                                  <th>For the most recent fiscal year end: <br>1. Statement of Activities(Profit and Loss) <br> 2. Balance Sheet <br>3. Audit or Review Report of independent CPA (if applicable) <br>4. From 990</th>
+                                  <th>For the current fiscal year, as of the most recent month-end: <br> 1. Year-To-Date Statement of Activities (Profit and Loss) <br> 2. Balance Sheet</th>
+                                </tr>
+                                <tr>
+                                  <td><p style="color: red">required</p></td>
+                                  <td><p style="color: red">required</p></td>
+                                </tr>
+                                <tr>
+                                  <td><input type="file" file-model="myFile4"/></td>
+                                  <td><input type="file" file-model="myFile5"/></td>
+                                </tr>
+                            </table>
+                            </div>
+                            <br>
+                            <br>
+                        <% end %>
+                      <% if @opt_attachment1.empty? && @opt_attachment2.empty? %>
+                          <h4><label> Upload Optional Files </label></h4>
+                         <div style="overflow-x:auto;">
+                            <table class="fixed">
+                            <caption style="font-weight:bold; text-align:center; color: green;"> Please also submit the following if you have: </caption>
+                             <tr>
+                              <th style="width:20px">Current Strategic Plan</th>
+                              <th style="width:20px">Balance Sheet</th>
+                            </tr>
+                            <tr>
+                              <td><p style="color: green">optional</p></td>
+                              <td><p style="color: green">optional</p></td>
+                            </tr>
+                            <tr>
+                             <td><input type="file" file-model="myFile6"/></td>
+                              <td><input type="file" file-model="myFile7"/></td>
+                            </tr>
+                        </table>
+                        </div>
+                      <% elsif @opt_attachment1.empty? %>
+                          <h4><label> Upload Optional Files </label></h4>
+                          <div style="overflow-x:auto;">
+                              <table class="fixed">
+                              <caption style="font-weight:bold; text-align:center; color: green;"> Please also submit the following if you have: </caption>
+                               <tr>
+                                <th style="width:20px">Current Strategic Plan</th>
+                              </tr>
+                              <tr>
+                                <td><p style="color: green">optional</p></td>
+                              </tr>
+                              <tr>
+                               <td><input type="file" file-model="myFile6"/></td>
+                              </tr>
+                          </table>
+                          </div>
+                      <% elsif @opt_attachment2.empty? %>
+                        <h4><label> Upload Optional Files </label></h4>
+                         <div style="overflow-x:auto;">
+                            <table class="fixed">
+                            <caption style="font-weight:bold; text-align:center; color: green;"> Please also submit the following if you have: </caption>
+                             <tr>
+                              <th style="width:20px">Balance Sheet</th>
+                            </tr>
+                            <tr>
+                              <td><p style="color: green">optional</p></td>
+                            </tr>
+                            <tr>
+                              <td><input type="file" file-model="myFile7"/></td>
+                            </tr>
+                        </table>
+                        </div>
+                    <% end %>
+              <% end %>
+              <br>
+
+              <% if @attachments.length < 7 %>
+                <button ng-click="uploadFile()" class="btn btn-info" style="margin-top:15px;">Upload File</button>
+              <% end %>
+
                 </div>
               </div>
             </div>
+            </div>
+            </div>
+            
 
             <div class="submit-button-container">
               <button class="btn btn-success btn-lg" ng-click="submitForm(false)">Save and Submit Later</button>

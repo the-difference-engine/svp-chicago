@@ -1,14 +1,56 @@
 (function() {
   "use strict";
 
-  angular.module("app").controller("editRfpsCtrl", ["$scope", "$http", "$compile", function($scope, $http, $compile)
-  {
+  angular.module("app")
+
+  .directive('fileModel', ['$parse', function ($parse) {
+    return {
+       restrict: 'A',
+       link: function(scope, element, attrs) {
+          var model = $parse(attrs.fileModel);
+          var modelSetter = model.assign;
+
+          element.bind('change', function(){
+             scope.$apply(function(){
+                modelSetter(scope, element[0].files[0]);
+             });
+          });
+       }
+    };
+  }])
+
+  .service('fileUploadEdit', ['$http', function ($http) {
+     this.uploadFileToUrlEdit = function(file, uploadUrl, type, rfpId) {
+        var fd = new FormData();
+        fd.append('file', file);
+
+        $http.post(uploadUrl+'?doc_type='+type+'&current_user='+gon.user_id+'&rfp_id='+rfpId, fd, {
+           transformRequest: angular.identity,
+           headers: {'Content-Type': undefined}
+        })
+
+        .success(function(){
+
+           // alert("Your file has been successfully uploaded!");
+        })
+
+        .error(function(){
+           alert("Something went wrong. Did you select a file?");
+        });
+     }
+   }])
+
+  .controller("editRfpsCtrl", ["$scope", "$http", "$compile", "fileUploadEdit", function($scope, $http, $compile, fileUploadEdit){
     window.scope = $scope;
 
     $scope.setup = function(){
       $scope.activeId = gon.id;
 
+      $scope.user_id = gon.user_id;
+
       $scope.submitted = false;
+
+      $scope.required = gon.req
 
       $http.get('/api/v1/rfps/' + $scope.activeId + '.json').then(function(response){
         $scope.sections = response.data;
@@ -94,6 +136,10 @@
     };
 
     $scope.submitForm = function(submitStatus){
+      if (submitStatus == true && $scope.confirmation == false) {
+        alert("You need to upload all required files in order to submit");
+        return;
+      } 
       var newRfp = {
         rfp_sections: $scope.sections,
         submitted: submitStatus
@@ -113,6 +159,54 @@
         })
 
     };
+
+    $scope.uploadFile = function(){
+      if (!$scope.required) {
+       var file = $scope.myFile;
+       var file2 = $scope.myFile2;
+       var file3 = $scope.myFile3;
+       var file4 = $scope.myFile4;
+       var file5 = $scope.myFile5;
+       var file6 = $scope.myFile6;
+       var file7 = $scope.myFile7;
+      } else {
+        var file6 = $scope.myFile6;
+        var file7 = $scope.myFile7;
+      }
+ 
+       var uploadUrl = "/api/v1/attachments.json";
+
+       if (file && file2 && file3 && file4 && file5) {
+        fileUploadEdit.uploadFileToUrlEdit(file, uploadUrl, "IRS Determination Letter", $scope.activeId);
+        fileUploadEdit.uploadFileToUrlEdit(file2, uploadUrl, "Organization Chart", $scope.activeId );
+        fileUploadEdit.uploadFileToUrlEdit(file3, uploadUrl, "Financial Statement: Recent Fiscal Year-End", $scope.activeId);
+        fileUploadEdit.uploadFileToUrlEdit(file4, uploadUrl, "Financial Statement: Most Recent Month-End", $scope.activeId);
+        fileUploadEdit.uploadFileToUrlEdit(file5, uploadUrl, "Minutes from Board Meetings", $scope.activeId);
+        $scope.confirmation = true;
+      } else if ($scope.required){
+        $scope.confirmation = true;
+      } else {
+           if (file6) {
+            fileUploadEdit.uploadFileToUrlEdit(file6, uploadUrl, "Current Strategic Plan", $scope.activeId);
+          }
+          if (file7) {
+            fileUploadEdit.uploadFileToUrlEdit(file7, uploadUrl, "Most Recent Annual Report", $scope.activeId);
+          }
+        alert("Some Required Files Are Missing");
+        return -1;
+      }
+
+      if (file6) {
+       fileUploadEdit.uploadFileToUrlEdit(file6, uploadUrl, "Current Strategic Plan", $scope.activeId);
+     }
+     if (file7) {
+       fileUploadEdit.uploadFileToUrlEdit(file7, uploadUrl, "Most Recent Annual Report", $scope.activeId);
+     }
+
+      alert("Your files were successfully uploaded! If you are satisfied with your information, hit the Submit button to send to SVP. Otherwise click the Save button to return and edit later.");
+      
+    };
+
 
   }]);
 
