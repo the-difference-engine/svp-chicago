@@ -41,7 +41,7 @@ class UserNotifier < ActionMailer::Base
     @user = user
     p user
     mail( :to => @user.email,
-          :cc => 'danhey@gmail.com' #'colleen@svpchicago.org',
+          :cc => 'danhey@gmail.com', #'colleen@svpchicago.org',
           :subject => "You're invited to submit an RFP!" )
   end
 end
