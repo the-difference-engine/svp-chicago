@@ -5,21 +5,40 @@
         <div class="form-heading">
 
           <div class="well-1">
-            <h1>SVP <span style="color:#0060b2">Chicago</span> - 2016 Request for Proposal </h1>
+            <h1>SVP <span style="color:#0060b2">Chicago</span> - 2016 Request for Proposal - Edit</h1>
             <div class="container-fluid">
 
               <p><b>Completing this Form:</b></p>
 
-              <p>Please enter information directly into the form, using this form as the main body of your Letter of Interest. The boxes will expand to hold your text. You can adjust the page breaks when you have completed the form.</p>
+              Social Venture Partners Chicago has sent this request for investment proposal (RFP) to
+              a select group of 12 nonprofit organizations in the Chicagoland area. Through this document, we hope to gather information we need to choose how to invest our money, time, and expertise to successfully address breaking the poverty cycle. <br>
 
-              <p><ul>
-                <li>If you find an item confusing, please feel free to contact us.</li>
+              <br> We will make a three year commitment to provide the selected organization with:
+              <ul>
+                <li>Capacity-building support</li>
+                <li>$25,000 for general operating support – renewable annually (up to three years)</li>
+              </ul>
 
-                <li>Please use bullet points rather than paragraphs. Brevity is helpful to our partners when reviewing proposals.</li>
-              </ul></p>
+              We look forward to your submission!<br>
+
+              <br><b>Due Date: Friday, January 6, 2017, by 5:00 p.m.</b>
+
+              Please e-mail your proposal to Colleen Scrivner:<br>
+              <b><%= mail_to "colleen@svpchicago.org", "Colleen Scrivner", subject: "RFP Inquiry" %></b>, director of marketing &amp; operations, SVP Chicago.<br><br>
+
+              <b>Using this Form:</b>
+              Please enter information directly into this form. <b>The boxes will expand to hold your text. </b>You can adjust the page breaks when you have completed the form.
+              <ul>
+                <li>Your proposal must not exceed 11 pages in length. This cover page and the requested attachments are not counted in the 11 page maximum.</li>
+                <li>If you find an item confusing, please feel free to contact us. We understand that some of our nomenclature could be unfamiliar. We also understand that you may not yet have established some capabilities or processes, and indicating that fact by inserting “Not Yet
+                Established” or “To Be Determined” is completely acceptable.</li>
+                <li>Whenever possible, please use bullet points rather than paragraphs. Brevity will be highly advantageous to you during our review process.</li>
+              </ul>
+
+              For questions about items in the RFP, contact <b><%= mail_to "colleen@svpchicago.org", "Colleen Scrivner", subject: "RFP Inquiry" %>,</b> SVP Chicago director of marketing &amp; operations, at <b><%= mail_to "colleen@svpchicago.org", "colleen@svpchicago.org", subject: "RFP Inquiry" %></b>.
             </div>
           </div>    
-        </div>   
+        </div>    
           
         <!-- DISPLAY ERRORS -->
         <div class="errors" ng-if="errors">
@@ -102,9 +121,9 @@
             </div>
 
 
-           <% if @attachments.empty? %>
               <div class="well rfp-section">
                 <div class="form-group">
+           <% if @attachments.empty? %>
                   <h3><label> Upload Files </label></h3>
                   <div class="well rfp-well">
                     <div>  
@@ -288,6 +307,9 @@
 
                 </div>
               </div>
+            </div>
+            </div>
+            </div>
             
 
             <div class="submit-button-container">

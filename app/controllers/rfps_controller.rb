@@ -53,7 +53,6 @@ class RfpsController < ApplicationController
   def edit
     @rfp = Rfp.find(params[:id])
     @attachments = Attachment.where(rfp_id: @rfp.id)
-    @attachments = @attachments.order()
     @opt_attachment1 = @attachments.where(doc_type: "Current Strategic Plan")
     @opt_attachment2 = @attachments.where(doc_type: "Most Recent Annual Report")
     gon.id = @rfp.id
