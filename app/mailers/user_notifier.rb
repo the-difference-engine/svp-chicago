@@ -12,7 +12,7 @@ class UserNotifier < ActionMailer::Base
   def send_loi_rejection(user)
     @user = user
     mail( :to => @user.email,
-          :cc => 'danhey@gmail.com', #'colleen@svpchicago.org',
+          :cc => ENV['SUPERADMIN_EMAIL'],
           :subject => 'Thanks for submission to SVP!' )
   end
 
@@ -41,7 +41,7 @@ class UserNotifier < ActionMailer::Base
     @user = user
     p user
     mail( :to => @user.email,
-          :cc => 'danhey@gmail.com', #'colleen@svpchicago.org',
+          :cc => ENV['SUPERADMIN_EMAIL'],
           :subject => "You're invited to submit an RFP!" )
   end
 end
