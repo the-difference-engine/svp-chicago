@@ -136,6 +136,10 @@
     };
 
     $scope.submitForm = function(submitStatus){
+      if (submitStatus == true && $scope.confirmation == false) {
+        alert("You need to upload all required files in order to submit");
+        return;
+      } 
       var newRfp = {
         rfp_sections: $scope.sections,
         submitted: submitStatus
@@ -182,7 +186,13 @@
       } else if ($scope.required){
         $scope.confirmation = true;
       } else {
-        alert("Some file uploads are required");
+           if (file6) {
+            fileUploadEdit.uploadFileToUrlEdit(file6, uploadUrl, "Current Strategic Plan", $scope.activeId);
+          }
+          if (file7) {
+            fileUploadEdit.uploadFileToUrlEdit(file7, uploadUrl, "Most Recent Annual Report", $scope.activeId);
+          }
+        alert("Some Required Files Are Missing");
         return -1;
       }
 

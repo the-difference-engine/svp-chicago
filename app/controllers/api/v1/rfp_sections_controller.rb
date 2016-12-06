@@ -64,6 +64,8 @@ class Api::V1::RfpSectionsController < ApplicationController
         end
       end
     end
+    # This is to ensure two forms created by the same user are not assigned the same rfp_id:
+    # Only the most recent attachments (within the last minute) are updated.
     @attachments = Attachment.where("created_at > ?", Time.now - 60)
     @attachments.each do |attachment|
       attachment.update(rfp_id: @rfp.id)
@@ -212,8 +214,14 @@ class Api::V1::RfpSectionsController < ApplicationController
         end
       end
     end
-    # @attachments = Attachment.find_by(user_id: current_user.id)
-    @attachments.update(rfp_id: @rfp.id)
+      
+    @newattachments = Attachment.where("created_at > ?", Time.now - 60)
+    
+    if @newattachments.length != 7
+      @newattachments.each do |attachment|
+        attachment.update(rfp_id: @rfp.id)
+      end
+    end
 
     render json: { message: "RFP Created"}, status: 200
     p @rfp
