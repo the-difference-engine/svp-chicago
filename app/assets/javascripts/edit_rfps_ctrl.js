@@ -51,7 +51,8 @@
       $scope.submitted = false;
       $scope.confirmation = false;
 
-      $scope.required = gon.req
+      $scope.required = gon.req;
+      if ($scope.required) { $scope.confirmation = true; }
 
       $http.get('/api/v1/rfps/' + $scope.activeId + '.json').then(function(response){
         $scope.sections = response.data;

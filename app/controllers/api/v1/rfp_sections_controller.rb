@@ -153,7 +153,7 @@ class Api::V1::RfpSectionsController < ApplicationController
             else
 
               #Need to CONFIRM 
-              if question["rfp_answers"] != [{}] || question["rfp_answers"] != nil
+              if question["rfp_answers"] != nil && question["rfp_answers"] != [{}]
                 question["rfp_answers"].each do |answer|
                   RfpAnswer.create(rfp_id: @rfp.id, rfp_question_id: question["question_id"], answer: answer["rfp_answer"])
                 end
