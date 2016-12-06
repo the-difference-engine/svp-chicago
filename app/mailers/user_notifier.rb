@@ -12,7 +12,7 @@ class UserNotifier < ActionMailer::Base
   def send_loi_rejection(user)
     @user = user
     mail( :to => @user.email,
-          :cc => 'colleen@svpchicago.org',
+          :cc => 'danhey@gmail.com', #'colleen@svpchicago.org',
           :subject => 'Thanks for submission to SVP!' )
   end
 
