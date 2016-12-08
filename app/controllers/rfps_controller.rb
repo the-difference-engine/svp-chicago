@@ -41,20 +41,27 @@ class RfpsController < ApplicationController
     @attachments = Attachment.where(rfp_id: @rfp.id)
     gon.id = @rfp.id
     @admins_ratings = RfpRating.find_by(user_id: current_user.id, rfp_id: @rfp.id)
+    @doc_type_array = [ "IRS Determination Letter", 
+                        "Organization Chart",
+                        "Financial Statement: Recent Fiscal Year-End"]
  end
 
   def index
     @rfps = Rfp.all
-
-    respond_to do |format|
-      format.html
-      format.csv { send_data @rfps.to_csv, filename: "rfp_ratings-#{Date.today}.csv" }
-    end
   end
 
   def edit
     @rfp = Rfp.find(params[:id])
+    @attachments = Attachment.where(rfp_id: @rfp.id)
+    @opt_attachment1 = @attachments.where(doc_type: "Current Strategic Plan")
+    @opt_attachment2 = @attachments.where(doc_type: "Most Recent Annual Report")
     gon.id = @rfp.id
+    gon.user_id = current_user.id
+    if @attachments.length >= 5
+      gon.req = true
+    else
+      gon.req = false
+    end
   end
 
   def update

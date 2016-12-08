@@ -64,7 +64,9 @@ class Api::V1::RfpSectionsController < ApplicationController
         end
       end
     end
-    @attachments = Attachment.where(user_id: current_user.id)
+    # This is to ensure two forms created by the same user are not assigned the same rfp_id:
+    # Only the most recent attachments (within the last minute) are updated.
+    @attachments = Attachment.where(user_id: current_user.id).where("created_at > ?", Time.now - 1800)
     @attachments.each do |attachment|
       attachment.update(rfp_id: @rfp.id)
     end
@@ -212,10 +214,22 @@ class Api::V1::RfpSectionsController < ApplicationController
         end
       end
     end
-    # @attachments = Attachment.find_by(user_id: current_user.id)
-    # @attachments.update(rfp_id: @rfp.id)
 
-    render json: { message: "RFP Created"}, status: 200
+    UserNotifier.send_rfp_notification(current_user).deliver
+
+    User.where(super_admin: true).each do |admin|
+      UserNotifier.send_rfp_notification_admin(admin).deliver
+    end
+      
+    @newattachments = Attachment.where(user_id: current_user.id).where("created_at > ?", Time.now - 1800)
+    
+    if @newattachments.length != 7
+      @newattachments.each do |attachment|
+        attachment.update(rfp_id: @rfp.id)
+      end
+    end
+
+    render json: { message: "RFP Created" }, status: 200
     p @rfp
     # else
     #   render json: errors.to_json, status: 400

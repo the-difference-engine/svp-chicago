@@ -20,8 +20,6 @@ class RfpRating < ActiveRecord::Base
   end
 
 
-
-
   def self.to_csv
     CSV.generate do |csv|
       csv << column_names

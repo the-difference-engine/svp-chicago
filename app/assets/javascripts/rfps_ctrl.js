@@ -164,7 +164,13 @@
         fileUpload.uploadFileToUrl(file5, uploadUrl, "Minutes from Board Meetings");
         $scope.confirmation = true;
       } else {
-        alert("Some file uploads are required");
+           if (file6) {
+            fileUpload.uploadFileToUrl(file6, uploadUrl, "Current Strategic Plan");
+          }
+          if (file7) {
+            fileUpload.uploadFileToUrl(file7, uploadUrl, "Most Recent Annual Report");
+          }
+        alert("Some Required Files Are Missing");
         return -1;
       }
 
@@ -178,6 +184,7 @@
       alert("Your files were successfully uploaded! If you are satisfied with your information, hit the Submit button to send to SVP. Otherwise click the Save button to return and edit later.");
       
     };
+
 
   }]);
 

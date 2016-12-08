@@ -50,6 +50,7 @@ class RfpRatingsController < ApplicationController
       q10: params[:q10],
       q11: params[:q11],
       q12: params[:q12],
+      invited: params[:invited],
       follow_up: params[:follow_up],
       comments: params[:comments]
       # weighted_score: :q1 + :q2 + :q3 + :q4 + :q5 + :q6 + :q7 + :q9 + :q11
@@ -86,6 +87,7 @@ class RfpRatingsController < ApplicationController
       q10: params[:q10],
       q11: params[:q11],
       q12: params[:q12],
+      invited: params[:invited],
       follow_up: params[:follow_up],
       comments: params[:comments]
     )
