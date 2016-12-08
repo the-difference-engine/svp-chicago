@@ -198,4 +198,10 @@
         </ol>
       </div>
     </div>
+
+    <div class="csv-btn">
+      <% if current_user && current_user.admin %>
+        <%= link_to "Download RFP ratings CSV File", "/rfp_ratings.csv", :class => "btn btn-danger", :role => "button" %>
+      <% end %>
+    </div>
 </div>

@@ -18,4 +18,18 @@ class RfpRating < ActiveRecord::Base
     sum = [q1, q2, q3, q4, q5, q6, q7, q9, q11]
     (sum.sum / sum.length.to_f).round(2)
   end
+
+
+
+
+  def self.to_csv
+    CSV.generate do |csv|
+      csv << column_names
+      all.each do |ratings|
+        csv << ratings.attributes.values_at(*column_names)
+      end
+    end
+
+
+  end
 end

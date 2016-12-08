@@ -48,7 +48,7 @@ class RfpsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.csv { send_data @rfps.to_csv, filename: "rfps-#{Date.today}.csv" }
+      format.csv { send_data @rfps.to_csv, filename: "rfp_ratings-#{Date.today}.csv" }
     end
   end
 
