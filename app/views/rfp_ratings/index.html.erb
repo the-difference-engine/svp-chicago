@@ -130,22 +130,14 @@
               <td>{{ rfp_rating.q5 }}</td>
               <td>{{ rfp_rating.q6 }}</td>
               <td>{{ rfp_rating.q7 }}</td>
-              <td>
-                <span ng-if="rfp_rating.q8">Yes</span>
-                <span ng-if="!rfp_rating.q8">No</span>
-              </td>
+              <td>{{ rfp_rating.q8 }}</td>
               <td>{{ rfp_rating.q9 }}</td>
-              <td>
-                <span ng-if="rfp_rating.q10">Yes</span>
-                <span ng-if="!rfp_rating.q10">No</span>
-              </td>
+              <td>{{ rfp_rating.q10 }}</td>
               <td>{{ rfp_rating.q11 }}</td>
-              <td>
-                <span ng-if="rfp_rating.q12">Yes</span>
-                <span ng-if="!rfp_rating.q12">No</span>
-              </td>
+              <td>{{ rfp_rating.q12 }}</td>
               <td>{{ rfp_rating.weighted_score }}</td>
               <td>{{ rfp_rating.user.email }}</td>
+              <td>{{ rfp_rating.user.invited }}</td>
             </tr>
             <tr class="average-row">
               <td>Summary/Average</td>
@@ -156,12 +148,13 @@
               <td>{{resultValue | avgOfValue:'q5'}}</td>
               <td>{{resultValue | avgOfValue:'q6'}}</td>
               <td>{{resultValue | avgOfValue:'q7'}}</td>
-              <td>--</td>
-              <td>--</td>
-              <td>--</td>
+              <td>{{resultValue | avgOfValue:'q8'}}</td>
+              <td>{{resultValue | avgOfValue:'q9'}}</td>
+              <td>{{resultValue | avgOfValue:'q10'}}</td>
               <td>{{resultValue | avgOfValue:'q11'}}</td>
-              <td>--</td>
+              <td>{{resultValue | avgOfValue:'q12'}}</td>
               <td>{{resultValue | avgOfValue:'weighted_score'}}</td>
+              <td>{{resultValue | avgOfValue:'invited'}}</td>
               <td> -- </td>
             </tr>
           </table>
