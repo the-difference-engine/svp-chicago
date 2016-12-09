@@ -6,14 +6,14 @@ class RfpRatingsController < ApplicationController
     @yes_ratings = RfpRating.where(user_id: current_user.id).where(q5: 'Yes')
     gon.current_user_id = current_user.id
 
-    if user_signed_in? && current_user.admin
+    if user_signed_in? && current_user.super_admin
       @ratings = RfpRating.all
 
       respond_to do |format|
         format.html
         format.csv { send_data @ratings.to_csv, filename: "rfp_ratings-#{Date.today}.csv" }
       end
-    else
+    else 
       @ratings = RfpRating.where(user_id: current_user.id)
 
       respond_to do |format|
