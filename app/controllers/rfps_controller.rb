@@ -48,6 +48,7 @@ class RfpsController < ApplicationController
 
   def index
     @rfps = Rfp.all
+    gon.current_user_id = current_user.id
   end
 
   def edit
