@@ -71,7 +71,7 @@
 
                     <% end %>
                       <% if current_user && current_user.super_admin %>
-                        <!-- removed extraneous superadmin action button -->
+                        <%= link_to "Download RFP Ratings CSV File", "/rfp_ratings.csv", :class => "btn btn-danger", :role => "button" %>
                       <% end %>
                   </td>
                 </tr>
