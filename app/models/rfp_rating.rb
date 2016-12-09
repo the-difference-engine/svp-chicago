@@ -18,4 +18,36 @@ class RfpRating < ActiveRecord::Base
     sum = [q1, q2, q3, q4, q5, q6, q7, q9, q11]
     (sum.sum / sum.length.to_f).round(2)
   end
+
+  def self.to_csv
+    attributes = %w{id q1 q2 q3 q4 q5 q6 q7 q8 q9 q10 q11 q12 weighted_score comments follow_up invited rated_by}
+   
+    CSV.generate(headers: true) do |csv|
+
+      csv << attributes
+      all.each do |rating|
+        csv.add_row([
+          rating.id,
+          rating.q1,
+          rating.q2,
+          rating.q3,
+          rating.q4,
+          rating.q5,
+          rating.q6,
+          rating.q7,
+          rating.q8,
+          rating.q9,
+          rating.q10,
+          rating.q11,
+          rating.q12,
+          rating.weighted_score,
+          rating.comments,
+          rating.follow_up,
+          rating.invited,
+          rating.user.email
+          ])
+      end
+    end
+  end
+
 end

@@ -11,14 +11,14 @@ class RfpRatingsController < ApplicationController
 
       respond_to do |format|
         format.html
-        format.csv { send_data @ratings.to_csv, filename: "ratings-#{Date.today}.csv" }
+        format.csv { send_data @ratings.to_csv, filename: "rfp_ratings-#{Date.today}.csv" }
       end
     else
       @ratings = RfpRating.where(user_id: current_user.id)
 
       respond_to do |format|
         format.html
-        format.csv { send_data @ratings.to_csv, filename: "ratings-#{Date.today}.csv" }
+        format.csv { send_data @ratings.to_csv, filename: "rfp_ratings-#{Date.today}.csv" }
       end
     end
 

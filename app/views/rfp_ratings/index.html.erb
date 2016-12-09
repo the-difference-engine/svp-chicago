@@ -162,14 +162,14 @@
               <td>{{resultValue | avgOfValue:'q11'}}</td>
               <td>{{resultValue | avgOfValue:'q12'}}</td>
               <td>{{resultValue | avgOfValue:'weighted_score'}}</td>
-              <td>{{resultValue | avgOfValue:'invited'}}</td>
+              <td> -- </td>
               <td> -- </td>
             </tr>
           </table>
         </div>
       </div>
       <div class="csv-btn">
-        <%= link_to "Download Ratings CSV File", "/ratings.csv", :class => "btn btn-danger", :role => "button" %>
+        <%= link_to "Download RFP Ratings CSV File", "/rfp_ratings.csv", :class => "btn btn-danger", :role => "button" %>
         <span class="invite-max-btn">
           <% if current_user && current_user.super_admin %>
             <%= link_to "Change maximum number of Yes answers per admin", "/invite_maxes/1/edit", :class => "btn btn-danger", :role => "button" %>
