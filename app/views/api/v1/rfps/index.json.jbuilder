@@ -1,6 +1,8 @@
 json.array! @rfps do |rfp|
   json.id rfp.id
   json.org_name rfp.org_name
+  json.submitted rfp.submitted
+  json.rfp_ratings rfp.rfp_ratings
   json.rfp_answers rfp.rfp_answers.each do |rfp_answer|
 
     json.rfp_question rfp_answer.rfp_question.question
