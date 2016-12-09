@@ -3,7 +3,7 @@ class Api::V1::RfpRatingsController < ApplicationController
 
   def index
 
-    if user_signed_in? && current_user.admin
+    if user_signed_in? && current_user.super_admin
       @ratings = RfpRating.all
     else
       @ratings = RfpRating.where(user_id: current_user.id)
