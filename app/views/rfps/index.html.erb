@@ -71,11 +71,14 @@
 
                     <% end %>
                       <% if current_user && current_user.super_admin %>
-                        <%= link_to "Download RFP Ratings CSV File", "/rfp_ratings.csv", :class => "btn btn-danger", :role => "button" %>
+                        
                       <% end %>
                   </td>
                 </tr>
               </table>
+                <% if current_user && current_user.super_admin %>
+                  <%= link_to "Download RFPs CSV File", "/rfps.csv", :class => "btn btn-danger", :role => "button" %>
+                <% end %>
             </div>
       </div>
     </div>
