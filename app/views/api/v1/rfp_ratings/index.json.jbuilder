@@ -18,4 +18,5 @@ json.array! @ratings do |rating|
   json.follow_up rating.follow_up
   json.weighted_score rating.weighted_score
   json.invited rating.invited
+  json.comments rating.comments
 end
