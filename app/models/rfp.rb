@@ -6,12 +6,12 @@ class Rfp < ActiveRecord::Base
   has_many :sub_answers
   has_many :rfp_ratings
 
-  # def org_name
-  #   rfp_answer = rfp_answers.find_by(rfp_question_id: RfpQuestion.find_by(question: "Organization").id)
-  #   if rfp_answer
-  #     return rfp_answer.answer
-  #   end
-  # end
+  def org_name
+    rfp_answer = rfp_answers.find_by(rfp_question_id: RfpQuestion.find_by(question: "Organization").id)
+    if rfp_answer
+      return rfp_answer.answer
+    end
+  end
 
   def self.to_csv
     attributes = %w{id submitted}
@@ -29,8 +29,6 @@ class Rfp < ActiveRecord::Base
         csv_row_answers << rfp.id
         csv_row_answers << rfp.submitted
         questions.each do |question|
-
-          p attribute_questions
 
           if question.question_type == "multiple input"
             multi_input_answers = rfp.rfp_answers.where(rfp_question_id: question.id)
@@ -58,7 +56,7 @@ class Rfp < ActiveRecord::Base
             j = 0
             sub_quest_count.times do
               sub_answers = rfp.sub_answers.where(sub_question_id: sub_questions[j].id)
-          #     # if sub_answers != "" && sub_answers != nil
+          
                 sub_answer_count = sub_answers.count
                 i = 0
                 answer_string = ''
@@ -67,7 +65,7 @@ class Rfp < ActiveRecord::Base
                   i+=1
                 end
                 j+=1
-          #     # end
+        
               sub_string_array << answer_string
             end
             csv_row_answers << sub_string_array.join(", ")
