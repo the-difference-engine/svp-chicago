@@ -120,13 +120,6 @@
               </th>
               <th>
                 <p ng-click="sortBy('user.email')">
-                  Rated By
-                  <span ng-class="toggle_class">
-                  </span>
-                </p>
-              </th>
-              <th>
-                <p ng-click="sortBy('user.email')">
                   Follow Up
                   <span ng-class="toggle_class">
                   </span>
@@ -135,6 +128,13 @@
               <th>
                 <p ng-click="sortBy('user.email')">
                   Comments
+                  <span ng-class="toggle_class">
+                  </span>
+                </p>
+              </th>
+              <th>
+                <p ng-click="sortBy('user.email')">
+                  Rated By
                   <span ng-class="toggle_class">
                   </span>
                 </p>
@@ -159,9 +159,9 @@
               <td ng-if="rfp_rating.invited">Yes</td>
               <td ng-if="!rfp_rating.invited">No</td>
               <td>{{ rfp_rating.weighted_score }}</td>
-              <td>{{ rfp_rating.user.email }}</td>
               <td>{{ rfp_rating.follow_up }}</td>
               <td>{{ rfp_rating.comments }}</td>
+              <td>{{ rfp_rating.user.email }}</td>
             </tr>
             <tr class="average-row">
               <td>Summary/Average</td>
