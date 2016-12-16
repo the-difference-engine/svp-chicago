@@ -1,6 +1,7 @@
 class RfpRating < ActiveRecord::Base
   belongs_to :user
   belongs_to :rfp
+  validates :q1, :q2, :q3, :q4, :q5, :q6, :q7, :q8, :q9, :q10, :q11, :q12, presence: true
 
   def weighted_score
     # Attempted automated method, calculates q# scores, adds them and divides by the count of scores
