@@ -160,8 +160,8 @@
               <td>{{ rfp_rating.user.email }}</td>
               <td ng-if="rfp_rating.invited">Yes</td>
               <td ng-if="!rfp_rating.invited">No</td>
-              <td>{{ rfp_rating.user.follow_up }}</td>
-              <td>{{ rfp_rating.user.comments }}</td>
+              <td>{{ rfp_rating.follow_up }}</td>
+              <td>{{ rfp_rating.comments }}</td>
             </tr>
             <tr class="average-row">
               <td>Summary/Average</td>
@@ -178,6 +178,8 @@
               <td>{{resultValue | avgOfValue:'q11'}}</td>
               <td>{{resultValue | avgOfValue:'q12'}}</td>
               <td>{{resultValue | avgOfValue:'weighted_score'}}</td>
+              <td> -- </td>
+              <td> -- </td>
               <td> -- </td>
               <td> -- </td>
             </tr>
