@@ -200,11 +200,6 @@
       </div>
       <div class="csv-btn">
         <%= link_to "Download RFP Ratings CSV File", "/rfp_ratings.csv", :class => "btn btn-danger", :role => "button" %>
-        <span class="invite-max-btn">
-          <% if current_user && current_user.super_admin %>
-            <%= link_to "Change maximum number of Yes answers per admin", "/invite_maxes/1/edit", :class => "btn btn-danger", :role => "button" %>
-          <% end %>
-        </span>
       </div>
       <div class="question-bullets">
         <h3>Question Legend</h3>
