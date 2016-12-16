@@ -76,9 +76,12 @@
                   </td>
                 </tr>
               </table>
-                <% if current_user && current_user.super_admin %>
+              
+              <div class="csv-btn span7">
+                <% if current_user && current_user.admin %>
                   <%= link_to "Download RFPs CSV File", "/rfps.csv", :class => "btn btn-danger", :role => "button" %>
                 <% end %>
+              </div>
             </div>
       </div>
     </div>

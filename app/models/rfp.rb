@@ -43,7 +43,9 @@ class Rfp < ActiveRecord::Base
             sub_string_array = []
             sub_questions.each do |sub_question|
               sub_answer = rfp.sub_answers.find_by(sub_question_id: sub_question.id)
-              sub_string_array << sub_question.question + ": " + sub_answer.answer
+              if sub_answer != nil
+                sub_string_array << sub_question.question + ": " + sub_answer.answer
+              end
             end
             csv_row_answers << sub_string_array.join(", ")
 
@@ -54,7 +56,7 @@ class Rfp < ActiveRecord::Base
             j = 0
             sub_quest_count.times do
               sub_answers = rfp.sub_answers.where(sub_question_id: sub_questions[j].id)
-              # if sub_answers != "" && sub_answers != nil
+          
                 sub_answer_count = sub_answers.count
                 i = 0
                 answer_string = ''
@@ -63,7 +65,7 @@ class Rfp < ActiveRecord::Base
                   i+=1
                 end
                 j+=1
-              # end
+        
               sub_string_array << answer_string
             end
             csv_row_answers << sub_string_array.join(", ")
