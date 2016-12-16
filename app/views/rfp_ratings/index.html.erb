@@ -158,9 +158,21 @@
               <td>{{ rfp_rating.q12 }}</td>
               <td ng-if="rfp_rating.invited">Yes</td>
               <td ng-if="!rfp_rating.invited">No</td>
-              <td>{{ rfp_rating.weighted_score }}</td>
-              <td>{{ rfp_rating.follow_up }}</td>
-              <td>{{ rfp_rating.comments }}</td>
+              <td align="center">{{ rfp_rating.weighted_score }}</td>
+              <td ng-if="rfp_rating.follow_up" align="center">
+                <div
+                      title="{{rfp_rating.follow_up}}" bs-tooltip>
+                      <span class="glyphicon glyphicon-comment">
+                      </span>
+                </div>
+              </td>
+              <td ng-if="rfp_rating.comments" align="center">
+                <div
+                      title="{{rfp_rating.comments}}" bs-tooltip >
+                      <span class="glyphicon glyphicon-comment">
+                      </span>
+                </div>
+              </td>
               <td>{{ rfp_rating.user.email }}</td>
             </tr>
             <tr class="average-row">
@@ -178,10 +190,10 @@
               <td>{{resultValue | avgOfValue:'q11'}}</td>
               <td>{{resultValue | avgOfValue:'q12'}}</td>
               <td>{{resultValue | avgOfValue:'weighted_score'}}</td>
-              <td> -- </td>
-              <td> -- </td>
-              <td> -- </td>
-              <td> -- </td>
+              <td align="center"> -- </td>
+              <td align="center"> -- </td>
+              <td align="center"> -- </td>
+              <td align="center"> -- </td>
             </tr>
           </table>
         </div>
@@ -218,3 +230,9 @@
       </div>
     </div>
 </div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
+</script>
