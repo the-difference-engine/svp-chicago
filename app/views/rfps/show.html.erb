@@ -2,51 +2,285 @@
   <div id="form-paper">
     <div ng-app="app">
       <div ng-controller="rfpsIndexCtrl" ng-init="setupShow()">
-        <div class="form-heading">
+      <div class="form-heading">
+        <h1>
+          RFP Submission Review
+          <% if current_user.admin %>
+            <% if current_user.rfp_ratings.find_by(rfp_id: @rfp.id) != nil %>
+              <div id="rating-pullout-button">
+                <button type="button" class="btn btn-danger" data-toggle="collapse" aria-expanded="false" aria-controls="rfp-ratings" data-target="#rfp-ratings">Edit Ratings</button>
+              </div>
 
-              <h1>
-                RFP Submission Review
-                <% if current_user.admin %>
-                  <% if current_user.rfp_ratings.find_by(rfp_id: @rfp.id) != nil %>
-                    <div id="rating-pullout-button">
-                      <button type="button" class="btn btn-danger" data-toggle="collapse" aria-expanded="false" aria-controls="loi-ratings" data-target="#loi-ratings">Edit Ratings</button>
+               <div id="rating-pullout">
+
+                <%= form_tag "/rfp_ratings/#{@rating.id}", method: :patch do %>
+                    <div class="rfp-rating-form">
+
+                    <div id="rfp-ratings" class="collapse">
+
+                      <form>
+                        <table>
+                          <tr>
+                            <td>
+                              <div data-toggle="tooltip" data-placement="bottom" title="How well does the RFP fit with SVP's criteria? Focus to address the cycle of poverty; scalable and replicable programs; desire for growth and hands-on assistance">1. Fits Svp's Criteria
+                                <span class="glyphicon glyphicon-question-sign">
+                                </span>
+                              </div>
+                              <%= select_tag(:q1, options_for_select([['1 – Does not meet criteria', 1], ['2 – Meets few criteria', 2], ['3 – Meets most criteria', 3], ['4 – Meets criteria', 4]], selected: @rating.q1), :prompt => "Rate 1 - 4", class: "form-control rfp-rating-form") %>
+                            </td>
+                            <td>
+                              <div data-toggle="tooltip" data-placement="bottom" title="How well is the organization serving its target population as defined by its goal statement? Focus on demonstrable, sustainable success and lasting impact. Will have a significant, meaningful impact on people with real significant issues/barriers">2. Serves target population
+                                <span class="glyphicon glyphicon-question-sign">
+                                </span>
+                              </div>
+                              <%= select_tag(:q2, options_for_select([['1 – Does not meet criteria', 1], ['2 – Meets few criteria', 2], ['3 – Meets most criteria', 3], ['4 – Meets criteria', 4]], selected: @rating.q2), :prompt => "Rate 1 - 4", class: "form-control rfp-rating-form") %>
+                            </td>
+                            <td>
+                              <div data-toggle="tooltip" data-placement="bottom" title="What is the organization's potential breadth of impact on their target population? Focus on demonstrable, sustainable success and lasting impact.">3. Breadth of impact"
+                                <span class="glyphicon glyphicon-question-sign">
+                                </span>
+                              </div>
+                              <%= select_tag(:q3, options_for_select([['1 – Does not meet criteria', 1], ['2 – Meets few criteria', 2], ['3 – Meets most criteria', 3], ['4 – Meets criteria', 4]], selected: @rating.q3), :prompt => "Rate 1 - 4", class: "form-control rfp-rating-form") %>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <div data-toggle="tooltip" data-placement="bottom" title="Is the organization clearly at an inflection point and ready to make that change? An inflection point could be leadership transition, serving a broader geographic area or new target population, growing/scaling the organization to better serve more people, etc.">4. Ready for change at inflection
+                                <span class="glyphicon glyphicon-question-sign">
+                                </span>
+                              </div>
+                              <%= select_tag(:q4, options_for_select([['1 Little to no Potential for Growth', 1], ['5  Significant Growth Potential', 5]], selected: @rating.q4), :prompt => "Rate 1 - 4", class: "form-control rfp-rating-form") %>
+                            </td>
+                            <td>
+                              <div data-toggle="tooltip" data-placement="bottom" title="What is SVP's potential to impact the organization through capacity-building support? Focus on the quality of the capacity building projects identified in the RFP">5. SVP's potential impact
+                                <span class="glyphicon glyphicon-question-sign">
+                                </span>
+                              </div>
+                              <%= select_tag(:q5, options_for_select([['1 Limited Impact', 1], ['5  Significant Positive Impact', 5]], selected: @rating.q5), :prompt => "Rate 1 - 4", class: "form-control rfp-rating-form") %>
+                            </td>
+                            <td>
+                              <div data-toggle="tooltip" data-placement="bottom" title="How well does the organization understand the SVP model and how we will work with and help them? Focus on their articulation of how they expect to work with SVP.">6. Understands SVP Model
+                                <span class="glyphicon glyphicon-question-sign">
+                                </span>
+                              </div>
+                              <%= select_tag(:q6, options_for_select([['1 No idea or interest in working together. Just wants money.', 1], ['5 High degree of understanding', 5]], selected: @rating.q6 ), :prompt => "Rate 1 or 5", class: "form-control rfp-rating-form") %>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <div data-toggle="tooltip" data-placement="bottom" title="Understands the importance of metrics/processes to measure results?">7. Understands metrics
+                                <span class="glyphicon glyphicon-question-sign">
+                                </span>
+                              </div>
+                              <%= select_tag(:q7, options_for_select([['1 Does not see value in metrics/processes to measure results', 1], ['5  Clearly values and has metrics/processes in place', 5]], selected: @rating.q7 ), :prompt => "Rate 1 or 5", class: "form-control rfp-rating-form") %>
+                            </td>
+                            <td>
+                              <div data-toggle="tooltip" data-placement="bottom" title="Quality of Organization leadership?">8. Organization of leadership
+                                <span class="glyphicon glyphicon-question-sign">
+                                </span>
+                              </div>
+                              <%= select_tag(:q8, options_for_select([['1 Worried about the quality of leadership here', 1], ['5  Strong leaders across the board', 5]], selected: @rating.q8 ), :prompt => "Rate 1 or 5", class: "form-control rfp-rating-form") %>
+                            </td>
+                            <td>
+                              <div data-toggle="tooltip" data-placement="bottom" title="Quality of Board of Directors?">9. Quality of Board of Directors
+                                <span class="glyphicon glyphicon-question-sign">
+                                </span>
+                              </div>
+                              <%= select_tag(:q9, options_for_select([['1 Worried about the quality of Board here', 1], ['5  Strong Board', 5]], selected: @rating.q9 ), :prompt => "Rate 1 or 5", class: "form-control rfp-rating-form") %>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <div data-toggle="tooltip" data-placement="bottom" title="Assessment of Business Model?">10. Assessment of Business Model
+                                <span class="glyphicon glyphicon-question-sign">
+                                </span>
+                              </div>
+                              <%= select_tag(:q10, options_for_select([['1 Not sustainable. Significant concerns about the business model', 1], ['5  Strong well understood and scalable', 5]], selected: @rating.q10 ), :prompt => "Rate 1 or 5", class: "form-control rfp-rating-form") %>
+                            </td>
+                            <td>
+                              <div data-toggle="tooltip" data-placement="bottom" title="How excited are you about working with this organization?">11. Excitment?
+                                <span class="glyphicon glyphicon-question-sign">
+                                </span>
+                              </div>
+                              <%= select_tag(:q11, options_for_select([['1 Unexcited', 1], ['5  Very Excited', 5]], selected: @rating.q11 ), :prompt => "Rate 1 or 5", class: "form-control rfp-rating-form") %>
+                            </td>
+                            <td>
+                              <div data-toggle="tooltip" data-placement="bottom" title="Will working with this organization benefit SVP Chicago's reputation and awareness in the community?">12. Will benefit SVP Chicago?
+                                <span class="glyphicon glyphicon-question-sign">
+                                </span>
+                              </div>
+                              <%= select_tag(:q12, options_for_select([['1 No Benefit or Negative Benefit', 1], ['5  Significant Benefit', 5]], selected: @rating.q12 ), :prompt => "Rate 1 or 5", class: "form-control rfp-rating-form") %>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <div data-toggle="tooltip" data-placement="bottom" title="Would you invite this organization to present to the committee?">13. Invite?
+                                <span class="glyphicon glyphicon-question-sign">
+                                </span>
+                              </div>
+                              <%= select_tag(:invited, options_for_select([['No', false], ['Yes', true]], selected: @rating.invited ), :prompt => "Choose yes or no", class: "form-control rfp-rating-form") %>
+                            </td>
+                            <td colspan="2" id="rating-pullout-comment-box">
+                              14. Follow up questions:
+                              <%= text_area_tag :follow_up, @rating.follow_up, placeholder: 'Specific Follow up questions they should address if selected to present', class: "rfp-rating-form form-control"  %>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td colspan="2" id="rating-pullout-comment-box">
+                              15. Comments:
+                              <%= text_area_tag :comments, @rating.comments, placeholder: 'enter text here', class: "rfp-rating-form form-control"  %>
+                            </td>
+                            <td class="rfp-rating-button">
+                              <%= hidden_field_tag :rfp_id, @rfp.id %>
+                              <%= submit_tag 'Edit Rating', class: "btn btn-primary" %>
+                            </td>
+                          </tr>
+                        </table>
+                      </form>
                     </div>
-
-
-                      <div id="rating-pullout">
-
-                      <%= form_tag "/rfp_ratings/#{@rating.id}", method: :patch do %>
-
-                      <%= render "form" %>
-
-                          </div>
-
-                        <% end %>
-                      </div>
-
-                  <% else %>
-                  <div id="rating-pullout-button">
-                    <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#loi-ratings">Rate this RFP</button>
-                  </div>
-
-                  <div id="rating-pullout">
-
-                        <%= form_tag '/rfp_ratings', method: :post do %>
-
-                        <%= render "form" %>
-
-                         <div class="btn-rating">
-                           <%= submit_tag 'Submit Rating', class: "btn btn-custom" %>
-                         </div>
-
-                       </form>
-
-                     <% end %>
+                    </div>
                   <% end %>
-                </h1>
+                </div>
+
+            <% else %>
+            <div id="rating-pullout-button">
+              <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#rfp-ratings">Rate this RFP</button>
             </div>
 
+            <div id="rating-pullout">
 
+                  <%= form_tag "/rfp_ratings", method: :post do %>
+
+                    <div class="rfp-rating-form">
+                    <div id="rfp-ratings" class="collapse">
+
+                      <form>
+                        <table>
+                          <tr>
+                            <td>
+                              <div data-toggle="tooltip" data-placement="bottom" title="How well does the RFP fit with SVP's criteria? Focus to address the cycle of poverty; scalable and replicable programs; desire for growth and hands-on assistance">1. Fits Svp's Criteria
+                                <span class="glyphicon glyphicon-question-sign">
+                                </span>
+                              </div>
+                              <%= select_tag(:q1, options_for_select([['1 – Does not meet criteria', 1], ['2 – Meets few criteria', 2], ['3 – Meets most criteria', 3], ['4 – Meets criteria', 4]], selected: @rating.q1), :prompt => "Rate 1 - 4", class: "form-control rfp-rating-form") %>
+                            </td>
+                            <td>
+                              <div data-toggle="tooltip" data-placement="bottom" title="How well is the organization serving its target population as defined by its goal statement? Focus on demonstrable, sustainable success and lasting impact. Will have a significant, meaningful impact on people with real significant issues/barriers">2. Serves target population
+                                <span class="glyphicon glyphicon-question-sign">
+                                </span>
+                              </div>
+                              <%= select_tag(:q2, options_for_select([['1 – Does not meet criteria', 1], ['2 – Meets few criteria', 2], ['3 – Meets most criteria', 3], ['4 – Meets criteria', 4]], selected: @rating.q2), :prompt => "Rate 1 - 4", class: "form-control rfp-rating-form") %>
+                            </td>
+                            <td>
+                              <div data-toggle="tooltip" data-placement="bottom" title="What is the organization's potential breadth of impact on their target population? Focus on demonstrable, sustainable success and lasting impact.">3. Breadth of impact"
+                                <span class="glyphicon glyphicon-question-sign">
+                                </span>
+                              </div>
+                              <%= select_tag(:q3, options_for_select([['1 – Does not meet criteria', 1], ['2 – Meets few criteria', 2], ['3 – Meets most criteria', 3], ['4 – Meets criteria', 4]], selected: @rating.q3), :prompt => "Rate 1 - 4", class: "form-control rfp-rating-form") %>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <div data-toggle="tooltip" data-placement="bottom" title="Is the organization clearly at an inflection point and ready to make that change? An inflection point could be leadership transition, serving a broader geographic area or new target population, growing/scaling the organization to better serve more people, etc.">4. Ready for change at inflection
+                                <span class="glyphicon glyphicon-question-sign">
+                                </span>
+                              </div>
+                              <%= select_tag(:q4, options_for_select([['1 Little to no Potential for Growth', 1], ['5  Significant Growth Potential', 5]], selected: @rating.q4), :prompt => "Rate 1 - 4", class: "form-control rfp-rating-form") %>
+                            </td>
+                            <td>
+                              <div data-toggle="tooltip" data-placement="bottom" title="What is SVP's potential to impact the organization through capacity-building support? Focus on the quality of the capacity building projects identified in the RFP">5. SVP's potential impact
+                                <span class="glyphicon glyphicon-question-sign">
+                                </span>
+                              </div>
+                              <%= select_tag(:q5, options_for_select([['1 Limited Impact', 1], ['5  Significant Positive Impact', 5]], selected: @rating.q5), :prompt => "Rate 1 - 4", class: "form-control rfp-rating-form") %>
+                            </td>
+                            <td>
+                              <div data-toggle="tooltip" data-placement="bottom" title="How well does the organization understand the SVP model and how we will work with and help them? Focus on their articulation of how they expect to work with SVP.">6. Understands SVP Model
+                                <span class="glyphicon glyphicon-question-sign">
+                                </span>
+                              </div>
+                              <%= select_tag(:q6, options_for_select([['1 No idea or interest in working together. Just wants money.', 1], ['5 High degree of understanding', 5]], selected: @rating.q6 ), :prompt => "Rate 1 or 5", class: "form-control rfp-rating-form") %>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <div data-toggle="tooltip" data-placement="bottom" title="Understands the importance of metrics/processes to measure results?">7. Understands metrics
+                                <span class="glyphicon glyphicon-question-sign">
+                                </span>
+                              </div>
+                              <%= select_tag(:q7, options_for_select([['1 Does not see value in metrics/processes to measure results', 1], ['5  Clearly values and has metrics/processes in place', 5]], selected: @rating.q7 ), :prompt => "Rate 1 or 5", class: "form-control rfp-rating-form") %>
+                            </td>
+                            <td>
+                              <div data-toggle="tooltip" data-placement="bottom" title="Quality of Organization leadership?">8. Organization of leadership
+                                <span class="glyphicon glyphicon-question-sign">
+                                </span>
+                              </div>
+                              <%= select_tag(:q8, options_for_select([['1 Worried about the quality of leadership here', 1], ['5  Strong leaders across the board', 5]], selected: @rating.q8 ), :prompt => "Rate 1 or 5", class: "form-control rfp-rating-form") %>
+                            </td>
+                            <td>
+                              <div data-toggle="tooltip" data-placement="bottom" title="Quality of Board of Directors?">9. Quality of Board of Directors
+                                <span class="glyphicon glyphicon-question-sign">
+                                </span>
+                              </div>
+                              <%= select_tag(:q9, options_for_select([['1 Worried about the quality of Board here', 1], ['5  Strong Board', 5]], selected: @rating.q9 ), :prompt => "Rate 1 or 5", class: "form-control rfp-rating-form") %>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <div data-toggle="tooltip" data-placement="bottom" title="Assessment of Business Model?">10. Assessment of Business Model
+                                <span class="glyphicon glyphicon-question-sign">
+                                </span>
+                              </div>
+                              <%= select_tag(:q10, options_for_select([['1 Not sustainable. Significant concerns about the business model', 1], ['5  Strong well understood and scalable', 5]], selected: @rating.q10 ), :prompt => "Rate 1 or 5", class: "form-control rfp-rating-form") %>
+                            </td>
+                            <td>
+                              <div data-toggle="tooltip" data-placement="bottom" title="How excited are you about working with this organization?">11. Excitment?
+                                <span class="glyphicon glyphicon-question-sign">
+                                </span>
+                              </div>
+                              <%= select_tag(:q11, options_for_select([['1 Unexcited', 1], ['5  Very Excited', 5]], selected: @rating.q11 ), :prompt => "Rate 1 or 5", class: "form-control rfp-rating-form") %>
+                            </td>
+                            <td>
+                              <div data-toggle="tooltip" data-placement="bottom" title="Will working with this organization benefit SVP Chicago's reputation and awareness in the community?">12. Will benefit SVP Chicago?
+                                <span class="glyphicon glyphicon-question-sign">
+                                </span>
+                              </div>
+                              <%= select_tag(:q12, options_for_select([['1 No Benefit or Negative Benefit', 1], ['5  Significant Benefit', 5]], selected: @rating.q12 ), :prompt => "Rate 1 or 5", class: "form-control rfp-rating-form") %>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <div data-toggle="tooltip" data-placement="bottom" title="Would you invite this organization to present to the committee?">13. Invite?
+                                <span class="glyphicon glyphicon-question-sign">
+                                </span>
+                              </div>
+                              <%= select_tag(:invited, options_for_select([['No', false], ['Yes', true]], selected: @rating.invited ), :prompt => "Choose yes or no", class: "form-control rfp-rating-form") %>
+                            </td>
+                            <td colspan="2" id="rating-pullout-comment-box">
+                              14. Follow up questions:
+                              <%= text_area_tag :follow_up, @rating.follow_up, placeholder: 'Specific Follow up questions they should address if selected to present', class: "rfp-rating-form form-control"  %>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td colspan="2" id="rating-pullout-comment-box">
+                              15. Comments:
+                              <%= text_area_tag :comments, @rating.comments, placeholder: 'enter text here', class: "rfp-rating-form form-control"  %>
+                            </td>
+                            <td class="loi-rating-button">
+                              <%= hidden_field_tag :rfp_id, @rfp.id %>
+                              <%= submit_tag 'Submit Rating', class: "btn btn-primary" %>
+                            </td>
+                          </tr>
+                        </table>
+                      </form>
+                    </div>
+                    </div>
+                  <% end %>
+                  </div>
+              <% end %>
+            <% end %>
+          </h1>
+      </div>
 
           <div class="form-body">
             <ol class="form-list">
@@ -146,9 +380,15 @@
               <ol>
               </div>
             </div>
-          <% end %>
+         
           </div>
         </div>
 
       </div>
     </div> 
+
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+    </script>

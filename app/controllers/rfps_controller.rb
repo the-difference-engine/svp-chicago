@@ -44,6 +44,11 @@ class RfpsController < ApplicationController
     @doc_type_array = [ "IRS Determination Letter", 
                         "Organization Chart",
                         "Financial Statement: Recent Fiscal Year-End"]
+    if current_user.rfp_ratings.find_by(rfp_id: @rfp.id) == nil
+      @rating = RfpRating.new
+    else
+      @rating = RfpRating.find_by(rfp_id: params[:id])
+    end
  end
 
   def index
