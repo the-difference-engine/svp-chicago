@@ -50,3 +50,133 @@ padding: 1px;
 table.fixed { table-layout:fixed; }
 table.fixed td { overflow: hidden; }
 
+#form-paper{
+  width: 90%;
+  margin: auto;
+  box-shadow: 6px 6px 8px rgba(0,0,0,0.21);
+  border-width: 1px;
+  border-style: solid;
+  border-color: #A2A2A2;
+  opacity: 0.75;
+  background-color: #FFFFFF;
+}
+
+.bottom-text {
+  text-align: center;
+  padding: 15px;
+}
+
+.rfp-rating-form .rfp-rating-button {
+  height: 50px;
+  width: 50px;
+}
+
+
+.rfp-rating-form td {
+  text-align:left;
+  font-size: 14px;
+  text-transform: uppercase;
+  width:120px;
+  height:100px;
+  vertical-align: bottom;
+  padding:10px;
+
+}
+.rfp-rating-form h4 {
+  text-align:left;
+}
+.rfp-rating-form hr {
+  margin-top:10px;
+}
+
+#rating-pullout {
+  position: fixed;
+  width:400px;
+  background-color:#ccc;
+  right: 0;
+  top: 170px;
+  z-index:2;
+}
+#rating-pullout-button {
+  position: fixed;
+  background-color:#6495ED;
+  right: 0;
+  width:120px;
+  padding:10px;
+  top: 100px;
+  z-index:4;
+  // height:70px;
+}
+#rating-pullout-comment-box {
+  position: static;
+  background-color:#ccc;
+  right: 0;
+  width: 120px;
+  padding:10px;
+  top: 100px;
+  z-index:4;
+  height:70px;
+}
+.inactive-btn {
+  cursor:default;
+}
+.tooltip-toggle {
+  cursor: pointer;
+  position: relative;
+  z-index: 4;
+  //Tooltip text container - above element
+  //You can adjust the position to make the container appear below or beside the element
+  &::before {
+    background-color: #000;
+    border-radius: 5px;
+    color: #fff;
+    content: attr(aria-label); //This pulls in the text from the element with the tooltip
+    left: -80px; //This centers the container above the element
+    padding: 1rem;
+    position: absolute;
+    text-transform: none;
+    top: -80px; //This places the container above the element that needs a tooltip
+    transition: all 0.5s ease;
+    width: 160px;
+  }
+
+  //Tooltip arrow
+  //You can adjust the position of this to align nicely with the element that
+  //needs a tooltip. You can also use `transform` to rotate it to make the
+  //tooltip work below or next to the element.
+  &::after {
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #000;
+    content: " ";
+    font-size: 0;
+    left: 9px; //This centers the arrow above the element with the tooltip
+    line-height: 0;
+    margin-left: -5px;
+    position: absolute;
+    top: -12px; //This positions the arrow at the bottom of the container
+    width: 0;
+  }
+
+  //Setting up the transition
+  &::before,
+  &::after {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  //Triggering the transition
+  &:focus::before,
+  &:focus::after,
+  &:hover::before,
+  &:hover::after {
+    opacity: 1;
+    transition: all 0.75s ease;
+  }
+}
+
+.error-class p {
+  text-color: red;
+}
+
+

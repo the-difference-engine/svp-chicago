@@ -10,6 +10,8 @@ class Rfp < ActiveRecord::Base
     rfp_answer = rfp_answers.find_by(rfp_question_id: RfpQuestion.find_by(question: "Organization").id)
     if rfp_answer
       return rfp_answer.answer
+    else
+      return "No Name Submitted"
     end
   end
 
