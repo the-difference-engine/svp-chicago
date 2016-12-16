@@ -54,14 +54,16 @@ class Rfp < ActiveRecord::Base
             j = 0
             sub_quest_count.times do
               sub_answers = rfp.sub_answers.where(sub_question_id: sub_questions[j].id)
-              sub_answer_count = sub_answers.count
-              i = 0
-              answer_string = ''
-              sub_answer_count.times do
-                answer_string += (i+1).to_s + ". " + sub_questions[j].question + ': ' + sub_answers[i].answer + " "
-                i+=1
-              end
-              j+=1
+              # if sub_answers != "" && sub_answers != nil
+                sub_answer_count = sub_answers.count
+                i = 0
+                answer_string = ''
+                sub_answer_count.times do
+                  answer_string += (i+1).to_s + ". " + sub_questions[j].question + ': ' + sub_answers[i].answer + " "
+                  i+=1
+                end
+                j+=1
+              # end
               sub_string_array << answer_string
             end
             csv_row_answers << sub_string_array.join(", ")
@@ -71,7 +73,7 @@ class Rfp < ActiveRecord::Base
             if single_input_answer != nil
               csv_row_answers << single_input_answer.answer
             else
-              csv_row_answers << "empty"
+              csv_row_answers << ""
             end
           end
         end
@@ -79,9 +81,7 @@ class Rfp < ActiveRecord::Base
       end
     end
   end
-
   
-
   def friendly_loi_time
     updated_at.strftime("%m/%d/%Y")
   end
