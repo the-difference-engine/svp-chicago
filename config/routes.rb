@@ -4,12 +4,12 @@ Rails.application.routes.draw do
 
   devise_scope :user do
     authenticated :user do
-  
+
       root 'users#show', as: :authenticated_root
     end
 
   unauthenticated do
-      root 'devise/registrations#new', as: :unauthenticated_root
+      root 'devise/sessions#new', as: :unauthenticated_root
     end
   end
 
@@ -26,7 +26,7 @@ Rails.application.routes.draw do
 
       get '/invite_maxes' => 'invite_maxes#index'
       get '/invite_maxes/:id' => 'invite_maxes#show'
-      
+
 
       get '/questions' => 'questions#index'
       get '/questions/:id' => 'questions#show'
@@ -99,7 +99,7 @@ Rails.application.routes.draw do
   get '/sections' => 'sections#new'
   get '/sections/:id' => 'sections#show'
   post '/sections' => 'sections#create'
- 
+
   get '/rfps' => 'rfps#index'
   get '/rfps/new' => 'rfps#new'
   get '/rfps/:id' => 'rfps#show'
@@ -141,5 +141,5 @@ Rails.application.routes.draw do
 
   get '/emails' => 'emails#index'
   post '/emails' => 'emails#send_rejection_emails'
-  
+
 end
