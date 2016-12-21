@@ -159,17 +159,27 @@
               <td ng-if="rfp_rating.invited">Yes</td>
               <td ng-if="!rfp_rating.invited">No</td>
               <td align="center">{{ rfp_rating.weighted_score }}</td>
-              <td ng-if="rfp_rating.follow_up" align="center">
-                <div
+              <td align="center">
+                <div ng-if="rfp_rating.follow_up"
                       title="{{rfp_rating.follow_up}}" bs-tooltip>
                       <span class="glyphicon glyphicon-comment">
                       </span>
                 </div>
+                <div ng-if="!rfp_rating.follow_up"
+                      title="" bs-tooltip>
+                      <span style="color:grey;" class="glyphicon glyphicon-comment">
+                      </span>
+                </div>
               </td>
-              <td ng-if="rfp_rating.comments" align="center">
-                <div
+              <td align="center">
+                <div  ng-if="rfp_rating.comments"
                       title="{{rfp_rating.comments}}" bs-tooltip >
                       <span class="glyphicon glyphicon-comment">
+                      </span>
+                </div>
+                <div  ng-if="!rfp_rating.comments"
+                      title="" bs-tooltip >
+                      <span style="color:grey;" class="glyphicon glyphicon-comment">
                       </span>
                 </div>
               </td>
