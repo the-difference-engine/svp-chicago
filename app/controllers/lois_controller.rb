@@ -1,4 +1,4 @@
- class LoisController < ApplicationController
+class LoisController < ApplicationController
   before_action :authenticate_user!, only: [:index, :destroy, :edit, :show, :new]
   before_action :authenticate_admin!, only: [:index, :destroy]
 
@@ -18,6 +18,7 @@
   end
 
   def new
+    # bolean something like deadline_passed? = true/false
     if Time.now > Time.new(2016, 10, 21, 17, 0, 0)
       flash[:warning] = "Deadline has passed"
       redirect_to '/'
@@ -47,6 +48,7 @@
   end
 
   def edit
+    # bolean something like deadline_passed? = true/false
     if Time.now > Time.new(2016, 10, 21, 17, 0, 0) && !current_user.super_admin
       flash[:warning] = "Deadline has passed"
       redirect_to '/'
