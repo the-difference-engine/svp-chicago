@@ -20,14 +20,15 @@
             </table>
           <% elsif @user.admin && @user.super_admin %>
             <h4>You are currently logged in with super-administrator priviliges as: <%= @user.email %> </h4>
-            <% if @dashboard.open? == false %>
-              <%= link_to "Review all submitted LOIs", "/lois", {:style=>'width: 235.03px;', :class=>'btn btn-primary btn-s'} %>
-            <% end %>
             <table class="table table-hover">
               <br>
               <ul>
                 <tr>
-                  <td style="text-align: center;" ><%= link_to "Review all submitted LOIs", "/lois", {:style=>'width: 235.03px;', :class=>'btn btn-primary btn-s'} %></td>
+                  <% if @dashboard.open? == false %>
+                    <td style="text-align: center;" ><%= link_to "Open Deadline", "", {:style=>'width: 235.03px;', :class=>'btn btn-primary btn-s'} %></td>
+                  <% elsif @dashboard.open? == true %>
+                    <td style="text-align: center;" ><%= link_to "Close Deadline", "", {:style=>'width: 235.03px;', :class=>'btn btn-primary btn-s'} %></td>
+                  <% end %>
                 </tr>
               </ul>
             </table>
