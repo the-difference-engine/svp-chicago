@@ -4827,6 +4827,7 @@ input[type="button"].btn-block {
 /* line 21, /Users/MrBitey/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.6/assets/stylesheets/bootstrap/_component-animations.scss */
 .collapse.in {
   display: block;
+  overflow-y: scroll;
 }
 
 /* line 26, /Users/MrBitey/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.6/assets/stylesheets/bootstrap/_component-animations.scss */

@@ -16,7 +16,7 @@ class RfpRating < ActiveRecord::Base
     # return sum / count
 
     # Below is weighted_score counted by hand
-    sum = [q1, q2, q3, q4, q5, q6, q7, q9, q11]
+    sum = [q1, q2, q3, q4, q5, q8, q9, q10, q11, q12]
     (sum.sum / sum.length.to_f).round(2)
   end
 
