@@ -11,38 +11,30 @@
           <% if @user.admin && !@user.super_admin %>
             <h4>You are currently logged in with administrator privileges as: <%= @user.email %> </h4>
             <table class="table table-hover">
-            <tr>
-            </tr>
-            <ul>
-            <tr>
-              <td><a href="/lois" class="btn btn-primary btn-s">Review all the submitted LOIs</a></td>
-              <td><a href="/ratings" class="btn btn-primary btn-s">See a list of your ratings</a></td>
-              </tr>
-            </ul>
+              <ul>
+                <tr>
+                  <td><a href="/lois" class="btn btn-primary btn-s">Review all the submitted LOIs</a></td>
+                  <td><a href="/ratings" class="btn btn-primary btn-s">See a list of your ratings</a></td>
+                </tr>
+              </ul>
             </table>
           <% elsif @user.admin && @user.super_admin %>
             <h4>You are currently logged in with super-administrator priviliges as: <%= @user.email %> </h4>
+            <% if @dashboard.open? == false %>
+              <%= link_to "Review all submitted LOIs", "/lois", {:style=>'width: 235.03px;', :class=>'btn btn-primary btn-s'} %>
+            <% end %>
             <table class="table table-hover">
-            <tr>
-            </tr>
-            <tr>
-            <br>
-            <ul>
-              <td style="text-align: center;" ><%= link_to "Review all submitted LOIs", "/lois", {:style=>'width: 235.03px;', :class=>'btn btn-primary btn-s'} %></td>
-
-              <td style="text-align: center;"><%= link_to "See a list of all ratings", "/ratings", {:style=>'width: 235.03px;', :class=>'btn btn-primary btn-s'}%></td>
-          </tr>
-          <tr>
-              <td style="border-top: none; text-align: center;"><%= link_to "See list of all users", "/users",  {:style=>'width: 235.03px;', :class=>'btn btn-primary btn-s'} %></td>
-
-              <td style="border-top: none; text-align: center;"><%= link_to "Add, Edit or Delete LOI questions", "/questions", {:style=>'width: 235.03px;', :class=>'btn btn-primary btn-s'}%></td>
-              </tr>
-              </table>
-              <% if false %>
-                <li>You can add, edit or delete RFP questions:
-                <%= link_to "RFP Questions", "/rfp_questions", class: "btn btn-default btn-xs" %></li>
-              <% end %>
-            </ul>
+              <br>
+              <ul>
+                <tr>
+                  <td style="text-align: center;" ><%= link_to "Review all submitted LOIs", "/lois", {:style=>'width: 235.03px;', :class=>'btn btn-primary btn-s'} %></td>
+                </tr>
+              </ul>
+            </table>
+          <% if false %>
+            <li>You can add, edit or delete RFP questions:
+            <%= link_to "RFP Questions", "/rfp_questions", class: "btn btn-default btn-xs" %></li>
+          <% end %>
           <% elsif @user_loi_status %>
             <h4>Congratulations! Your LOI has been approved and you have been invited to fill an RFP form. </h4>
               <p><a href="/rfps/new" class="btn btn-success">Click for RFP form</a></p>

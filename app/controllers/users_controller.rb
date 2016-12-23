@@ -20,6 +20,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @dashboard = Dashboard.first
     @user = User.find(current_user.id)
     user_has_submitted_loi = Loi.find_by(user_id: current_user.id, submitted: true)
 
@@ -30,21 +31,21 @@ class UsersController < ApplicationController
       else
         @user_loi_status = false
       end
-    else 
+    else
       @user_loi_status = false
     end
   end
 
   def update
     @user = User.find_by(id: params[:id])
-    
+
     if params[:super_admin]
       @user.super_admin = !@user.super_admin
     elsif params[:admin]
       @user.admin = !@user.admin
-    end    
+    end
 
-    if params[:active]      
+    if params[:active]
       @user.active_account = !@user.active_account
       @user.save
     end
@@ -54,7 +55,7 @@ class UsersController < ApplicationController
     @user.save
     flash[:success] = "Account Updated"
 
-    redirect_to "/users"   
+    redirect_to "/users"
   end
 
 end
