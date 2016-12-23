@@ -2,6 +2,7 @@ class RfpRating < ActiveRecord::Base
   belongs_to :user
   belongs_to :rfp
   validates :q1, :q2, :q3, :q4, :q5, :q6, :q7, :q8, :q9, :q10, :q11, :q12, presence: true
+  validates :rfp_id, uniqueness: {scope: :user_id, message: "You've already submitted a rating this Request for Proposal. Please refresh the page to 'Edit' your rating."}
 
   def weighted_score
     # Attempted automated method, calculates q# scores, adds them and divides by the count of scores
