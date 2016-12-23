@@ -18,4 +18,12 @@ class SubQuestionsController < ApplicationController
 
   end
 
+  def destroy
+    @sub_question = SubQuestion.find_by(id: params[:id])
+    @sub_question.update({is_active: false})
+
+    flash[:warning] = "Question deleted"
+    redirect_to "/rfp_questions"
+  end
+
 end
