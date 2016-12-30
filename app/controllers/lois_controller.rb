@@ -18,7 +18,7 @@ class LoisController < ApplicationController
   end
 
   def new
-    @dashboard = Dashboard.find(params[:id])
+    @dashboard = Dashboard.first
     # bolean something like deadline_passed? = true/false
     if !@dashboard.deadline_open?
       flash[:warning] = "Deadline has passed"
