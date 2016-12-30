@@ -21,6 +21,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(current_user.id)
+    @dashboard = Dashboard.first
+
     user_has_submitted_loi = Loi.find_by(user_id: current_user.id, submitted: true)
 
     if user_has_submitted_loi
@@ -32,15 +34,6 @@ class UsersController < ApplicationController
       end
     else
       @user_loi_status = false
-    end
-
-    @dashboard = Dashboard.first
-    # Don't forget to go into the model and change open? to deadline_open?
-    if params[:deadline_open?]
-      @dashboard.update(
-        deadline_open?: params[:deadline_open?]
-      )
-      @dashboard.save
     end
   end
 

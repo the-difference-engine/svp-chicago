@@ -25,9 +25,9 @@
               <ul>
                 <tr>
                   <% if @dashboard.deadline_open? == false %>
-                    <td style="text-align: center;" ><%= link_to "Open Deadline", "", {:style=>'width: 235.03px;', :class=>'btn btn-primary btn-s'} %></td>
+                    <td style="text-align: center;" ><%= link_to "Open Deadline", "/dashboards/1?deadline_open=true", method: :patch, :class => "btn btn-lg btn-primary"%></td>
                   <% elsif @dashboard.deadline_open? == true %>
-                    <td style="text-align: center;" ><%= link_to "Close Deadline", "", {:style=>'width: 235.03px;', :class=>'btn btn-primary btn-s'} %></td>
+                      <td style="text-align: center;" ><%= link_to "Close Deadline", "/dashboards/1?deadline_open=false", method: :patch, :class => "btn btn-lg btn-primary"%></td>
                   <% end %>
                 </tr>
               </ul>
@@ -47,7 +47,7 @@
         </div>
         <div class="col-md-6">
           <!-- change this to a boolean, something like deadline_passed? = true/false -->
-          <% if Time.now > Time.new(2016, 10, 21, 17, 0, 0) %>
+          <% if !@dashboard.deadline_open? %>
             <h2 style="color:red;"> The LOI application deadline has passed. </h2>
           <% end %>
 

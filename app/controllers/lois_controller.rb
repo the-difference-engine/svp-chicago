@@ -18,8 +18,9 @@ class LoisController < ApplicationController
   end
 
   def new
+    @dashboard = Dashboard.find(params[:id])
     # bolean something like deadline_passed? = true/false
-    if Time.now > Time.new(2016, 10, 21, 17, 0, 0)
+    if !@dashboard.deadline_open?
       flash[:warning] = "Deadline has passed"
       redirect_to '/'
     end
@@ -48,8 +49,9 @@ class LoisController < ApplicationController
   end
 
   def edit
+    @dashboard = Dashboard.find(params[:id])
     # bolean something like deadline_passed? = true/false
-    if Time.now > Time.new(2016, 10, 21, 17, 0, 0) && !current_user.super_admin
+    if !@dashboard.deadline_open?
       flash[:warning] = "Deadline has passed"
       redirect_to '/'
     end
