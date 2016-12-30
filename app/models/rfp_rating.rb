@@ -22,7 +22,7 @@ class RfpRating < ActiveRecord::Base
   end
 
   def self.to_csv
-    attributes = %w{id q1 q2 q3 q4 q5 q6 q7 q8 q9 q10 q11 q12 weighted_score comments follow_up invited rated_by}
+    attributes = %w{id name q1 q2 q3 q4 q5 q6 q7 q8 q9 q10 q11 q12 weighted_score comments follow_up invited rated_by}
    
     CSV.generate(headers: true) do |csv|
 
@@ -30,6 +30,7 @@ class RfpRating < ActiveRecord::Base
       all.each do |rating|
         csv.add_row([
           rating.id,
+          rating.rfp.org_name,
           rating.q1,
           rating.q2,
           rating.q3,
