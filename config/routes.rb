@@ -138,6 +138,7 @@ Rails.application.routes.draw do
 
   get '/sub_questions/:id/edit' => 'sub_questions#edit'
   patch '/sub_questions/:id' => 'sub_questions#update'
+  delete '/sub_questions/:id' => 'sub_questions#destroy'
 
   get '/emails' => 'emails#index'
   post '/emails' => 'emails#send_rejection_emails'
