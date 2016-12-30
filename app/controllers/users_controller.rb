@@ -35,10 +35,10 @@ class UsersController < ApplicationController
     end
 
     @dashboard = Dashboard.first
-    # Don't forget to go into the model and chnage open? to deadline_open?
-    if params[:open?]
+    # Don't forget to go into the model and change open? to deadline_open?
+    if params[:deadline_open?]
       @dashboard.update(
-        open?: params[:open?]
+        deadline_open?: params[:deadline_open?]
       )
       @dashboard.save
     end

@@ -24,9 +24,9 @@
               <br>
               <ul>
                 <tr>
-                  <% if @dashboard.open? == false %>
+                  <% if @dashboard.deadline_open? == false %>
                     <td style="text-align: center;" ><%= link_to "Open Deadline", "", {:style=>'width: 235.03px;', :class=>'btn btn-primary btn-s'} %></td>
-                  <% elsif @dashboard.open? == true %>
+                  <% elsif @dashboard.deadline_open? == true %>
                     <td style="text-align: center;" ><%= link_to "Close Deadline", "", {:style=>'width: 235.03px;', :class=>'btn btn-primary btn-s'} %></td>
                   <% end %>
                 </tr>
