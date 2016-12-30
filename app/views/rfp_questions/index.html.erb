@@ -11,13 +11,13 @@
 
     <ol style="width:90%;margin:auto;">
       <% @rfp_sections.each do |section| %>
-        <h2><div><li><%= section.name %><%= link_to "Edit", "/rfp_sections/#{section.id}/edit", :class => "btn btn-primary", :role => "button"%></div></li></h2>
+        <h2><div><li><%= section.name %>   <%= link_to "Edit", "/rfp_sections/#{section.id}/edit", :class => "btn btn-primary", :role => "button"%></div></li></h2>
         <table class="table table-striped" style="margin-bottom:30px;">
           <% section.rfp_questions.where(is_active: true).each do |question| %>
             <tr>
               <% if question.rfp_section_id == section.id %>
                 <td style="width: 80%">
-                  <h4> <%= question.question %>. </h4><h6>(<%= question.question_type %>)</h6>
+                  <h4> <%= question.question %>. </h4><h6>Type: <%= question.question_type %></h6>
                 </td>
                 <td style="width: 10%;text-align:right;">
                   <% if question.question == 'Organization' %>
