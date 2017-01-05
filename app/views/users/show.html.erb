@@ -5,44 +5,31 @@
         <div class="col-md-6">
 
           <h1>Welcome!</h1>
-        
+
           <br>
-          
+
           <% if @user.admin && !@user.super_admin %>
             <h4>You are currently logged in with administrator privileges as: <%= @user.email %> </h4>
             <table class="table table-hover">
-            <tr>
-            </tr>
-            <ul>
-            <tr>
-              <td><a href="/lois" class="btn btn-primary btn-s">Review all the submitted LOIs</a></td>
-              <td><a href="/ratings" class="btn btn-primary btn-s">See a list of your ratings</a></td>
-              </tr>
-            </ul>
+              <ul>
+                <tr>
+                  <td><a href="/lois" class="btn btn-primary btn-s">Review all the submitted LOIs</a></td>
+                  <td><a href="/ratings" class="btn btn-primary btn-s">See a list of your ratings</a></td>
+                </tr>
+              </ul>
             </table>
           <% elsif @user.admin && @user.super_admin %>
             <h4>You are currently logged in with super-administrator priviliges as: <%= @user.email %> </h4>
-            <table class="table table-hover">
-            <tr>
-            </tr>
-            <tr>
-            <br>
-            <ul>
-              <td style="text-align: center;" ><%= link_to "Review all submitted LOIs", "/lois", {:style=>'width: 235.03px;', :class=>'btn btn-primary btn-s'} %></td>
-            
-              <td style="text-align: center;"><%= link_to "See a list of all ratings", "/ratings", {:style=>'width: 235.03px;', :class=>'btn btn-primary btn-s'}%></td>
-          </tr>
-          <tr>
-              <td style="border-top: none; text-align: center;"><%= link_to "See list of all users", "/users",  {:style=>'width: 235.03px;', :class=>'btn btn-primary btn-s'} %></td>
-             
-              <td style="border-top: none; text-align: center;"><%= link_to "Add, Edit or Delete LOI questions", "/questions", {:style=>'width: 235.03px;', :class=>'btn btn-primary btn-s'}%></td>
-              </tr>
-              </table>
-              <% if false %>
-                <li>You can add, edit or delete RFP questions:
-                <%= link_to "RFP Questions", "/rfp_questions", class: "btn btn-default btn-xs" %></li>
+              <br>
+              <% if @dashboard.deadline_open? == false %>
+                <%= link_to "Open LOI Application Deadline", "/dashboards/1?deadline_open=true", method: :patch, :class => "btn btn-lg btn-primary"%>
+              <% elsif @dashboard.deadline_open? == true %>
+                <%= link_to "Close LOI Application Deadline", "/dashboards/1?deadline_open=false", method: :patch, :class => "btn btn-lg btn-primary"%>
               <% end %>
-            </ul>
+          <% if false %>
+            <li>You can add, edit or delete RFP questions:
+            <%= link_to "RFP Questions", "/rfp_questions", class: "btn btn-default btn-xs" %></li>
+          <% end %>
           <% elsif @user_loi_status %>
             <h4>Congratulations! Your LOI has been approved and you have been invited to fill an RFP form. </h4>
               <p><a href="/rfps/new" class="btn btn-success">Click for RFP form</a></p>
@@ -53,8 +40,8 @@
           <br>
         </div>
         <div class="col-md-6">
-
-          <% if Time.now > Time.new(2016, 10, 21, 17, 0, 0) %>
+          <!-- change this to a boolean, something like deadline_passed? = true/false -->
+          <% if !@dashboard.deadline_open? %>
             <h2 style="color:red;"> The LOI application deadline has passed. </h2>
           <% end %>
 
@@ -69,7 +56,7 @@
                   <%= link_to "View LOI", "/lois/#{loi.id}", class: "btn btn-lg btn-success" %>
                 </li>
               <% else %>
-                <li> 
+                <li>
                   <h3>You edited a letter of interest form on <%= loi.friendly_loi_time %>.</h3>
                   <h4> This form is not yet submitted.</h4>
                   <%= link_to "Continue LOI", "/lois/#{loi.id}/edit", class: "btn btn-lg btn-warning" %>
@@ -98,4 +85,3 @@
     </div>
   </div>
 </div>
-

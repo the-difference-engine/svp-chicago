@@ -143,4 +143,6 @@ Rails.application.routes.draw do
   get '/emails' => 'emails#index'
   post '/emails' => 'emails#send_rejection_emails'
 
+  patch '/dashboards/:id' => 'dashboards#update'
+
 end

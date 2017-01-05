@@ -11,7 +11,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161230004734) do
+
+ActiveRecord::Schema.define(version: 20161230010343) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +41,12 @@ ActiveRecord::Schema.define(version: 20161230004734) do
     t.string   "priority"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "dashboards", force: :cascade do |t|
+    t.boolean  "deadline_open?"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "ftes", force: :cascade do |t|
