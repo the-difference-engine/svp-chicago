@@ -2,6 +2,7 @@ class RfpRating < ActiveRecord::Base
   belongs_to :user
   belongs_to :rfp
   validates :q1, :q2, :q3, :q4, :q5, :q6, :q7, :q8, :q9, :q10, :q11, :q12, presence: true
+  validates :rfp_id, uniqueness: {scope: :user_id, message: "You've already submitted a rating this Request for Proposal. Please refresh the page to 'Edit' your rating."}
 
   def weighted_score
     # Attempted automated method, calculates q# scores, adds them and divides by the count of scores
@@ -16,12 +17,12 @@ class RfpRating < ActiveRecord::Base
     # return sum / count
 
     # Below is weighted_score counted by hand
-    sum = [q1, q2, q3, q4, q5, q6, q7, q9, q11]
+    sum = [q1, q2, q3, q4, q5, q8, q9, q10, q11, q12]
     (sum.sum / sum.length.to_f).round(2)
   end
 
   def self.to_csv
-    attributes = %w{id q1 q2 q3 q4 q5 q6 q7 q8 q9 q10 q11 q12 weighted_score comments follow_up invited rated_by}
+    attributes = %w{id name q1 q2 q3 q4 q5 q6 q7 q8 q9 q10 q11 q12 weighted_score comments follow_up invited rated_by}
    
     CSV.generate(headers: true) do |csv|
 
@@ -29,6 +30,7 @@ class RfpRating < ActiveRecord::Base
       all.each do |rating|
         csv.add_row([
           rating.id,
+          rating.rfp.org_name,
           rating.q1,
           rating.q2,
           rating.q3,

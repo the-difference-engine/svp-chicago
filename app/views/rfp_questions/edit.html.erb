@@ -34,6 +34,7 @@
           <p><%= sub_question.question %></p>
           </td>
             <td><%= link_to "Edit", "/sub_questions/#{sub_question.id}/edit", class: "btn btn-primary"%></td>
+            <td><%= link_to "Delete", "/sub_questions/#{sub_question.id}", :class => "btn btn-warning", :role => "button", :method => :delete, data: { :confirm => "Are you sure?" } %></td>
           </tr>
         <% end %>
         </table>

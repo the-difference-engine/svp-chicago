@@ -1,6 +1,6 @@
 class SubQuestion < ActiveRecord::Base
 
-  belongs_to :rfp_question
+  belongs_to :rfp_question, -> { order "id" }
 
   has_many :sub_answers
 
