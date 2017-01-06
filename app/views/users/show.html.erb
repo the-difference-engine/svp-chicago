@@ -10,7 +10,7 @@
 
           <% if @user.admin && !@user.super_admin %>
             <h4>You are currently logged in with administrator privileges as: <%= @user.email %> </h4>
-            <table class="table table-hover">
+            <table class="table">
               <ul>
                 <tr>
                   <td><a href="/lois" class="btn btn-primary btn-s">Review all the submitted LOIs</a></td>
