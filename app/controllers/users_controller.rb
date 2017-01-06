@@ -22,6 +22,9 @@ class UsersController < ApplicationController
   def show
     @user = User.find(current_user.id)
     @dashboard = Dashboard.first
+    if !@dashboard
+      @dashboard = Dashboard.create
+    end
 
     user_has_submitted_loi = Loi.find_by(user_id: current_user.id, submitted: true)
 
