@@ -87,7 +87,6 @@ class Rfp < ActiveRecord::Base
             ans_string = ans_array[(count1)].zip(ans_array[count2])         
             question_string = question_string.chop!
             question_string += ": "
-            question_array << question_string
             sub_string_array.push(ans_string)
 
             csv_row_answers << question_string + sub_string_array.join(", ")
