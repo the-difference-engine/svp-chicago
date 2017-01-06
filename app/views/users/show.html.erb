@@ -26,16 +26,15 @@
               <% elsif @dashboard.deadline_open? == true %>
                 <%= link_to "Close LOI Application Deadline", "/dashboards/1?deadline_open=false", method: :patch, :class => "btn btn-lg btn-primary"%>
               <% end %>
-          <% if false %>
-            <li>You can add, edit or delete RFP questions:
-            <%= link_to "RFP Questions", "/rfp_questions", class: "btn btn-default btn-xs" %></li>
-          <% end %>
           <% elsif @user_loi_status %>
             <h4>Congratulations! Your LOI has been approved and you have been invited to fill an RFP form. </h4>
               <p><a href="/rfps/new" class="btn btn-success">Click for RFP form</a></p>
-            <% else %>
+            <% elsif @dashboard.deadline_open? == false %>
             <h5>You can submit a Letter of Interest (LOI) to SVP-Chicago.</h5>
               <a href="/lois/new" class="btn btn-default disabled">Click for LOI form</a>
+            <% else%>
+            <h5>You can submit a Letter of Interest (LOI) to SVP-Chicago.</h5>
+              <a href="/lois/new" class="btn btn-default ">Click for LOI form</a>
           <% end %>
           <br>
         </div>
