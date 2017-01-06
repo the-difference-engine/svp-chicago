@@ -8,7 +8,7 @@ class Api::V1::LoisController < ApplicationController
   end
 
   def index
-  	@lois = Loi.where(submitted: true).where(reject: nil)
+  	@lois = Loi.where(submitted: true).where(reject: [false, nil])
     @invited_lois = InvitedLoi.all
   end
 
