@@ -56,21 +56,43 @@ class Rfp < ActiveRecord::Base
             sub_questions = SubQuestion.where(rfp_question_id: question.id)
             sub_quest_count = sub_questions.count
             j = 0
+            question_array = []
+            answer_array = []
+            question_string = ""
+
+            sub_questions.each do |sub_question|
+                question_string += sub_question.question + "/"
+            end
+          
+
             sub_quest_count.times do
               sub_answers = rfp.sub_answers.where(sub_question_id: sub_questions[j].id)
-          
-                sub_answer_count = sub_answers.count
-                i = 0
-                answer_string = ''
-                sub_answer_count.times do
-                  answer_string += (i+1).to_s + ". " + sub_questions[j].question + ': ' + sub_answers[i].answer + " "
-                  i+=1
-                end
+              if sub_answers.nil? == false
+                  sub_answer_count = sub_answers.count
+                  i = 0
+                  answer_string = ''
+                  sub_answer_count.times do
+                    answer_array << sub_answers[i].answer
+                    i+=1
+                  end
+              end
                 j+=1
-        
-              sub_string_array << answer_string
+                         
             end
-            csv_row_answers << sub_string_array.join(", ")
+
+            ans_count = answer_array.length / 2
+            count1 = (ans_count - ans_count)
+            count2 = count1 + 1
+            ans_array = []
+            ans_array = answer_array.each_slice(ans_count).to_a
+            ans_string = ''
+            ans_string = ans_array[(count1)].zip(ans_array[count2])         
+            question_string = question_string.chop!
+            question_string += ": "
+            sub_string_array.push(ans_string)
+
+            csv_row_answers << question_string + sub_string_array.join(", ")
+          
 
           else
             single_input_answer = rfp.rfp_answers.find_by(rfp_question_id: question.id)
