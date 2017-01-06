@@ -55,10 +55,9 @@ class Rfp < ActiveRecord::Base
             sub_quest_count = sub_questions.count
             j = 0
             question_array = []
-            quest_array = []
             answer_array = []
-            
             question_string = ""
+
             sub_questions.each do |sub_question|
                 question_string += sub_question.question + "/"
             end
@@ -66,14 +65,15 @@ class Rfp < ActiveRecord::Base
 
             sub_quest_count.times do
               sub_answers = rfp.sub_answers.where(sub_question_id: sub_questions[j].id)
-          
-                sub_answer_count = sub_answers.count
-                i = 0
-                answer_string = ''
-                sub_answer_count.times do
-                  answer_array << sub_answers[i].answer
-                  i+=1
-                end
+              if sub_answers.nil? == false
+                  sub_answer_count = sub_answers.count
+                  i = 0
+                  answer_string = ''
+                  sub_answer_count.times do
+                    answer_array << sub_answers[i].answer
+                    i+=1
+                  end
+              end
                 j+=1
                          
             end
@@ -86,11 +86,12 @@ class Rfp < ActiveRecord::Base
             ans_string = ''
             ans_string = ans_array[(count1)].zip(ans_array[count2])         
             question_string = question_string.chop!
-            question_string += ":"
-            question_array << question_string     
-            sub_string_array << question_array
+            question_string += ": "
+            question_array << question_string
             sub_string_array.push(ans_string)
-            csv_row_answers << sub_string_array.join(", ")
+
+            csv_row_answers << question_string + sub_string_array.join(", ")
+          
 
           else
             single_input_answer = rfp.rfp_answers.find_by(rfp_question_id: question.id)
