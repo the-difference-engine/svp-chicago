@@ -1,2 +1,21 @@
-<h1><%= @attachment.name %></h1>
-<h2>URL: <a href="<%= @attachment.url %>"><%= @attachment.url %></a></h2>
+<div class="container">
+  <div id="form-paper">
+    <div class="form-heading">
+      <h1>Add an attachment</h1>
+    </div>
+    <div style="padding:30px;">
+      <div class="form-horizontal">
+
+        <h2>File Name: <%= @attachment.name %></h1>
+        <h2>URL: <a href="<%= @attachment.url %>"><%= @attachment.url %></a></h2>
+
+        <p> 
+          <%= link_to "View #{@attachment.rfp.org_name}'s RFP", "/rfps/#{@attachment.rfp_id}" %>
+           | 
+          <%= link_to "Upload another attachment", "/attachments/new" %>
+        </p>
+
+    </div>
+    </div>
+  </div>
+</div>

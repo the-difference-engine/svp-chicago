@@ -5,6 +5,7 @@ class Rfp < ActiveRecord::Base
   has_many :sub_questions
   has_many :sub_answers
   has_many :rfp_ratings
+  has_many :attachments
 
   def org_name
     rfp_answer = rfp_answers.find_by(rfp_question_id: RfpQuestion.find_by(question: "Organization").id)
@@ -87,10 +88,10 @@ class Rfp < ActiveRecord::Base
             
             if ans_count > 0
               ans_array = answer_array.each_slice(ans_count).to_a
+              ans_string = ''
+              ans_string = ans_array[(count1)].zip(ans_array[count2])         
             end
 
-            ans_string = ''
-            ans_string = ans_array[(count1)].zip(ans_array[count2])         
             question_string = question_string.chop!
             question_string += ": "
             sub_string_array.push(ans_string)

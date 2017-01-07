@@ -126,6 +126,7 @@ Rails.application.routes.draw do
   get '/attachments/new' => 'attachments#new'
   post '/attachments' => 'attachments#create'
   get '/attachments/:id' => 'attachments#show'
+  delete '/attachments/:id' => 'attachments#destroy'
 
   get 'invite_maxes/:id/edit' => 'invite_maxes#edit'
   patch 'invite_maxes/:id' => 'invite_maxes#update'
