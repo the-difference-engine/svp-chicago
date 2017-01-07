@@ -1,4 +1,7 @@
 class AttachmentsController < ApplicationController
+
+  before_action :authenticate_admin!, only: [:new]
+
   def index
     @attachments = Attachment.all
   end
@@ -7,6 +10,7 @@ class AttachmentsController < ApplicationController
   end
 
   def new
+    @rfps = Rfp.all
     @attachment = Attachment.new
   end
 
@@ -27,6 +31,10 @@ class AttachmentsController < ApplicationController
         name: obj.key     
         )
 
+    @attachment.rfp_id = params[:rfp_id]
+    @attachment.user_id = Rfp.find(@attachment.rfp_id).user_id
+    @attachment.doc_type = params[:doc_type]
+
     # Save the upload
     if @attachment.save
       redirect_to "/attachments/#{@attachment.id}", success: 'File successfully uploaded'
@@ -34,6 +42,15 @@ class AttachmentsController < ApplicationController
       flash.now[:notice] = 'There was an error'
       render :new
     end
+  end
+
+  def destroy
+    @attachment = Attachment.find_by(id: params[:id])
+    rfp_id = @attachment.rfp_id
+    @attachment.destroy
+
+    flash[:warning] = "Attachment deleted"
+    redirect_to "/rfps/#{rfp_id}"
   end
 
 end
