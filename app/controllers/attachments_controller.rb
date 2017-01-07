@@ -1,6 +1,6 @@
 class AttachmentsController < ApplicationController
 
-  before_action :authenticate_admin!, only: [:new]
+  before_action :authenticate_user!, only: [:new, :create]
 
   def index
     @attachments = Attachment.all
@@ -10,7 +10,7 @@ class AttachmentsController < ApplicationController
   end
 
   def new
-    @rfps = Rfp.all
+    @rfps = current_user.admin ? Rfp.all : Rfp.where(user_id: current_user.id)
     @attachment = Attachment.new
   end
 
