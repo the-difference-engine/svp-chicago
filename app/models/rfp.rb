@@ -85,9 +85,13 @@ class Rfp < ActiveRecord::Base
             count1 = (ans_count - ans_count)
             count2 = count1 + 1
             ans_array = []
-            ans_array = answer_array.each_slice(ans_count).to_a
-            ans_string = ''
-            ans_string = ans_array[(count1)].zip(ans_array[count2])         
+            
+            if ans_count > 0
+              ans_array = answer_array.each_slice(ans_count).to_a
+              ans_string = ''
+              ans_string = ans_array[(count1)].zip(ans_array[count2])         
+            end
+
             question_string = question_string.chop!
             question_string += ": "
             sub_string_array.push(ans_string)
