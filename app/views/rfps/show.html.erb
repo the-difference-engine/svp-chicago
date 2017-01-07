@@ -146,6 +146,9 @@
                   <%if attachment.url != nil %>
                     <h5><%=attachment.doc_type%></h5>
                     <a href="<%=attachment.url %>" target="_blank"><i class="fa fa-file-text-o" style="font-size:24px"></i></a>
+                    <% if @current_user.super_admin %>
+                      <p><%= link_to "Delete", "/attachments/#{attachment.id}", method: :delete, data:{confirm: "Are You Sure"}, :style => "color:red"%></p>
+                    <% end %>
                   <%end%>
                 <% end %>
 

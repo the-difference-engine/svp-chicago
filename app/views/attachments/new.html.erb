@@ -1,5 +1,32 @@
-<h1>Add An Attachment:</h1>
-<%= form_tag attachments_path, enctype: 'multipart/form-data' do %>
-    <%= file_field_tag :file  %>
-    <%= submit_tag 'Upload file' %>     
-<% end %>
+<div class="container">
+  <div id="form-paper">
+    <div class="form-heading">
+      <h1>Add an attachment</h1>
+    </div>
+    <div style="padding:30px;">
+      <div class="form-horizontal">
+
+        <%= form_tag attachments_path, enctype: 'multipart/form-data' do %>
+            <p>Select an RFP:</p>
+
+            <%= select_tag 'rfp_id', options_for_select(@rfps.collect{ |u| [u.org_name, u.id] }) %>
+
+            <p></p>
+
+            <p>Enter Document Title:</p>
+            <%= text_field_tag 'doc_type', nil, placeholder: 'Enter Document Title...' %>
+
+            <p></p>
+
+            <p>Select a file:</p>
+
+            <%= file_field_tag :file  %>
+
+            <p></p>
+            <%= submit_tag 'Upload file' %>     
+        <% end %>
+
+    </div>
+    </div>
+  </div>
+</div>

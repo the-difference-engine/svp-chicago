@@ -5,6 +5,7 @@ class Rfp < ActiveRecord::Base
   has_many :sub_questions
   has_many :sub_answers
   has_many :rfp_ratings
+  has_many :attachments
 
   def org_name
     rfp_answer = rfp_answers.find_by(rfp_question_id: RfpQuestion.find_by(question: "Organization").id)
