@@ -9,7 +9,11 @@
         <table class="table">
           <% @attachments.each do |attachment| %>
             <tr>
-              <td><%= attachment.rfp.org_name %></td>
+              <td>
+                <% if attachment.rfp %>
+                  <%= attachment.rfp.org_name %>
+                <% end %>
+              </td>
               <td><%= link_to attachment.name, attachment.url %></td>
             </tr>
           <% end %>
