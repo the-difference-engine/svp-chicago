@@ -1,9 +1,9 @@
 class AttachmentsController < ApplicationController
 
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, only: [:new, :create, :index]
 
   def index
-    @attachments = Attachment.all
+    @attachments = current_user.admin ? Attachment.all : Attachment.where(user_id: current_user.id)
   end
   def show
     @attachment = Attachment.find_by(id: params[:id])
