@@ -47,7 +47,7 @@ class RfpsController < ApplicationController
     if current_user.rfp_ratings.find_by(rfp_id: @rfp.id) == nil
       @rating = RfpRating.new
     else
-      @rating = RfpRating.find_by(rfp_id: params[:id])
+      @rating = current_user.rfp_ratings.find_by(rfp_id: params[:id])
     end
  end
 
