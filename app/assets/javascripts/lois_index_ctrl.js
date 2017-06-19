@@ -61,7 +61,7 @@
           };
         };
         if (answer[1].amount_1 != null){
-          challenges.push("FTES - 2015: " + answer[1].amount_1 + ", 2016: " + answer[1].amount_2 + ", 2017: " + answer[1].amount_2);
+          challenges.push("FTES - 2016: " + answer[1].amount_1 + ", 2017: " + answer[1].amount_2 + ", 2018: " + answer[1].amount_2);
         };
         return challenges;
       } else {
