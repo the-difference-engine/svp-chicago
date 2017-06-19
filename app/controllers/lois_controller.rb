@@ -13,6 +13,10 @@ class LoisController < ApplicationController
     respond_to do |format|
       format.html
       format.csv { send_data @lois.to_csv, filename: "lois-#{Date.today}.csv" }
+      format.pdf do
+        pdf = Prawn::Document.new
+        send_data pdf.render, filename: 'report.pdf', type: 'application/pdf'
+      end
     end
 
   end

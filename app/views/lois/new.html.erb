@@ -257,7 +257,8 @@
                                 <label> {{question.question}}: </label>
                               </td>
                               <td>
-                                <input type="checkbox" class="checkbox" ng-model="question.answer" ng-true-value="'t'" ng-false-value="''">
+                                <input ng-if="question.question!='Other'" type="checkbox" class="checkbox" ng-model="question.answer" ng-true-value="'t'" ng-false-value="''">
+                                <input ng-if="question.question=='Other'" type="text" class="form-control" ng-model="question.answer">
                               </td>
                             </tr>
                           </fieldset>
