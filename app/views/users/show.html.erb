@@ -21,15 +21,17 @@
           <% elsif @user.admin && @user.super_admin %>
             <h4>You are currently logged in with super-administrator priviliges as: <%= @user.email %> </h4>
               <br>
-              <% if @dashboard.deadline_open? == false %>
-                <%= link_to "Open LOI Application Deadline", "/dashboards/1?deadline_open=true", method: :patch, :class => "btn btn-lg btn-primary"%>
-              <% elsif @dashboard.deadline_open? == true %>
-                <%= link_to "Close LOI Application Deadline", "/dashboards/1?deadline_open=false", method: :patch, :class => "btn btn-lg btn-primary"%>
-              <% end %>
+              <div class="well">
+                <%= form_tag "/dashboards/#{@dashboard.id}", method: :patch do %>
+                  <p> The LOI deadline is currently set for: <%= @dashboard.loi_closing_date.strftime('%m-%e-%y, %H:%M') %> </p>
+                    <%= date_field_tag :loi_closing_date, @dashboard.loi_closing_date, :class => "form-control", style: "width:50%;" %>
+                    <%= submit_tag "Update LOI Deadline", :class => 'btn btn-large btn-primary', style: "margin-top:10px;"  %>
+                <% end %>
+              </div>
           <% elsif @user_loi_status %>
             <h4>Congratulations! Your LOI has been approved and you have been invited to fill an RFP form. </h4>
               <p><a href="/rfps/new" class="btn btn-success">Click for RFP form</a></p>
-            <% elsif @dashboard.deadline_open? == false %>
+            <% elsif @deadline_open == false %>
             <h5>You can submit a Letter of Interest (LOI) to SVP-Chicago.</h5>
               <a href="/lois/new" class="btn btn-default disabled">Click for LOI form</a>
             <% else%>
@@ -40,8 +42,10 @@
         </div>
         <div class="col-md-6">
           <!-- change this to a boolean, something like deadline_passed? = true/false -->
-          <% if !@dashboard.deadline_open? %>
+          <% if !@deadline_open %>
             <h2 style="color:red;"> The LOI application deadline has passed. </h2>
+          <% else %>
+            <h3> The LOI application is due by: <%= @dashboard.loi_closing_date.strftime('%m-%e-%y, %H:%M') %> </h3>
           <% end %>
 
           <% if !@user.lois.empty? %>
