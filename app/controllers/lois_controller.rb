@@ -23,9 +23,9 @@ class LoisController < ApplicationController
 
   def new
     @dashboard = Dashboard.first
-    # bolean something like deadline_passed? = true/false
-    if !@dashboard.deadline_open?
-      flash[:warning] = "Deadline has passed"
+    if @dashboard.loi_closing_date < Time.now
+      date = @dashboard.loi_closing_date.strftime('%m-%e-%y, %H:%M')
+      flash[:warning] = "The deadline to Submit a Letter of Interest was #{date}"
       redirect_to '/'
     end
   end
