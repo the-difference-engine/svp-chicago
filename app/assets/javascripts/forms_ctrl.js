@@ -193,7 +193,7 @@
     $scope.wordCount = function(text){
       var wordLength = text ? text.match(/\S+/g).length : 0;
       return wordLength >= 100 ? 'Too Long!' : wordLength;
-    }
+    };
 
     $scope.submitNow = function(){
       $scope.submitted = true;
