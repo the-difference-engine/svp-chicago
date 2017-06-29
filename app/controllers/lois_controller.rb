@@ -53,10 +53,10 @@ class LoisController < ApplicationController
   end
 
   def edit
-    @dashboard = Dashboard.find(params[:id])
-    # bolean something like deadline_passed? = true/false
-    if !@dashboard.deadline_open?
-      flash[:warning] = "Deadline has passed"
+    @dashboard = Dashboard.first
+    if @dashboard.loi_closing_date < Time.now
+      date = @dashboard.loi_closing_date.strftime('%m-%e-%y, %H:%M')
+      flash[:warning] = "The deadline to Submit a Letter of Interest was #{date}"
       redirect_to '/'
     end
     @loi = Loi.find_by(id: params[:id])
