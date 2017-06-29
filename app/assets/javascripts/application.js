@@ -16,6 +16,7 @@
 //= require angular 
 //= require angular-animate
 //= require angularjs-file-upload
+//= require lodash
 //= require app
 //= require_tree .
 

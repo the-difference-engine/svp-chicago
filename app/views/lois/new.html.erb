@@ -115,9 +115,15 @@
 
                 <div ng-repeat="question in overview_formData">
                   <label> {{question.question}}: </label>
-                  <textarea name="overview_question_{{$index}}" class="form-control" rows="3" ng-model="question.answer" required></textarea>
+                  <textarea name="overview_question_{{$index}}" class="form-control" rows="3" ng-model="question.answer" my-maxlength="100" required></textarea>
 
                   <p ng-show="(loiForm['overview_question_' + $index].$invalid && !loiForm['overview_question_' + $index].$pristine) || (loiForm['overview_question_' + $index].$invalid && invalidSubmission) " class="error-class" style="color:red;">Please fill out the field.</p>
+                  <p ng-show="wordCount(question.answer) != 'Too Long!'">
+                    Word Count: {{ wordCount(question.answer) }}, Words Remaining: {{ 100 - wordCount(question.answer) }}
+                  </p>
+                  <p ng-show="wordCount(question.answer) === 'Too Long!'" class="error-class" style="color:red;">
+                    Max Word Count!
+                  </p>  
                 </div>
               </div>           
             </section>       
@@ -129,9 +135,15 @@
                 <h1> {{ vision_section.name }} </h1>
                 <div ng-repeat="question in vision_formData">
                   <label> {{question.question}}: </label>
-                  <textarea name="vision_question_{{$index}}" class="form-control" rows="3" ng-model="question.answer" required></textarea>
+                  <textarea name="vision_question_{{$index}}" class="form-control" rows="3" ng-model="question.answer" my-maxlength="100" required></textarea>
 
                   <p ng-show="(loiForm['vision_question_' + $index].$invalid && !loiForm['vision_question_' + $index].$pristine) || (loiForm['vision_question_' + $index].$invalid && invalidSubmission) " class="error-class" style="color:red;">Please fill out the field.</p>
+                  <p ng-show="wordCount(question.answer) != 'Too Long!'">
+                    Word Count: {{ wordCount(question.answer) }}, Words Remaining: {{ 100 - wordCount(question.answer) }}
+                  </p>
+                  <p ng-show="wordCount(question.answer) === 'Too Long!'" class="error-class" style="color:red;">
+                    Max Word Count!
+                  </p>  
                 </div>
               </div>      
             </section>
@@ -143,9 +155,15 @@
                 <h1> {{ concern_section.name }} </h1>
                   <div ng-repeat="question in concern_formData">
                     <label> {{question.question}}: </label>
-                    <textarea name="key_question_{{$index}}" class="form-control" rows="3" ng-model="question.answer" required></textarea>
+                    <textarea name="key_question_{{$index}}" class="form-control" rows="3" ng-model="question.answer" my-maxlength="100" required></textarea>
 
                     <p ng-show="(loiForm['key_question_' + $index].$invalid && !loiForm['key_question_' + $index].$pristine) || (loiForm['key_question_' + $index].$invalid && invalidSubmission) " class="error-class" style="color:red;">Please fill out the field.</p>
+                    <p ng-show="wordCount(question.answer) != 'Too Long!'">
+                      Word Count: {{ wordCount(question.answer) }}, Words Remaining: {{ 100 - wordCount(question.answer) }}
+                    </p>
+                    <p ng-show="wordCount(question.answer) === 'Too Long!'" class="error-class" style="color:red;">
+                      Max Word Count!
+                    </p>  
                   </div>
               </div>       
             </section>
@@ -227,9 +245,15 @@
                 <h1> {{ referral_section.name }} </h1>
                 <div ng-repeat="question in referral_formData">
                   <label> {{question.question}}: </label>
-                  <textarea name="referral_question_{{$index}}" class="form-control" rows="3" ng-model="question.answer" required></textarea>
+                  <textarea name="referral_question_{{$index}}" class="form-control" rows="3" ng-model="question.answer" my-maxlength="100" required></textarea>
 
-                  <p ng-show="(loiForm['referral_question_' + $index].$invalid && !loiForm['referral_question_' + $index].$pristine) || (loiForm['referral_question_' + $index].$invalid && invalidSubmission) " class="error-class" style="color:red;">Please fill out the field.</p>    
+                  <p ng-show="(loiForm['referral_question_' + $index].$invalid && !loiForm['referral_question_' + $index].$pristine) || (loiForm['referral_question_' + $index].$invalid && invalidSubmission) " class="error-class" style="color:red;">Please fill out the field.</p>
+                  <p ng-show="wordCount(question.answer) != 'Too Long!'">
+                    Word Count: {{ wordCount(question.answer) }}, Words Remaining: {{ 100 - wordCount(question.answer) }}
+                  </p>
+                  <p ng-show="wordCount(question.answer) === 'Too Long!'" class="error-class" style="color:red;">
+                    Max Word Count!
+                  </p>      
                 </div>
               </div>
             </section>

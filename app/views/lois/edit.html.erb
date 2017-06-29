@@ -90,7 +90,13 @@
                         <b>{{answer.question.question}}:</b>
                       </td>
                       <td>
-                        <input type="text" class="form-control" ng-model="answer.answer">
+                        <textarea type="text" class="form-control" my-maxlength="100" ng-model="answer.answer" rows="3"></textarea>
+                        <p ng-show="wordCount(answer.answer) != 'Too Long!'">
+                          Word Count: {{ wordCount(answer.answer) }}, Words Remaining: {{ 100 - wordCount(answer.answer) }}
+                        </p>
+                        <p ng-show="wordCount(answer.answer) === 'Too Long!'" class="error-class" style="color:red;">
+                          Max Word Count!
+                        </p>  
                       </td>
                     </tr>
                   </table>
@@ -106,7 +112,13 @@
                         <b>{{answer.question.question}}:</b>
                       </td>
                       <td>
-                        <input type="text" class="form-control" ng-model="answer.answer">
+                        <textarea type="text" class="form-control" my-maxlength="100" ng-model="answer.answer" rows="3"></textarea>
+                        <p ng-show="wordCount(answer.answer) != 'Too Long!'">
+                          Word Count: {{ wordCount(answer.answer) }}, Words Remaining: {{ 100 - wordCount(answer.answer) }}
+                        </p>
+                        <p ng-show="wordCount(answer.answer) === 'Too Long!'" class="error-class" style="color:red;">
+                          Max Word Count!
+                        </p>  
                       </td>
                     </tr>
                   </table>
@@ -122,7 +134,13 @@
                         <b>{{answer.question.question}}:</b>
                       </td>
                       <td>
-                        <input type="text" class="form-control" ng-model="answer.answer">
+                        <textarea type="text" class="form-control" my-maxlength="100" ng-model="answer.answer" rows="3"></textarea>
+                        <p ng-show="wordCount(answer.answer) != 'Too Long!'">
+                          Word Count: {{ wordCount(answer.answer) }}, Words Remaining: {{ 100 - wordCount(answer.answer) }}
+                        </p>
+                        <p ng-show="wordCount(answer.answer) === 'Too Long!'" class="error-class" style="color:red;">
+                          Max Word Count!
+                        </p>  
                       </td>
                     </tr>
                   </table>
@@ -226,7 +244,13 @@
                         <b>{{answer.question.question}}:</b>
                       </td>
                       <td>
-                        <input type="text" class="form-control" ng-model="answer.answer">
+                        <textarea type="text" class="form-control" my-maxlength="100" ng-model="answer.answer" rows="3"></textarea>
+                        <p ng-show="wordCount(answer.answer) != 'Too Long!'">
+                          Word Count: {{ wordCount(answer.answer) }}, Words Remaining: {{ 100 - wordCount(answer.answer) }}
+                        </p>
+                        <p ng-show="wordCount(answer.answer) === 'Too Long!'" class="error-class" style="color:red;">
+                          Max Word Count!
+                        </p>  
                       </td>
                     </tr>
                   </table>

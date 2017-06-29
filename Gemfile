@@ -35,6 +35,7 @@ gem 'mail'
 # Use Unicorn as the app server
 # gem 'unicorn'
 gem 'rollbar'
+gem 'lodash-rails'
 
 # Amazon Web Services
 gem 'aws-sdk', '~> 2.3'
