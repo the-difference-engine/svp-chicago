@@ -273,7 +273,8 @@
                             <b>{{answer.question.question}}:</b>
                           </td>
                           <td>
-                            <input type="checkbox" class="checkbox" ng-model="answer.answer" ng-true-value="'t'" ng-false-value="''">
+                            <input ng-if="answer.question.question!='Other'" type="checkbox" class="checkbox" ng-model="answer.answer" ng-true-value="'t'" ng-false-value="''">
+                            <input ng-if="answer.question.question==='Other'" type="text" class="form-control" ng-model="answer.answer">
                           </td>
                         </tr>
                       </table>
