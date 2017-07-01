@@ -55,7 +55,8 @@ class Loi < ActiveRecord::Base
       csv << attributes + attribute_questions
       all.each do |loi|
         attribute_answers = []
-        loi.answers.each do |answer|
+        sorted_answers = loi.answers.sort_by &:id
+        sorted_answers.each do |answer|
           if answer.challenges.empty?
             attribute_answers << answer.answer
           else
