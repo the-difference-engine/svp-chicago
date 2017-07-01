@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 20170628215417) do
     t.boolean  "deadline_open?",   default: false
     t.datetime "created_at",                                       null: false
     t.datetime "updated_at",                                       null: false
-    t.datetime "loi_closing_date", default: '2017-06-28 21:56:43'
+    t.datetime "loi_closing_date", default: '2017-07-01 20:04:52'
   end
 
   create_table "ftes", force: :cascade do |t|
