@@ -63,12 +63,12 @@
                 <% end %>
                   <% if current_user && current_user.super_admin %>
                   <div>
-                    <button style="width:106.38px" class="btn btn-info btn-invite" ng-class="{'disabled': isDisabled}" ng-click="inviteSent(loi_status, loi.id); changeBtn(this)" ng-if="loi.invited_lois[0].status != true">{{btnText}}</button>
+                    <button style="width:106.38px" class="btn btn-info btn-invite" ng-class="{'disabled': isDisabled}" ng-click="inviteSent(loi_status, loi.id)" ng-if="loi.invited_lois[0].status != true">{{btnText}}</button>
 
                     <button style="width:106.38px" class="btn btn-error btn-invite disabled" ng-if="loi.invited_lois[0].status == true">Invited</button>
                   </div>
                   <div>
-                    <button style="width:106.38px" class="btn btn-danger btn-invite" ng-if="loi.reject == false || loi.reject == null" ng-click="changeReject(loi)">Delete LOI</button>
+                    <button style="width:106.38px;font-size:11px;" class="btn btn-danger btn-invite" ng-if="loi.reject == false || loi.reject == null" ng-click="changeReject(loi)">Reject Prescreen</button>
                   </div>
 
                   <% else %>

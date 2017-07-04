@@ -80,11 +80,11 @@ class LoisController < ApplicationController
   def update
     @loi = Loi.find_by(id: params[:id])
 
-    p "*********************"
     if params[:reject]
-      p '666666666'
       @loi.reject = true
       @loi.save
+      user = User.find(@loi.user_id)
+      UserNotifier.send_loi_prescreen_rejection(user).deliver
       render json: @loi
     else
 

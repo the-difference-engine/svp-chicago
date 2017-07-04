@@ -1,5 +1,5 @@
 class UserNotifier < ActionMailer::Base
-  default :from => 'no_reply@svpchicago.org'
+  default :from => 'investee_applications@svpchicago.org'
 
   # send a signup email to the user, pass in the user object that   contains the user's email address
   def send_notification(user)
@@ -13,7 +13,14 @@ class UserNotifier < ActionMailer::Base
     @user = user
     mail( :to => @user.email,
           :cc => ENV['SUPERADMIN_EMAIL'],
-          :subject => 'Thanks for submission to SVP!' )
+          :subject => 'Thanks for submission to SVP! (Rejection Notification)' )
+  end
+
+  def send_loi_prescreen_rejection(user)
+    @user = user
+    mail( :to => @user.email,
+          :cc => ENV['SUPERADMIN_EMAIL'],
+          :subject => 'Thanks for submission to SVP! (Prescreen Rejection Notification)' )
   end
 
   def send_notification_admin(admin)

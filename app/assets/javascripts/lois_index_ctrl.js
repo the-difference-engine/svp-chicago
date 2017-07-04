@@ -98,12 +98,16 @@
     };
 
     $scope.inviteSent = function(status, loi_id){
+      var loi = _.find($scope.lois, function(loi){
+        return loi.id === loi_id;
+      })
 
-      if(confirm("ARE YOU SURE?")){
+      if(confirm("ARE YOU SURE? You are about to invite '" + loi.org_name + "' to the RFP stage. A confirmation email will be sent.")){
         var dupes = $scope.invited_lois.filter(function(invited_lois) {
           return invited_lois.loi_id === parseInt(loi_id);
         });
         if (dupes.length === 0) {
+          $scope.changeBtn(this);
           var updatedStatus = {
             status: true,
             loi_id: loi_id,
@@ -123,7 +127,7 @@
     $scope.changeReject = function(inputLOI)
 
       {
-        var confirmation = confirm("Are you Sure");
+        var confirmation = confirm("Are you Sure? You are about to remove '" + inputLOI.org_name + "' from your submission list. A confirmation email will be sent.");
         if (!confirmation){
           return
         }
