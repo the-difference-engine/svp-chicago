@@ -50,9 +50,6 @@ gem 'aws-sdk-v1'
 # for uploading files using angular
 gem 'angularjs-file-upload-rails', '~> 2.2.0'
 
-# for pdf
-gem 'wicked_pdf', '~> 1.1'
-gem 'wkhtmltopdf-binary'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
