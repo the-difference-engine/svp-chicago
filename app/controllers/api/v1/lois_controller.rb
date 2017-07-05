@@ -76,10 +76,7 @@ class Api::V1::LoisController < ApplicationController
         super_admin = User.where(super_admin: true).first
 
         UserNotifier.send_notification(current_user).deliver
-
-        User.where(super_admin: true).each do |admin|
-          UserNotifier.send_notification_admin(admin).deliver
-        end
+        UserNotifier.send_notification_admin.deliver
 
         # CREATE LOI SUBMISSION CONFIRMATION EMAIL
       #   File.open('app/views/submission_email.html.erb', 'w') { |file| file.write(
@@ -230,10 +227,7 @@ class Api::V1::LoisController < ApplicationController
         company_name = @loi.answers.find_by(question_id:1).answer
 
         UserNotifier.send_notification(current_user).deliver
-
-        User.where(super_admin: true).each do |admin|
-          UserNotifier.send_notification_admin(admin).deliver
-        end
+        UserNotifier.send_notification_admin.deliver
 
         # # CREATE LOI SUBMISSION CONFIRMATION EMAIL
         # File.open('app/views/submission_email.html.erb', 'w') { |file| file.write(
