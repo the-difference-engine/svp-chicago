@@ -74,7 +74,9 @@
                         <b>{{answer.question.question}}:</b>
                       </td>
                       <td>
-                        <input type="text" class="form-control" ng-model="answer.answer">
+                        <input ng-if="answer.question.question.indexOf('Budget') > -1" type="number" class="form-control" ng-model="answer.answer">
+                        <input ng-if="answer.question.question.indexOf('Budget') == -1" type="text" class="form-control" ng-model="answer.answer">
+                        <p ng-if="answer.question.question.indexOf('Budget') > -1 && answer.answer > 7500000" class="error-class" style="color:red;">Your organization's budget is greater than the maximum allowed for this investment cycle.</p>
                       </td>
                     </tr>
                   </table>

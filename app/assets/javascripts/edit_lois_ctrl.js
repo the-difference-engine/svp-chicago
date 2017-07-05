@@ -16,6 +16,12 @@
           $scope.loi = response.data;
           console.log($scope.loi);
 
+          _.forEach($scope.loi.organization_answers, function(answer) {
+            if (answer.question.question.includes('Budget')) {
+              answer.answer = parseFloat(answer.answer);
+            }
+          });
+
           $scope.activeChallenge = {};
           //ADD THE TOAL FTES
           $scope.fte_1 = 0.0;
