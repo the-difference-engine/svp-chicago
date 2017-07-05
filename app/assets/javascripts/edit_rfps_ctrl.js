@@ -49,8 +49,10 @@
       $scope.user_id = gon.user_id;
 
       $scope.submitted = false;
+      $scope.confirmation = false;
 
-      $scope.required = gon.req
+      $scope.required = gon.req;
+      if ($scope.required) { $scope.confirmation = true; }
 
       $http.get('/api/v1/rfps/' + $scope.activeId + '.json').then(function(response){
         $scope.sections = response.data;
@@ -186,7 +188,7 @@
       } else if ($scope.required){
         $scope.confirmation = true;
       } else {
-           if (file6) {
+          if (file6) {
             fileUploadEdit.uploadFileToUrlEdit(file6, uploadUrl, "Current Strategic Plan", $scope.activeId);
           }
           if (file7) {
@@ -197,11 +199,11 @@
       }
 
       if (file6) {
-       fileUploadEdit.uploadFileToUrlEdit(file6, uploadUrl, "Current Strategic Plan", $scope.activeId);
-     }
-     if (file7) {
-       fileUploadEdit.uploadFileToUrlEdit(file7, uploadUrl, "Most Recent Annual Report", $scope.activeId);
-     }
+         fileUploadEdit.uploadFileToUrlEdit(file6, uploadUrl, "Current Strategic Plan", $scope.activeId);
+      }
+      if (file7) {
+         fileUploadEdit.uploadFileToUrlEdit(file7, uploadUrl, "Most Recent Annual Report", $scope.activeId);
+      }
 
       alert("Your files were successfully uploaded! If you are satisfied with your information, hit the Submit button to send to SVP. Otherwise click the Save button to return and edit later.");
       

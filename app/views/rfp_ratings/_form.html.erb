@@ -26,63 +26,63 @@
         <div class="form-group rtf">
           <%= label_tag "4 At inflection point, ready for change", nil, class: "col-sm-2 control-label" %>
           <div class="col-sm-10">
-          <%= select_tag(:q4, options_for_select([['1 Little to no Potential for Growth', 1], ['5  Significant Growth Potential', 5]], selected: @rating.q4 ), :prompt => "Rate 1 or 5", class: "form-control") %>
+          <%= select_tag(:q4, options_for_select([['1 Does not meet Criteria', 1], ['2 Meets Few Criteria', 2], ['3 Meets Most Criteria', 3], ['4 Meets Criteria', 4]], selected: @rating.q4 ), :prompt => "Rate 1 - 4", class: "form-control") %>
           </div>
         </div>
 
         <div class="form-group rtf">
           <%= label_tag "5 SVP's potential impact", nil, class: "col-sm-2 control-label" %>
           <div class="col-sm-10">
-          <%= select_tag(:q5, options_for_select([['1 Limited Impact', 1], ['5  Significant Positive Impact', 5]], selected: @rating.q5 ), :prompt => "Rate 1 or 5", class: "form-control") %>
+          <%= select_tag(:q5, options_for_select([['1 Does not meet Criteria', 1], ['2 Meets Few Criteria', 2], ['3 Meets Most Criteria', 3], ['4 Meets Criteria', 4]], selected: @rating.q5 ), :prompt => "Rate 1 - 4", class: "form-control") %>
           </div>
         </div>
 
         <div class="form-group rtf">
           <%= label_tag "6 Understands SVP Model", nil, class: "col-sm-2 control-label" %>
           <div class="col-sm-10">
-          <%= select_tag(:q6, options_for_select([['1 No idea or interest in working together. Just wants money.', 1], ['5 High degree of understanding', 5]], selected: @rating.q6 ), :prompt => "Rate 1 or 5", class: "form-control") %>
+          <%= select_tag(:q6, options_for_select([['1 No', 1], ['5 Yes', 5]], selected: @rating.q6 ), :prompt => "Choose yes or no", class: "form-control") %>
           </div>
         </div>
 
         <div class="form-group rtf">
           <%= label_tag "7 Understands metrics", nil, class: "col-sm-2 control-label" %>
           <div class="col-sm-10">
-            <%= select_tag(:q7, options_for_select([['1 Does not see value in metrics/processes to measure results', 1], ['5  Clearly values and has metrics/processes in place', 5]], selected: @rating.q7 ), :prompt => "Rate 1 or 5", class: "form-control") %>
+            <%= select_tag(:q7, options_for_select([['1 No', 1], ['5 Yes', 5]], selected: @rating.q7 ), :prompt => "Choose yes or no", class: "form-control") %>
           </div>
         </div>
 
         <div class="form-group rtf">
           <%= label_tag "8 Organization of leadership", nil, class: "col-sm-2 control-label" %>
           <div class="col-sm-10">
-            <%= select_tag(:q8, options_for_select([['1 Worried about the quality of leadership here', 1], ['5  Strong leaders across the board', 5]], selected: @rating.q8 ), :prompt => "Rate 1 or 5", class: "form-control") %>
+            <%= select_tag(:q8, options_for_select([['1 Does not meet Criteria', 1], ['2 Meets Few Criteria', 2], ['3 Meets Most Criteria', 3], ['4 Meets Criteria', 4]], selected: @rating.q8 ), :prompt => "Rate 1 - 4", class: "form-control") %>
           </div>
         </div>
 
         <div class="form-group rtf">
           <%= label_tag "9 Quality of Board of Directors", nil, class: "col-sm-2 control-label" %>
           <div class="col-sm-10">
-          <%= select_tag(:q9, options_for_select([['1 Worried about the quality of Board here', 1], ['5  Strong Board', 5]], selected: @rating.q9 ), :prompt => "Rate 1 or 5", class: "form-control") %>
+          <%= select_tag(:q9, options_for_select([['1 Does not meet Criteria', 1], ['2 Meets Few Criteria', 2], ['3 Meets Most Criteria', 3], ['4 Meets Criteria', 4]], selected: @rating.q9 ), :prompt => "Rate 1 - 4", class: "form-control") %>
           </div>
         </div>
 
         <div class="form-group rtf">
           <%= label_tag "10 Assessment of Business Model", nil, class: "col-sm-2 control-label" %>
           <div class="col-sm-10">
-          <%= select_tag(:q10, options_for_select([['1 Not sustainable. Significant concerns about the business model', 1], ['5  Strong well understood and scalable', 5]], selected: @rating.q10 ), :prompt => "Rate 1 or 5", class: "form-control") %>
+          <%= select_tag(:q10, options_for_select([['1 Does not meet Criteria', 1], ['2 Meets Few Criteria', 2], ['3 Meets Most Criteria', 3], ['4 Meets Criteria', 4]], selected: @rating.q10 ), :prompt => "Rate 1 - 4", class: "form-control") %>
           </div>
         </div>
 
         <div class="form-group rtf">
           <%= label_tag "11 Excitment?", nil, class: "col-sm-2 control-label" %>
           <div class="col-sm-10">
-          <%= select_tag(:q11, options_for_select([['1 Unexcited', 1], ['5  Very Excited', 5]], selected: @rating.q11 ), :prompt => "Rate 1 or 5", class: "form-control") %>
+          <%= select_tag(:q11, options_for_select([['1 Does not meet Criteria', 1], ['2 Meets Few Criteria', 2], ['3 Meets Most Criteria', 3], ['4 Meets Criteria', 4]], selected: @rating.q11 ), :prompt => "Rate 1 - 4", class: "form-control") %>
           </div>
         </div>
 
         <div class="form-group rtf">
           <%= label_tag "12 Will benefit SVP Chicago?", nil, class: "col-sm-2 control-label" %>
           <div class="col-sm-10">
-          <%= select_tag(:q12, options_for_select([['1 No Benefit or Negative Benefit', 1], ['5  Significant Benefit', 5]], selected: @rating.q12 ), :prompt => "Rate 1 or 5", class: "form-control") %>
+          <%= select_tag(:q12, options_for_select([['1 Does not meet Criteria', 1], ['2 Meets Few Criteria', 2], ['3 Meets Most Criteria', 3], ['4 Meets Criteria', 4]], selected: @rating.q12 ), :prompt => "Rate 1 - 4", class: "form-control") %>
           </div>
         </div>
 
@@ -103,7 +103,7 @@
         <div class="form-group rtf">
           <%= label_tag "15 Comments:", nil, class: "col-sm-2 control-label" %>
           <div class="col-sm-10">
-          <%= text_field_tag(:comments, @rfp || @rating.comments, placeholder: 'enter text here', class: "form-control") %>
+          <%= text_field_tag(:comments, @rating.comments, placeholder: 'enter text here', class: "form-control") %>
           </div>
         </div>
 

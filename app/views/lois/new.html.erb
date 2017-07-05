@@ -4,7 +4,7 @@
 
       <div>
         <div class="well-1">
-          <h1>SVP <span style="color:#0060b2">Chicago</span> – 2016 Letter of Interest</h1>
+          <h1>SVP <span style="color:#0060b2">Chicago</span> – <%= Time.now.year %> Letter of Interest</h1>
             <div class="container-fluid">
             <h4> Sector Focus: <i><span style="color:#BC214D">Beaking the Cycle of Poverty</span></h4>
             <p><b>Completing this Form:</b></p>
@@ -100,6 +100,7 @@
 
                         <p ng-if="!(question.question.indexOf('Number') > -1 || question.question.indexOf('Budget') > -1)" ng-show="(loiForm['organization_question_' + $index].$invalid && !loiForm['organization_question_' + $index].$pristine) || (loiForm['organization_question_' + $index].$invalid && invalidSubmission)" class="error-class" style="color:red;">Please fill out the field.</p>
 
+                        <p ng-if="question.question.indexOf('Budget') > -1 && question.answer > 7500000" class="error-class" style="color:red;">Your organization's budget is greater than the maximum allowed for this investment cycle.</p>
                     </div>
 
                   </fieldset>
@@ -115,9 +116,15 @@
 
                 <div ng-repeat="question in overview_formData">
                   <label> {{question.question}}: </label>
-                  <textarea name="overview_question_{{$index}}" class="form-control" rows="3" ng-model="question.answer" required></textarea>
+                  <textarea name="overview_question_{{$index}}" class="form-control" rows="3" ng-model="question.answer" my-maxlength="350" required></textarea>
 
                   <p ng-show="(loiForm['overview_question_' + $index].$invalid && !loiForm['overview_question_' + $index].$pristine) || (loiForm['overview_question_' + $index].$invalid && invalidSubmission) " class="error-class" style="color:red;">Please fill out the field.</p>
+                  <p ng-show="wordCount(question.answer) != 'Too Long!'">
+                    Word Count: {{ wordCount(question.answer) }}, Words Remaining: {{ 350 - wordCount(question.answer) }}
+                  </p>
+                  <p ng-show="wordCount(question.answer) === 'Too Long!'" class="error-class" style="color:red;">
+                    Max Word Count!
+                  </p>  
                 </div>
               </div>           
             </section>       
@@ -129,9 +136,15 @@
                 <h1> {{ vision_section.name }} </h1>
                 <div ng-repeat="question in vision_formData">
                   <label> {{question.question}}: </label>
-                  <textarea name="vision_question_{{$index}}" class="form-control" rows="3" ng-model="question.answer" required></textarea>
+                  <textarea name="vision_question_{{$index}}" class="form-control" rows="3" ng-model="question.answer" my-maxlength="350" required></textarea>
 
                   <p ng-show="(loiForm['vision_question_' + $index].$invalid && !loiForm['vision_question_' + $index].$pristine) || (loiForm['vision_question_' + $index].$invalid && invalidSubmission) " class="error-class" style="color:red;">Please fill out the field.</p>
+                  <p ng-show="wordCount(question.answer) != 'Too Long!'">
+                    Word Count: {{ wordCount(question.answer) }}, Words Remaining: {{ 350 - wordCount(question.answer) }}
+                  </p>
+                  <p ng-show="wordCount(question.answer) === 'Too Long!'" class="error-class" style="color:red;">
+                    Max Word Count!
+                  </p>  
                 </div>
               </div>      
             </section>
@@ -143,9 +156,15 @@
                 <h1> {{ concern_section.name }} </h1>
                   <div ng-repeat="question in concern_formData">
                     <label> {{question.question}}: </label>
-                    <textarea name="key_question_{{$index}}" class="form-control" rows="3" ng-model="question.answer" required></textarea>
+                    <textarea name="key_question_{{$index}}" class="form-control" rows="3" ng-model="question.answer" my-maxlength="350" required></textarea>
 
                     <p ng-show="(loiForm['key_question_' + $index].$invalid && !loiForm['key_question_' + $index].$pristine) || (loiForm['key_question_' + $index].$invalid && invalidSubmission) " class="error-class" style="color:red;">Please fill out the field.</p>
+                    <p ng-show="wordCount(question.answer) != 'Too Long!'">
+                      Word Count: {{ wordCount(question.answer) }}, Words Remaining: {{ 350 - wordCount(question.answer) }}
+                    </p>
+                    <p ng-show="wordCount(question.answer) === 'Too Long!'" class="error-class" style="color:red;">
+                      Max Word Count!
+                    </p>  
                   </div>
               </div>       
             </section>
@@ -163,7 +182,7 @@
                       <th colspan="3">
                         <table class="fte-header-table">
                           <tr>
-                            <td colspan="3">Please provide the total amount of time you and your staff spend in each focus area expressd in FTEs</td>
+                            <td colspan="3">Please provide the total amount of time you and your staff spend in each focus area expressd in FTEs. <br><span style="font-size:10px;"> Full time equivalency (FTE) refers to an organization’s full-time equivalent of its part-time employees (e.g. two part-time workers at 20 hours each equals one FTE).</span></td>
                           </tr>
                           <tr>
                             <td>-</td>
@@ -171,9 +190,9 @@
                             <td>-</td>
                           </tr>
                           <tr>
-                            <td>2015 Staffing (actual)</td>
-                            <td>2016 Staffing (current)</td>
-                            <td>2017 Staffing (projected)</td>
+                            <td>2016 Staffing (actual)</td>
+                            <td>2017 Staffing (current)</td>
+                            <td>2018 Staffing (projected)</td>
                           </tr>
                         </table>
                       </th>
@@ -227,9 +246,15 @@
                 <h1> {{ referral_section.name }} </h1>
                 <div ng-repeat="question in referral_formData">
                   <label> {{question.question}}: </label>
-                  <textarea name="referral_question_{{$index}}" class="form-control" rows="3" ng-model="question.answer" required></textarea>
+                  <textarea name="referral_question_{{$index}}" class="form-control" rows="3" ng-model="question.answer" my-maxlength="350" required></textarea>
 
-                  <p ng-show="(loiForm['referral_question_' + $index].$invalid && !loiForm['referral_question_' + $index].$pristine) || (loiForm['referral_question_' + $index].$invalid && invalidSubmission) " class="error-class" style="color:red;">Please fill out the field.</p>    
+                  <p ng-show="(loiForm['referral_question_' + $index].$invalid && !loiForm['referral_question_' + $index].$pristine) || (loiForm['referral_question_' + $index].$invalid && invalidSubmission) " class="error-class" style="color:red;">Please fill out the field.</p>
+                  <p ng-show="wordCount(question.answer) != 'Too Long!'">
+                    Word Count: {{ wordCount(question.answer) }}, Words Remaining: {{ 350 - wordCount(question.answer) }}
+                  </p>
+                  <p ng-show="wordCount(question.answer) === 'Too Long!'" class="error-class" style="color:red;">
+                    Max Word Count!
+                  </p>      
                 </div>
               </div>
             </section>
@@ -257,7 +282,8 @@
                                 <label> {{question.question}}: </label>
                               </td>
                               <td>
-                                <input type="checkbox" class="checkbox" ng-model="question.answer" ng-true-value="'t'" ng-false-value="''">
+                                <input ng-if="question.question!='Other'" type="checkbox" class="checkbox" ng-model="question.answer" ng-true-value="'t'" ng-false-value="''">
+                                <input ng-if="question.question=='Other'" type="text" class="form-control" ng-model="question.answer">
                               </td>
                             </tr>
                           </fieldset>

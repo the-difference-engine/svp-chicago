@@ -16,6 +16,12 @@
           $scope.loi = response.data;
           console.log($scope.loi);
 
+          _.forEach($scope.loi.organization_answers, function(answer) {
+            if (answer.question.question.includes('Budget')) {
+              answer.answer = parseFloat(answer.answer);
+            }
+          });
+
           $scope.activeChallenge = {};
           //ADD THE TOAL FTES
           $scope.fte_1 = 0.0;
@@ -66,6 +72,11 @@
       }
       console.log($scope.activeChallenge);
     };
+
+    $scope.wordCount = function(text){
+      var wordLength = text ? text.match(/\S+/g).length : 0;
+      return wordLength >= 100 ? 'Too Long!' : wordLength;
+    }
 
     $scope.submit = function(name, email, isValid){
       

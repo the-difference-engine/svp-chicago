@@ -73,7 +73,7 @@ Rails.application.configure do
     :authentication => :plain,
     :enable_starttls_auto => true
   }
-  config.action_mailer.default_url_options = { host: 'prod-svp-chicago.herokuapp.com' }
+  config.action_mailer.default_url_options = { host: 'qa-svp-chicago-2017.herokuapp.com' }
  
   Mail.defaults do
     delivery_method :smtp, {

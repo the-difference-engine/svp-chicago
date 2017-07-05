@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-
+ruby "2.2.2"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
 # Use postgresql as the database for Active Record
@@ -35,6 +35,7 @@ gem 'mail'
 # Use Unicorn as the app server
 # gem 'unicorn'
 gem 'rollbar'
+gem 'lodash-rails'
 
 # Amazon Web Services
 gem 'aws-sdk', '~> 2.3'
@@ -48,6 +49,7 @@ gem 'aws-sdk-v1'
 
 # for uploading files using angular
 gem 'angularjs-file-upload-rails', '~> 2.2.0'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

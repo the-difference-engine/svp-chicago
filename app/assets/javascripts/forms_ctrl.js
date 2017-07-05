@@ -1,6 +1,25 @@
 (function() {
   "use strict";
 
+  angular.module("app").directive('myMaxlength', ['$compile', '$log', function($compile, $log) {
+    return {
+      restrict: 'A',
+      require: 'ngModel',
+      link: function (scope, elem, attrs, ctrl) {
+        attrs.$set("ngTrim", "false");
+                var maxlength = parseInt(attrs.myMaxlength, 10);
+                ctrl.$parsers.push(function (value) {
+                    if (value && value.match(/\S+/g).length > maxlength) {
+                        value = _.take(value.match(/\S+/g), maxlength).join(' ') + ' ';
+                        ctrl.$setViewValue(value);
+                        ctrl.$render();
+                    }
+                    return value;
+                });
+      }
+    };
+  }]);
+
   angular.module("app").controller("formsCtrl", ["$scope", "$http", "$compile", function($scope, $http, $compile){
     window.scope = $scope;
 
@@ -169,6 +188,11 @@
 
 
       });
+    };
+
+    $scope.wordCount = function(text){
+      var wordLength = text ? text.match(/\S+/g).length : 0;
+      return wordLength >= 350 ? 'Too Long!' : wordLength;
     };
 
     $scope.submitNow = function(){

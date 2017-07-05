@@ -1,11 +1,11 @@
 class EmailsController < ApplicationController
   # has_one :invited_lois
   def index
-    @lois = Loi.where(submitted: true).where(reject: nil)  
+    @lois = Loi.where(submitted: true).where(reject: false)  
   end
 
   def send_rejection_emails
-    @lois = Loi.where(submitted: true).where(reject: nil)
+    @lois = Loi.where(submitted: true).where(reject: false)
 
     @lois.each do |loi|
       if loi.invited_lois.empty?

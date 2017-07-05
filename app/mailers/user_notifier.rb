@@ -1,26 +1,31 @@
 class UserNotifier < ActionMailer::Base
-  default :from => 'no_reply@svpchicago.org'
+  default :from => 'investee_applications@svpchicago.org'
 
   # send a signup email to the user, pass in the user object that   contains the user's email address
   def send_notification(user)
     @user = user
-    p user
     mail( :to => @user.email,
-    :subject => 'Thanks for submission to SVP!' )
+          :cc => ENV['SUPERADMIN_EMAIL'],
+          :subject => 'Thanks for submission to SVP!' )
   end
 
   def send_loi_rejection(user)
     @user = user
     mail( :to => @user.email,
-          :cc => 'danhey@gmail.com', #'colleen@svpchicago.org',
-          :subject => 'Thanks for submission to SVP!' )
+          :cc => ENV['SUPERADMIN_EMAIL'],
+          :subject => 'Thanks for submission to SVP! (Rejection Notification)' )
   end
 
-  def send_notification_admin(admin)
-    @admin = admin
-    p admin
-    mail( :to => @admin.email,
-    :subject => 'An LOI has been submitted!' )
+  def send_loi_prescreen_rejection(user)
+    @user = user
+    mail( :to => @user.email,
+          :cc => ENV['SUPERADMIN_EMAIL'],
+          :subject => 'Thanks for submission to SVP! (Prescreen Rejection Notification)' )
+  end
+
+  def send_notification_admin
+    mail( :to => ENV['SUPERADMIN_EMAIL'],
+          :subject => 'An LOI has been submitted!' )
   end
 
   def send_rfp_notification(user)
@@ -41,7 +46,7 @@ class UserNotifier < ActionMailer::Base
     @user = user
     p user
     mail( :to => @user.email,
-          :cc => 'danhey@gmail.com', #'colleen@svpchicago.org',
+          :cc => ENV['SUPERADMIN_EMAIL'],
           :subject => "You're invited to submit an RFP!" )
   end
 end

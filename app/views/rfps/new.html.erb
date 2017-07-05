@@ -1,11 +1,11 @@
-<div class="site-container">
+  <div class="site-container">
   <div id="form-paper">
     <div ng-app="app">
       <div ng-controller="rfpsCtrl" ng-init="setup()">
         <div class="form-heading">
 
           <div class="well-1">
-            <h1>SVP <span style="color:#0060b2">Chicago</span> - 2016 New Request for Proposal</h1>
+            <h1>SVP <span style="color:#0060b2">Chicago</span> - <%= Time.now.year %> New Request for Proposal</h1>
             <div class="container-fluid">
 
               <p><b>Completing this Form:</b></p>
@@ -21,10 +21,7 @@
 
               We look forward to your submission!<br>
 
-              <br><b>Due Date: Friday, January 6, 2017, by 12:00 p.m.</b>
-
-              Please e-mail your proposal to Colleen Scrivner:<br>
-              <b><%= mail_to "colleen@svpchicago.org", "Colleen Scrivner", subject: "RFP Inquiry" %></b>, director of marketing &amp; operations, SVP Chicago.<br><br>
+              <br><b>Due Date: Friday, January 6, 2017, by 12:00 p.m.</b><br>
 
               <b>Using this Form:</b>
               Please enter information directly into this form. <b>The boxes will expand to hold your text. </b>You can adjust the page breaks when you have completed the form.
@@ -201,7 +198,8 @@
 
             <div class="submit-button-container">
               <button class="btn btn-success btn-lg" ng-click="submitForm(false)">Save and Submit Later</button>
-              <button class="btn btn-primary btn-lg" ng-click="submitForm(true)">Submit</button>              
+              <button class="btn btn-primary btn-lg" ng-click="submitForm(true)">Submit</button>  
+              <p style="text-align:center;"> * There may be a short delay when submitting. Please wait a moment before navaigating away from the page </p>        
             </div>  
           </form>
           <!-- END FORM -->

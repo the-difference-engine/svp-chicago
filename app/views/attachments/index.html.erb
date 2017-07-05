@@ -1,6 +1,25 @@
-<h1>All Attachments</h1>
-<% @attachments.each do |attachment| %>
-  <div>
-    <%= link_to attachment.name, attachment.url %>
+<div class="container">
+  <div id="form-paper">
+    <div class="form-heading">
+      <h1>All Attachments</h1>
+    </div>
+    <div style="padding:30px;">
+      <div class="form-horizontal">
+
+        <table class="table">
+          <% @attachments.each do |attachment| %>
+            <tr>
+              <td>
+                <% if attachment.rfp %>
+                  <%= attachment.rfp.org_name %>
+                <% end %>
+              </td>
+              <td><%= link_to attachment.name, attachment.url %></td>
+            </tr>
+          <% end %>
+        </table>
+
+    </div>
+    </div>
   </div>
-<% end %>
+</div>

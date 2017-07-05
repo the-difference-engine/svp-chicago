@@ -5,7 +5,7 @@
         <div class="form-heading">
 
           <div class="well-1">
-            <h1>SVP <span style="color:#0060b2">Chicago</span> - 2016 Request for Proposal - Edit</h1>
+            <h1>SVP <span style="color:#0060b2">Chicago</span> - <%= Time.now.year %> Request for Proposal - Edit</h1>
             <div class="container-fluid">
 
               <p><b>Completing this Form:</b></p>
@@ -21,15 +21,12 @@
 
               We look forward to your submission!<br>
 
-              <br><b>Due Date: Friday, January 6, 2017, by 5:00 p.m.</b>
-
-              Please e-mail your proposal to Colleen Scrivner:<br>
-              <b><%= mail_to "colleen@svpchicago.org", "Colleen Scrivner", subject: "RFP Inquiry" %></b>, director of marketing &amp; operations, SVP Chicago.<br><br>
+              <br><b>Due Date: Friday, January 6, 2017, by 12:00 p.m.</b><br>
 
               <b>Using this Form:</b>
               Please enter information directly into this form. <b>The boxes will expand to hold your text. </b>You can adjust the page breaks when you have completed the form.
               <ul>
-                <li>Your proposal must not exceed 11 pages in length. This cover page and the requested attachments are not counted in the 11 page maximum.</li>
+                <li>Please try to limit your responses to 500 words or less for each section.</li>
                 <li>If you find an item confusing, please feel free to contact us. We understand that some of our nomenclature could be unfamiliar. We also understand that you may not yet have established some capabilities or processes, and indicating that fact by inserting “Not Yet
                 Established” or “To Be Determined” is completely acceptable.</li>
                 <li>Whenever possible, please use bullet points rather than paragraphs. Brevity will be highly advantageous to you during our review process.</li>
@@ -315,7 +312,8 @@
             <div class="submit-button-container">
               <button class="btn btn-success btn-lg" ng-click="submitForm(false)">Save and Submit Later</button>
               <button class="btn btn-primary btn-lg" ng-click="submitForm(true)">Submit</button>              
-            </div>  
+              <p style="text-align:center;"> * There may be a short delay when submitting. Please wait a moment before navaigating away from the page </p>  
+            </div>
           </form>
           <!-- END FORM -->
         </div>

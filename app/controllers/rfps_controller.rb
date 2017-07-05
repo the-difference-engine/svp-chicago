@@ -44,10 +44,21 @@ class RfpsController < ApplicationController
     @doc_type_array = [ "IRS Determination Letter", 
                         "Organization Chart",
                         "Financial Statement: Recent Fiscal Year-End"]
+    if current_user.rfp_ratings.find_by(rfp_id: @rfp.id) == nil
+      @rating = RfpRating.new
+    else
+      @rating = current_user.rfp_ratings.find_by(rfp_id: params[:id])
+    end
  end
 
   def index
     @rfps = Rfp.all
+    gon.current_user_id = current_user.id
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data @rfps.to_csv, filename: "rfps-#{Date.today}.csv" }
+    end
   end
 
   def edit

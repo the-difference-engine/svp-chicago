@@ -6,19 +6,19 @@ class RfpRatingsController < ApplicationController
     @yes_ratings = RfpRating.where(user_id: current_user.id).where(q5: 'Yes')
     gon.current_user_id = current_user.id
 
-    if user_signed_in? && current_user.admin
+    if user_signed_in? && current_user.super_admin
       @ratings = RfpRating.all
 
       respond_to do |format|
         format.html
-        format.csv { send_data @ratings.to_csv, filename: "ratings-#{Date.today}.csv" }
+        format.csv { send_data @ratings.to_csv, filename: "rfp_ratings-#{Date.today}.csv" }
       end
-    else
+    else 
       @ratings = RfpRating.where(user_id: current_user.id)
 
       respond_to do |format|
         format.html
-        format.csv { send_data @ratings.to_csv, filename: "ratings-#{Date.today}.csv" }
+        format.csv { send_data @ratings.to_csv, filename: "rfp_ratings-#{Date.today}.csv" }
       end
     end
 
@@ -55,13 +55,22 @@ class RfpRatingsController < ApplicationController
       comments: params[:comments]
       # weighted_score: :q1 + :q2 + :q3 + :q4 + :q5 + :q6 + :q7 + :q9 + :q11
     )
-    @rating.update(weighted_score: @rating.weighted_score)
+    
     if @rating.save
-      redirect_to '/rfp_ratings'
+      @rating.update(weighted_score: @rating.weighted_score)
+      @rating.save
+      redirect_to '/rfps'
       flash[:success] = "Rating Submitted!"
     else
+      error_message = "Error! "
+      @rating.errors.full_messages.each_with_index do |message, index|
+        error_message += (message.to_s)
+        if index < @rating.errors.full_messages.length - 1
+          error_message += " | "
+        end
+      end 
       redirect_to :back
-      flash[:warning] = "Missing elements in rating!"
+      flash[:warning] = error_message
     end
   end
 
@@ -92,7 +101,7 @@ class RfpRatingsController < ApplicationController
       comments: params[:comments]
     )
     if @rating.save
-      redirect_to '/rfps'
+      redirect_to '/rfp_ratings'
       flash[:success] = "Rating Updated!"
     else
       redirect_to :back

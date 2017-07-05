@@ -37,12 +37,15 @@
                 </th>
                 <th ng-show=<%="#{current_user.super_admin}"%>  style="width: 8%; text-align: center; vertical-align: middle">
                 <p ng-click="sortBy(avgRatingPerRfp)">
-                    Average Rating
+                    Average Weighted Score
                     <span ng-class="toggle_class">
                     </span>
                   </p>
                 </th>
-                <th style="width: 20%; text-align: center; vertical-align: middle">
+                <th style="width: 8%; text-align: center; vertical-align: middle">
+                  <p>Submitted?</p>
+                </th>
+                <th style="width: 10%; text-align: center; vertical-align: middle">
                   <p>Action</p>
                 </th>
                 <tr ng-repeat="rfp in rfps | filter: {org_name: orgNameFilter} | orderBy:sortByAttribute:descending">
@@ -55,24 +58,30 @@
                     </ul>
                   </td>
                   <td ng-show=<%="#{current_user.super_admin}"%> style="text-align: center;">
-                    <p>{{avgRatingPerRfp(rfp.ratings)}}</p>
+                    <p>{{avgRatingPerRfp(rfp.rfp_ratings)}}</p>
                   </td>
-                  <td>
+                  <td style="text-align: center;">
+                    <p ng-if="rfp.submitted"> Yes </p>
+                    <p ng-if="!rfp.submitted"> No </p>
+                  </td>
+                  <td style="text-align: center;">
                     <% if current_user && current_user.admin %>
-                      <a type="btn" href="/rfps/{{rfp.id}}" style="width:106.38px" class="btn btn-success btn-rate" ng-show="!rated(rfp.ratings)">View/Rate</a>
-                      <a type="btn" href="/rfps/{{rfp.id}}/edit" style="width:106.38px" class="btn btn-warning btn-invite" ng-show="rated(rfp.ratings)">View/Edit</a>   
+                      <a type="btn" href="/rfps/{{rfp.id}}" style="width:106.38px" class="btn btn-success btn-rate" ng-show="!rated(rfp.rfp_ratings)">View/Rate</a>
+                      <a type="btn" href="/rfps/{{rfp.id}}" style="width:106.38px" class="btn btn-warning btn-invite" ng-show="rated(rfp.rfp_ratings)">View/Edit</a>   
 
                     <% end %>
                       <% if current_user && current_user.super_admin %>
-                        <button style="width:106.38px" class="btn btn-info btn-invite" ng-class="{'disabled': isDisabled}" ng-click="inviteSent(rfp_status, rfp.id); changeBtn(this)" ng-if="rfp.invited_rfps[0].status != true">{{btnText}}</button>
-                        <button style="width:106.38px" class="btn btn-error btn-invite disabled" ng-if="rfp.invited_rfps[0].status == true">Invited</button>   
-                      <% else %>
-                        <button style="width:106.38px" class="btn btn-danger btn-rate disabled" ng-if="rfp.invited_rfps[0].status != true">Super Admin action required</button>
-                        <button style="width:106.38px" class="btn btn-error btn-rate disabled" ng-if="rfp.invited_rfps[0].status == true">Invited</button>
+                        
                       <% end %>
                   </td>
                 </tr>
               </table>
+              
+              <div class="csv-btn span7">
+                <% if current_user && current_user.admin %>
+                  <%= link_to "Download RFPs CSV File", "/rfps.csv", :class => "btn btn-danger", :role => "button" %>
+                <% end %>
+              </div>
             </div>
       </div>
     </div>

@@ -6,7 +6,7 @@
     <% if @loi.submitted %>
 
       <h1>Thank you for your submission, <%= @loi.name %>!</h1>
-      <p>You should recieve a confirmation email at <%= @loi.email %>. </p>
+      <p>You should recieve a confirmation email at <%= current_user.email %>. </p>
       <p> Have a nice day! </p>
 
     <% else %>

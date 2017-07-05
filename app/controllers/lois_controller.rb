@@ -1,4 +1,4 @@
- class LoisController < ApplicationController
+class LoisController < ApplicationController
   before_action :authenticate_user!, only: [:index, :destroy, :edit, :show, :new]
   before_action :authenticate_admin!, only: [:index, :destroy]
 
@@ -6,20 +6,26 @@
     if params[:alert]
       flash.now[:success] = params[:alert]
     end
-    @lois = Loi.where(submitted: true).where(reject: nil)
+    @lois = Loi.where(submitted: true).where(reject: [false, nil])
     @admins_ratings = Rating.where(user_id: current_user.id)
     gon.current_user_id = current_user.id
 
     respond_to do |format|
       format.html
       format.csv { send_data @lois.to_csv, filename: "lois-#{Date.today}.csv" }
+      format.pdf do
+        pdf = Prawn::Document.new
+        send_data pdf.render, filename: 'report.pdf', type: 'application/pdf'
+      end
     end
 
   end
 
   def new
-    if Time.now > Time.new(2016, 10, 21, 17, 0, 0)
-      flash[:warning] = "Deadline has passed"
+    @dashboard = Dashboard.first
+    if @dashboard.loi_closing_date < Time.now
+      date = @dashboard.loi_closing_date.strftime('%m-%e-%y, %H:%M')
+      flash[:warning] = "The deadline to Submit a Letter of Interest was #{date}"
       redirect_to '/'
     end
   end
@@ -47,8 +53,10 @@
   end
 
   def edit
-    if Time.now > Time.new(2016, 10, 21, 17, 0, 0) && !current_user.super_admin
-      flash[:warning] = "Deadline has passed"
+    @dashboard = Dashboard.first
+    if @dashboard.loi_closing_date < Time.now
+      date = @dashboard.loi_closing_date.strftime('%m-%e-%y, %H:%M')
+      flash[:warning] = "The deadline to Submit a Letter of Interest was #{date}"
       redirect_to '/'
     end
     @loi = Loi.find_by(id: params[:id])
@@ -72,11 +80,11 @@
   def update
     @loi = Loi.find_by(id: params[:id])
 
-    p "*********************"
     if params[:reject]
-      p '666666666'
       @loi.reject = true
       @loi.save
+      user = User.find(@loi.user_id)
+      UserNotifier.send_loi_prescreen_rejection(user).deliver
       render json: @loi
     else
 

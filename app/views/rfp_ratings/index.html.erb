@@ -105,8 +105,29 @@
                 </p>
               </th>
               <th>
+                <p ng-click="sortBy('user.email')">
+                  Invited?
+                  <span ng-class="toggle_class">
+                  </span>
+                </p>
+              </th>
+              <th>
                 <p ng-click="sortBy('weighted_score')">
                   Weighted Score
+                  <span ng-class="toggle_class">
+                  </span>
+                </p>
+              </th>
+              <th>
+                <p ng-click="sortBy('user.email')">
+                  Follow Up
+                  <span ng-class="toggle_class">
+                  </span>
+                </p>
+              </th>
+              <th>
+                <p ng-click="sortBy('user.email')">
+                  Comments
                   <span ng-class="toggle_class">
                   </span>
                 </p>
@@ -130,21 +151,38 @@
               <td>{{ rfp_rating.q5 }}</td>
               <td>{{ rfp_rating.q6 }}</td>
               <td>{{ rfp_rating.q7 }}</td>
-              <td>
-                <span ng-if="rfp_rating.q8">Yes</span>
-                <span ng-if="!rfp_rating.q8">No</span>
-              </td>
+              <td>{{ rfp_rating.q8 }}</td>
               <td>{{ rfp_rating.q9 }}</td>
-              <td>
-                <span ng-if="rfp_rating.q10">Yes</span>
-                <span ng-if="!rfp_rating.q10">No</span>
-              </td>
+              <td>{{ rfp_rating.q10 }}</td>
               <td>{{ rfp_rating.q11 }}</td>
-              <td>
-                <span ng-if="rfp_rating.q12">Yes</span>
-                <span ng-if="!rfp_rating.q12">No</span>
+              <td>{{ rfp_rating.q12 }}</td>
+              <td ng-if="rfp_rating.invited">Yes</td>
+              <td ng-if="!rfp_rating.invited">No</td>
+              <td align="center">{{ rfp_rating.weighted_score }}</td>
+              <td align="center">
+                <div ng-if="rfp_rating.follow_up"
+                      title="{{rfp_rating.follow_up}}" bs-tooltip>
+                      <span class="glyphicon glyphicon-comment">
+                      </span>
+                </div>
+                <div ng-if="!rfp_rating.follow_up"
+                      title="" bs-tooltip>
+                      <span style="color:grey;" class="glyphicon glyphicon-comment">
+                      </span>
+                </div>
               </td>
-              <td>{{ rfp_rating.weighted_score }}</td>
+              <td align="center">
+                <div  ng-if="rfp_rating.comments"
+                      title="{{rfp_rating.comments}}" bs-tooltip >
+                      <span class="glyphicon glyphicon-comment">
+                      </span>
+                </div>
+                <div  ng-if="!rfp_rating.comments"
+                      title="" bs-tooltip >
+                      <span style="color:grey;" class="glyphicon glyphicon-comment">
+                      </span>
+                </div>
+              </td>
               <td>{{ rfp_rating.user.email }}</td>
             </tr>
             <tr class="average-row">
@@ -156,24 +194,22 @@
               <td>{{resultValue | avgOfValue:'q5'}}</td>
               <td>{{resultValue | avgOfValue:'q6'}}</td>
               <td>{{resultValue | avgOfValue:'q7'}}</td>
-              <td>--</td>
-              <td>--</td>
-              <td>--</td>
+              <td>{{resultValue | avgOfValue:'q8'}}</td>
+              <td>{{resultValue | avgOfValue:'q9'}}</td>
+              <td>{{resultValue | avgOfValue:'q10'}}</td>
               <td>{{resultValue | avgOfValue:'q11'}}</td>
-              <td>--</td>
+              <td>{{resultValue | avgOfValue:'q12'}}</td>
               <td>{{resultValue | avgOfValue:'weighted_score'}}</td>
-              <td> -- </td>
+              <td align="center"> -- </td>
+              <td align="center"> -- </td>
+              <td align="center"> -- </td>
+              <td align="center"> -- </td>
             </tr>
           </table>
         </div>
       </div>
       <div class="csv-btn">
-        <%= link_to "Download Ratings CSV File", "/ratings.csv", :class => "btn btn-danger", :role => "button" %>
-        <span class="invite-max-btn">
-          <% if current_user && current_user.super_admin %>
-            <%= link_to "Change maximum number of Yes answers per admin", "/invite_maxes/1/edit", :class => "btn btn-danger", :role => "button" %>
-          <% end %>
-        </span>
+        <%= link_to "Download RFP Ratings CSV File", "/rfp_ratings.csv", :class => "btn btn-danger", :role => "button" %>
       </div>
       <div class="question-bullets">
         <h3>Question Legend</h3>
@@ -199,3 +235,9 @@
       </div>
     </div>
 </div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
+</script>
