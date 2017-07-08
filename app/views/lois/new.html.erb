@@ -1,50 +1,35 @@
 <div class="site-container">
   <div id="form-paper">
     <div class="form-heading">
-
       <div>
         <div class="well-1">
           <h1>SVP <span style="color:#0060b2">Chicago</span> – <%= Time.now.year %> Letter of Interest</h1>
             <div class="container-fluid">
-            <h4> Sector Focus: <i><span style="color:#BC214D">Beaking the Cycle of Poverty</span></h4>
-            <p><b>Completing this Form:</b></p>
-
-            <p>Please enter information directly into the form, using this form as the main body of your Letter of Interest. The boxes will expand to hold your text. You can adjust the page breaks when you have completed the form.</p>
-
-            <p><ul>
-              <li>If you find an item confusing, please feel free to contact us.</li>
-
-              <li>Please use bullet points rather than paragraphs. Brevity is helpful to our partners when reviewing proposals.</li>
-            </ul></p>
+              <h4> Sector Focus: <i><span style="color:#BC214D">Beaking the Cycle of Poverty</span></h4>
+              <p><b>Completing this Form:</b></p>
+              <p>Please enter information directly into the form, using this form as the main body of your Letter of Interest. The boxes will expand to hold your text. You can adjust the page breaks when you have completed the form.</p>
+              <ul>
+                <li>If you find an item confusing, please feel free to contact us.</li>
+                <li>Please use bullet points rather than paragraphs. Brevity is helpful to our partners when reviewing proposals.</li>
+              </ul>
+            </div>
           </div>
         </div>
-
-
       </div>
-    </div>
 
-  <div class="form-body">
+<div class="form-body">
 
+  <!-- TEST -->
 
-<!-- TEST -->
-<form name="loiForm" enctype="multipart/form-data" accept-charset="UTF-8" ng-submit="submit(loiForm.$valid)" novalidate>
+  <form name="loiForm" enctype="multipart/form-data" accept-charset="UTF-8" ng-submit="submit(loiForm.$valid)" novalidate>
+  </form>
 
-</form>
-
-<!-- END TEST -->
-
+  <!-- END TEST -->
 
   <!-- BEGIN ANGULAR -->
 
-    <div ng-app="app">
-      <div ng-controller="formsCtrl" ng-init="setup()">
-
-  <!--       <div class="progress">
-          <div class="progress-bar" role="progressbar" style="width: 70%;">
-            <span class="sr-only">60% Complete</span>
-          </div>
-        </div> -->
-
+  <div ng-app="app">
+    <div ng-controller="formsCtrl" ng-init="setup()">
         <form name="loiForm" ng-submit="submit(name, email, loiForm.$valid)" novalidate>
           
           <!-- BEGIN FORM SECTIONS -->
@@ -54,59 +39,46 @@
             <section class="section contact-section" ng-show="activeSectionArray[0]">
               <div class="well rfp-section">
                 <h1> {{ contact_section.name }} </h1>
-                  <fieldset class="form-group">
-                      <div class="form-group" ng-class="{ 'has-error' : loiForm.name.$invalid && !loiForm.name.$pristine }">
-                        <label> Proposal Contact Name: </label> 
-                        <span class="text-danger"> * </span>                      
-                          <p><input type="text" name="name" ng-model="name" class="form-control" required></p>
-                          <p ng-show="(loiForm.name.$invalid && !loiForm.name.$pristine) || (loiForm.name.$invalid && invalidSubmission) " class="error-class" style="color:red;">Your name is required.</p>
-                      </div>
-
-                      <div class="form-group" ng-class="{ 'has-error' : loiForm.email.$invalid && !loiForm.email.$pristine }">
-                        <label> Proposal Contact Email: </label>
-                        <span class="text-danger"> * </span>
-                            <input type="email" name="email" ng-model="email" class="form-control" required>
-                          <p ng-show="(loiForm.email.$invalid && !loiForm.email.$pristine) || (loiForm.email.$invalid && invalidSubmission) " class="error-class" style="color:red;">Enter a valid email.</p>
-                      </div>
-
-                      <div ng-repeat="question in contact_formData">
-                          <label> {{question.question}}: <span class="text-danger"> * </span></label>    
-                          <input ng-if="question.question.indexOf('Email') > -1 || question.question.indexOf('E-mail') > -1" type="email" name="contact_question_{{$index}}" class="form-control" ng-model="question.answer" required>
-
-                          <input ng-if="!(question.question.indexOf('Email') > -1 || question.question.indexOf('E-mail') > -1)" type="text" name="contact_question_{{$index}}" class="form-control" ng-model="question.answer" required>
-
-                          <p ng-if="question.question.indexOf('Email') > -1 || question.question.indexOf('E-mail') > -1" ng-show="(loiForm['contact_question_' + $index].$invalid && !loiForm['contact_question_' + $index].$pristine) || (loiForm['contact_question_' + $index].$invalid && invalidSubmission)" class="error-class" style="color:red;">Enter a valid email.</p>
-
-                          <p ng-if="!(question.question.indexOf('Email') > -1 || question.question.indexOf('E-mail') > -1)" ng-show="(loiForm['contact_question_' + $index].$invalid && !loiForm['contact_question_' + $index].$pristine) || (loiForm['contact_question_' + $index].$invalid && invalidSubmission)" class="error-class" style="color:red;">Please fill out the field.</p>
-
-                      </div>
-                  </fieldset>
-                </div>
+                <fieldset class="form-group">
+                  <div class="form-group" ng-class="{ 'has-error' : loiForm.name.$invalid && !loiForm.name.$pristine }">
+                    <label> Proposal Contact Name: </label> 
+                    <span class="text-danger"> * </span>                      
+                    <input type="text" name="name" ng-model="name" class="form-control" required>
+                    <p ng-show="(loiForm.name.$invalid && !loiForm.name.$pristine) || (loiForm.name.$invalid && invalidSubmission) " class="error-class" style="color:red;">Your name is required.</p>
+                  </div>
+                  <div class="form-group" ng-class="{ 'has-error' : loiForm.email.$invalid && !loiForm.email.$pristine }">
+                    <label> Proposal Contact Email: </label>
+                    <span class="text-danger"> * </span>
+                    <input type="email" name="email" ng-model="email" class="form-control" required>
+                    <p ng-show="(loiForm.email.$invalid && !loiForm.email.$pristine) || (loiForm.email.$invalid && invalidSubmission) " class="error-class" style="color:red;">Enter a valid email.</p>
+                  </div>
+                  <div ng-repeat="question in contact_formData">
+                    <label> {{question.question}}: <span class="text-danger"> * </span></label>    
+                    <input ng-if="question.question.indexOf('Email') > -1 || question.question.indexOf('E-mail') > -1" type="email" name="contact_question_{{$index}}" class="form-control" ng-model="question.answer" required>
+                    <input ng-if="!(question.question.indexOf('Email') > -1 || question.question.indexOf('E-mail') > -1)" type="text" name="contact_question_{{$index}}" class="form-control" ng-model="question.answer" required>
+                    <p ng-if="question.question.indexOf('Email') > -1 || question.question.indexOf('E-mail') > -1" ng-show="(loiForm['contact_question_' + $index].$invalid && !loiForm['contact_question_' + $index].$pristine) || (loiForm['contact_question_' + $index].$invalid && invalidSubmission)" class="error-class" style="color:red;">Enter a valid email.</p>
+                    <p ng-if="!(question.question.indexOf('Email') > -1 || question.question.indexOf('E-mail') > -1)" ng-show="(loiForm['contact_question_' + $index].$invalid && !loiForm['contact_question_' + $index].$pristine) || (loiForm['contact_question_' + $index].$invalid && invalidSubmission)" class="error-class" style="color:red;">Please fill out the field.</p>
+                  </div>
+                </fieldset>
+              </div>
             </section>
 
             <!-- ORGANIZATION SECTION -->
 
             <section class="section organization-section" ng-show="activeSectionArray[1]">
               <div class="well loi-section">
-                  <h1> {{ organization_section.name }} </h1>
-                  <fieldset class="form-group">
-
-                    <div class="form-group" ng-repeat="question in organization_formData">
-                        <label> {{question.question}}: <span class="text-danger"> * </span></label>
-
-                        <input ng-if="question.question.indexOf('Number') > -1 || question.question.indexOf('Budget') > -1" type="number" name="organization_question_{{$index}}" class="form-control" ng-model="question.answer" required>
-
-                        <input ng-if="!(question.question.indexOf('Number') > -1 || question.question.indexOf('Budget') > -1)" type="text" name="organization_question_{{$index}}" class="form-control" ng-model="question.answer" required>
-
-                        <p ng-if="question.question.indexOf('Number') > -1 || question.question.indexOf('Budget') > -1" ng-show="(loiForm['organization_question_' + $index].$invalid && !loiForm['organization_question_' + $index].$pristine) || (loiForm['organization_question_' + $index].$invalid && invalidSubmission)" class="error-class" style="color:red;">Please enter a numeric value.</p>
-
-                        <p ng-if="!(question.question.indexOf('Number') > -1 || question.question.indexOf('Budget') > -1)" ng-show="(loiForm['organization_question_' + $index].$invalid && !loiForm['organization_question_' + $index].$pristine) || (loiForm['organization_question_' + $index].$invalid && invalidSubmission)" class="error-class" style="color:red;">Please fill out the field.</p>
-
-                        <p ng-if="question.question.indexOf('Budget') > -1 && question.answer > 7500000" class="error-class" style="color:red;">Your organization's budget is greater than the maximum allowed for this investment cycle.</p>
-                    </div>
-
-                  </fieldset>
-
+                <h1> {{ organization_section.name }} </h1>
+                <fieldset class="form-group">
+                  <div class="form-group" ng-repeat="question in organization_formData">
+                    <label> {{question.question}}: </label>
+                    <span class="text-danger"> * </span>
+                    <input ng-if="question.question.indexOf('Number') > -1 || question.question.indexOf('Budget') > -1" type="number" name="organization_question_{{$index}}" class="form-control" ng-model="question.answer" required>
+                    <input ng-if="!(question.question.indexOf('Number') > -1 || question.question.indexOf('Budget') > -1)" type="text" name="organization_question_{{$index}}" class="form-control" ng-model="question.answer" required>
+                    <p ng-if="question.question.indexOf('Number') > -1 || question.question.indexOf('Budget') > -1" ng-show="(loiForm['organization_question_' + $index].$invalid && !loiForm['organization_question_' + $index].$pristine) || (loiForm['organization_question_' + $index].$invalid && invalidSubmission)" class="error-class" style="color:red;">Please enter a numeric value.</p>
+                    <p ng-if="!(question.question.indexOf('Number') > -1 || question.question.indexOf('Budget') > -1)" ng-show="(loiForm['organization_question_' + $index].$invalid && !loiForm['organization_question_' + $index].$pristine) || (loiForm['organization_question_' + $index].$invalid && invalidSubmission)" class="error-class" style="color:red;">Please fill out the field.</p>
+                    <p ng-if="question.question.indexOf('Budget') > -1 && question.answer > 7500000" class="error-class" style="color:red;">Your organization's budget is greater than the maximum allowed for this investment cycle.</p>
+                  </div>
+                </fieldset>
               </div>
             </section> 
 
@@ -115,11 +87,9 @@
             <section class="section overview-section" ng-show="activeSectionArray[2]">
               <div class="well loi-section">
                 <h1> {{ overview_section.name }} </h1>
-
                 <div ng-repeat="question in overview_formData">
                   <label> {{question.question}}: <span class="text-danger"> * </span></label>
                   <textarea name="overview_question_{{$index}}" class="form-control" rows="3" ng-model="question.answer" my-maxlength="350" required></textarea>
-
                   <p ng-show="(loiForm['overview_question_' + $index].$invalid && !loiForm['overview_question_' + $index].$pristine) || (loiForm['overview_question_' + $index].$invalid && invalidSubmission) " class="error-class" style="color:red;">Please fill out the field.</p>
                   <p ng-show="wordCount(question.answer) != 'Too Long!'">
                     Word Count: {{ wordCount(question.answer) }}, Words Remaining: {{ 350 - wordCount(question.answer) }}
@@ -139,7 +109,6 @@
                 <div ng-repeat="question in vision_formData">
                   <label> {{question.question}}: <span class="text-danger"> * </span></label>
                   <textarea name="vision_question_{{$index}}" class="form-control" rows="3" ng-model="question.answer" my-maxlength="350" required></textarea>
-
                   <p ng-show="(loiForm['vision_question_' + $index].$invalid && !loiForm['vision_question_' + $index].$pristine) || (loiForm['vision_question_' + $index].$invalid && invalidSubmission) " class="error-class" style="color:red;">Please fill out the field.</p>
                   <p ng-show="wordCount(question.answer) != 'Too Long!'">
                     Word Count: {{ wordCount(question.answer) }}, Words Remaining: {{ 350 - wordCount(question.answer) }}
@@ -156,18 +125,17 @@
             <section class="section concern-section" ng-show="activeSectionArray[4]">
               <div class="well loi-section">
                 <h1> {{ concern_section.name }} </h1>
-                  <div ng-repeat="question in concern_formData">
-                    <label> {{question.question}}: <span class="text-danger"> * </span></label>
-                    <textarea name="key_question_{{$index}}" class="form-control" rows="3" ng-model="question.answer" my-maxlength="350" required></textarea>
-
-                    <p ng-show="(loiForm['key_question_' + $index].$invalid && !loiForm['key_question_' + $index].$pristine) || (loiForm['key_question_' + $index].$invalid && invalidSubmission) " class="error-class" style="color:red;">Please fill out the field.</p>
-                    <p ng-show="wordCount(question.answer) != 'Too Long!'">
-                      Word Count: {{ wordCount(question.answer) }}, Words Remaining: {{ 350 - wordCount(question.answer) }}
-                    </p>
-                    <p ng-show="wordCount(question.answer) === 'Too Long!'" class="error-class" style="color:red;">
-                      Max Word Count!
-                    </p>  
-                  </div>
+                <div ng-repeat="question in concern_formData">
+                  <label> {{question.question}}: <span class="text-danger"> * </span></label>
+                  <textarea name="key_question_{{$index}}" class="form-control" rows="3" ng-model="question.answer" my-maxlength="350" required></textarea>
+                  <p ng-show="(loiForm['key_question_' + $index].$invalid && !loiForm['key_question_' + $index].$pristine) || (loiForm['key_question_' + $index].$invalid && invalidSubmission) " class="error-class" style="color:red;">Please fill out the field.</p>
+                  <p ng-show="wordCount(question.answer) != 'Too Long!'">
+                    Word Count: {{ wordCount(question.answer) }}, Words Remaining: {{ 350 - wordCount(question.answer) }}
+                  </p>
+                  <p ng-show="wordCount(question.answer) === 'Too Long!'" class="error-class" style="color:red;">
+                    Max Word Count!
+                  </p>  
+                </div>
               </div>       
             </section>
             
@@ -176,70 +144,70 @@
             <section class="section challenge-section" ng-show="activeSectionArray[5]">
               <div class="well loi-section">
                 <h1>{{ challenge_section.name }}</h1>
-                  <table class="table table-striped table-bordered">
-                    <tr>
-                      <th>Focus Area</th>
-                      <th>Please provide a short description of your top 1-3 challenge(s) in each area that applies</th>
-                      <th>Priority Rank each as High, Medium or Low</th>
-                      <th colspan="3">
-                        <table class="fte-header-table">
-                          <tr>
-                            <td colspan="3">Please provide the total amount of time you and your staff spend in each focus area expressd in FTEs. <br><span style="font-size:10px;"> Full time equivalency (FTE) refers to an organization’s full-time equivalent of its part-time employees (e.g. two part-time workers at 20 hours each equals one FTE).</span></td>
-                          </tr>
-                          <tr>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                          </tr>
-                          <tr>
-                            <td>2016 Staffing (actual)</td>
-                            <td>2017 Staffing (current)</td>
-                            <td>2018 Staffing (projected)</td>
-                          </tr>
-                        </table>
-                      </th>
-                    </tr> 
-                    <tr ng-repeat="question in challenge_formData">
-                      <td><label> {{question.question}}: </label></td>
-                      <td>
-                        <input class="form-control" type="text" ng-model="question.challenges[0].challenge">
-                        <input class="form-control" type="text" ng-model="question.challenges[1].challenge" ng-show="activeChallenge[question.question_id]>0">
-                        <input class="form-control" type="text" ng-model="question.challenges[2].challenge" ng-show="activeChallenge[question.question_id]>1">
-                        <p ng-hide="activeChallenge[question.question_id]==2"><a ng-click="addChallenge(question.question_id)">Add Challenge</a></p>
-                      </td>
-                      <td>
-                        <select class="form-control" name="singleSelect" id="singleSelect" ng-model="question.challenges[0].priority">
-                          <option value="">--Select--</option>
-                          <option value="H">High</option>
-                          <option value="M">Medium</option>
-                          <option value="L">Low</option>
-                        </select>
-                        <select class="form-control" name="singleSelect" id="singleSelect" ng-model="question.challenges[1].priority" ng-show="activeChallenge[question.question_id]>0">
-                          <option value="">--Select--</option>
-                          <option value="H">High</option>
-                          <option value="M">Medium</option>
-                          <option value="L">Low</option>
-                        </select>
-                        <select class="form-control" name="singleSelect" id="singleSelect" ng-model="question.challenges[2].priority" ng-show="activeChallenge[question.question_id]>1">
-                          <option value="">--Select--</option>
-                          <option value="H">High</option>
-                          <option value="M">Medium</option>
-                          <option value="L">Low</option>
-                        </select>
-                      </td>
-                      <td><input class="form-control" type="number" ng-model="question.fte_1" ng-change="addFte()"></td>
-                      <td><input class="form-control" type="number" ng-model="question.fte_2" ng-change="addFte()"></td>
-                      <td><input class="form-control" type="number" ng-model="question.fte_3" ng-change="addFte()"></td>
-                    </tr>
-                    <tr>
-                      <td colspan="3">TOTAL FTEs</td>
-                      <td>{{fte_1 | number:2}}</td>
-                      <td>{{fte_2 | number:2}}</td>
-                      <td>{{fte_3 | number:2}}</td>
-                    </tr>
-                  </table>
+                <table class="table table-striped table-bordered">
+                  <tr>
+                    <th>Focus Area</th>
+                    <th>Please provide a short description of your top 1-3 challenge(s) in each area that applies</th>
+                    <th>Priority Rank each as High, Medium or Low</th>
+                    <th colspan="3">
+                      <table class="fte-header-table">
+                        <tr>
+                          <td colspan="3">Please provide the total amount of time you and your staff spend in each focus area expressd in FTEs. <br><span style="font-size:10px;"> Full time equivalency (FTE) refers to an organization’s full-time equivalent of its part-time employees (e.g. two part-time workers at 20 hours each equals one FTE).</span></td>
+                        </tr>
+                        <tr>
+                          <td>-</td>
+                          <td>-</td>
+                          <td>-</td>
+                        </tr>
+                        <tr>
+                          <td>2016 Staffing (actual)</td>
+                          <td>2017 Staffing (current)</td>
+                          <td>2018 Staffing (projected)</td>
+                        </tr>
+                      </table>
+                    </th>
+                  </tr> 
+                  <tr ng-repeat="question in challenge_formData">
+                    <td><label> {{question.question}}: </label></td>
+                    <td>
+                      <input class="form-control" type="text" ng-model="question.challenges[0].challenge">
+                      <input class="form-control" type="text" ng-model="question.challenges[1].challenge" ng-show="activeChallenge[question.question_id]>0">
+                      <input class="form-control" type="text" ng-model="question.challenges[2].challenge" ng-show="activeChallenge[question.question_id]>1">
+                      <p ng-hide="activeChallenge[question.question_id]==2"><a ng-click="addChallenge(question.question_id)">Add Challenge</a></p>
+                    </td>
+                    <td>
+                      <select class="form-control" name="singleSelect" id="singleSelect" ng-model="question.challenges[0].priority">
+                        <option value="">--Select--</option>
+                        <option value="H">High</option>
+                        <option value="M">Medium</option>
+                        <option value="L">Low</option>
+                      </select>
+                      <select class="form-control" name="singleSelect" id="singleSelect" ng-model="question.challenges[1].priority" ng-show="activeChallenge[question.question_id]>0">
+                        <option value="">--Select--</option>
+                        <option value="H">High</option>
+                        <option value="M">Medium</option>
+                        <option value="L">Low</option>
+                      </select>
+                      <select class="form-control" name="singleSelect" id="singleSelect" ng-model="question.challenges[2].priority" ng-show="activeChallenge[question.question_id]>1">
+                        <option value="">--Select--</option>
+                        <option value="H">High</option>
+                        <option value="M">Medium</option>
+                        <option value="L">Low</option>
+                      </select>
+                    </td>
+                    <td><input class="form-control" type="number" ng-model="question.fte_1" ng-change="addFte()"></td>
+                    <td><input class="form-control" type="number" ng-model="question.fte_2" ng-change="addFte()"></td>
+                    <td><input class="form-control" type="number" ng-model="question.fte_3" ng-change="addFte()"></td>
+                  </tr>
+                  <tr>
+                    <td colspan="3">TOTAL FTEs</td>
+                    <td>{{fte_1 | number:2}}</td>
+                    <td>{{fte_2 | number:2}}</td>
+                    <td>{{fte_3 | number:2}}</td>
+                  </tr>
+                </table>
               </div>
-              </section>
+            </section>
             
             <!-- REFERRAL SECTION -->
    
@@ -249,7 +217,6 @@
                 <div ng-repeat="question in referral_formData">
                   <label> {{question.question}}: <span class="text-danger"> * </span></label>
                   <textarea name="referral_question_{{$index}}" class="form-control" rows="3" ng-model="question.answer" my-maxlength="350" required></textarea>
-
                   <p ng-show="(loiForm['referral_question_' + $index].$invalid && !loiForm['referral_question_' + $index].$pristine) || (loiForm['referral_question_' + $index].$invalid && invalidSubmission) " class="error-class" style="color:red;">Please fill out the field.</p>
                   <p ng-show="wordCount(question.answer) != 'Too Long!'">
                     Word Count: {{ wordCount(question.answer) }}, Words Remaining: {{ 350 - wordCount(question.answer) }}
@@ -264,7 +231,6 @@
             <!-- CHECKBOX SECTIONS -->
 
             <section class="section" ng-show="activeSectionArray[7]">
-
               <div class="row">
             
                 <!-- DEMOGRAPHIC SECTION -->
@@ -273,23 +239,23 @@
                   <section class="demographic-section">
                     <div class="well loi-section">
                       <h1> {{ demographic_section.name }} </h1>
-                        <table class="table table-striped table-bordered">
-                          <tr>
-                            <th>Sector</th>
-                            <th>Please select if your programs address this sector</th>
+                      <table class="table table-striped table-bordered">
+                        <tr>
+                          <th>Sector</th>
+                          <th>Please select if your programs address this sector</th>
+                        </tr>
+                        <fieldset class="form-group">
+                          <tr ng-repeat="question in demographic_formData">
+                            <td style="width: 40%">
+                              <label> {{question.question}}: </label>
+                            </td>
+                            <td>
+                              <input ng-if="question.question!='Other'" type="checkbox" class="checkbox" ng-model="question.answer" ng-true-value="'t'" ng-false-value="''">
+                              <input ng-if="question.question=='Other'" type="text" class="form-control" ng-model="question.answer">
+                            </td>
                           </tr>
-                          <fieldset class="form-group">
-                            <tr ng-repeat="question in demographic_formData">
-                              <td style="width: 40%">
-                                <label> {{question.question}}: </label>
-                              </td>
-                              <td>
-                                <input ng-if="question.question!='Other'" type="checkbox" class="checkbox" ng-model="question.answer" ng-true-value="'t'" ng-false-value="''">
-                                <input ng-if="question.question=='Other'" type="text" class="form-control" ng-model="question.answer">
-                              </td>
-                            </tr>
-                          </fieldset>
-                        </table>
+                        </fieldset>
+                      </table>
                     </div>
                   </section>
                 </div>
@@ -300,63 +266,43 @@
                   <section class="geographic-section">
                     <div class="well loi-section">
                       <h1> {{ geographic_section.name }} </h1>
-                        <table class="table table-striped table-bordered">
-                          <fieldset class="form-group">
-                            <tr>
-                              <th>Geographic Focus</th>
-                              <th>Please select whichever applies (if more than one, pick the one based on your main program)</th>
-                            </tr>
-                            <tr ng-repeat="question in geographic_formData">
-                              <td style="width: 40%">
-                                <label> {{question.question}}: </label>
-                              </td>
-                              <td>
-                                <input type="checkbox" class="checkbox" ng-model="question.answer" ng-true-value="'t'" ng-false-value="''">
-                              </td>
-                            </tr>
-                          </fieldset>
-                        </table>
+                      <table class="table table-striped table-bordered">
+                        <fieldset class="form-group">
+                          <tr>
+                            <th>Geographic Focus</th>
+                            <th>Please select whichever applies (if more than one, pick the one based on your main program)</th>
+                          </tr>
+                          <tr ng-repeat="question in geographic_formData">
+                            <td style="width: 40%">
+                              <label> {{question.question}}: </label>
+                            </td>
+                            <td>
+                              <input type="checkbox" class="checkbox" ng-model="question.answer" ng-true-value="'t'" ng-false-value="''">
+                            </td>
+                          </tr>
+                        </fieldset>
+                      </table>
                     </div>
                   </section>
                 </div>
               </div>
 
-            <!-- END FORM SECTIONS -->
-          
+            <!-- END FORM SECTIONS -->          
            
-              <div class="submit-button-container">
-                
-                  <button class="btn btn-success btn-lg" type="submit">Save and Submit Later</button>
-                
-                  <button ng-click="submitNow()" class="btn btn-primary btn-lg" type="submit">Submit Now</button>
-                
+              <div class="submit-button-container">                
+                <button class="btn btn-success btn-lg" type="submit">Save and Submit Later</button>                
+                <button ng-click="submitNow()" class="btn btn-primary btn-lg" type="submit">Submit Now</button>                
               </div>
-              
-          
-          
-
-            <!-- <div class="submit-button-container" ng-show="activeSectionArray[7]">
-              <button class="btn btn-primary btn-lg submit-button" type="submit" ng-disabled="loiForm.$invalid">Save and Submit Later</button>
-            </div> -->
-
-          </form>
-        </section>
-
-        <!-- <div class="form-group btn-container">
-          <button class="btn btn-danger section-btn" ng-click="prevSection()">Previous Section</button>
-          <button class="btn btn-danger section-btn" ng-click="nextSection()">Next Section</button>
-        </div>
- -->
+            </form>
+          </section>
  
         <div class="bottom-text" ng-show="activeSectionArray[7]">
           <h4><b>Thank you for your interest in partnering with Social Venture Partners Chicago!</b></h4>
         </div>
-
       </div>
     </div>
 
   <!-- END ANGULAR -->
 
   </div>
-  </div>
-<div>
+</div>
