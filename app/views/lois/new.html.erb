@@ -56,19 +56,21 @@
                 <h1> {{ contact_section.name }} </h1>
                   <fieldset class="form-group">
                       <div class="form-group" ng-class="{ 'has-error' : loiForm.name.$invalid && !loiForm.name.$pristine }">
-                        <label> Proposal Contact Name: </label>                       
+                        <label> Proposal Contact Name: </label> 
+                        <span class="text-danger"> * </span>                      
                           <p><input type="text" name="name" ng-model="name" class="form-control" required></p>
                           <p ng-show="(loiForm.name.$invalid && !loiForm.name.$pristine) || (loiForm.name.$invalid && invalidSubmission) " class="error-class" style="color:red;">Your name is required.</p>
                       </div>
 
                       <div class="form-group" ng-class="{ 'has-error' : loiForm.email.$invalid && !loiForm.email.$pristine }">
                         <label> Proposal Contact Email: </label>
+                        <span class="text-danger"> * </span>
                             <input type="email" name="email" ng-model="email" class="form-control" required>
                           <p ng-show="(loiForm.email.$invalid && !loiForm.email.$pristine) || (loiForm.email.$invalid && invalidSubmission) " class="error-class" style="color:red;">Enter a valid email.</p>
                       </div>
 
                       <div ng-repeat="question in contact_formData">
-                          <label> {{question.question}}: </label>    
+                          <label> {{question.question}}: <span class="text-danger"> * </span></label>    
                           <input ng-if="question.question.indexOf('Email') > -1 || question.question.indexOf('E-mail') > -1" type="email" name="contact_question_{{$index}}" class="form-control" ng-model="question.answer" required>
 
                           <input ng-if="!(question.question.indexOf('Email') > -1 || question.question.indexOf('E-mail') > -1)" type="text" name="contact_question_{{$index}}" class="form-control" ng-model="question.answer" required>
@@ -90,7 +92,7 @@
                   <fieldset class="form-group">
 
                     <div class="form-group" ng-repeat="question in organization_formData">
-                        <label> {{question.question}}: </label>
+                        <label> {{question.question}}: <span class="text-danger"> * </span></label>
 
                         <input ng-if="question.question.indexOf('Number') > -1 || question.question.indexOf('Budget') > -1" type="number" name="organization_question_{{$index}}" class="form-control" ng-model="question.answer" required>
 
@@ -115,7 +117,7 @@
                 <h1> {{ overview_section.name }} </h1>
 
                 <div ng-repeat="question in overview_formData">
-                  <label> {{question.question}}: </label>
+                  <label> {{question.question}}: <span class="text-danger"> * </span></label>
                   <textarea name="overview_question_{{$index}}" class="form-control" rows="3" ng-model="question.answer" my-maxlength="350" required></textarea>
 
                   <p ng-show="(loiForm['overview_question_' + $index].$invalid && !loiForm['overview_question_' + $index].$pristine) || (loiForm['overview_question_' + $index].$invalid && invalidSubmission) " class="error-class" style="color:red;">Please fill out the field.</p>
@@ -135,7 +137,7 @@
               <div class="well loi-section">
                 <h1> {{ vision_section.name }} </h1>
                 <div ng-repeat="question in vision_formData">
-                  <label> {{question.question}}: </label>
+                  <label> {{question.question}}: <span class="text-danger"> * </span></label>
                   <textarea name="vision_question_{{$index}}" class="form-control" rows="3" ng-model="question.answer" my-maxlength="350" required></textarea>
 
                   <p ng-show="(loiForm['vision_question_' + $index].$invalid && !loiForm['vision_question_' + $index].$pristine) || (loiForm['vision_question_' + $index].$invalid && invalidSubmission) " class="error-class" style="color:red;">Please fill out the field.</p>
@@ -155,7 +157,7 @@
               <div class="well loi-section">
                 <h1> {{ concern_section.name }} </h1>
                   <div ng-repeat="question in concern_formData">
-                    <label> {{question.question}}: </label>
+                    <label> {{question.question}}: <span class="text-danger"> * </span></label>
                     <textarea name="key_question_{{$index}}" class="form-control" rows="3" ng-model="question.answer" my-maxlength="350" required></textarea>
 
                     <p ng-show="(loiForm['key_question_' + $index].$invalid && !loiForm['key_question_' + $index].$pristine) || (loiForm['key_question_' + $index].$invalid && invalidSubmission) " class="error-class" style="color:red;">Please fill out the field.</p>
@@ -245,7 +247,7 @@
               <div class="well loi-section">
                 <h1> {{ referral_section.name }} </h1>
                 <div ng-repeat="question in referral_formData">
-                  <label> {{question.question}}: </label>
+                  <label> {{question.question}}: <span class="text-danger"> * </span></label>
                   <textarea name="referral_question_{{$index}}" class="form-control" rows="3" ng-model="question.answer" my-maxlength="350" required></textarea>
 
                   <p ng-show="(loiForm['referral_question_' + $index].$invalid && !loiForm['referral_question_' + $index].$pristine) || (loiForm['referral_question_' + $index].$invalid && invalidSubmission) " class="error-class" style="color:red;">Please fill out the field.</p>
