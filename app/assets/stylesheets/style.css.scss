@@ -139,7 +139,7 @@ footer {
 
 .well-1 {
     min-height: 20px;
-    padding: 19px;
+    padding: 10px;
     margin: 30px;
     background-color: #f5f5f5;
     border: 1px solid #e3e3e3;
@@ -158,3 +158,29 @@ footer {
   opacity: 0.75;
   background-color: #FFFFFF;
 }
+
+.form-heading {
+  width: 100%;
+  background-color: lightgrey;
+  margin: auto;
+  padding: 25px;
+}
+
+.form-heading h1 {
+  text-align: center;
+}
+
+.form-heading h2 {
+  text-align: center;
+}
+
+.form-container{
+  max-width: 100%;
+  margin: auto;
+}
+
+.form-body {
+  background-color: white;
+  margin: auto;
+}
+
