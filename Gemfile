@@ -29,7 +29,7 @@ gem 'puma'
 gem 'bootstrap-sass'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-gem 'mailgun-ruby', '~>1.0' 
+# gem 'mailgun-ruby', '~>1.0' 
 #mail gem to use with gmail
 gem 'mail'
 # Use Unicorn as the app server
