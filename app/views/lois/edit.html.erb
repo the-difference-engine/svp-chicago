@@ -24,7 +24,7 @@
             
             <!-- CONTACT SECTION -->
                 
-              <section class="section contact-section">
+              <section class="section">
                 <h3><li> Contact </li></h3>
                 <table class="table table-striped table-bordered">
                   <tr>
@@ -32,7 +32,7 @@
                       <td><b>Proposal Contact Name:</b></td>
                       <td>
                         <p><input type="text" name="name" ng-model="loi.name" class="form-control" required></p>
-                        <p ng-show="loiForm.name.$invalid" class="error-class" style="color:red;">You name is required.</p>
+                        <p ng-show="loiForm.name.$invalid" class="error-class">Your name is required.</p>
                       </td>
                     </div>
                   </tr>
@@ -41,7 +41,7 @@
                       <td><b>Proposal Contact Email:</b></td>
                       <td>
                         <p><input type="email" name="email" ng-model="loi.email" class="form-control"></p>
-                        <p ng-show="loiForm.email.$invalid" class="error-class" style="color:red;">Enter a valid email.</p>
+                        <p ng-show="loiForm.email.$invalid" class="error-class">Enter a valid email.</p>
                       </td>
                     </div>
                   </tr>
@@ -58,7 +58,7 @@
 
             <!-- ORGANIZATION SECTION -->
 
-              <section class="section organization-section">
+              <section class="section">
                 <h3><li> Organization </li></h3>
                 <table class="table table-striped table-bordered">
                   <tr ng-repeat="answer in loi.organization_answers">
@@ -68,7 +68,7 @@
                     <td>
                       <input ng-if="answer.question.question.indexOf('Budget') > -1" type="number" class="form-control" ng-model="answer.answer">
                       <input ng-if="answer.question.question.indexOf('Budget') == -1" type="text" class="form-control" ng-model="answer.answer">
-                      <p ng-if="answer.question.question.indexOf('Budget') > -1 && answer.answer > 7500000" class="error-class" style="color:red;">Your organization's budget is greater than the maximum allowed for this investment cycle.</p>
+                      <p ng-if="answer.question.question.indexOf('Budget') > -1 && answer.answer > 7500000" class="error-class">Your organization's budget is greater than the maximum allowed for this investment cycle.</p>
                     </td>
                   </tr>
                 </table>
@@ -76,7 +76,7 @@
 
               <!-- OVERVIEW SECTION -->
 
-              <section class="section overview-section">
+              <section class="section">
                 <h3><li> OVERVIEW </li></h3>
                 <table class="table table-striped table-bordered">
                   <tr ng-repeat="answer in loi.overview_answers">
@@ -88,7 +88,7 @@
                       <p ng-show="wordCount(answer.answer) != 'Too Long!'">
                         Word Count: {{ wordCount(answer.answer) }}, Words Remaining: {{ 350 - wordCount(answer.answer) }}
                       </p>
-                      <p ng-show="wordCount(answer.answer) === 'Too Long!'" class="error-class" style="color:red;">
+                      <p ng-show="wordCount(answer.answer) === 'Too Long!'" class="error-class">
                         Max Word Count!
                       </p>  
                     </td>
@@ -98,7 +98,7 @@
 
               <!-- VISION SECTION -->
 
-              <section class="section vision-section">
+              <section class="section">
                 <h3><li> Vision </li></h3>
                 <table class="table table-striped table-bordered">
                   <tr ng-repeat="answer in loi.vision_answers">
@@ -110,7 +110,7 @@
                       <p ng-show="wordCount(answer.answer) != 'Too Long!'">
                         Word Count: {{ wordCount(answer.answer) }}, Words Remaining: {{ 350 - wordCount(answer.answer) }}
                       </p>
-                      <p ng-show="wordCount(answer.answer) === 'Too Long!'" class="error-class" style="color:red;">
+                      <p ng-show="wordCount(answer.answer) === 'Too Long!'" class="error-class">
                         Max Word Count!
                       </p>  
                     </td>
@@ -120,7 +120,7 @@
 
               <!-- KEY CONCERN SECTION -->
 
-              <section class="section concern-section">
+              <section class="section">
                 <h3><li> Key Concerns </li></h3>
                 <table class="table table-striped table-bordered">
                   <tr ng-repeat="answer in loi.concern_answers">
@@ -132,7 +132,7 @@
                       <p ng-show="wordCount(answer.answer) != 'Too Long!'">
                         Word Count: {{ wordCount(answer.answer) }}, Words Remaining: {{ 350 - wordCount(answer.answer) }}
                       </p>
-                      <p ng-show="wordCount(answer.answer) === 'Too Long!'" class="error-class" style="color:red;">
+                      <p ng-show="wordCount(answer.answer) === 'Too Long!'" class="error-class">
                         Max Word Count!
                       </p>  
                     </td>
@@ -254,7 +254,7 @@
                 <!-- DEMOGRAPHIC SECTION -->
 
                 <div class="col-md-6">
-                  <section class="section demographic-section">
+                  <section class="section">
                     <h3><li> DEMOGRAPHICS </li></h3>
                     <table class="table table-striped table-bordered">
                       <tr>
@@ -277,7 +277,7 @@
                 <!-- GEOGRAPHIC FOCUS SECTION -->
 
                 <div class="col-md-6">
-                  <section class="section geographic-section">
+                  <section class="section">
                     <h3><li> GEOGRAPHIC INFORMATION </li></h3>
                     <table class="table table-striped table-bordered">                   
                       <tr>
