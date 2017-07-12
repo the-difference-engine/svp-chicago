@@ -74,11 +74,6 @@
   animation: fadeOut 1s;
 }
 
-.bottom-text {
-  text-align: center;
-  padding: 15px;
-}
-
 .loi-rating-form .loi-rating-button {
   height: 50px;
   width: 50px;
@@ -185,8 +180,4 @@
     opacity: 1;
     transition: all 0.75s ease;
   }
-}
-
-.error-class p {
-  text-color: red;
 }

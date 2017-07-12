@@ -36,28 +36,28 @@
           
             <!-- CONTACT SECTION -->
 
-            <section class="section contact-section" ng-show="activeSectionArray[0]">
-              <div class="well rfp-section">
+            <section class="section" ng-show="activeSectionArray[0]">
+              <div class="well loi-section">
                 <h1> {{ contact_section.name }} </h1>
                 <fieldset class="form-group">
                   <div class="form-group" ng-class="{ 'has-error' : loiForm.name.$invalid && !loiForm.name.$pristine }">
                     <label> Proposal Contact Name: </label> 
                     <span class="text-danger"> * </span>                      
                     <input type="text" name="name" ng-model="name" class="form-control" required>
-                    <p ng-show="(loiForm.name.$invalid && !loiForm.name.$pristine) || (loiForm.name.$invalid && invalidSubmission) " class="error-class" style="color:red;">Your name is required.</p>
+                    <p ng-show="(loiForm.name.$invalid && !loiForm.name.$pristine) || (loiForm.name.$invalid && invalidSubmission) " class="error-class">Your name is required.</p>
                   </div>
                   <div class="form-group" ng-class="{ 'has-error' : loiForm.email.$invalid && !loiForm.email.$pristine }">
                     <label> Proposal Contact Email: </label>
                     <span class="text-danger"> * </span>
                     <input type="email" name="email" ng-model="email" class="form-control" required>
-                    <p ng-show="(loiForm.email.$invalid && !loiForm.email.$pristine) || (loiForm.email.$invalid && invalidSubmission) " class="error-class" style="color:red;">Enter a valid email.</p>
+                    <p ng-show="(loiForm.email.$invalid && !loiForm.email.$pristine) || (loiForm.email.$invalid && invalidSubmission) " class="error-class">Enter a valid email.</p>
                   </div>
                   <div ng-repeat="question in contact_formData">
                     <label> {{question.question}}: <span class="text-danger"> * </span></label>    
                     <input ng-if="question.question.indexOf('Email') > -1 || question.question.indexOf('E-mail') > -1" type="email" name="contact_question_{{$index}}" class="form-control" ng-model="question.answer" required>
                     <input ng-if="!(question.question.indexOf('Email') > -1 || question.question.indexOf('E-mail') > -1)" type="text" name="contact_question_{{$index}}" class="form-control" ng-model="question.answer" required>
-                    <p ng-if="question.question.indexOf('Email') > -1 || question.question.indexOf('E-mail') > -1" ng-show="(loiForm['contact_question_' + $index].$invalid && !loiForm['contact_question_' + $index].$pristine) || (loiForm['contact_question_' + $index].$invalid && invalidSubmission)" class="error-class" style="color:red;">Enter a valid email.</p>
-                    <p ng-if="!(question.question.indexOf('Email') > -1 || question.question.indexOf('E-mail') > -1)" ng-show="(loiForm['contact_question_' + $index].$invalid && !loiForm['contact_question_' + $index].$pristine) || (loiForm['contact_question_' + $index].$invalid && invalidSubmission)" class="error-class" style="color:red;">Please fill out the field.</p>
+                    <p ng-if="question.question.indexOf('Email') > -1 || question.question.indexOf('E-mail') > -1" ng-show="(loiForm['contact_question_' + $index].$invalid && !loiForm['contact_question_' + $index].$pristine) || (loiForm['contact_question_' + $index].$invalid && invalidSubmission)" class="error-class">Enter a valid email.</p>
+                    <p ng-if="!(question.question.indexOf('Email') > -1 || question.question.indexOf('E-mail') > -1)" ng-show="(loiForm['contact_question_' + $index].$invalid && !loiForm['contact_question_' + $index].$pristine) || (loiForm['contact_question_' + $index].$invalid && invalidSubmission)" class="error-class">Please fill out the field.</p>
                   </div>
                 </fieldset>
               </div>
@@ -65,7 +65,7 @@
 
             <!-- ORGANIZATION SECTION -->
 
-            <section class="section organization-section" ng-show="activeSectionArray[1]">
+            <section class="section" ng-show="activeSectionArray[1]">
               <div class="well loi-section">
                 <h1> {{ organization_section.name }} </h1>
                 <fieldset class="form-group">
@@ -74,9 +74,9 @@
                     <span class="text-danger"> * </span>
                     <input ng-if="question.question.indexOf('Number') > -1 || question.question.indexOf('Budget') > -1" type="number" name="organization_question_{{$index}}" class="form-control" ng-model="question.answer" required>
                     <input ng-if="!(question.question.indexOf('Number') > -1 || question.question.indexOf('Budget') > -1)" type="text" name="organization_question_{{$index}}" class="form-control" ng-model="question.answer" required>
-                    <p ng-if="question.question.indexOf('Number') > -1 || question.question.indexOf('Budget') > -1" ng-show="(loiForm['organization_question_' + $index].$invalid && !loiForm['organization_question_' + $index].$pristine) || (loiForm['organization_question_' + $index].$invalid && invalidSubmission)" class="error-class" style="color:red;">Please enter a numeric value.</p>
-                    <p ng-if="!(question.question.indexOf('Number') > -1 || question.question.indexOf('Budget') > -1)" ng-show="(loiForm['organization_question_' + $index].$invalid && !loiForm['organization_question_' + $index].$pristine) || (loiForm['organization_question_' + $index].$invalid && invalidSubmission)" class="error-class" style="color:red;">Please fill out the field.</p>
-                    <p ng-if="question.question.indexOf('Budget') > -1 && question.answer > 7500000" class="error-class" style="color:red;">Your organization's budget is greater than the maximum allowed for this investment cycle.</p>
+                    <p ng-if="question.question.indexOf('Number') > -1 || question.question.indexOf('Budget') > -1" ng-show="(loiForm['organization_question_' + $index].$invalid && !loiForm['organization_question_' + $index].$pristine) || (loiForm['organization_question_' + $index].$invalid && invalidSubmission)" class="error-class">Please enter a numeric value.</p>
+                    <p ng-if="!(question.question.indexOf('Number') > -1 || question.question.indexOf('Budget') > -1)" ng-show="(loiForm['organization_question_' + $index].$invalid && !loiForm['organization_question_' + $index].$pristine) || (loiForm['organization_question_' + $index].$invalid && invalidSubmission)" class="error-class">Please fill out the field.</p>
+                    <p ng-if="question.question.indexOf('Budget') > -1 && question.answer > 7500000" class="error-class">Your organization's budget is greater than the maximum allowed for this investment cycle.</p>
                   </div>
                 </fieldset>
               </div>
@@ -84,17 +84,17 @@
 
             <!-- OVERVIEW SECTION -->
 
-            <section class="section overview-section" ng-show="activeSectionArray[2]">
+            <section class="section" ng-show="activeSectionArray[2]">
               <div class="well loi-section">
                 <h1> {{ overview_section.name }} </h1>
                 <div ng-repeat="question in overview_formData">
                   <label> {{question.question}}: <span class="text-danger"> * </span></label>
                   <textarea name="overview_question_{{$index}}" class="form-control" rows="3" ng-model="question.answer" my-maxlength="350" required></textarea>
-                  <p ng-show="(loiForm['overview_question_' + $index].$invalid && !loiForm['overview_question_' + $index].$pristine) || (loiForm['overview_question_' + $index].$invalid && invalidSubmission) " class="error-class" style="color:red;">Please fill out the field.</p>
+                  <p ng-show="(loiForm['overview_question_' + $index].$invalid && !loiForm['overview_question_' + $index].$pristine) || (loiForm['overview_question_' + $index].$invalid && invalidSubmission) " class="error-class">Please fill out the field.</p>
                   <p ng-show="wordCount(question.answer) != 'Too Long!'">
                     Word Count: {{ wordCount(question.answer) }}, Words Remaining: {{ 350 - wordCount(question.answer) }}
                   </p>
-                  <p ng-show="wordCount(question.answer) === 'Too Long!'" class="error-class" style="color:red;">
+                  <p ng-show="wordCount(question.answer) === 'Too Long!'" class="error-class">
                     Max Word Count!
                   </p>  
                 </div>
@@ -103,17 +103,17 @@
 
             <!-- VISION SECTION -->
 
-            <section class="section vision-section" ng-show="activeSectionArray[3]">
+            <section class="section" ng-show="activeSectionArray[3]">
               <div class="well loi-section">
                 <h1> {{ vision_section.name }} </h1>
                 <div ng-repeat="question in vision_formData">
                   <label> {{question.question}}: <span class="text-danger"> * </span></label>
                   <textarea name="vision_question_{{$index}}" class="form-control" rows="3" ng-model="question.answer" my-maxlength="350" required></textarea>
-                  <p ng-show="(loiForm['vision_question_' + $index].$invalid && !loiForm['vision_question_' + $index].$pristine) || (loiForm['vision_question_' + $index].$invalid && invalidSubmission) " class="error-class" style="color:red;">Please fill out the field.</p>
+                  <p ng-show="(loiForm['vision_question_' + $index].$invalid && !loiForm['vision_question_' + $index].$pristine) || (loiForm['vision_question_' + $index].$invalid && invalidSubmission) " class="error-class">Please fill out the field.</p>
                   <p ng-show="wordCount(question.answer) != 'Too Long!'">
                     Word Count: {{ wordCount(question.answer) }}, Words Remaining: {{ 350 - wordCount(question.answer) }}
                   </p>
-                  <p ng-show="wordCount(question.answer) === 'Too Long!'" class="error-class" style="color:red;">
+                  <p ng-show="wordCount(question.answer) === 'Too Long!'" class="error-class">
                     Max Word Count!
                   </p>  
                 </div>
@@ -122,17 +122,17 @@
 
             <!-- KEY CONCERN SECTION -->
 
-            <section class="section concern-section" ng-show="activeSectionArray[4]">
+            <section class="section" ng-show="activeSectionArray[4]">
               <div class="well loi-section">
                 <h1> {{ concern_section.name }} </h1>
                 <div ng-repeat="question in concern_formData">
                   <label> {{question.question}}: <span class="text-danger"> * </span></label>
                   <textarea name="key_question_{{$index}}" class="form-control" rows="3" ng-model="question.answer" my-maxlength="350" required></textarea>
-                  <p ng-show="(loiForm['key_question_' + $index].$invalid && !loiForm['key_question_' + $index].$pristine) || (loiForm['key_question_' + $index].$invalid && invalidSubmission) " class="error-class" style="color:red;">Please fill out the field.</p>
+                  <p ng-show="(loiForm['key_question_' + $index].$invalid && !loiForm['key_question_' + $index].$pristine) || (loiForm['key_question_' + $index].$invalid && invalidSubmission) " class="error-class">Please fill out the field.</p>
                   <p ng-show="wordCount(question.answer) != 'Too Long!'">
                     Word Count: {{ wordCount(question.answer) }}, Words Remaining: {{ 350 - wordCount(question.answer) }}
                   </p>
-                  <p ng-show="wordCount(question.answer) === 'Too Long!'" class="error-class" style="color:red;">
+                  <p ng-show="wordCount(question.answer) === 'Too Long!'" class="error-class">
                     Max Word Count!
                   </p>  
                 </div>
@@ -141,7 +141,7 @@
             
             <!-- CHALLENGE SECTION -->
             
-            <section class="section challenge-section" ng-show="activeSectionArray[5]">
+            <section class="section" ng-show="activeSectionArray[5]">
               <div class="well loi-section">
                 <h1>{{ challenge_section.name }}</h1>
                 <table class="table table-striped table-bordered">
@@ -211,17 +211,17 @@
             
             <!-- REFERRAL SECTION -->
    
-            <section class="section referral-section" ng-show="activeSectionArray[6]">
+            <section class="section" ng-show="activeSectionArray[6]">
               <div class="well loi-section">
                 <h1> {{ referral_section.name }} </h1>
                 <div ng-repeat="question in referral_formData">
                   <label> {{question.question}}: <span class="text-danger"> * </span></label>
                   <textarea name="referral_question_{{$index}}" class="form-control" rows="3" ng-model="question.answer" my-maxlength="350" required></textarea>
-                  <p ng-show="(loiForm['referral_question_' + $index].$invalid && !loiForm['referral_question_' + $index].$pristine) || (loiForm['referral_question_' + $index].$invalid && invalidSubmission) " class="error-class" style="color:red;">Please fill out the field.</p>
+                  <p ng-show="(loiForm['referral_question_' + $index].$invalid && !loiForm['referral_question_' + $index].$pristine) || (loiForm['referral_question_' + $index].$invalid && invalidSubmission) " class="error-class">Please fill out the field.</p>
                   <p ng-show="wordCount(question.answer) != 'Too Long!'">
                     Word Count: {{ wordCount(question.answer) }}, Words Remaining: {{ 350 - wordCount(question.answer) }}
                   </p>
-                  <p ng-show="wordCount(question.answer) === 'Too Long!'" class="error-class" style="color:red;">
+                  <p ng-show="wordCount(question.answer) === 'Too Long!'" class="error-class">
                     Max Word Count!
                   </p>      
                 </div>
@@ -236,7 +236,7 @@
                 <!-- DEMOGRAPHIC SECTION -->
 
                 <div class="col-md-6">
-                  <section class="demographic-section">
+                  <section>
                     <div class="well loi-section">
                       <h1> {{ demographic_section.name }} </h1>
                       <table class="table table-striped table-bordered">
@@ -263,7 +263,7 @@
                 <!-- GEOGRAPHIC FOCUS SECTION -->
 
                 <div class="col-md-6">
-                  <section class="geographic-section">
+                  <section>
                     <div class="well loi-section">
                       <h1> {{ geographic_section.name }} </h1>
                       <table class="table table-striped table-bordered">

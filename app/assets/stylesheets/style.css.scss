@@ -149,7 +149,7 @@ footer {
 }
 
 #form-paper{
-  width: 90%;
+  width: 95%;
   margin: auto;
   box-shadow: 6px 6px 8px rgba(0,0,0,0.21);
   border-width: 1px;
@@ -184,3 +184,11 @@ footer {
   margin: auto;
 }
 
+.error-class {
+  color: red;
+}
+
+.bottom-text {
+  text-align: center;
+  padding: 15px;
+}

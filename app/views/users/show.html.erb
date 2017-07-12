@@ -11,12 +11,12 @@
           <% if @user.admin && !@user.super_admin %>
             <h4>You are currently logged in with administrator privileges as: <%= @user.email %> </h4>
             <table class="table">
-              <ul>
+              
                 <tr>
                   <td><a href="/lois" class="btn btn-primary btn-s">Review all the submitted LOIs</a></td>
                   <td><a href="/ratings" class="btn btn-primary btn-s">See a list of your ratings</a></td>
                 </tr>
-              </ul>
+              
             </table>
           <% elsif @user.admin && @user.super_admin %>
             <h4>You are currently logged in with super-administrator priviliges as: <%= @user.email %> </h4>
@@ -45,7 +45,8 @@
           <% if !@deadline_open %>
             <h2 style="color:red;"> The LOI application deadline has passed. </h2>
           <% else %>
-            <h3> The LOI application is due by: <%= @dashboard.loi_closing_date.strftime('%m-%e-%y, %H:%M') %> </h3>
+            <h3> The LOI application is due by: </h3>
+            <h4><%= @dashboard.loi_closing_date.strftime('%A, %b. %d, %Y %l:%M %p') %> </h4>
           <% end %>
 
           <% if !@user.lois.empty? %>
