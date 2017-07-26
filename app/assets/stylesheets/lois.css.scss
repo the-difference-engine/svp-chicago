@@ -60,14 +60,14 @@
   padding-right: 10px;
 }
 
-.ng-enter, .ng-move{
+.ng-enter, .ng-move {
   -webkit-animation: fadeIn 1s;
   -moz-animation: fadeIn 1s;
   -o-animation: fadeIn 1s;
   animation: fadeIn 1s;
 }
 
-.ng-leave{
+.ng-leave {
   -webkit-animation: fadeOut 1s;
   -moz-animation: fadeOut 1s;
   -o-animation: fadeOut 1s;
@@ -87,11 +87,12 @@
   height:100px;
   vertical-align: bottom;
   padding:10px;
-
 }
+
 .loi-rating-form h4 {
   text-align:left;
 }
+
 .loi-rating-form hr {
   margin-top:10px;
 }
@@ -104,6 +105,7 @@
   top: 170px;
   z-index:2;
 }
+
 #rating-pullout-button {
   position: fixed;
   background-color:#6495ED;
@@ -112,8 +114,8 @@
   padding:10px;
   top: 100px;
   z-index:4;
-  // height:70px;
 }
+
 #rating-pullout-comment-box {
   position: static;
   background-color:#ccc;
@@ -124,9 +126,11 @@
   z-index:4;
   height:70px;
 }
+
 .inactive-btn {
   cursor:default;
 }
+
 .tooltip-toggle {
   cursor: pointer;
   position: relative;

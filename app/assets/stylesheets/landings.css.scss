@@ -38,10 +38,12 @@
   text-align: justify;
   margin: auto;
 }
+
 .main-points {
   margin-left:20px;
   width:90%;
 }
+
 p.main-points {
   position:relative;
   margin-right:30px;
@@ -53,27 +55,30 @@ p.main-points {
   margin-bottom:30px;
   min-height:55px;
 }
+
 .instruction {
   margin-left:30px;
   width:95%;
 }
-.main-points-edit{ 
+ 
+.main-points-edit { 
   margin-left:30px;
   height:400px;
   width:95%;
 }
 
-.last-point-edit{ 
+.last-point-edit { 
   margin-left:30px;
   height:200px;
   width:95%;
 }
 
-.gray-section-edit{ 
+.gray-section-edit { 
   margin-left:20px;
   height:400px;
   width:95%;
 }
+
 .gray-section {
   margin-left:-10px;
 }
@@ -84,7 +89,6 @@ p.gray-section {
   background-repeat: no-repeat;
   padding-left: 40px; /* Adjust according to image size to push text across. */
   margin-bottom:30px;
-
 }
 
 #edit-page {
