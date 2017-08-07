@@ -1,8 +1,5 @@
-<!-- Main Site Container -->
 <div class="site-container">
-  <!-- This is a class meant to look like a sheet of paper? -->
   <div id="form-paper">
-
     <div class="container">
       <div class="row">
         <div class="col-md-6">
@@ -13,72 +10,49 @@
         <div class="col-md-6">
           <div class="home-text">
             <h2> Social Venture Partners <span style="color:#0060b2">Chicago</span></h2>
-            <h3><strong>
+            <h3>
             <%= form_tag "/landings/#{@landing.id}", method: :patch do %>
             <%= text_field_tag(:year, @landing.year, size:'4') %>  Letter of Interest Form
-            </strong> </h3>
-            <h3>Sector Focus: <i><span style="color:#BC214D"><%= text_field_tag(:sector_focus, @landing.sector_focus, size:'26') %></span></i></h3>
-            
+            </h3>
+            <h3>Sector Focus: <i><span style="color:#BC214D"><%= text_field_tag(:sector_focus, @landing.sector_focus, size:'26') %></span></i></h3>            
           </div>
         </div>
       </div>
 
       <hr>
       
-
-
     <div class="container">
       <div class="row">
         <div class="instruction">
           <h3>For each separate point, please leave a line of space between each one (i.e. hit enter twice).</h3>
         </div>
-        <h2><%= text_area_tag(:main_points, @landing.main_points, class: "main-points-edit") %></h2>
+        <h3><%= text_area_tag(:main_points, @landing.main_points, class: "main-points-edit") %></h3>
       </div>
     </div>
-
 
       <div class="container">
         <div class="row">
           <div class="col-md-12">
             <div class="home-section">
-            <h2>
-              <i>We encourage your organization to submit this Letter of Interest if...</i></h2>
-         
+            <h2><i>We encourage your organization to submit this Letter of Interest if...</i></h2>         
               <h3>
-                <ul>
-                  <%= text_area_tag(:gray_section, @landing.gray_section, class: "gray-section-edit") %>
-                </ul>
-            </h3>
+                <%= text_area_tag(:gray_section, @landing.gray_section, class: "gray-section-edit") %>
+              </h3>
             </div>
           </div>
         </div>
       </div>
 
-
       <div class="container">
         <div class="row">
-          <h2><%= text_area_tag(:last_point, @landing.last_point, class: "last-point-edit") %> </h2>
+          <h3><%= text_area_tag(:last_point, @landing.last_point, class: "last-point-edit") %> </h3>
         </div>
       </div>
 
       <div class="get-started">
-        <%= submit_tag "Update Page", class: "btn btn-lg btn-danger" %>
+        <%= submit_tag "Update Page", class: "btn btn-md btn-danger" %>
         <% end %>
       </div>
-
-      <div class="get-started">
-        
-        <% if current_user %>
-    
-            <%= link_to "Get Started!", "/users/#{current_user.id}", :class => "btn btn-lg btn-primary", :role => "button" %>
-
-        <% else %>
-        
-            <%= link_to "Get Started!", "/", :class => "btn btn-lg btn-primary", :role => "button" %>
-
-        <% end %>
-      </div>
-
     </div>
   </div>
 </div>
