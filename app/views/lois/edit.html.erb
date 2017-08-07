@@ -1,261 +1,252 @@
 <div class="site-container">
   <div id="form-paper">
     <div class="form-heading">
-
       <div>
-
         <h1> <%= Time.new.year %> SVP Chicago Letter of Interest </h1>
         <h2> Sector Focus: Beaking the Cycle of Poverty </h2>
         <hr>
+        <p><b>Completing this Form:</b></p>
 
-          <p><b>Completing this Form:</b></p>
+        <p>Please enter information directly into the form, using this form as the main body of your Letter of Interest. The boxes will expand to hold your text. You can adjust the page breaks when you have completed the form.</p>
 
-          <p>Please enter information directly into the form, using this form as the main body of your Letter of Interest. The boxes will expand to hold your text. You can adjust the page breaks when you have completed the form.</p>
+        <p><ul>
+          <li>If you find an item confusing, please feel free to contact us.</li>
 
-          <p><ul>
-            <li>If you find an item confusing, please feel free to contact us.</li>
-
-            <li>Please use bullet points rather than paragraphs. Brevity is helpful to our partners when reviewing proposals.</li>
-          </ul></p>
+          <li>Please use bullet points rather than paragraphs. Brevity is helpful to our partners when reviewing proposals.</li>
+        </ul></p>
       </div>
     </div>
-
     <div class="form-body">
-
       <div ng-app="app">
-
         <div ng-controller="editLoisCtrl" ng-init="setup()">
-
           <form name="loiForm" ng-submit="submit(loi.name, loi.email, loiForm.$valid)" novalidate>
-
             <ol class="form-list">
             
             <!-- CONTACT SECTION -->
                 
-              <section class="section contact-section">
+              <section class="section">
                 <h3><li> Contact </li></h3>
-                  <table class="table table-striped table-bordered">
-                    <tr>
-                      <div class="form-group" ng-class="{ 'has-error' : loiForm.name.$invalid }">
+                <table class="table table-striped table-bordered">
+                  <tr>
+                    <div class="form-group" ng-class="{ 'has-error' : loiForm.name.$invalid }">
                       <td><b>Proposal Contact Name:</b></td>
                       <td>
                         <p><input type="text" name="name" ng-model="loi.name" class="form-control" required></p>
-                        <p ng-show="loiForm.name.$invalid" class="error-class" style="color:red;">You name is required.</p>
+                        <p ng-show="loiForm.name.$invalid" class="error-class">Your name is required.</p>
                       </td>
-                      </div>
-                    </tr>
-                    <tr>
-                      <div class="form-group" ng-class="{ 'has-error' : loiForm.email.$invalid}">
+                    </div>
+                  </tr>
+                  <tr>
+                    <div class="form-group" ng-class="{ 'has-error' : loiForm.email.$invalid}">
                       <td><b>Proposal Contact Email:</b></td>
                       <td>
                         <p><input type="email" name="email" ng-model="loi.email" class="form-control"></p>
-                        <p ng-show="loiForm.email.$invalid" class="error-class" style="color:red;">Enter a valid email.</p>
+                        <p ng-show="loiForm.email.$invalid" class="error-class">Enter a valid email.</p>
                       </td>
-                      </div>
-                    </tr>
-                    <tr ng-repeat="answer in loi.contact_answers">
-                      <td style="width: 20%">
-                        <b>{{answer.question.question}}:</b>
-                      </td>
-                      <td>
-                        <input type="text" class="form-control" ng-model="answer.answer">
-                      </td>
-                    </tr>
-                  </table>
+                    </div>
+                  </tr>
+                  <tr ng-repeat="answer in loi.contact_answers">
+                    <td style="width: 20%">
+                      <b>{{answer.question.question}}:</b>
+                    </td>
+                    <td>
+                      <input type="text" class="form-control" ng-model="answer.answer">
+                    </td>
+                  </tr>
+                </table>
               </section>
 
             <!-- ORGANIZATION SECTION -->
 
-              <section class="section organization-section">
+              <section class="section">
                 <h3><li> Organization </li></h3>
-                  <table class="table table-striped table-bordered">
-                    <tr ng-repeat="answer in loi.organization_answers">
-                      <td style="width: 20%">
-                        <b>{{answer.question.question}}:</b>
-                      </td>
-                      <td>
-                        <input ng-if="answer.question.question.indexOf('Budget') > -1" type="number" class="form-control" ng-model="answer.answer">
-                        <input ng-if="answer.question.question.indexOf('Budget') == -1" type="text" class="form-control" ng-model="answer.answer">
-                        <p ng-if="answer.question.question.indexOf('Budget') > -1 && answer.answer > 7500000" class="error-class" style="color:red;">Your organization's budget is greater than the maximum allowed for this investment cycle.</p>
-                      </td>
-                    </tr>
-                  </table>
+                <table class="table table-striped table-bordered">
+                  <tr ng-repeat="answer in loi.organization_answers">
+                    <td style="width: 20%">
+                      <b>{{answer.question.question}}:</b>
+                    </td>
+                    <td>
+                      <input ng-if="answer.question.question.indexOf('Budget') > -1" type="number" class="form-control" ng-model="answer.answer">
+                      <input ng-if="answer.question.question.indexOf('Budget') == -1" type="text" class="form-control" ng-model="answer.answer">
+                      <p ng-if="answer.question.question.indexOf('Budget') > -1 && answer.answer > 7500000" class="error-class">Your organization's budget is greater than the maximum allowed for this investment cycle.</p>
+                    </td>
+                  </tr>
+                </table>
               </section>
 
               <!-- OVERVIEW SECTION -->
 
-              <section class="section overview-section">
+              <section class="section">
                 <h3><li> OVERVIEW </li></h3>
-                  <table class="table table-striped table-bordered">
-                    <tr ng-repeat="answer in loi.overview_answers">
-                      <td style="width: 20%">
-                        <b>{{answer.question.question}}:</b>
-                      </td>
-                      <td>
-                        <textarea type="text" class="form-control" my-maxlength="350" ng-model="answer.answer" rows="3"></textarea>
-                        <p ng-show="wordCount(answer.answer) != 'Too Long!'">
-                          Word Count: {{ wordCount(answer.answer) }}, Words Remaining: {{ 350 - wordCount(answer.answer) }}
-                        </p>
-                        <p ng-show="wordCount(answer.answer) === 'Too Long!'" class="error-class" style="color:red;">
-                          Max Word Count!
-                        </p>  
-                      </td>
-                    </tr>
-                  </table>
+                <table class="table table-striped table-bordered">
+                  <tr ng-repeat="answer in loi.overview_answers">
+                    <td style="width: 20%">
+                      <b>{{answer.question.question}}:</b>
+                    </td>
+                    <td>
+                      <textarea type="text" class="form-control" my-maxlength="400" ng-model="answer.answer" rows="3"></textarea>
+                      <p ng-show="wordCount(answer.answer) != 'Too Long!'">
+                        Word Count: {{ wordCount(answer.answer) }}, Words Remaining: {{ 400 - wordCount(answer.answer) }}
+                      </p>
+                      <p ng-show="wordCount(answer.answer) === 'Too Long!'" class="error-class">
+                        Max Word Count!
+                      </p>  
+                    </td>
+                  </tr>
+                </table>
               </section>
 
               <!-- VISION SECTION -->
 
-              <section class="section vision-section">
+              <section class="section">
                 <h3><li> Vision </li></h3>
-                  <table class="table table-striped table-bordered">
-                    <tr ng-repeat="answer in loi.vision_answers">
-                      <td style="width: 20%">
-                        <b>{{answer.question.question}}:</b>
-                      </td>
-                      <td>
-                        <textarea type="text" class="form-control" my-maxlength="350" ng-model="answer.answer" rows="3"></textarea>
-                        <p ng-show="wordCount(answer.answer) != 'Too Long!'">
-                          Word Count: {{ wordCount(answer.answer) }}, Words Remaining: {{ 350 - wordCount(answer.answer) }}
-                        </p>
-                        <p ng-show="wordCount(answer.answer) === 'Too Long!'" class="error-class" style="color:red;">
-                          Max Word Count!
-                        </p>  
-                      </td>
-                    </tr>
-                  </table>
+                <table class="table table-striped table-bordered">
+                  <tr ng-repeat="answer in loi.vision_answers">
+                    <td style="width: 20%">
+                      <b>{{answer.question.question}}:</b>
+                    </td>
+                    <td>
+                      <textarea type="text" class="form-control" my-maxlength="400" ng-model="answer.answer" rows="3"></textarea>
+                      <p ng-show="wordCount(answer.answer) != 'Too Long!'">
+                        Word Count: {{ wordCount(answer.answer) }}, Words Remaining: {{ 400 - wordCount(answer.answer) }}
+                      </p>
+                      <p ng-show="wordCount(answer.answer) === 'Too Long!'" class="error-class">
+                        Max Word Count!
+                      </p>  
+                    </td>
+                  </tr>
+                </table>
               </section>
 
               <!-- KEY CONCERN SECTION -->
 
-              <section class="section concern-section">
+              <section class="section">
                 <h3><li> Key Concerns </li></h3>
-                  <table class="table table-striped table-bordered">
-                    <tr ng-repeat="answer in loi.concern_answers">
-                      <td style="width: 20%">
-                        <b>{{answer.question.question}}:</b>
-                      </td>
-                      <td>
-                        <textarea type="text" class="form-control" my-maxlength="350" ng-model="answer.answer" rows="3"></textarea>
-                        <p ng-show="wordCount(answer.answer) != 'Too Long!'">
-                          Word Count: {{ wordCount(answer.answer) }}, Words Remaining: {{ 350 - wordCount(answer.answer) }}
-                        </p>
-                        <p ng-show="wordCount(answer.answer) === 'Too Long!'" class="error-class" style="color:red;">
-                          Max Word Count!
-                        </p>  
-                      </td>
-                    </tr>
-                  </table>
+                <table class="table table-striped table-bordered">
+                  <tr ng-repeat="answer in loi.concern_answers">
+                    <td style="width: 20%">
+                      <b>{{answer.question.question}}:</b>
+                    </td>
+                    <td>
+                      <textarea type="text" class="form-control" my-maxlength="400" ng-model="answer.answer" rows="3"></textarea>
+                      <p ng-show="wordCount(answer.answer) != 'Too Long!'">
+                        Word Count: {{ wordCount(answer.answer) }}, Words Remaining: {{ 400 - wordCount(answer.answer) }}
+                      </p>
+                      <p ng-show="wordCount(answer.answer) === 'Too Long!'" class="error-class">
+                        Max Word Count!
+                      </p>  
+                    </td>
+                  </tr>
+                </table>
               </section>
 
               <!-- CHALLENGE SECTION -->
 
               <section class="section">
-
                 <h3><li>Organizational Capacity Challenges</li></h3>
-                  <table class="table table-striped table-bordered">
-                    <tr>
-                      <th>Focus Area</th>
-                      <th>Please provide a short description of your top 1-3 challenge(s) in each area that applies</th>
-                      <th>Priority Rank each as High, Medium or Low</th>
-                      <th colspan="3">
-                        <table class="fte-header-table">
-                          <tr>
-                            <td colspan="3">Please provide the total amount of time you and your staff spend in each focus area expressd in FTEs. <br><span style="font-size:10px;"> Full time equivalency (FTE) refers to an organization’s full-time equivalent of its part-time employees (e.g. two part-time workers at 20 hours each equals one FTE).</span></td>
-                          </tr>
-                          <tr>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                          </tr>
-                          <tr>
-                            <td>2016 Staffing (actual)</td>
-                            <td>2017 Staffing (current)</td>
-                            <td>2018 Staffing (projected)</td>
-                          </tr>
-                        </table>
-                      </th>
-                    </tr> 
-                    <tr ng-repeat="answer in loi.challenge_answers">
-                      <td><b>{{answer.question.question}}:</b></td>
-                      <td>
-                        <ol class="challenge-list">
-                          <li>
-                            <input type="text" class="form-control" ng-model="answer.challenges[0].challenge">
-                          </li>
-                          <li ng-show="!answer.challenges[1].challenge=='' || activeChallenge[answer.question.id] > 0">
-                            <input type="text" class="form-control" ng-model="answer.challenges[1].challenge">
-                          </li>
-                          <li ng-show="!answer.challenges[2].challenge=='' || activeChallenge[answer.question.id] > 1">
-                            <input type="text" class="form-control" ng-model="answer.challenges[2].challenge">
-                          </li>
-                        </ol>
-                        <p><a ng-click="addChallenge(answer.question.id)">Add Challenge</a></p>
-                      </td>
-                      <td>
-                        <ol class="challenge-list">
-                          <li>
-                            <select class="form-control" name="singleSelect" id="singleSelect" ng-model="answer.challenges[0].priority">
-                              <option value="H">High</option>
-                              <option value="M">Medium</option>
-                              <option value="L">Low</option>
-                            </select>
-                          </li>
-                          <li ng-show="!answer.challenges[1].priority=='' || activeChallenge[answer.question.id] > 0">
-                            <select class="form-control" name="singleSelect" id="singleSelect" ng-model="answer.challenges[1].priority">
-                              <option value="H">High</option>
-                              <option value="M">Medium</option>
-                              <option value="L">Low</option>
-                            </select>
-                          </li>
-                          <li ng-show="!answer.challenges[2].priority=='' || activeChallenge[answer.question.id] > 1">
-                            <select class="form-control" name="singleSelect" id="singleSelect" ng-model="answer.challenges[2].priority">
-                              <option value="H">High</option>
-                              <option value="M">Medium</option>
-                              <option value="L">Low</option>
-                            </select>
-                          </li>
-                        </ol>
-                      </td>
-                      <td>
-                        <input type="text" class="form-control" ng-model="answer.fte.amount_1" ng-change="addFte()">
-                      </td>
-                      <td>
-                        <input type="text" class="form-control" ng-model="answer.fte.amount_2" ng-change="addFte()">
-                      </td>
-                      <td>
-                        <input type="text" class="form-control" ng-model="answer.fte.amount_3" ng-change="addFte()">
-                      </td>
-                    </tr>
-                    <tr>
-                      <td colspan="3">TOTAL FTEs</td>
-                      <td>{{fte_1 | number:2}}</td>
-                      <td>{{fte_2 | number:2}}</td>
-                      <td>{{fte_3 | number:2}}</td>
-                    </tr>
-                  </table>
+                <table class="table table-striped table-bordered">
+                  <tr>
+                    <th>Focus Area</th>
+                    <th>Please provide a short description of your top 1-3 challenge(s) in each area that applies</th>
+                    <th>Priority Rank each as High, Medium or Low</th>
+                    <th colspan="3">
+                      <table class="fte-header-table">
+                        <tr>
+                          <td colspan="3">Please provide the total amount of time you and your staff spend in each focus area expressd in FTEs. <br><span style="font-size:10px;"> Full time equivalency (FTE) refers to an organization’s full-time equivalent of its part-time employees (e.g. two part-time workers at 20 hours each equals one FTE).</span></td>
+                        </tr>
+                        <tr>
+                          <td>-</td>
+                          <td>-</td>
+                          <td>-</td>
+                        </tr>
+                        <tr>
+                          <td>2016 Staffing (actual)</td>
+                          <td>2017 Staffing (current)</td>
+                          <td>2018 Staffing (projected)</td>
+                        </tr>
+                      </table>
+                    </th>
+                  </tr> 
+                  <tr ng-repeat="answer in loi.challenge_answers">
+                    <td><b>{{answer.question.question}}:</b></td>
+                    <td>
+                      <ol class="challenge-list">
+                        <li>
+                          <input type="text" class="form-control" ng-model="answer.challenges[0].challenge">
+                        </li>
+                        <li ng-show="!answer.challenges[1].challenge=='' || activeChallenge[answer.question.id] > 0">
+                          <input type="text" class="form-control" ng-model="answer.challenges[1].challenge">
+                        </li>
+                        <li ng-show="!answer.challenges[2].challenge=='' || activeChallenge[answer.question.id] > 1">
+                          <input type="text" class="form-control" ng-model="answer.challenges[2].challenge">
+                        </li>
+                      </ol>
+                      <p><a ng-click="addChallenge(answer.question.id)">Add Challenge</a></p>
+                    </td>
+                    <td>
+                      <ol class="challenge-list">
+                        <li>
+                          <select class="form-control" name="singleSelect" id="singleSelect" ng-model="answer.challenges[0].priority">
+                            <option value="H">High</option>
+                            <option value="M">Medium</option>
+                            <option value="L">Low</option>
+                          </select>
+                        </li>
+                        <li ng-show="!answer.challenges[1].priority=='' || activeChallenge[answer.question.id] > 0">
+                          <select class="form-control" name="singleSelect" id="singleSelect" ng-model="answer.challenges[1].priority">
+                            <option value="H">High</option>
+                            <option value="M">Medium</option>
+                            <option value="L">Low</option>
+                          </select>
+                        </li>
+                        <li ng-show="!answer.challenges[2].priority=='' || activeChallenge[answer.question.id] > 1">
+                          <select class="form-control" name="singleSelect" id="singleSelect" ng-model="answer.challenges[2].priority">
+                            <option value="H">High</option>
+                            <option value="M">Medium</option>
+                            <option value="L">Low</option>
+                          </select>
+                        </li>
+                      </ol>
+                    </td>
+                    <td>
+                      <input type="text" class="form-control" ng-model="answer.fte.amount_1" ng-change="addFte()">
+                    </td>
+                    <td>
+                      <input type="text" class="form-control" ng-model="answer.fte.amount_2" ng-change="addFte()">
+                    </td>
+                    <td>
+                      <input type="text" class="form-control" ng-model="answer.fte.amount_3" ng-change="addFte()">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="3">TOTAL FTEs</td>
+                    <td>{{fte_1 | number:2}}</td>
+                    <td>{{fte_2 | number:2}}</td>
+                    <td>{{fte_3 | number:2}}</td>
+                  </tr>
+                </table>
               </section>
 
               <!-- REFERRAL SECTION -->
 
               <section class="section concern-section">
                 <h3><li> REFERRAL </li></h3>
-                  <table class="table table-striped table-bordered">
-                    <tr ng-repeat="answer in loi.referral_answers">
-                      <td style="width: 20%">
-                        <b>{{answer.question.question}}:</b>
-                      </td>
-                      <td>
-                        <textarea type="text" class="form-control" my-maxlength="350" ng-model="answer.answer" rows="3"></textarea>
-                        <p ng-show="wordCount(answer.answer) != 'Too Long!'">
-                          Word Count: {{ wordCount(answer.answer) }}, Words Remaining: {{ 350 - wordCount(answer.answer) }}
-                        </p>
-                        <p ng-show="wordCount(answer.answer) === 'Too Long!'" class="error-class" style="color:red;">
-                          Max Word Count!
-                        </p>  
-                      </td>
-                    </tr>
-                  </table>
+                <table class="table table-striped table-bordered">
+                  <tr ng-repeat="answer in loi.referral_answers">
+                    <td style="width: 20%">
+                      <b>{{answer.question.question}}:</b>
+                    </td>
+                    <td>
+                      <textarea type="text" class="form-control" my-maxlength="400" ng-model="answer.answer" rows="3"></textarea>
+                      <p ng-show="wordCount(answer.answer) != 'Too Long!'">
+                        Word Count: {{ wordCount(answer.answer) }}, Words Remaining: {{ 400 - wordCount(answer.answer) }}
+                      </p>
+                      <p ng-show="wordCount(answer.answer) === 'Too Long!'" class="error-class" style="color:red;">
+                        Max Word Count!
+                      </p>  
+                    </td>
+                  </tr>
+                </table>
               </section>
 
               <div class="row">
@@ -263,47 +254,45 @@
                 <!-- DEMOGRAPHIC SECTION -->
 
                 <div class="col-md-6">
-                  <section class="section demographic-section">
+                  <section class="section">
                     <h3><li> DEMOGRAPHICS </li></h3>
-                      <table class="table table-striped table-bordered">
-                        <tr>
-                          <th>Sector</th>
-                          <th>Please select if you programs addressing this sector</th>
-                        </tr>
-                        <tr ng-repeat="answer in loi.demographic_answers">
-                          <td style="width: 20%">
-                            <b>{{answer.question.question}}:</b>
-                          </td>
-                          <td>
-                            <input ng-if="answer.question.question!='Other'" type="checkbox" class="checkbox" ng-model="answer.answer" ng-true-value="'t'" ng-false-value="''">
-                            <input ng-if="answer.question.question==='Other'" type="text" class="form-control" ng-model="answer.answer">
-                          </td>
-                        </tr>
-                      </table>
+                    <table class="table table-striped table-bordered">
+                      <tr>
+                        <th>Sector</th>
+                        <th>Please select if you programs addressing this sector</th>
+                      </tr>
+                      <tr ng-repeat="answer in loi.demographic_answers">
+                        <td style="width: 20%">
+                          <b>{{answer.question.question}}:</b>
+                        </td>
+                        <td>
+                          <input ng-if="answer.question.question!='Other'" type="checkbox" class="checkbox" ng-model="answer.answer" ng-true-value="'t'" ng-false-value="''">
+                          <input ng-if="answer.question.question==='Other'" type="text" class="form-control" ng-model="answer.answer">
+                        </td>
+                      </tr>
+                    </table>
                   </section>
                 </div>
 
                 <!-- GEOGRAPHIC FOCUS SECTION -->
 
                 <div class="col-md-6">
-                  <section class="section geographic-section">
+                  <section class="section">
                     <h3><li> GEOGRAPHIC INFORMATION </li></h3>
-                      <table class="table table-striped table-bordered">
-                      
-                          <tr>
-                            <th>Geographic Focus</th>
-                            <th>Please select whichever applies (if more than one, pick the one based on your main program)</th>
-                          </tr>
-                          <tr ng-repeat="answer in loi.geographic_answers">
-                            <td style="width: 20%">
-                              <b>{{answer.question.question}}:</b>
-                            </td>
-                            <td>
-                              <input type="checkbox" class="checkbox" ng-model="answer.answer" ng-true-value="'t'" ng-false-value="''">
-                            </td>
-                          </tr>
-                   
-                      </table>
+                    <table class="table table-striped table-bordered">                   
+                      <tr>
+                        <th>Geographic Focus</th>
+                        <th>Please select whichever applies (if more than one, pick the one based on your main program)</th>
+                      </tr>
+                      <tr ng-repeat="answer in loi.geographic_answers">
+                        <td style="width: 20%">
+                          <b>{{answer.question.question}}:</b>
+                        </td>
+                        <td>
+                          <input type="checkbox" class="checkbox" ng-model="answer.answer" ng-true-value="'t'" ng-false-value="''">
+                        </td>
+                      </tr>                 
+                    </table>
                   </section>
                 </div>
               </div>

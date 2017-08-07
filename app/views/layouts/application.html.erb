@@ -1,107 +1,96 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>SVP Chicago</title>
-  <%= include_gon %>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-  <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,100' rel='stylesheet' type='text/css'>
-</head>
-<body>
+  <head>
+    <title>SVP Chicago</title>
+    <%= include_gon %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,100' rel='stylesheet' type='text/css'>
+    <link href="style.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
 
-
-<!-- Navigation Bar -->
-  <nav class="navbar navbar-custom navbar-fixed-top">
-    <div class="container">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header" id="bs-example-navbar-collapse-1">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <%= link_to(image_tag("svp_logo_navbar.png", :alt => "logo", :class => "img-logo"), "http://www.socialventurepartners.org/chicago/") %>
-      </div>
-
-        <ul class="nav navbar-nav navbar-right">
-
-          <li><a href="/home">Home</a></li>
-
-          <% if user_signed_in? %>
-
-            <% if current_user.admin %>
-              <li><a href="/">Dashboard</a></li>
-
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Letter of Interest<span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><a href="/lois">Submissions</a></li>
-                  <li><a href="/ratings">Admin Ratings</a></li>
-                  <li><a href="/lois/new">View Blank Form</a></li>
-                  <% if current_user.super_admin %>
-                    <li><a href="/questions">Edit Questions</a></li>
-                  <% end %>
-                </ul>
-              </li>
-
-              <% if current_user.admin || current_user.super_admin %>
+    <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-custom navbar-fixed-top">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header" id="bs-example-navbar-collapse-1">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <%= link_to(image_tag("svp_logo_navbar.png", :alt => "logo", :class => "img-logo"), "http://www.socialventurepartners.org/chicago/") %>
+        </div>
+        <div>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/home">Home</a></li>
+            <% if user_signed_in? %>
+              <% if current_user.admin %>
+                <li><a href="/">Dashboard</a></li>
                 <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Request for Proposal<span class="caret"></span></a>
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Letter of Interest<span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><a href="/rfps">Submissions</a></li>
-                    <li><a href="/rfp_ratings">Admin Ratings</a></li>
-                    <li><a href="/rfps/new">View Blank Form</a></li>
+                    <li><a href="/lois">Submissions</a></li>
+                    <li><a href="/ratings">Admin Ratings</a></li>
+                    <li><a href="/lois/new">View Blank Form</a></li>
                     <% if current_user.super_admin %>
-                      <li><a href="/rfp_questions">Edit Questions</a></li>
-                      <li><a href="/attachments">View All Attachments</a></li>
-                      <li><a href="/attachments/new">Upload Attachment</a></li>
+                      <li><a href="/questions">Edit Questions</a></li>
                     <% end %>
                   </ul>
                 </li>
+                <% if current_user.admin || current_user.super_admin %>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Request for Proposal<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="/rfps">Submissions</a></li>
+                      <li><a href="/rfp_ratings">Admin Ratings</a></li>
+                      <li><a href="/rfps/new">View Blank Form</a></li>
+                      <% if current_user.super_admin %>
+                        <li><a href="/rfp_questions">Edit Questions</a></li>
+                        <li><a href="/attachments">View All Attachments</a></li>
+                        <li><a href="/attachments/new">Upload Attachment</a></li>
+                      <% end %>
+                    </ul>
+                  </li>
+                <% end %>
               <% end %>
-
+              <% if current_user.super_admin %>
+                <li><a href="/users">Users</a></li>
+              <% end %>
+              <% if user_signed_in? && !current_user.admin %>
+                <li><%= link_to 'My applications', "/users/#{current_user.id}" %></li>
+              <% end %>
+              <li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></li>
+            <% else %>
+              <li><a href="/users/sign_up">Sign Up</a></li>
+              <li><a href="/users/sign_in">Sign In</a></li>
             <% end %>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
 
-            <% if current_user.super_admin %>
-              <li><a href="/users">Users</a></li>
-            <% end %>
+    <!-- Flash Messages -->
 
-            <% if user_signed_in? && !current_user.admin %>
-              <li><%= link_to 'My applications', "/users/#{current_user.id}" %></li>
-            <% end %>
+    <% flash.each do |name, message| %>
+      <div class="row">
+        <div class="col-md-12 alert-rel-navbar">
+          <div class="alert alert-<%= name == "alert" || name == "notice" ? "warning" : name %> alert-dismissable fade in" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <%= message %>
+          </div>
+        </div>
+      </div>
+    <% end %>
 
-            <li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></li>
+    <%= yield %>
 
-          <% else %>
-
-            <li><a href="/users/sign_up">Sign Up</a></li>
-            <li><a href="/users/sign_in">Sign In</a></li>
-
-          <% end %>
-
-        </ul>
-      </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-  </nav>
-
-<!-- Flash Messages -->
-
-<% flash.each do |name, message| %>
-  <div class="row">
-    <div class="col-md-12 alert-rel-navbar">
-      <div class="alert alert-<%= name == "alert" || name == "notice" ? "warning" : name %> alert-dismissable fade in" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      <%= message %></div>
-    </div>
-  </div>
-<% end %>
-
-<%= yield %>
-
-<footer>
-  <p>© <%= Time.new.year %> Social Venture Partners Chicago</p>
-</footer>
-</body>
+    <footer>
+      <p>© <%= Time.new.year %> Social Venture Partners Chicago</p>
+    </footer>
+  </body>
 </html>
