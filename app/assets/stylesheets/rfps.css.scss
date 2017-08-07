@@ -27,14 +27,18 @@
  text-align: left;
 }
 
-
 ol.form-list {
   padding-right: 50px;
   padding-top: 40px; 
 }
 
-table.fixed { table-layout:fixed; }
-table.fixed td { overflow: hidden; }
+table.fixed { 
+  table-layout:fixed; 
+}
+
+table.fixed td { 
+  overflow: hidden; 
+}
 
 .rfp-rating-form .rfp-rating-button {
   height: 50px;
@@ -64,6 +68,7 @@ td#button1 {
 .rfp-rating-form h4 {
   text-align:left;
 }
+
 .rfp-rating-form hr {
   margin-top:10px;
 }
@@ -87,6 +92,7 @@ td#button1 {
   z-index:4;
   // height:70px;
 }
+
 #rating-pullout-comment-box {
   position: static;
   background-color:#ccc;
@@ -97,9 +103,11 @@ td#button1 {
   z-index:4;
   height:70px;
 }
+
 .inactive-btn {
   cursor:default;
 }
+
 .tooltip-toggle {
   cursor: pointer;
   position: relative;

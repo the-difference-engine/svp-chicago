@@ -1,4 +1,4 @@
-body{
+body {
 	font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-weight: 400;
 	background-color: #2261AD;
@@ -19,8 +19,7 @@ body{
 	width: 100%;
 }
 
-
-.navbar-custom{
+.navbar-custom {
 	background-color: #2261AD;
 	// background-image: url("http://www.transparenttextures.com/patterns/
 	// 	translucent-fibres.png");
@@ -35,11 +34,12 @@ body{
 	margin-top: 20px;
 }
 
-a:hover{
+a:hover {
 	background-color: transparent;
 	// -webkit-transition: width 2s, height 2s, background-color 2s, -webkit-transform 2s;
 	// transition: width 2s, height 2s, background-color 2s, transform 2s;
 }
+
 .navbar .nav > li > a, .navbar .nav > li {
 	background-color: black;
 	color: white;
@@ -53,28 +53,28 @@ a:hover{
 }
 
 
-.img-logo{
+.img-logo {
 	margin-top: 10px;
 	height: 80px;
 }
 
-.logo-md{
+.logo-md {
 	height: 300px !important; 
 }
 
-.logo{
+.logo {
 	padding: 30px;
 }
 
-.home-text{
+.home-text {
 	padding: 30px;
 }
 
-.center-btn{
+.center-btn {
 	text-align: center;
 }
 
-.btn-custom{
+.btn-custom {
 	background-color: lightgrey;
 	color: black;
 	border: 0;
@@ -83,7 +83,7 @@ a:hover{
 	transition: all 0.5s;
 }
 
-.btn-custom:hover{
+.btn-custom:hover {
 	background-color: black;
 	color: lightgrey;
 	transition: 0.5s ease;
@@ -98,7 +98,7 @@ footer {
 	margin-bottom: 0px;
 }
 
-.home-section{
+.home-section {
 	margin-top: 30px;
 	padding: 20px;
 	background-color: #E5E0D5;
@@ -130,9 +130,10 @@ footer {
 	margin-bottom: 40px;
 }
 
-.csv-btn{
+.csv-btn {
 	margin: 20px;
 }
+
 .invite-max-btn {
 	float:right;
 }
