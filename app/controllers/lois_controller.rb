@@ -44,7 +44,7 @@ class LoisController < ApplicationController
       if current_user.ratings.find_by(loi_id: @loi.id) == nil
         @rating = Rating.new
       else
-        @rating = Rating.find_by(loi_id: params[:id])
+        @rating = Rating.find_by(loi_id: params[:id], user_id: current_user.id)
       end
     else
       flash[:warning] = "Restricted Access"
