@@ -6,7 +6,7 @@ This website is for Social Venture Partners (SVP) Chicago, a Chicagoland network
 
 ### Some of the main features found in this web application include:
 
-1.  Forms (LOI) and (RFP) that takes in the company applicant’s information
+1.  Forms (Letter of Interest - LOI) and (Request for Proposal - RFP) that takes in the company applicant’s information
 2.  The ability for an Admin to add and/or edit questions in the forms
 3.  A rating system used to rate applicants’ applications
 
@@ -16,6 +16,31 @@ This website is for Social Venture Partners (SVP) Chicago, a Chicagoland network
 * Rails version: 4.2.5
 * This is a Postgres database
 * AngularJS is used on the front end
+* Hosted on Heroku
+* AWS used for images
+* Answers - used for answers to the LOI form
+* Attachments - the documents uploaded to an RFP
+* Challenges - text fields for rankings, and full time employees, for LOI
+* Dashboard - default page that displays different content depeneding on user, admin, or superadmin
+* Emails - used to send invitations to submit an RFP if their LOI has been approved and to send rejection emails if their LOI has not been approved
+* FTES - used for the full time employee question on the LOI form
+* Invite maxes - a number that can be set by the superadmin that designates how many yeses an admin can give to applications
+* Invited LOIs - the status assigned to applicants who have approved LOIs and have been invited to submit an RFP
+* Landings - accessed by clicking the Home button on the nav bar, provides information on SVP and the process.
+* LOIS - used for the LOI form
+* Questions - these are the questions on the LOI form that have been created in the seed file. A superadmin has the capability to edit these questions.
+* Ratings - admins have the ability to rate the LOIS
+* RFP Answers - the answers to the RFP questions
+* RFP Questions - these are the questions on the RFP form that have been created in the seed file. A superadmin has the capability to edit these questions. 
+* RFP Ratings - admins have the ability to rate the RFPs
+* RFP Sections - creates the sections of the RFP, such as Contact Information and Organization.
+* RFPs - the RFP form
+* Sections - creates the sections of the LOI
+* Subanswers - Answers to the subquestions
+* Subquestions - For RFP questions that have question type multiple input, allowing the user to dynamically add more information to their responses
+* User_notifier - 
+* Users - users can access via My Applications, super-admins can access to manage all users
+
 
 ### Installing:
 
