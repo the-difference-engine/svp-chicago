@@ -5,6 +5,8 @@ class Api::V1::RfpSectionsController < ApplicationController
 
   def index
     @rfp_sections = RfpSection.order(:id).all
+    @loi = Loi.find_by(user_id:current_user.id, submitted: true)
+    # loi.answers.find_by(question_id: Question.find_by(question: "Organization").id)
   end
 
   def create

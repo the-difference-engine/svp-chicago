@@ -8,6 +8,7 @@ class RfpsController < ApplicationController
 
     user_has_loi = Loi.find_by(user_id:current_user.id)
     gon.user_id = current_user.id
+    gon.loi_id = user_has_loi.id
 
     if user_has_loi && user_has_loi.invited_lois
       user_loi_status = true

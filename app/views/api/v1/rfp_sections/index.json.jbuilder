@@ -8,6 +8,9 @@ json.array! @rfp_sections do |section|
       json.question_type question.question_type
       json.sub_questions question.sub_questions
       json.is_active question.is_active
+      if @loi && Question.find_by(question: question.question)
+        json.answer @loi.answers.find_by(question_id: Question.find_by(question: question.question).id).answer
+      end
     end
   end
 end
