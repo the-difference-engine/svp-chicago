@@ -40,6 +40,7 @@ gem 'lodash-rails'
 # Amazon Web Services
 gem 'aws-sdk', '~> 2.3'
 gem 'aws-sdk-v1'
+gem 'bootstrap-wysihtml5-rails'
 
 # For uploading files
 # gem "paperclip", "~> 5.0.0.beta1"

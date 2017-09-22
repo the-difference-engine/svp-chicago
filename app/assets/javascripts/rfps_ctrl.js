@@ -81,7 +81,7 @@
           };
         };
         console.log($scope.sections);
-      });
+      })
     };
 
     $scope.submitForm = function(submitStatus){   
@@ -90,6 +90,14 @@
         alert("You need to upload files in order to submit");
         return;
       } 
+      $('.wysihtml5').each(function(i, element){
+        var content = $(element);
+        var contentPar = content.parent();
+        contentPar.find('.wysihtml5-toolbar').remove();
+        contentPar.find('iframe').remove();
+        contentPar.find('input[name*="wysihtml5"]').remove();
+        content.show();
+      })
       var newRfp = {
         rfp_sections: $scope.sections,
         submitted: submitStatus
@@ -108,6 +116,21 @@
           alert($scope.errors);
         });
     };
+
+    $scope.addRichEditing = function(elementId){
+      var $el = $('#' + elementId);
+      if (!$el.hasClass('wysihtml5')) {
+        $el.attr('rows', '4').addClass('wysihtml5').wysihtml5();
+      } else {
+        $el.attr('rows', '1').removeClass('wysihtml5');
+        var content = $el;
+        var contentPar = content.parent();
+        contentPar.find('.wysihtml5-toolbar').remove();
+        contentPar.find('iframe').remove();
+        contentPar.find('input[name*="wysihtml5"]').remove();
+        content.show();
+      } 
+    }
 
     $scope.addInput = function(id){
       console.log(id);

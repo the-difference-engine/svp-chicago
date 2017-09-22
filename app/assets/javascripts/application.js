@@ -18,5 +18,6 @@
 //= require angularjs-file-upload
 //= require lodash
 //= require app
+//= require bootstrap-wysihtml5
 //= require_tree .
 

@@ -61,8 +61,8 @@
 
                   <div ng-if="question.question_type === 'single input'">
                     <div class="form-group">
-                      <label> {{question.question}} </label>
-                      <input class="form-control" ng-model="question.answer">
+                      <label> {{question.question}} </label><a><span style="padding-left:8px;" class="glyphicon glyphicon-edit" ng-click="addRichEditing(question.id)"></span></a>
+                      <textarea rows="1" id="{{question.id}}" class="form-control" ng-model="question.answer"></textarea>
                     </div>
                   </div>
 
@@ -208,6 +208,3 @@
     </div>
   </div>
 </div>
-
-
-
