@@ -109,6 +109,11 @@
         });
     };
 
+    $scope.wordCount = function(text){
+      var wordLength = text ? text.match(/\S+/g).length : 0;
+      return wordLength >= 400 ? 'Too Long!' : wordLength;
+    };
+
     $scope.addInput = function(id){
       console.log(id);
       for(var i=0; i<$scope.sections.length;i++){
