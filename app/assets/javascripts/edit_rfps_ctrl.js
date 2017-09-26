@@ -132,6 +132,11 @@
       };
     };
 
+    $scope.wordCount = function(text){
+      var wordLength = text ? text.match(/\S+/g).length : 0;
+      return wordLength >= 400 ? 'Too Long!' : wordLength;
+    };
+
     //SETS TO TRUE IF APPLICANT IS FINISHED WITH RFP FORM
     $scope.submitNow = function(){
       $scope.submitted = true;
@@ -181,9 +186,9 @@
        if (file && file2 && file3 && file4 && file5) {
         fileUploadEdit.uploadFileToUrlEdit(file, uploadUrl, "IRS Determination Letter", $scope.activeId);
         fileUploadEdit.uploadFileToUrlEdit(file2, uploadUrl, "Organization Chart", $scope.activeId );
-        fileUploadEdit.uploadFileToUrlEdit(file3, uploadUrl, "Financial Statement: Recent Fiscal Year-End", $scope.activeId);
-        fileUploadEdit.uploadFileToUrlEdit(file4, uploadUrl, "Financial Statement: Most Recent Month-End", $scope.activeId);
-        fileUploadEdit.uploadFileToUrlEdit(file5, uploadUrl, "Minutes from Board Meetings", $scope.activeId);
+        fileUploadEdit.uploadFileToUrlEdit(file3, uploadUrl, "Minutes from Board Meetings", $scope.activeId);
+        fileUploadEdit.uploadFileToUrlEdit(file4, uploadUrl, "Financial Statement: Recent Fiscal Year-End", $scope.activeId);
+        fileUploadEdit.uploadFileToUrlEdit(file5, uploadUrl, "Financial Statement: Current Fiscal Year, Month-End", $scope.activeId);
         $scope.confirmation = true;
       } else if ($scope.required){
         $scope.confirmation = true;

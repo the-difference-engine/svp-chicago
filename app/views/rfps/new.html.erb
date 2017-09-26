@@ -21,18 +21,18 @@
 
               We look forward to your submission!<br>
 
-              <br><b>Due Date: Friday, January 6, 2017, by 12:00 p.m.</b><br>
+              <br><b>Due Date: Thursday, November 2, 2017, by 12:00 p.m.</b><br>
 
               <b>Using this Form:</b>
-              Please enter information directly into this form. <b>The boxes will expand to hold your text. </b>You can adjust the page breaks when you have completed the form.
+              Please enter information directly into this form. <b>You can expand the text fields if you need more space.</b>
               <ul>
-                <li>Please try to limit your responses to 500 words or less for each section.</li>
+                <li>Please try to limit your responses to 400 words or less for each section.</li>
                 <li>If you find an item confusing, please feel free to contact us. We understand that some of our nomenclature could be unfamiliar. We also understand that you may not yet have established some capabilities or processes, and indicating that fact by inserting “Not Yet
                 Established” or “To Be Determined” is completely acceptable.</li>
                 <li>Whenever possible, please use bullet points rather than paragraphs. Brevity will be highly advantageous to you during our review process.</li>
               </ul>
 
-              For questions about items in the RFP, contact <b><%= mail_to "colleen@svpchicago.org", "Colleen Scrivner", subject: "RFP Inquiry" %>,</b> SVP Chicago director of marketing &amp; operations, at <b><%= mail_to "colleen@svpchicago.org", "colleen@svpchicago.org", subject: "RFP Inquiry" %></b>.
+              For questions about items in the RFP, contact <b><%= mail_to "colleen@svpchicago.org", "Colleen Scrivner", subject: "RFP Inquiry" %>,</b> SVP Chicago director of Programs & Communications, at <b><%= mail_to "colleen@svpchicago.org", "colleen@svpchicago.org", subject: "RFP Inquiry" %></b>.
             </div>
           </div>    
         </div>   
@@ -62,7 +62,13 @@
                   <div ng-if="question.question_type === 'single input'">
                     <div class="form-group">
                       <label> {{question.question}} </label>
-                      <input class="form-control" ng-model="question.answer">
+                      <textarea class="form-control" ng-model="question.answer"></textarea>
+                      <p ng-show="wordCount(question.answer) != 'Too Long!'">
+                        Word Count: {{ wordCount(question.answer) }}, Words Remaining: {{ 400 - wordCount(question.answer) }}
+                      </p>
+                      <p ng-show="wordCount(question.answer) === 'Too Long!'" class="error-class">
+                        Max Word Count!
+                      </p>  
                     </div>
                   </div>
 
@@ -172,7 +178,7 @@
                       <caption style="font-weight:bold; text-align:center; color: green;"> Please also submit the following if you have: </caption>
                        <tr>
                         <th style="width:20px">Current Strategic Plan</th>
-                        <th style="width:20px">Balance Sheet</th>
+                        <th style="width:20px">Most Recent Annual Report</th>
                       </tr>
                       <tr>
                         <td><p style="color: green">optional</p></td>

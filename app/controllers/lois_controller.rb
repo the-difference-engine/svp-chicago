@@ -54,7 +54,7 @@ class LoisController < ApplicationController
 
   def edit
     @dashboard = Dashboard.first
-    if @dashboard.loi_closing_date < Time.now
+    if @dashboard.loi_closing_date < Time.now && !current_user.super_admin
       date = @dashboard.loi_closing_date.strftime('%m-%e-%y, %H:%M')
       flash[:warning] = "The deadline to Submit a Letter of Interest was #{date}"
       redirect_to '/'

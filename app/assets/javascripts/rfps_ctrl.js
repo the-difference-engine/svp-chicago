@@ -109,6 +109,11 @@
         });
     };
 
+    $scope.wordCount = function(text){
+      var wordLength = text ? text.match(/\S+/g).length : 0;
+      return wordLength >= 400 ? 'Too Long!' : wordLength;
+    };
+
     $scope.addInput = function(id){
       console.log(id);
       for(var i=0; i<$scope.sections.length;i++){
@@ -159,9 +164,9 @@
        if (file && file2 && file3 && file4 && file5) {
         fileUpload.uploadFileToUrl(file, uploadUrl, "IRS Determination Letter");
         fileUpload.uploadFileToUrl(file2, uploadUrl, "Organization Chart" );
-        fileUpload.uploadFileToUrl(file3, uploadUrl, "Financial Statement: Recent Fiscal Year-End");
-        fileUpload.uploadFileToUrl(file4, uploadUrl, "Financial Statement: Most Recent Month-End");
-        fileUpload.uploadFileToUrl(file5, uploadUrl, "Minutes from Board Meetings");
+        fileUpload.uploadFileToUrl(file3, uploadUrl, "Minutes from Board Meetings");
+        fileUpload.uploadFileToUrl(file4, uploadUrl, "Financial Statement: Recent Fiscal Year-End");
+        fileUpload.uploadFileToUrl(file5, uploadUrl, "Financial Statement: Current Fiscal Year, Month-End");
         $scope.confirmation = true;
       } else {
            if (file6) {
