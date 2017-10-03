@@ -64,7 +64,7 @@
                       <label> {{question.question}} </label>
                       <textarea class="form-control" ng-model="question.answer"></textarea>
                       <p ng-show="wordCount(question.answer) != 'Too Long!'">
-                        Word Count: {{ wordCount(question.answer) }}, Words Remaining: {{ 400 - wordCount(question.answer) }}
+                        Word Count: {{ wordCount(question.answer) }}, Words Remaining: {{ 500 - wordCount(question.answer) }}
                       </p>
                       <p ng-show="wordCount(question.answer) === 'Too Long!'" class="error-class">
                         Max Word Count!
