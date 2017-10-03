@@ -62,7 +62,7 @@
                       <label> {{question.rfp_question}} </label>
                       <input class="form-control" ng-model="question.rfp_answer">
                       <p ng-show="wordCount(question.rfp_answer) != 'Too Long!'">
-                        Word Count: {{ wordCount(question.rfp_answer) }}, Words Remaining: {{ 400 - wordCount(question.rfp_answer) }}
+                        Word Count: {{ wordCount(question.rfp_answer) }}, Words Remaining: {{ 500 - wordCount(question.rfp_answer) }}
                       </p>
                       <p ng-show="wordCount(question.rfp_answer) === 'Too Long!'" class="error-class">
                         Max Word Count!
