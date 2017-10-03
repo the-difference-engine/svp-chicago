@@ -13,7 +13,7 @@
           <%= select_tag(:q1, options_for_select([['1 – Does not meet criteria', 1], ['2 – Meets few criteria', 2], ['3 – Meets most criteria', 3], ['4 – Meets criteria', 4]], selected: @rating.q1), :prompt => "Rate 1 - 4", class: "form-control rfp-rating-form") %>
         </td>
         <td>
-          <div data-toggle="tooltip" data-placement="bottom" title="How well is the organization serving its target population as defined by its goal statement? Focus on demonstrable, sustainable success and lasting impact. Will have a significant, meaningful impact on people with real significant issues/barriers">2. Serves target population
+          <div data-toggle="tooltip" data-placement="bottom" title="How broadly does the organization serve its target population as defined by its goal statement?">2. Breadth of Impact
             <span class="glyphicon glyphicon-question-sign">
             </span>
             <span style="color: red">*</span>
@@ -21,7 +21,7 @@
           <%= select_tag(:q2, options_for_select([['1 – Does not meet criteria', 1], ['2 – Meets few criteria', 2], ['3 – Meets most criteria', 3], ['4 – Meets criteria', 4]], selected: @rating.q2), :prompt => "Rate 1 - 4", class: "form-control rfp-rating-form") %>
         </td>
         <td>
-          <div data-toggle="tooltip" data-placement="bottom" title="What is the organization's potential breadth of impact on their target population? Focus on demonstrable, sustainable success and lasting impact.">3. Breadth of impact
+          <div data-toggle="tooltip" data-placement="bottom" title="How effectively is the organization addressing the individual needs of its target population?">3. Depth of impact
             <span class="glyphicon glyphicon-question-sign">
             </span>
             <span style="color: red">*</span>
