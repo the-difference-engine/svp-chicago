@@ -134,7 +134,7 @@
 
     $scope.wordCount = function(text){
       var wordLength = text ? text.match(/\S+/g).length : 0;
-      return wordLength >= 500 ? 'Too Long!' : wordLength;
+      return wordLength >= 400 ? 'Too Long!' : wordLength;
     };
 
     //SETS TO TRUE IF APPLICANT IS FINISHED WITH RFP FORM
