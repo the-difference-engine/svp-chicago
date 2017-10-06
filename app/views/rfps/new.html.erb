@@ -26,10 +26,10 @@
               <b>Using this Form:</b>
               Please enter information directly into this form. <b>You can expand the text fields if you need more space.</b>
               <ul>
-                <li>Please limit your responses to 500 words or less for each section.</li>
+                <li>Please limit your responses to 400 words or less for each section.</li>
                 <li>If you find an item confusing, please feel free to contact us. We understand that some of our nomenclature could be unfamiliar. We also understand that you may not yet have established some capabilities or processes, and indicating that fact by inserting “Not Yet
                 Established” or “To Be Determined” is completely acceptable.</li>
-                <li>Whenever possible, please use bullet points rather than paragraphs. Brevity will be highly advantageous to you during our review process.</li>
+                <li>Brevity will be highly advantageous to you during our review process.</li>
               </ul>
 
               For questions about items in the RFP, contact <b><%= mail_to "colleen@svpchicago.org", "Colleen Scrivner", subject: "RFP Inquiry" %>,</b> SVP Chicago director of Programs & Communications, at <b><%= mail_to "colleen@svpchicago.org", "colleen@svpchicago.org", subject: "RFP Inquiry" %></b>.
@@ -64,7 +64,7 @@
                       <label> {{question.question}} </label>
                       <textarea class="form-control" ng-model="question.answer"></textarea>
                       <p ng-show="wordCount(question.answer) != 'Too Long!'">
-                        Word Count: {{ wordCount(question.answer) }}, Words Remaining: {{ 500 - wordCount(question.answer) }}
+                        Word Count: {{ wordCount(question.answer) }}, Words Remaining: {{ 400 - wordCount(question.answer) }}
                       </p>
                       <p ng-show="wordCount(question.answer) === 'Too Long!'" class="error-class">
                         Max Word Count!
@@ -129,7 +129,7 @@
             <div class="well rfp-section">
               <div class="form-group">
                 <h3><label> Upload Files </label></h3>
-                <h5><strong>All Required Documents Must Be Uploaded Before Submitting. Please attach all documents and then click the upload button to save them to your proposal. (We can only accept one file per section, please merge multiple documents if necessary.)</strong></h5>
+                <h5><strong>All required documents must be uploaded before submitting. Please attach all documents and then click the upload button to save them to your proposal. (We can only accept one file per section, please merge multiple documents if necessary.)</strong></h5>
                 <div class="well rfp-well">
                   <div>  
                     <div>
