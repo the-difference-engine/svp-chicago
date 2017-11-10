@@ -93,6 +93,13 @@ td#button1 {
   // height:70px;
 }
 
+@media(max-height:767px)
+ {
+   #rating-pullout {
+     position: inherit;
+   }
+ }
+
 #rating-pullout-comment-box {
   position: static;
   background-color:#ccc;
