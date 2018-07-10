@@ -162,7 +162,7 @@ class Api::V1::LoisController < ApplicationController
         @referral_answers << answer
       elsif answer.question.section.name == "Demographics"
         @demographic_answers << answer
-      elsif answer.question.section.name == "Geographic Focus"
+      elsif answer.question.section.name == "Geographic Information"
         @geographic_answers << answer
       end
     end

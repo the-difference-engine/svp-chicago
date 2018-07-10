@@ -175,5 +175,10 @@ Landing.create!([{
   sector_focus: "Breaking the Cycle of Poverty",
   main_points: "Social Venture Partners Chicago seeks to invest our time, expertise, and funds over the next 3 years in a non-profit organization that is working to address breaking the cycle of poverty in the Chicagoland area.\r\n\r\nWe are especially interested in organizations with strong leadership and that are at an inflection point in their organizational lifecycle.\r\n\r\nOur aim is to partner with the selected organization to actively work to increase the capacity and scale of the organization, thereby measurably increasing the impact of their programs and services.",
   gray_section: "Your organization’s primary focus is to address the cycle of poverty in Chicagoland, which must include Cook County as part of its core service area.\r\n\r\nYour programs are scalable and replicable.\r\n\r\nYour organization is at a critical juncture in terms of growth, new markets opportunities, leadership changes, and/or other new challenges.\r\n\r\nYour programs have a track record of demonstrable success and create lasting impact.\r\n\r\nYour budget is greater than $250,000 but less than $5,000,000.\r\n\r\nYour organization has an experienced leader and at least two additional full-time equivalent members as part of the leadership team.\r\n\r\nYour staff and board desire growth and hands-on assistance in building your organizational capacity in areas such as Strategic Planning, Board Development/Governance, Fund evelopment, Business Operations (including Accounting/Finance), Marketing, and Technology.",
-  last_point: "Community-based and grass roots organizations are encouraged to apply. \r\nPlease note that schools, foundations, solely religious organizations, and governmental entities will not be considered for our investment during this year’s cycle.\r\n\r\nBy submitting this LOI, you are agreeing to be added to our distribution list for upcoming opportunities and events."}
-])
+  last_point: "Community-based and grass roots organizations are encouraged to apply. \r\nPlease note that schools, foundations, solely religious organizations, and governmental entities will not be considered for our investment during this year’s cycle.\r\n\r\nBy submitting this LOI, you are agreeing to be added to our distribution list for upcoming opportunities and events."
+}])
+
+Dashboard.create!([{
+  deadline_open?: true,
+  loi_closing_date: DateTime.now + 1.week
+}])

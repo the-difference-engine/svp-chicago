@@ -13,7 +13,7 @@ class Api::V1::SectionsController < ApplicationController
     @challenge_section = Section.find_by(name: "Organizational Capacity Challenges")
     @referral_section = Section.find_by(name: "Referral Source")
     @demographic_section = Section.find_by(name: "Demographics")
-    @geographic_section = Section.find_by(name: "Geographic Focus")
+    @geographic_section = Section.find_by(name: "Geographic Information")
 
     @sections = Section.order(:id).all
 
