@@ -1,4 +1,4 @@
-json.sections do 
+json.sections do
 
     json.contact_section do
     	json.id @contact_section.id
@@ -35,6 +35,16 @@ json.sections do
       json.name @vision_section.name
 
       json.questions @vision_section.questions.each do |question|
+        json.id question.id
+        json.question question.question
+      end
+    end
+
+    json.services_section do
+      json.id @services_section.id
+      json.name @services_section.name
+
+      json.questions @services_section.questions.each do |question|
         json.id question.id
         json.question question.question
       end

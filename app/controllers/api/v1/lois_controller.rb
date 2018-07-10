@@ -40,6 +40,11 @@ class Api::V1::LoisController < ApplicationController
         errors << answer.question.question if !answer.valid?
       end
 
+      params[:services_answers].each do |answer_hash|
+        answer = Answer.create(loi_id: @loi.id, question_id: answer_hash[:question_id], answer: answer_hash[:answer])
+        errors << answer.question.question if !answer.valid?
+      end
+
       params[:concern_answers].each do |answer_hash|
         answer = Answer.create(loi_id: @loi.id, question_id: answer_hash[:question_id], answer: answer_hash[:answer])
         errors << answer.question.question if !answer.valid?
@@ -87,10 +92,10 @@ class Api::V1::LoisController < ApplicationController
       #   ) }
 
       #   # SEND LOI SUBMISSION CONFIRMATION EMAIL TO USER
-      #   Mail.new( 
-      #     :to => @loi.email, 
-      #     :from => 'colleen@svpchicago.org', 
-      #     :subject => 'Submission to SVP received', 
+      #   Mail.new(
+      #     :to => @loi.email,
+      #     :from => 'colleen@svpchicago.org',
+      #     :subject => 'Submission to SVP received',
       #     :body => File.read('app/views/submission_email.html.erb'),
       #     :content_type => 'text/html; charset=UTF-8'
       #   ).deliver!
@@ -103,13 +108,13 @@ class Api::V1::LoisController < ApplicationController
       #   ) }
 
       #   # SEND LOI SUBMISSION ALERT EMAIL TO ADMIN
-      #   Mail.new( 
+      #   Mail.new(
       #     :to => super_admin.email,
-      #     :from => 'svptesting1871@gmail.com', 
-      #     :subject => 'A letter of interest has been submitted', 
+      #     :from => 'svptesting1871@gmail.com',
+      #     :subject => 'A letter of interest has been submitted',
       #     :body => File.read('app/views/loi_submitted_email_to_admin.html.erb'),
       #     :content_type => 'text/html; charset=UTF-8'
-      #   ).deliver!        
+      #   ).deliver!
       end
 
       if errors.empty?
@@ -129,6 +134,7 @@ class Api::V1::LoisController < ApplicationController
     @contact_answers = []
     @organization_answers = []
     @overview_answers = []
+    @services_answers = []
     @vision_answers = []
     @concern_answers = []
     @challenge_answers = []
@@ -144,6 +150,8 @@ class Api::V1::LoisController < ApplicationController
         @organization_answers << answer
       elsif answer.question.section.name == "Overview and Mission"
         @overview_answers << answer
+      elsif answer.question.section.name == "Services or Programs"
+        @services_answers << answer
       elsif answer.question.section.name == "Vision"
         @vision_answers << answer
       elsif answer.question.section.name == "Key Concerns"
@@ -177,6 +185,11 @@ class Api::V1::LoisController < ApplicationController
       end
 
       params[:overview_answers].each do |answer_hash|
+        answer = Answer.find(answer_hash[:id])
+        answer.update(answer: answer_hash[:answer])
+      end
+
+      params[:services_answers].each do |answer_hash|
         answer = Answer.find(answer_hash[:id])
         answer.update(answer: answer_hash[:answer])
       end
@@ -238,10 +251,10 @@ class Api::V1::LoisController < ApplicationController
         # ) }
 
         # # SEND LOI SUBMISSION CONFIRMATION EMAIL
-        # Mail.new( 
-        #   :to => @loi.email, 
-        #   :from => 'colleen@svpchicago.org', 
-        #   :subject => 'Submission to SVP received', 
+        # Mail.new(
+        #   :to => @loi.email,
+        #   :from => 'colleen@svpchicago.org',
+        #   :subject => 'Submission to SVP received',
         #   :body => File.read('app/views/submission_email.html.erb'),
         #   :content_type => 'text/html; charset=UTF-8'
         # ).deliver!

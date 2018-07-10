@@ -12,6 +12,7 @@ json.answers @loi.answers do |answer|
 	json.question_id answer.question_id
 	json.answer answer.answer
 end
+
 json.ratings @loi.ratings do |rating|
 	json.fits_SVP_criteria rating.q1
 	json.potential_svp_impact rating.q2
@@ -34,6 +35,12 @@ json.organization_answers @organization_answers do |answer|
 end
 
 json.overview_answers @overview_answers do |answer|
+  json.id answer.id
+  json.question answer.question
+  json.answer answer.answer
+end
+
+json.services_answers @services_answers do |answer|
   json.id answer.id
   json.question answer.question
   json.answer answer.answer

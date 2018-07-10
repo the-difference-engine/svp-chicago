@@ -61,24 +61,24 @@ rfp_question_array = [
 ]
 
 rfp_subquestion_array = [
-  {rfp_question: "Please your largest program", question: "Program Title"},
-  {rfp_question: "Please your largest program", question: "What Issue or Need Does This Program Try to Address"},
-  {rfp_question: "Please your largest program", question: "Area Served"},
-  {rfp_question: "Please your largest program", question: "Current Number Served"},
-  {rfp_question: "Please your largest program", question: "What is particularly effective about this program"},
-  {rfp_question: "Please your largest program", question: "Short Program Description"},
-  {rfp_question: "Please your largest program", question: "Target Population"},
-  {rfp_question: "Please your largest program", question: "What is the Unique focus of this program"},
-  {rfp_question: "Please your largest program", question: "Ages Served"},
-  {rfp_question: "Please your second largest program", question: "Program Title"},
-  {rfp_question: "Please your second largest program", question: "What Issue or Need Does This Program Try to Address"},
-  {rfp_question: "Please your second largest program", question: "Area Served"},
-  {rfp_question: "Please your second largest program", question: "Current Number Served"},
-  {rfp_question: "Please your second largest program", question: "What is particularly effective about this program"},
-  {rfp_question: "Please your second largest program", question: "Short Program Description"},
-  {rfp_question: "Please your second largest program", question: "Target Population"},
-  {rfp_question: "Please your second largest program", question: "What is the Unique focus of this program"},
-  {rfp_question: "Please your second largest program", question: "Ages Served"},
+  {rfp_question: "Please describe your largest program focused on breaking the cycle of poverty", question: "Program Title"},
+  {rfp_question: "Please describe your largest program focused on breaking the cycle of poverty", question: "What Issue or Need Does This Program Try to Address"},
+  {rfp_question: "Please describe your largest program focused on breaking the cycle of poverty", question: "Area Served"},
+  {rfp_question: "Please describe your largest program focused on breaking the cycle of poverty", question: "Current Number Served"},
+  {rfp_question: "Please describe your largest program focused on breaking the cycle of poverty", question: "What is particularly effective about this program"},
+  {rfp_question: "Please describe your largest program focused on breaking the cycle of poverty", question: "Short Program Description"},
+  {rfp_question: "Please describe your largest program focused on breaking the cycle of poverty", question: "Target Population"},
+  {rfp_question: "Please describe your largest program focused on breaking the cycle of poverty", question: "What is the Unique focus of this program"},
+  {rfp_question: "Please describe your largest program focused on breaking the cycle of poverty", question: "Ages Served"},
+  {rfp_question: "Please describe your second largest program focused on breaking the cycle of poverty", question: "Program Title"},
+  {rfp_question: "Please describe your second largest program focused on breaking the cycle of poverty", question: "What Issue or Need Does This Program Try to Address"},
+  {rfp_question: "Please describe your second largest program focused on breaking the cycle of poverty", question: "Area Served"},
+  {rfp_question: "Please describe your second largest program focused on breaking the cycle of poverty", question: "Current Number Served"},
+  {rfp_question: "Please describe your second largest program focused on breaking the cycle of poverty", question: "What is particularly effective about this program"},
+  {rfp_question: "Please describe your second largest program focused on breaking the cycle of poverty", question: "Short Program Description"},
+  {rfp_question: "Please describe your second largest program focused on breaking the cycle of poverty", question: "Target Population"},
+  {rfp_question: "Please describe your second largest program focused on breaking the cycle of poverty", question: "What is the Unique focus of this program"},
+  {rfp_question: "Please describe your second largest program focused on breaking the cycle of poverty", question: "Ages Served"},
   {rfp_question: "Please list your senior leadership team.", question: "Name"},
   {rfp_question: "Please list your senior leadership team.", question: "Title and Biography"},
   {rfp_question: "Please list your board members, with brief descriptions of their background and number of years served. Indicate if any board member is receiving compensation from the organization.", question: "Board Member"},
@@ -102,7 +102,7 @@ rfp_sections.each do |section|
   end
 end
 
-section_array = ["Contact Information","Organization","Overview and Mission","Vision","Key Concerns","Organizational Capacity Challenges","Referral Source","Demographics","Geographic Focus"]
+section_array = ["Contact Information","Organization","Overview and Mission","Vision","Services or Programs", "Key Concerns","Organizational Capacity Challenges","Referral Source","Demographics","Geographic Information"]
 
 questions_array = [
   {question: "Organization", section: "Contact Information"},
@@ -112,15 +112,16 @@ questions_array = [
   {question: "Executive Director", section: "Contact Information"},
   {question: "Executive Director Phone", section: "Contact Information"},
   {question: "Executive Director E-mail", section: "Contact Information"},
-  {question: "Please enter the password provided during the mandatory briefing call:", section: "Contact Information"},
+  {question: "Please enter the password provided during the mandatory briefing call", section: "Contact Information"},
   {question: "Number of Employees", section: "Organization"},
   {question: "Number of  Volunteers", section: "Organization"},
-  {question: "Number of Active Board Members", section: "Organizationn"},
+  {question: "Number of Active Board Members", section: "Organization"},
   {question: "Total Annual Budget for Organization", section: "Organization"},
   {question: "If affiliated with a national or parent organization, what role does the organization play in your strategic direction, operations, and overall governance", section: "Organization"},
-  {question: "Has your organization previously applied for SVP IC of SVP Fast Pitch? If so, please indicate which one(s) and the year(s):", section: "Organization"},  
+  {question: "Has your organization previously submitted an LOI for an SVP investment cycle of applied for SVP Fast Pitch? If so, please indicate which one(s) and the year(s):", section: "Organization"},
   {question: "Provide a brief summary of your organization's mission and history.  Please provide your organization's mission statement, if you have one", section: "Overview and Mission"},
   {question: "What is your organization’s vision and what do you hope to accomplish over the next three years", section: "Vision"},
+  {question: "What are the primary services that your organization provides? Roughly how many constituents are served annually by each service or program?", section: "Services or Programs"},
   {question: "Short description (preferably bullets) of the 1-3 things that keep you up at night", section: "Key Concerns"},
   {question: "Board Development/Governance", section: "Organizational Capacity Challenges"},
   {question: "Business Operations", section: "Organizational Capacity Challenges"},
@@ -137,7 +138,7 @@ questions_array = [
   {question: "Domestic Violence", section: "Demographics"},
   {question: "Early Childhood", section: "Demographics"},
   {question: "Elderly Care", section: "Demographics"},
-  {question: "Ex Con Support", section: "Demographics"},
+  {question: "Post Incarceration Support", section: "Demographics"},
   {question: "Financial Literacy", section: "Demographics"},
   {question: "Food Insecurity", section: "Demographics"},
   {question: "Health", section: "Demographics"},
@@ -149,11 +150,11 @@ questions_array = [
   {question: "Pregnancy and Parenting", section: "Demographics"},
   {question: "STEM", section: "Demographics"},
   {question: "Workforce Development", section: "Demographics"},
-  {question: "Other", section: "Demographics"},
   {question: "Violence & Abuse", section: "Demographics"},
-  {question: "City of Chicago", section: "Geographic Focus"},
-  {question: "Chicagoland", section: "Geographic Focus"},
-  {question: "Chicago and Beyond", section: "Geographic Focus"}
+  {question: "Other", section: "Demographics"},
+  {question: "City of Chicago", section: "Geographic Information"},
+  {question: "Chicagoland", section: "Geographic Information"},
+  {question: "Both", section: "Geographic Information"}
 ]
 
 section_array.each do |section|
@@ -169,6 +170,10 @@ InviteMax.create!([
   {max: 20}
 ])
 
-Landing.create!([
-  {year: "2016", sector_focus: "Breaking the Cycle of Poverty", main_points: "Social Venture Partners Chicago seeks to invest our time, expertise, and funds over the next 3 years in a non-profit organization that is working to address breaking the cycle of poverty in the Chicagoland area.\r\n\r\nWe are especially interested in organizations with strong leaders and that are at an inflection point in their organizational lifecycle.\r\n\r\nOur aim is to partner with the selected organization to actively work to increase the capacity and scale of the organization, thereby measurably increasing the impact of their programs and services.", gray_section: "Your organization’s primary focus is to address the cycle of poverty in Chicagoland.\r\n\r\nYour programs are scalable and replicable.\r\n\r\nYour programs have a track record of demonstrable success and create lasting impact.\r\n\r\nYour budget is greater than $250,000 but less than $5,000,000.\r\n\r\nYour staff and board desire growth and hands-on assistance in building your organizational capacity in areas such as Strategic Planning, Board Development/Governance, Fund evelopment, Business Operations (including Accounting/Finance), Marketing, and Technology.", last_point: "Community-based and grass roots organizations are encouraged to apply. \r\nPlease note that foundations, governmental entities, and religious organizations are not appropriate for partnership with us to build lasting organizational capacity and will not be considered for our investment."}
+Landing.create!([{
+  year: "2016",
+  sector_focus: "Breaking the Cycle of Poverty",
+  main_points: "Social Venture Partners Chicago seeks to invest our time, expertise, and funds over the next 3 years in a non-profit organization that is working to address breaking the cycle of poverty in the Chicagoland area.\r\n\r\nWe are especially interested in organizations with strong leadership and that are at an inflection point in their organizational lifecycle.\r\n\r\nOur aim is to partner with the selected organization to actively work to increase the capacity and scale of the organization, thereby measurably increasing the impact of their programs and services.",
+  gray_section: "Your organization’s primary focus is to address the cycle of poverty in Chicagoland, which must include Cook County as part of its core service area.\r\n\r\nYour programs are scalable and replicable.\r\n\r\nYour organization is at a critical juncture in terms of growth, new markets opportunities, leadership changes, and/or other new challenges.\r\n\r\nYour programs have a track record of demonstrable success and create lasting impact.\r\n\r\nYour budget is greater than $250,000 but less than $5,000,000.\r\n\r\nYour organization has an experienced leader and at least two additional full-time equivalent members as part of the leadership team.\r\n\r\nYour staff and board desire growth and hands-on assistance in building your organizational capacity in areas such as Strategic Planning, Board Development/Governance, Fund evelopment, Business Operations (including Accounting/Finance), Marketing, and Technology.",
+  last_point: "Community-based and grass roots organizations are encouraged to apply. \r\nPlease note that schools, foundations, solely religious organizations, and governmental entities will not be considered for our investment during this year’s cycle.\r\n\r\nBy submitting this LOI, you are agreeing to be added to our distribution list for upcoming opportunities and events."}
 ])

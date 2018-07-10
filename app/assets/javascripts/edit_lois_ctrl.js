@@ -73,13 +73,16 @@
       console.log($scope.activeChallenge);
     };
 
-    $scope.wordCount = function(text){
+    $scope.wordCount = function(text, max){
+      if (text === undefined || text === null) {return;}
+      text = text.toString();
+      var maxLength = max || 400;
       var wordLength = text ? text.match(/\S+/g).length : 0;
-      return wordLength >= 400 ? 'Too Long!' : wordLength;
+      return wordLength >= maxLength ? 'Too Long!' : wordLength;
     }
 
     $scope.submit = function(name, email, isValid){
-      
+
       if ($scope.submitted) {
         var areYouSure = confirm("Do you want to Submit? Once the LOI has been submitted it is no longer allowed to be edited. If you need to edit the LOI later, please use the 'Save and Submit Later' button.");
         if (!areYouSure){
@@ -104,7 +107,8 @@
           challenge_answers: $scope.loi.challenge_answers,
           referral_answers: $scope.loi.referral_answers,
           demographic_answers: $scope.loi.demographic_answers,
-          geographic_answers: $scope.loi.geographic_answers
+          geographic_answers: $scope.loi.geographic_answers,
+          services_answers: $scope.loi.services_answers
         };
 
         $http.patch('/api/v1/lois/' + $scope.activeId + '.json', newLoi).then(function(response){
@@ -113,7 +117,7 @@
           {
             $(".alert").empty();
             window.location = '/lois?alert='+response.data.message;
-  
+
           } else {
             window.location = '/thanks/' + response.data.loi_id;
           }

@@ -8,6 +8,7 @@ class Api::V1::SectionsController < ApplicationController
     @organization_section = Section.find_by(name: "Organization")
     @overview_section = Section.find_by(name: "Overview and Mission")
     @vision_section = Section.find_by(name: "Vision")
+    @services_section = Section.find_by(name: "Services or Programs")
     @concern_section = Section.find_by(name: "Key Concerns")
     @challenge_section = Section.find_by(name: "Organizational Capacity Challenges")
     @referral_section = Section.find_by(name: "Referral Source")

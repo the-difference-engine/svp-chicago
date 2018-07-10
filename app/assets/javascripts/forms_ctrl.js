@@ -43,14 +43,14 @@
       $scope.invalidSubmission = false;
       $scope.activeSection = 0;
       $scope.activeSectionArray = [true, true, true, true, true, true, true, true];
-      
+
       // USE BELOW FOR MULTI-PAGE WIZARD
       // $scope.activeSectionArray = [true, false, false, false, false, false, false, false];
 
       $http.get('/api/v1/sections.json').then(function(response){
 
         //CONTACT SECTION
-        $scope.contact_section = response.data.sections.contact_section; 
+        $scope.contact_section = response.data.sections.contact_section;
 
         $scope.contact_formData = [];
         for (var i=0; i<$scope.contact_section.questions.length; i++){
@@ -101,6 +101,19 @@
             $scope.vision_formData[i] = dataHolder;
           }
 
+        //SERVICES SECTION
+        $scope.services_section = response.data.sections.services_section;
+
+        $scope.services_formData = [];
+        for (var i=0; i<$scope.services_section.questions.length; i++){
+            var dataHolder = {
+              answer: "",
+              question: $scope.services_section.questions[i].question,
+              question_id: $scope.services_section.questions[i].id
+            };
+            $scope.services_formData[i] = dataHolder;
+          }
+
         //KEY CONCERNS SECTION
         $scope.concern_section = response.data.sections.concern_section;
 
@@ -126,7 +139,7 @@
         $scope.challenge_formData = [];
         for (var i=0; i<$scope.challenge_section.questions.length; i++){
 
-            var challenges = { 
+            var challenges = {
               challenge: "",
               priority: ""
             }
@@ -190,9 +203,12 @@
       });
     };
 
-    $scope.wordCount = function(text){
+    $scope.wordCount = function(text, max){
+      if (text === undefined || text === null) {return;}
+      text = text.toString();
+      var maxLength = max || 400;
       var wordLength = text ? text.match(/\S+/g).length : 0;
-      return wordLength >= 400 ? 'Too Long!' : wordLength;
+      return wordLength >= maxLength ? 'Too Long!' : wordLength;
     };
 
     $scope.submitNow = function(){
@@ -209,7 +225,7 @@
             return;
           }
         }
-      
+
         var newLoi = {
           name: name,
           email: email,
@@ -222,7 +238,8 @@
           challenge_answers: $scope.challenge_formData,
           referral_answers: $scope.referral_formData,
           demographic_answers: $scope.demographic_formData,
-          geographic_answers: $scope.geographic_formData
+          geographic_answers: $scope.geographic_formData,
+          services_answers: $scope.services_formData
         };
         console.log("posting......");
         $http.post('/api/v1/lois.json', newLoi).success(function(response){
@@ -259,7 +276,7 @@
     $scope.nextSection = function(){
 
       $scope.activeSectionArray[$scope.activeSection] = false;
-      
+
       if ($scope.activeSection == $scope.activeSectionArray.length-1) {
         $scope.activeSection = 0;
       } else {
@@ -273,7 +290,7 @@
     $scope.prevSection = function(){
 
       $scope.activeSectionArray[$scope.activeSection] = false;
-      
+
       if ($scope.activeSection == 0) {
         $scope.activeSection = $scope.activeSectionArray.length-1;
       } else {
@@ -289,7 +306,7 @@
 
       if ($scope.activeChallenge[questionId] < 2){
         $scope.activeChallenge[questionId]++;
-      } 
+      }
     };
 
     $scope.addFte = function(){
