@@ -118,8 +118,9 @@ questions_array = [
   {question: "Number of Active Board Members", section: "Organization"},
   {question: "Total Annual Budget for Organization", section: "Organization"},
   {question: "If affiliated with a national or parent organization, what role does the organization play in your strategic direction, operations, and overall governance", section: "Organization"},
-  {question: "Has your organization previously submitted an LOI for an SVP investment cycle of applied for SVP Fast Pitch? If so, please indicate which one(s) and the year(s):", section: "Organization"},
-  {question: "Provide a brief summary of your organization's mission and history.  Please provide your organization's mission statement, if you have one", section: "Overview and Mission"},
+  {question: "Has your organization previously submitted an LOI for an SVP investment cycle of applied for SVP Fast Pitch? If so, please indicate which one(s) and the year(s)", section: "Organization"},
+  {question: "Provide a brief summary of your organization's mission and history.", section: "Overview and Mission"},
+  {question: "Please provide your organization's mission statement, if you have one", section: "Overview and Mission"},
   {question: "What is your organization’s vision and what do you hope to accomplish over the next three years", section: "Vision"},
   {question: "What are the primary services that your organization provides? Roughly how many constituents are served annually by each service or program?", section: "Services or Programs"},
   {question: "Short description (preferably bullets) of the 1-3 things that keep you up at night", section: "Key Concerns"},
@@ -171,11 +172,11 @@ InviteMax.create!([
 ])
 
 Landing.create!([{
-  year: "2016",
+  year: "2018",
   sector_focus: "Breaking the Cycle of Poverty",
   main_points: "Social Venture Partners Chicago seeks to invest our time, expertise, and funds over the next 3 years in a non-profit organization that is working to address breaking the cycle of poverty in the Chicagoland area.\r\n\r\nWe are especially interested in organizations with strong leadership and that are at an inflection point in their organizational lifecycle.\r\n\r\nOur aim is to partner with the selected organization to actively work to increase the capacity and scale of the organization, thereby measurably increasing the impact of their programs and services.",
   gray_section: "Your organization’s primary focus is to address the cycle of poverty in Chicagoland, which must include Cook County as part of its core service area.\r\n\r\nYour programs are scalable and replicable.\r\n\r\nYour organization is at a critical juncture in terms of growth, new markets opportunities, leadership changes, and/or other new challenges.\r\n\r\nYour programs have a track record of demonstrable success and create lasting impact.\r\n\r\nYour budget is greater than $250,000 but less than $5,000,000.\r\n\r\nYour organization has an experienced leader and at least two additional full-time equivalent members as part of the leadership team.\r\n\r\nYour staff and board desire growth and hands-on assistance in building your organizational capacity in areas such as Strategic Planning, Board Development/Governance, Fund evelopment, Business Operations (including Accounting/Finance), Marketing, and Technology.",
-  last_point: "Community-based and grass roots organizations are encouraged to apply. \r\nPlease note that schools, foundations, solely religious organizations, and governmental entities will not be considered for our investment during this year’s cycle.\r\n\r\nBy submitting this LOI, you are agreeing to be added to our distribution list for upcoming opportunities and events."
+  last_point: "Community-based and grass roots organizations are encouraged to apply. \r\nPlease note that schools, foundations, solely religious organizations, and governmental entities will not be considered for our investment during this year’s cycle.\r\n\r\nBy submitting this LOI, you are agreeing to be added to our distribution list for upcoming opportunities and events.\r\n\r\nNext steps: Organizations that intend to submit an LOI are required to participate in a briefing call with our Investment Committee co-chairs. There are two options: July 31, 2018 from 9 – 10 am; or August 2, 2018 from 12:30 – 1:30\r\n\r\nContact linda@svpchicago.org with your preferred day and she will provide additional details."
 }])
 
 Dashboard.create!([{

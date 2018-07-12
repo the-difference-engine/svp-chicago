@@ -10,7 +10,7 @@
               <p>Please enter information directly into the form, using this form as the main body of your Letter of Interest. The boxes will expand to hold your text. You can adjust the page breaks when you have completed the form.</p>
               <ul>
                 <li>If you find an item confusing, please feel free to contact us.</li>
-                <li>Please use bullet points rather than paragraphs. Brevity is helpful to our partners when reviewing proposals.</li>
+                <li>Brevity is helpful to our partners when reviewing proposals.</li>
               </ul>
             </div>
           </div>
@@ -152,12 +152,12 @@
                 <h1> {{ concern_section.name }} </h1>
                 <div ng-repeat="question in concern_formData">
                   <label> {{question.question}}: <span class="text-danger"> * </span></label>
-                  <textarea name="key_question_{{$index}}" class="form-control" rows="3" ng-model="question.answer" my-maxlength="400" required></textarea>
+                  <textarea name="key_question_{{$index}}" class="form-control" rows="3" ng-model="question.answer" my-maxlength="250" required></textarea>
                   <p ng-show="(loiForm['key_question_' + $index].$invalid && !loiForm['key_question_' + $index].$pristine) || (loiForm['key_question_' + $index].$invalid && invalidSubmission) " class="error-class">Please fill out the field.</p>
-                  <p ng-show="wordCount(question.answer) != 'Too Long!'">
-                    Word Count: {{ wordCount(question.answer) }}, Words Remaining: {{ 400 - wordCount(question.answer) }}
+                  <p ng-show="wordCount(question.answer, 250) != 'Too Long!'">
+                    Word Count: {{ wordCount(question.answer, 250) }}, Words Remaining: {{ 250 - wordCount(question.answer, 250) }}
                   </p>
-                  <p ng-show="wordCount(question.answer) === 'Too Long!'" class="error-class">
+                  <p ng-show="wordCount(question.answer, 250) === 'Too Long!'" class="error-class">
                     Max Word Count!
                   </p>
                 </div>
@@ -172,8 +172,8 @@
                 <table class="table table-striped table-bordered">
                   <tr>
                     <th>Focus Area</th>
-                    <th>Please provide a short description of your top 1-3 challenge(s) in each area that applies. (no need to provide a description for areas that don’t present an organizational challenge for you.)</th>
-                    <th>Priority Rank each as High, Medium or Low</th>
+                    <th>Please provide a short description (100 word limit per section/challenge) of your top 1-3 challenge(s) in each area that applies. (no need to provide a description for areas that don’t present an organizational challenge for you.)</th>
+                    <th>Priority Rank each challenge</th>
                     <th colspan="3">
                       <table class="fte-header-table">
                         <tr>
@@ -185,9 +185,9 @@
                           <td>-</td>
                         </tr>
                         <tr>
-                          <td>2016 Staffing (actual)</td>
-                          <td>2017 Staffing (current)</td>
-                          <td>2018 Staffing (projected)</td>
+                          <td>2017 Staffing (actual)</td>
+                          <td>2018 Staffing (current)</td>
+                          <td>2019 Staffing (projected)</td>
                         </tr>
                       </table>
                     </th>
@@ -203,21 +203,36 @@
                     <td>
                       <select class="form-control" name="singleSelect" id="singleSelect" ng-model="question.challenges[0].priority">
                         <option value="">--Select--</option>
-                        <option value="H">High</option>
-                        <option value="M">Medium</option>
-                        <option value="L">Low</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="Other">Other</option>
                       </select>
                       <select class="form-control" name="singleSelect" id="singleSelect" ng-model="question.challenges[1].priority" ng-show="activeChallenge[question.question_id]>0">
-                        <option value="">--Select--</option>
-                        <option value="H">High</option>
-                        <option value="M">Medium</option>
-                        <option value="L">Low</option>
+                         <option value="">--Select--</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="Other">Other</option>
                       </select>
                       <select class="form-control" name="singleSelect" id="singleSelect" ng-model="question.challenges[2].priority" ng-show="activeChallenge[question.question_id]>1">
-                        <option value="">--Select--</option>
-                        <option value="H">High</option>
-                        <option value="M">Medium</option>
-                        <option value="L">Low</option>
+                         <option value="">--Select--</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="Other">Other</option>
                       </select>
                     </td>
                     <td><input class="form-control" type="number" ng-model="question.fte_1" ng-change="addFte()"></td>
