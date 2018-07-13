@@ -2,7 +2,7 @@ class DashboardsController < ApplicationController
   def update
     # Fat Models slim controllers
     @dashboard = Dashboard.find(params[:id])
-    date = params[:loi_closing_date] + ' 23:59:59'
+    date = params[:loi_closing_date] + ' 17:00:00'
     @dashboard.update(loi_closing_date: DateTime.parse(date))
     if @dashboard.save
         redirect_to "/"
