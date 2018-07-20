@@ -203,36 +203,21 @@
                     <td>
                       <select class="form-control" name="singleSelect" id="singleSelect" ng-model="question.challenges[0].priority">
                         <option value="">--Select--</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="Other">Other</option>
+                        <option value="H">High</option>
+                        <option value="M">Medium</option>
+                        <option value="L">Low</option>
                       </select>
                       <select class="form-control" name="singleSelect" id="singleSelect" ng-model="question.challenges[1].priority" ng-show="activeChallenge[question.question_id]>0">
-                         <option value="">--Select--</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="Other">Other</option>
+                        <option value="">--Select--</option>
+                        <option value="H">High</option>
+                        <option value="M">Medium</option>
+                        <option value="L">Low</option>
                       </select>
                       <select class="form-control" name="singleSelect" id="singleSelect" ng-model="question.challenges[2].priority" ng-show="activeChallenge[question.question_id]>1">
-                         <option value="">--Select--</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="Other">Other</option>
+                        <option value="">--Select--</option>
+                        <option value="H">High</option>
+                        <option value="M">Medium</option>
+                        <option value="L">Low</option>
                       </select>
                     </td>
                     <td><input class="form-control" type="number" ng-model="question.fte_1" ng-change="addFte()"></td>
