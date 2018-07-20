@@ -113,7 +113,7 @@
               <div class="well loi-section">
                 <h1> {{ vision_section.name }} </h1>
                 <div ng-repeat="question in vision_formData">
-                  <label> {{question.question}}: <span class="text-danger"> * </span></label>
+                  <label> {{question.question}} <span class="text-danger"> * </span></label>
                   <textarea name="vision_question_{{$index}}" class="form-control" rows="3" ng-model="question.answer" my-maxlength="250" required></textarea>
                   <p ng-show="(loiForm['vision_question_' + $index].$invalid && !loiForm['vision_question_' + $index].$pristine) || (loiForm['vision_question_' + $index].$invalid && invalidSubmission) " class="error-class">Please fill out the field.</p>
                   <p ng-show="wordCount(question.answer, 250) != 'Too Long!'">
@@ -240,7 +240,7 @@
               <div class="well loi-section">
                 <h1> {{ referral_section.name }} </h1>
                 <div ng-repeat="question in referral_formData">
-                  <label> {{question.question}}: <span class="text-danger"> * </span></label>
+                  <label> {{question.question}} <span class="text-danger"> * </span></label>
                   <textarea name="referral_question_{{$index}}" class="form-control" rows="3" ng-model="question.answer" my-maxlength="400" required></textarea>
                   <p ng-show="(loiForm['referral_question_' + $index].$invalid && !loiForm['referral_question_' + $index].$pristine) || (loiForm['referral_question_' + $index].$invalid && invalidSubmission) " class="error-class">Please fill out the field.</p>
                   <p ng-show="wordCount(question.answer, 50) != 'Too Long!'">
