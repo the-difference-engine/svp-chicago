@@ -75,7 +75,7 @@
                     <input style="margin-top:5px;" ng-if="question.question.indexOf('Number') > -1 || question.question.indexOf('Budget') > -1" type="number" name="organization_question_{{$index}}" class="form-control" ng-model="question.answer" required>
                     <input style="margin-top:5px;" ng-if="!(question.question.indexOf('Number') > -1 || question.question.indexOf('Budget') > -1)" name="organization_question_{{$index}}" class="form-control" ng-model="question.answer" my-maxlength="150" required>
                     <p ng-if="!(question.question.indexOf('Number') > -1 || question.question.indexOf('Budget') > -1)" ng-show="(wordCount(question.answer, 150) != 'Too Long!')">
-                      Word Count: {{ wordCount(question.answer, 150) }}, Words Remaining: {{ 150 - wordCount(question.answer) }}
+                      Word Count: {{ wordCount(question.answer, 150) }}, Words Remaining: {{ 150 - wordCount(question.answer, 150) }}
                     </p>
                     <p ng-show="wordCount(question.answer, 150) === 'Too Long!'" class="error-class">
                       Max Word Count!
@@ -98,7 +98,7 @@
                   <textarea name="overview_question_{{$index}}" class="form-control" rows="3" ng-model="question.answer" my-maxlength="250" required></textarea>
                   <p ng-show="(loiForm['overview_question_' + $index].$invalid && !loiForm['overview_question_' + $index].$pristine) || (loiForm['overview_question_' + $index].$invalid && invalidSubmission) " class="error-class">Please fill out the field.</p>
                   <p ng-show="wordCount(question.answer, 250) != 'Too Long!'">
-                    Word Count: {{ wordCount(question.answer, 250) }}, Words Remaining: {{ 250 - wordCount(question.answer) }}
+                    Word Count: {{ wordCount(question.answer, 250) }}, Words Remaining: {{ 250 - wordCount(question.answer, 250) }}
                   </p>
                   <p ng-show="wordCount(question.answer, 250) === 'Too Long!'" class="error-class">
                     Max Word Count!
@@ -117,7 +117,7 @@
                   <textarea name="vision_question_{{$index}}" class="form-control" rows="3" ng-model="question.answer" my-maxlength="250" required></textarea>
                   <p ng-show="(loiForm['vision_question_' + $index].$invalid && !loiForm['vision_question_' + $index].$pristine) || (loiForm['vision_question_' + $index].$invalid && invalidSubmission) " class="error-class">Please fill out the field.</p>
                   <p ng-show="wordCount(question.answer, 250) != 'Too Long!'">
-                    Word Count: {{ wordCount(question.answer, 250) }}, Words Remaining: {{ 250 - wordCount(question.answer) }}
+                    Word Count: {{ wordCount(question.answer, 250) }}, Words Remaining: {{ 250 - wordCount(question.answer, 250) }}
                   </p>
                   <p ng-show="wordCount(question.answer, 250) === 'Too Long!'" class="error-class">
                     Max Word Count!
@@ -136,7 +136,7 @@
                   <textarea name="vision_question_{{$index}}" class="form-control" rows="3" ng-model="question.answer" my-maxlength="250" required></textarea>
                   <p ng-show="(loiForm['vision_question_' + $index].$invalid && !loiForm['vision_question_' + $index].$pristine) || (loiForm['vision_question_' + $index].$invalid && invalidSubmission) " class="error-class">Please fill out the field.</p>
                   <p ng-show="wordCount(question.answer, 250) != 'Too Long!'">
-                    Word Count: {{ wordCount(question.answer, 250) }}, Words Remaining: {{ 250 - wordCount(question.answer) }}
+                    Word Count: {{ wordCount(question.answer, 250) }}, Words Remaining: {{ 250 - wordCount(question.answer, 250) }}
                   </p>
                   <p ng-show="wordCount(question.answer, 250) === 'Too Long!'" class="error-class">
                     Max Word Count!
