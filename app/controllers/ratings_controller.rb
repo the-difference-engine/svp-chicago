@@ -37,7 +37,8 @@ class RatingsController < ApplicationController
   		loi_id: params[:loi_id],
   		q1: params[:q1],
   		q2: params[:q2],
-  		q3: params[:q3],
+      q3: params[:q3],
+      q4: params[:q4],
   		q5: params[:q5],
   		weighted_score: 5,
       comment: params[:comment]
@@ -52,7 +53,7 @@ class RatingsController < ApplicationController
         if index < @rating.errors.full_messages.length - 1
           error_message += " | "
         end
-      end 
+      end
   		redirect_to :back
       flash[:warning] = error_message
   	end
@@ -69,6 +70,7 @@ class RatingsController < ApplicationController
       q1: params[:q1],
       q2: params[:q2],
       q3: params[:q3],
+      q4: params[:q4],
       q5: params[:q5],
       weighted_score: 5,
       comment: params[:comment]

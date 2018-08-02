@@ -82,8 +82,8 @@
 .loi-rating-form td {
   text-align:left;
   font-size: 14px;
-  text-transform: uppercase;
-  width:120px;
+  // text-transform: uppercase;
+  width:150px;
   height:100px;
   vertical-align: bottom;
   padding:10px;
@@ -98,7 +98,7 @@
 }
 
 #rating-pullout {
-  position: fixed;
+  position: fixed !important;
   width:270px;
   background-color:#ccc;
   right: 0;

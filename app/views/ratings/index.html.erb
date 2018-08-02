@@ -30,13 +30,20 @@
               </th>
               <th>
                 <p ng-click="sortBy('q2')">
-                  Potential SVP Impact
+                  Meets Key Criteria
                   <span ng-class="toggle_class">
                   </span>
                 </p>
               </th>
               <th>
                 <p ng-click="sortBy('q3')">
+                  Potential SVP Impact
+                  <span ng-class="toggle_class">
+                  </span>
+                </p>
+              </th>
+              <th>
+                <p ng-click="sortBy('q4')">
                   Level of Excitement
                   <span ng-class="toggle_class">
                   </span>
@@ -70,12 +77,13 @@
                 </p>
               </th>
             </tr>
-            
+
             <tr ng-repeat="rating in resultValue=(ratings | filter:orgNameFilter) | orderBy:sortByAttribute:descending">
               <td><a href="/lois/{{rating.loi.id}}">{{ rating.org_name }}</a></td>
               <td>{{ rating.q1 }}</td>
               <td>{{ rating.q2 }}</td>
               <td>{{ rating.q3 }}</td>
+              <td>{{ rating.q4 }}</td>
               <% if @yes_ratings.length < @invite_max %>
 
                 <td ng-show="rating.user.id==currentUserId" ng-if="yourYesRatingsLength < inviteMax.max">
@@ -97,7 +105,7 @@
                     </select>
                     </span>
                 </td>
-                
+
               <% elsif @yes_ratings.length == @invite_max %>
 
                 <td ng-show="rating.user.id==currentUserId" ng-if="yourYesRatingsLength >= inviteMax.max">
@@ -119,7 +127,7 @@
                     </select>
                 </td>
 
-                
+
 
               <% else %>
                 <td ng-show="rating.user.id==currentUserId" ng-if="yourYesRatingsLength >= inviteMax.max">
@@ -145,8 +153,10 @@
               <td>{{resultValue | avgOfValue:'q1'}}</td>
               <td>{{resultValue | avgOfValue:'q2'}}</td>
               <td>{{resultValue | avgOfValue:'q3'}}</td>
+              <td>{{resultValue | avgOfValue:'q4'}}</td>
               <td> -- </td>
               <td>{{resultValue | avgOfValue:'weighted_score'}}</td>
+              <td> -- </td>
               <td> -- </td>
             </tr>
           </table>
@@ -160,6 +170,6 @@
           <% end %>
         </span>
       </div>
-    
+
     </div>
 </div>
