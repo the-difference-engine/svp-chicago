@@ -44,7 +44,7 @@ class Loi < ActiveRecord::Base
 
   def self.to_csv
     attributes = %w{id name email}
-    
+
     questions = Question.order(:section_id).order(:id).all
     attribute_questions = []
     questions.each do|question|
@@ -85,15 +85,15 @@ class Loi < ActiveRecord::Base
   def self.concat_ftes(fte)
     fte_string = ""
     if fte.amount_1
-      fte_string += "\nFTEs 2015: #{fte.amount_1}"
+      fte_string += "\nFTEs 2017: #{fte.amount_1}"
     end
 
     if fte.amount_2
-      fte_string += "\nFTEs 2016: #{fte.amount_2}"
+      fte_string += "\nFTEs 2018: #{fte.amount_2}"
     end
 
     if fte.amount_3
-      fte_string += "\nFTEs 2017: #{fte.amount_3}"
+      fte_string += "\nFTEs 2019: #{fte.amount_3}"
     end
 
     fte_string

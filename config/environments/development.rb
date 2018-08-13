@@ -60,7 +60,7 @@ Rails.application.configure do
       :enable_starttls_auto => true
     }
   end
-  config.action_mailer.default_url_options = { host: 'qa-svp-chicago-2017.herokuapp.com' }
+  config.action_mailer.default_url_options = { host: 'svp-chicago-2018.herokuapp.com' }
 
   # Amazon Web Service config
   # config.paperclip_defaults = {
