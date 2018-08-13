@@ -26,7 +26,9 @@ class UsersController < ApplicationController
       @dashboard = Dashboard.create
     end
 
-    @deadline_open = Time.now < @dashboard.loi_closing_date
+    @deadline_open = Time.now - 5.hours < @dashboard.loi_closing_date
+    puts "TIME**********************"
+    puts @dashboard.loi_closing_date
 
     user_has_submitted_loi = Loi.find_by(user_id: current_user.id, submitted: true)
 
