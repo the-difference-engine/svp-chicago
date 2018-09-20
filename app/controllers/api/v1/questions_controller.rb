@@ -2,7 +2,7 @@ class Api::V1::QuestionsController < ApplicationController
 	skip_before_action :verify_authenticity_token, only: [:index]
 
 	def index
-		@questions = Question.where(is_active: true).order(:id)
+		@questions = Question.includes(:section).where(is_active: true).order(:id)
 		@sections = Section.all
 	end
 
