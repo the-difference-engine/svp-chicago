@@ -20,7 +20,7 @@ class UserNotifier < ActionMailer::Base
     @user = user
     mail( :to => @user.email,
           :cc => ENV['SUPERADMIN_EMAIL'],
-          :subject => 'Thanks for submission to SVP! (Prescreen Rejection Notification)' )
+          :subject => 'Thanks for submission to SVP!' )
   end
 
   def send_notification_admin
