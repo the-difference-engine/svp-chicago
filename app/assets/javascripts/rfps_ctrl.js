@@ -84,12 +84,12 @@
       });
     };
 
-    $scope.submitForm = function(submitStatus){   
+    $scope.submitForm = function(submitStatus){
 
       if (submitStatus == true && $scope.confirmation == false) {
         alert("You need to upload files in order to submit");
         return;
-      } 
+      }
       var newRfp = {
         rfp_sections: $scope.sections,
         submitted: submitStatus
@@ -109,9 +109,9 @@
         });
     };
 
-    $scope.wordCount = function(text){
+    $scope.wordCount = function(length, text){
       var wordLength = text ? text.match(/\S+/g).length : 0;
-      return wordLength >= 400 ? 'Too Long!' : wordLength;
+      return wordLength >= length ? 'Too Long!' : wordLength;
     };
 
     $scope.addInput = function(id){
@@ -187,7 +187,7 @@
      }
 
       alert("Your files were successfully uploaded! If you are satisfied with your information, hit the Submit button to send to SVP. Otherwise click the Save button to return and edit later.");
-      
+
     };
 
 

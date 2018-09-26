@@ -73,13 +73,13 @@
             if($scope.sections[i].rfp_questions[j].question_type==="multiple input"){
               $scope.sections[i].rfp_questions[j].rfp_answers.push({});
             } else if ($scope.sections[i].rfp_questions[j].question_type==="block with multiple inputs"){
-                
+
               //Loop through sub_questions
               for(var k=0; k<$scope.sections[i].rfp_questions[j].sub_questions.length; k++){
                 $scope.sections[i].rfp_questions[j].sub_questions[k].sub_answers.push({});
               }
             }
-            
+
           };
         };
       };
@@ -109,13 +109,13 @@
 
               //removes the last input from rfp_answers array
               var rfpAnswerHolder = $scope.sections[i].rfp_questions[j].rfp_answers.splice(-1)
-              
+
               //if the answer exists in the database removeFromDatabase()
               if(rfpAnswerHolder[0].rfp_answer_id){
                 removeMultipleInputFromDatabase($scope.sections[i].rfp_questions[j].question_id);
               }
             } else if ($scope.sections[i].rfp_questions[j].question_type==="block with multiple inputs"){
-                
+
               //Loop through sub_questions
               for(var k=0; k<$scope.sections[i].rfp_questions[j].sub_questions.length; k++){
 
@@ -126,15 +126,15 @@
                 }
               }
             }
-            
+
           };
         };
       };
     };
 
-    $scope.wordCount = function(text){
+    $scope.wordCount = function(length, text){
       var wordLength = text ? text.match(/\S+/g).length : 0;
-      return wordLength >= 400 ? 'Too Long!' : wordLength;
+      return wordLength >= length ? 'Too Long!' : wordLength;
     };
 
     //SETS TO TRUE IF APPLICANT IS FINISHED WITH RFP FORM
@@ -146,13 +146,13 @@
       if (submitStatus == true && $scope.confirmation == false) {
         alert("You need to upload all required files in order to submit");
         return;
-      } 
+      }
       var newRfp = {
         rfp_sections: $scope.sections,
         submitted: submitStatus
       };
 
-      
+
       $http.patch('/api/v1/rfp_sections/'+ $scope.activeId + '.json', newRfp).success(function(response){
           if (submitStatus == true) {
             alert("Your request for proposal has been submitted!");
@@ -180,7 +180,7 @@
         var file6 = $scope.myFile6;
         var file7 = $scope.myFile7;
       }
- 
+
        var uploadUrl = "/api/v1/attachments.json";
 
        if (file && file2 && file3 && file4 && file5) {
@@ -211,7 +211,7 @@
       }
 
       alert("Your files were successfully uploaded! If you are satisfied with your information, hit the Submit button to send to SVP. Otherwise click the Save button to return and edit later.");
-      
+
     };
 
 

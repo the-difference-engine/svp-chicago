@@ -9,6 +9,7 @@ json.array! @rfp_sections.each do |rfp_section|
     json.is_active rfp_question.is_active
     json.question_type rfp_question.question_type
     json.question_id rfp_question.id
+    json.word_limit rfp_question.word_limit
 
     @rfp.rfp_answers.each do |rfp_answer|
 
@@ -26,7 +27,7 @@ json.array! @rfp_sections.each do |rfp_section|
         end
 
         if rfp_answer.sub_answers.length > 0
-          
+
           if rfp_question.question_type == 'block with multiple inputs'
 
             json.sub_questions rfp_question.sub_questions.each do |sub_question|
@@ -50,7 +51,7 @@ json.array! @rfp_sections.each do |rfp_section|
 
         end
 
-      
+
       end
     end
 

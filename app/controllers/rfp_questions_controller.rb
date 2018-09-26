@@ -13,7 +13,7 @@ class RfpQuestionsController < ApplicationController
 
   def create
     ActiveRecord::Base.transaction do
-      @rfp_question = RfpQuestion.new({question: params[:question], rfp_section_id: params[:rfp_section][:rfp_section_id], question_type: params[:question_type]})
+      @rfp_question = RfpQuestion.new({question: params[:question], rfp_section_id: params[:rfp_section][:rfp_section_id], question_type: params[:question_type], word_limit: params[:word_limit]})
       if @rfp_question.save!
 
         if params[:question_type] == "block" || params[:question_type] == "block with multiple inputs"
@@ -43,7 +43,7 @@ class RfpQuestionsController < ApplicationController
   def update
     @rfp_question = RfpQuestion.find_by(id: params[:id])
 
-    @rfp_question.update({question: params[:question], rfp_section_id: params[:rfp_section][:rfp_section_id]})
+    @rfp_question.update({question: params[:question], rfp_section_id: params[:rfp_section][:rfp_section_id],  word_limit: params[:word_limit]})
 
     flash[:success] = "Question updated!"
     redirect_to "/rfp_questions"

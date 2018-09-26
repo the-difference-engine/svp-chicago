@@ -8,6 +8,7 @@ json.array! @rfp_sections do |section|
       json.question_type question.question_type
       json.sub_questions question.sub_questions
       json.is_active question.is_active
+      json.word_limit question.word_limit
     end
   end
 end

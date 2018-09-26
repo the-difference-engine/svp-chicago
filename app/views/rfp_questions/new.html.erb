@@ -12,7 +12,7 @@
           <%=label_tag :question, nil, class: "col-sm-2 control-label" %>
           <div class="col-sm-10">
             <%= text_field_tag :question, @rfp_question.question, class: "form-control" %>
-          </div>  
+          </div>
         </div>
 
         <div class="form-group">
@@ -29,13 +29,20 @@
           </div>
         </div>
 
+        <div class="form-group">
+          <%= label_tag :word_limit, nil, class: "col-sm-2 control-label" %>
+          <div class="col-sm-10">
+            <%= text_field_tag 'word_limit', nil, class: "form-control" %>
+          </div>
+        </div>
+
       <div id="hide-sub-question">
         <div class="sub-question">
           <div class="form-group">
             <%=label_tag :sub_question, nil, class: "col-sm-2 control-label" %>
             <div class="col-sm-10">
               <%= text_field_tag "sub_question[0]", @sub_question.question, class: "form-control" %>
-            </div>  
+            </div>
           </div>
         </div>
         <a id="add">Add another sub-question</a>

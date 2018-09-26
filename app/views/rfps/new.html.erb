@@ -34,9 +34,9 @@
 
               For questions about items in the RFP, contact <b><%= mail_to "colleen@svpchicago.org", "Colleen Scrivner", subject: "RFP Inquiry" %>,</b> SVP Chicago director of Programs & Communications, at <b><%= mail_to "colleen@svpchicago.org", "colleen@svpchicago.org", subject: "RFP Inquiry" %></b>.
             </div>
-          </div>    
-        </div>   
-          
+          </div>
+        </div>
+
         <!-- DISPLAY ERRORS -->
         <div class="errors" ng-if="errors">
           <h5> These questions can not be left blank: </h5>
@@ -45,7 +45,7 @@
           </ul>
         </div>
 
-        <!-- START FORM -->  
+        <!-- START FORM -->
         <div class="form-body">
           <form name="rfpForm" enctype="multipart/form-data" accept-charset="UTF-8" ng-submit="submit(rfpForm.$valid)" novalidate>
 
@@ -56,19 +56,21 @@
                 <div ng-repeat="question in section.questions">
 
 
-              
+
 
 
                   <div ng-if="question.question_type === 'single input'">
                     <div class="form-group">
                       <label> {{question.question}} </label>
                       <textarea class="form-control" ng-model="question.answer"></textarea>
-                      <p ng-show="wordCount(question.answer) != 'Too Long!'">
-                        Word Count: {{ wordCount(question.answer) }}, Words Remaining: {{ 400 - wordCount(question.answer) }}
-                      </p>
-                      <p ng-show="wordCount(question.answer) === 'Too Long!'" class="error-class">
-                        Max Word Count!
-                      </p>  
+                      <div ng-if="question.word_limit">
+                        <p ng-show="wordCount(question.word_limit, question.answer) != 'Too Long!'">
+                          Word Count: {{ wordCount(question.word_limit, question.answer) }}, Words Remaining: {{ question.word_limit - wordCount(question.word_limit, question.answer) }}
+                        </p>
+                        <p ng-show="wordCount(question.word_limit, question.answer) === 'Too Long!'" class="error-class">
+                          Max Word Count!
+                        </p>
+                      </div>
                     </div>
                   </div>
 
@@ -83,8 +85,8 @@
                         <a style="color:red" ng-if="question.answers.length>1" ng-click="removeInput(question.id)"> Remove Input </a>
                       </p>
                     </div>
-                  </div> 
-                  
+                  </div>
+
 
                   <div ng-if="question.question_type === 'block'">
                     <div class="form-group">
@@ -96,7 +98,7 @@
                         </div>
                       </div>
                     </div>
-                  </div> 
+                  </div>
 
                   <div ng-if="question.question_type === 'block with multiple inputs'">
                     <div class="form-group">
@@ -114,16 +116,16 @@
                             </div>
                           </div>
                           <p>
-                            <a ng-click="addInput(question.id)">Add Input </a> 
+                            <a ng-click="addInput(question.id)">Add Input </a>
                             <a style="color:red" ng-if="question.sub_questions[$index].answers.length>1" ng-click="removeInput(question.id)"> Remove Input </a>
                           </p>
-                          
+
                         </div>
                       </div>
-                    </div> 
+                    </div>
                   </div>
                 </div>
-              </div> 
+              </div>
             </div>
 
             <div class="well rfp-section">
@@ -131,7 +133,7 @@
                 <h3><label> Upload Files </label></h3>
                 <h5><strong>All required documents must be uploaded before submitting. Please attach all documents and then click the upload button to save them to your proposal. (We can only accept one file per section, please merge multiple documents if necessary.)</strong></h5>
                 <div class="well rfp-well">
-                  <div>  
+                  <div>
                     <div>
                     <div style="overflow-x:auto;">
                       <table class="fixed">
@@ -192,10 +194,10 @@
                   </div>
 
 
-                       
-                      
+
+
                        <button ng-click="uploadFile()" class="btn btn-info" style="margin-top:15px;">Upload File</button>
-                    </div>      
+                    </div>
                   </div>
                 </div>
               </div>
@@ -204,9 +206,9 @@
 
             <div class="submit-button-container">
               <button class="btn btn-success btn-lg" ng-click="submitForm(false)">Save and Submit Later</button>
-              <button class="btn btn-primary btn-lg" ng-click="submitForm(true)">Submit</button>  
-              <p style="text-align:center;"> * There may be a short delay when submitting. Please wait a moment before navaigating away from the page </p>        
-            </div>  
+              <button class="btn btn-primary btn-lg" ng-click="submitForm(true)">Submit</button>
+              <p style="text-align:center;"> * There may be a short delay when submitting. Please wait a moment before navaigating away from the page </p>
+            </div>
           </form>
           <!-- END FORM -->
         </div>
