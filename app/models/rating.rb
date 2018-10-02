@@ -13,7 +13,7 @@ class Rating < ActiveRecord::Base
 
   def self.to_csv
     attributes = %w{id org_name q1 q2 q3 q5 weighted_score comment rated_by}
-   
+
     CSV.generate(headers: true) do |csv|
       csv << attributes
       all.each do |rating|
@@ -23,6 +23,7 @@ class Rating < ActiveRecord::Base
           rating.q1,
           rating.q2,
           rating.q3,
+          rating.q4,
           rating.q5,
           rating.weighted_score,
           rating.comment,
