@@ -13,7 +13,7 @@
           <%= select_tag(:q1, options_for_select([['1 – Does not meet criteria', 1], ['2 – Meets few criteria', 2], ['3 – Meets most criteria', 3], ['4 – Meets criteria', 4]], selected: @rating.q1), :prompt => "Rate 1 - 4", class: "form-control rfp-rating-form") %>
         </td>
         <td>
-          <div data-toggle="tooltip" data-placement="bottom" title="How broadly does the organization serve its target population as defined by its goals and statement?">2. Breadth of Impact
+          <div data-toggle="tooltip" data-placement="bottom" title="How broadly does the organization serve its target population as defined by its goals and mission statement?">2. Breadth of Impact
             <span class="glyphicon glyphicon-question-sign">
             </span>
             <span style="color: red">*</span>
@@ -52,7 +52,7 @@
             </span>
             <span style="color: red">*</span>
           </div>
-          <%= select_tag(:q6, options_for_select([['Little to no understanding and/or interest in working together.', 1], ['Limited understanding and/or interest', 2], ['Good understanding and/or interest', 3], ['Significant understanding and/or interest', 4]], selected: @rating.q6 ), :prompt => "Choose yes or no", class: "form-control rfp-rating-form") %>
+          <%= select_tag(:q6, options_for_select([['Little to no understanding and/or interest in working together.', 1], ['Limited understanding and/or interest', 2], ['Good understanding and/or interest', 3], ['Significant understanding and/or interest', 4]], selected: @rating.q6 ), :prompt => "Please Select", class: "form-control rfp-rating-form") %>
         </td>
       </tr>
       <tr>
@@ -67,7 +67,7 @@
             ['Limited understanding of value and how to develop', 2],
             ['Good understanding of value and how to develop', 3],
             ['Significant understanding of value and how to develop', 4]
-          ], selected: @rating.q7 ), :prompt => "Choose yes or no", class: "form-control rfp-rating-form") %>
+          ], selected: @rating.q7 ), :prompt => "Please Select", class: "form-control rfp-rating-form") %>
         </td>
         <td>
           <div data-toggle="tooltip" data-placement="bottom" title="How strong is the leadership team? Are the key positions filled? Is there capacity to manage change?">8. Organization leadership
