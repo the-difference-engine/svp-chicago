@@ -7,16 +7,19 @@
           <h1>Welcome!</h1>
 
           <br>
+          <% if true %>
+            <h1> Submission Period has ended </h1>
+          <% else %>
 
           <% if @user.admin && !@user.super_admin %>
             <h4>You are currently logged in with administrator privileges as: <%= @user.email %> </h4>
             <table class="table">
-              
+
                 <tr>
                   <td><a href="/lois" class="btn btn-primary btn-s">Review all the submitted LOIs</a></td>
                   <td><a href="/ratings" class="btn btn-primary btn-s">See a list of your ratings</a></td>
                 </tr>
-              
+
             </table>
           <% elsif @user.admin && @user.super_admin %>
             <h4>You are currently logged in with super-administrator priviliges as: <%= @user.email %> </h4>
@@ -83,6 +86,7 @@
               <% end %>
             <% end %>
             </ul>
+          <% end %>
           <% end %>
         </div>
       </div>
